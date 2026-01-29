@@ -1,5 +1,6 @@
+"use client";
 
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/Header';
 import { HeroDemo } from '@/components/HeroDemo';
@@ -37,7 +38,7 @@ const messageExamples = [
   'Withdrawing support'
 ];
 
-export default function Index() {
+export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -73,7 +74,7 @@ export default function Index() {
               
               <div className="flex flex-wrap gap-4">
                 <Button asChild variant="hero" size="lg">
-                  <Link to="/translate">
+                  <Link href="/translate">
                     Translate your message
                     <ArrowRight className="w-5 h-5" />
                   </Link>
@@ -157,7 +158,7 @@ export default function Index() {
               wording for any situation.
             </p>
             <Button asChild variant="hero" size="xl">
-              <Link to="/translate">
+              <Link href="/translate">
                 Start translating
                 <ArrowRight className="w-5 h-5" />
               </Link>

@@ -1,15 +1,17 @@
+"use client";
 
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Languages } from 'lucide-react';
 
 export function Header() {
-  const location = useLocation();
+  const pathname = usePathname();
   
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg">
       <div className="container flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
+        <Link href="/" className="flex items-center gap-2 group">
           <div className="p-1.5 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
             <Languages className="w-5 h-5 text-primary" />
           </div>
@@ -18,10 +20,10 @@ export function Header() {
         
         <nav className="flex items-center gap-6">
           <Link
-            to="/"
+            href="/"
             className={cn(
               "text-sm transition-colors",
-              location.pathname === '/'
+              pathname === '/'
                 ? "text-foreground"
                 : "text-muted-foreground hover:text-foreground"
             )}
@@ -29,10 +31,10 @@ export function Header() {
             Home
           </Link>
           <Link
-            to="/translate"
+            href="/translate"
             className={cn(
               "text-sm transition-colors",
-              location.pathname === '/translate'
+              pathname === '/translate'
                 ? "text-foreground"
                 : "text-muted-foreground hover:text-foreground"
             )}

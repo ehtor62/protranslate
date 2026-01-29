@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useMemo } from 'react';
 import { Header } from '@/components/Header';
 import { MessageCard } from '@/components/MessageCard';
