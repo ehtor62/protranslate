@@ -52,42 +52,42 @@ export default function Home() {
         />
         
         <div className="container py-12 md:py-16 relative">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="flex flex-col md:flex-row gap-12 lg:gap-16 items-start">
             {/* Left column - Text */}
-            <div className="space-y-8">
+            <div className="flex-1 space-y-8">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm">
                 <Languages className="w-4 h-4" />
                 <span>Professional message translation</span>
               </div>
               
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                The same message.
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold leading-tight">
+                <span className="text-foreground">The same message.</span>
                 <br />
                 <span className="gradient-text">50 professional translations.</span>
               </h1>
               
-              <p className="text-lg text-muted-foreground max-w-lg">
-                Not language translation. <em>Meaning</em> translation. Adjust context, 
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl">
+                Not language translation. <em className="text-muted-foreground italic">Meaning</em> translation. Adjust context, 
                 power dynamics, and cultural norms to craft the exact professional message 
                 you need.
               </p>
               
               <div className="flex flex-wrap gap-4">
-                <Button asChild variant="hero" size="lg">
+                <Button asChild variant="hero" size="xl">
                   <Link href="/translate">
                     Translate your message
                     <ArrowRight className="w-5 h-5" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
+                <Button asChild variant="outline" size="xl">
                   <a href="#how-it-works">See how it works</a>
                 </Button>
               </div>
             </div>
             
             {/* Right column - Interactive demo */}
-            <div className="lg:pl-8">
-              <div className="p-6 rounded-2xl bg-card border border-border shadow-lg">
+            <div className="w-full md:w-[450px] lg:w-[500px] flex-shrink-0">
+              <div className="p-6 rounded-2xl bg-card/50 backdrop-blur border border-border/50">
                 <div className="flex items-center gap-2 mb-4">
                   <Shield className="w-4 h-4 text-primary" />
                   <span className="text-sm font-medium text-foreground">Live Preview</span>

@@ -88,12 +88,12 @@ export function HeroDemo() {
       {/* Message preview */}
       <div
         className={cn(
-          "p-5 rounded-xl bg-surface-elevated border border-border transition-all duration-300",
+          "p-4 rounded-lg bg-background/80 border border-border transition-all duration-300",
           isAnimating && "opacity-0 translate-y-2"
         )}
       >
-        <p className="text-sm text-foreground leading-relaxed font-mono line-clamp-4">
-          {message.wording.split('\n')[0]}...
+        <p className="text-sm text-foreground/90 font-mono">
+          Subject: {message.wording.split('\n')[0].slice(0, 50)}...
         </p>
       </div>
       
