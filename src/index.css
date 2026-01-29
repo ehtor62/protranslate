@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Neutral professional palette */
+    --background: 220 14% 4%;
+    --foreground: 220 10% 94%;
+
+    --card: 220 14% 7%;
+    --card-foreground: 220 10% 94%;
+
+    --popover: 220 14% 7%;
+    --popover-foreground: 220 10% 94%;
+
+    /* Subtle teal accent for professionalism */
+    --primary: 172 50% 45%;
+    --primary-foreground: 220 14% 4%;
+
+    --secondary: 220 14% 12%;
+    --secondary-foreground: 220 10% 80%;
+
+    --muted: 220 14% 15%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 220 14% 18%;
+    --accent-foreground: 220 10% 94%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 220 10% 94%;
+
+    --border: 220 14% 16%;
+    --input: 220 14% 16%;
+    --ring: 172 50% 45%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --surface-elevated: 220 14% 9%;
+    --text-tertiary: 220 10% 45%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 220 14% 4%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(172 50% 45%), hsl(172 60% 35%));
+    --gradient-surface: linear-gradient(180deg, hsl(220 14% 9%), hsl(220 14% 6%));
+    --gradient-hero: linear-gradient(135deg, hsl(172 50% 45% / 0.1), transparent 60%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px hsl(220 14% 0% / 0.3);
+    --shadow-md: 0 4px 12px hsl(220 14% 0% / 0.4);
+    --shadow-lg: 0 8px 24px hsl(220 14% 0% / 0.5);
+    --shadow-glow: 0 0 40px hsl(172 50% 45% / 0.15);
+
+    --sidebar-background: 220 14% 6%;
+    --sidebar-foreground: 220 10% 80%;
+    --sidebar-primary: 172 50% 45%;
+    --sidebar-primary-foreground: 220 14% 4%;
+    --sidebar-accent: 220 14% 12%;
+    --sidebar-accent-foreground: 220 10% 94%;
+    --sidebar-border: 220 14% 16%;
+    --sidebar-ring: 172 50% 45%;
+  }
+
+  .dark {
+    /* Same as root - dark by default */
+    --background: 220 14% 4%;
+    --foreground: 220 10% 94%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    min-height: 100vh;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  code, pre {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .surface-elevated {
+    background-color: hsl(var(--surface-elevated));
+  }
+
+  .glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .container {
+    @apply w-full mx-auto px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32;
+    max-width: 1400px;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Slider track styling */
+input[type="range"] {
+  @apply appearance-none bg-transparent cursor-pointer;
+}
+
+input[type="range"]::-webkit-slider-track {
+  @apply h-1.5 rounded-full;
+  background: hsl(var(--muted));
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  @apply appearance-none w-4 h-4 rounded-full -mt-1;
+  background: hsl(var(--primary));
+  box-shadow: 0 0 10px hsl(172 50% 45% / 0.5);
+}
