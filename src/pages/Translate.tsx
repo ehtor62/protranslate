@@ -4,6 +4,14 @@ import { MessageCard } from '@/components/MessageCard';
 import { ContextSlider } from '@/components/ContextSlider';
 import { ContextSelector } from '@/components/ContextSelector';
 import { TranslationOutput } from '@/components/TranslationOutput';
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { 
   coreMessages, 
   generateMessage, 
@@ -12,7 +20,7 @@ import {
   mediumLabels,
   powerLabels 
 } from '@/data/messages';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Settings } from 'lucide-react';
 
 const defaultContext: ContextSettings = {
   formality: 60,
@@ -41,12 +49,18 @@ const powerOptions = Object.entries(powerLabels).map(([value, label]) => ({
 export default function Translate() {
   const [selectedMessageId, setSelectedMessageId] = useState<string | null>(null);
   const [context, setContext] = useState<ContextSettings>(defaultContext);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   
   const updateContext = <K extends keyof ContextSettings>(
     key: K,
     value: ContextSettings[K]
   ) => {
     setContext(prev => ({ ...prev, [key]: value }));
+  };
+
+  const handleMessageSelect = (messageId: string) => {
+    setSelectedMessageId(messageId);
+    setIsDialogOpen(true);
   };
   
   const translation = useMemo(() => {
@@ -71,84 +85,24 @@ export default function Translate() {
         </div>
         
         <div className="grid lg:grid-cols-[400px_1fr] gap-8 lg:gap-12">
-          {/* Left panel - Configuration */}
-          <div className="space-y-8">
-            {/* Step 1: Select message */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-medium">
-                  1
-                </span>
-                <h2 className="font-medium text-foreground">Select a core message</h2>
-              </div>
-              
-              <div className="grid gap-3">
-                {coreMessages.map((message) => (
-                  <MessageCard
-                    key={message.id}
-                    message={message}
-                    isSelected={selectedMessageId === message.id}
-                    onClick={() => setSelectedMessageId(message.id)}
-                  />
-                ))}
-              </div>
+          {/* Left panel - Message Selection */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-medium">
+                1
+              </span>
+              <h2 className="font-medium text-foreground">Select a core message</h2>
             </div>
             
-            {/* Step 2: Adjust context */}
-            <div className="space-y-6">
-              <div className="flex items-center gap-2">
-                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-medium">
-                  2
-                </span>
-                <h2 className="font-medium text-foreground">Adjust context</h2>
-              </div>
-              
-              <div className="space-y-6 p-4 rounded-xl bg-card border border-border">
-                <ContextSlider
-                  label="Formality"
-                  value={context.formality}
-                  onChange={(v) => updateContext('formality', v)}
-                  leftLabel="Casual"
-                  rightLabel="Institutional"
+            <div className="grid gap-3">
+              {coreMessages.map((message) => (
+                <MessageCard
+                  key={message.id}
+                  message={message}
+                  isSelected={selectedMessageId === message.id}
+                  onClick={() => handleMessageSelect(message.id)}
                 />
-                
-                <ContextSlider
-                  label="Directness"
-                  value={context.directness}
-                  onChange={(v) => updateContext('directness', v)}
-                  leftLabel="Indirect"
-                  rightLabel="Blunt"
-                />
-                
-                <ContextSlider
-                  label="Emotional sensitivity"
-                  value={context.emotionalSensitivity}
-                  onChange={(v) => updateContext('emotionalSensitivity', v)}
-                  leftLabel="Low"
-                  rightLabel="High"
-                />
-                
-                <ContextSelector
-                  label="Power relationship"
-                  value={context.powerRelationship}
-                  onChange={(v) => updateContext('powerRelationship', v as ContextSettings['powerRelationship'])}
-                  options={powerOptions}
-                />
-                
-                <ContextSelector
-                  label="Cultural context"
-                  value={context.culturalContext}
-                  onChange={(v) => updateContext('culturalContext', v as ContextSettings['culturalContext'])}
-                  options={culturalOptions}
-                />
-                
-                <ContextSelector
-                  label="Communication medium"
-                  value={context.medium}
-                  onChange={(v) => updateContext('medium', v as ContextSettings['medium'])}
-                  options={mediumOptions}
-                />
-              </div>
+              ))}
             </div>
           </div>
           
@@ -156,9 +110,20 @@ export default function Translate() {
           <div>
             <div className="flex items-center gap-2 mb-6">
               <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-medium">
-                3
+                2
               </span>
               <h2 className="font-medium text-foreground">Translation output</h2>
+              {selectedMessageId && (
+                <Button
+                  onClick={() => setIsDialogOpen(true)}
+                  variant="outline"
+                  size="sm"
+                  className="ml-auto"
+                >
+                  <Settings className="w-4 h-4 mr-2" />
+                  Adjust Context
+                </Button>
+              )}
             </div>
             
             {selectedMessageId && translation ? (
@@ -186,6 +151,65 @@ export default function Translate() {
             )}
           </div>
         </div>
+
+        {/* Context Adjustment Dialog */}
+        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Adjust Context</DialogTitle>
+              <DialogDescription>
+                Fine-tune the translation parameters to match your specific situation.
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="space-y-6 py-4">
+              <ContextSlider
+                label="Formality"
+                value={context.formality}
+                onChange={(v) => updateContext('formality', v)}
+                leftLabel="Casual"
+                rightLabel="Institutional"
+              />
+              
+              <ContextSlider
+                label="Directness"
+                value={context.directness}
+                onChange={(v) => updateContext('directness', v)}
+                leftLabel="Indirect"
+                rightLabel="Blunt"
+              />
+              
+              <ContextSlider
+                label="Emotional sensitivity"
+                value={context.emotionalSensitivity}
+                onChange={(v) => updateContext('emotionalSensitivity', v)}
+                leftLabel="Low"
+                rightLabel="High"
+              />
+              
+              <ContextSelector
+                label="Power relationship"
+                value={context.powerRelationship}
+                onChange={(v) => updateContext('powerRelationship', v as ContextSettings['powerRelationship'])}
+                options={powerOptions}
+              />
+              
+              <ContextSelector
+                label="Cultural context"
+                value={context.culturalContext}
+                onChange={(v) => updateContext('culturalContext', v as ContextSettings['culturalContext'])}
+                options={culturalOptions}
+              />
+              
+              <ContextSelector
+                label="Communication medium"
+                value={context.medium}
+                onChange={(v) => updateContext('medium', v as ContextSettings['medium'])}
+                options={mediumOptions}
+              />
+            </div>
+          </DialogContent>
+        </Dialog>
       </main>
     </div>
   );
