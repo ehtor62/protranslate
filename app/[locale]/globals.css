@@ -158,4 +158,30 @@ input[type="range"]::-webkit-slider-thumb {
   @apply appearance-none w-4 h-4 rounded-full -mt-1;
   background: hsl(var(--primary));
   box-shadow: 0 0 10px hsl(172 50% 45% / 0.5);
+  transition: all 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  @apply w-5 h-5 -mt-1.5;
+  box-shadow: 0 0 15px hsl(172 50% 45% / 0.7);
+}
+
+/* Slider with label in handle - hide the thumb */
+input[type="range"].range-with-label::-webkit-slider-thumb {
+  @apply opacity-0;
+}
+
+input[type="range"]::-moz-range-track {
+  @apply h-1.5 rounded-full;
+  background: hsl(var(--muted));
+}
+
+input[type="range"]::-moz-range-thumb {
+  @apply appearance-none w-4 h-4 rounded-full border-0;
+  background: hsl(var(--primary));
+  box-shadow: 0 0 10px hsl(172 50% 45% / 0.5);
+}
+
+input[type="range"].range-with-label::-moz-range-thumb {
+  @apply opacity-0;
 }

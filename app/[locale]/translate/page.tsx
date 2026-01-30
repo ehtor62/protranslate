@@ -161,9 +161,6 @@ export default function Translate() {
           <DialogContent>
             <DialogHeader>
               <DialogTitle>{t('translatePage.step2')}</DialogTitle>
-              <DialogDescription>
-                {t('translatePage.description')}
-              </DialogDescription>
             </DialogHeader>
             
             <div className="space-y-6 py-4">
@@ -171,24 +168,42 @@ export default function Translate() {
                 label={t('translatePage.formality')}
                 value={context.formality}
                 onChange={(v) => updateContext('formality', v)}
-                leftLabel={t('translatePage.formalityLow')}
-                rightLabel={t('translatePage.formalityHigh')}
+                showLabelInHandle={true}
+                multipleLabels={[
+                  { value: 0, label: t('translatePage.formalityCasual'), tooltip: "Relaxed, conversational language with no formal structure." },
+                  { value: 20, label: t('translatePage.formalityInformal'), tooltip: "Friendly and professional, but without strict conventions." },
+                  { value: 40, label: t('translatePage.formalityNeutral'), tooltip: "Standard professional tone with balanced structure and clarity." },
+                  { value: 60, label: t('translatePage.formalityFormal'), tooltip: "Polished, structured language following professional norms." },
+                  { value: 80, label: t('translatePage.formalityInstitutional'), tooltip: "Official, policy-aligned wording suitable for legal or HR contexts." }
+                ]}
               />
               
               <ContextSlider
                 label={t('translatePage.directness')}
                 value={context.directness}
                 onChange={(v) => updateContext('directness', v)}
-                leftLabel={t('translatePage.directnessLow')}
-                rightLabel={t('translatePage.directnessHigh')}
+                showLabelInHandle={true}
+                multipleLabels={[
+                  { value: 0, label: t('translatePage.directnessIndirect'), tooltip: "The message is implied rather than stated outright." },
+                  { value: 25, label: t('translatePage.directnessDiplomatic'), tooltip: "Clear intent delivered with softening language." },
+                  { value: 50, label: t('translatePage.directnessClear'), tooltip: "The message is explicit, balanced, and easy to understand." },
+                  { value: 75, label: t('translatePage.directnessDirect'), tooltip: "The point is stated plainly with minimal cushioning." },
+                  { value: 100, label: t('translatePage.directnessBlunt'), tooltip: "The message is delivered without softening or mitigation." }
+                ]}
               />
               
               <ContextSlider
                 label={t('translatePage.emotionalSensitivity')}
                 value={context.emotionalSensitivity}
                 onChange={(v) => updateContext('emotionalSensitivity', v)}
-                leftLabel={t('translatePage.emotionalSensitivityLow')}
-                rightLabel={t('translatePage.emotionalSensitivityHigh')}
+                showLabelInHandle={true}
+                multipleLabels={[
+                  { value: 0, label: t('translatePage.emotionalSensitivityLow'), tooltip: "Focuses on facts and outcomes, not emotions." },
+                  { value: 25, label: t('translatePage.emotionalSensitivityContained'), tooltip: "Acknowledges emotion briefly without centering it." },
+                  { value: 50, label: t('translatePage.emotionalSensitivityAttentive'), tooltip: "Recognizes emotional impact while staying task-focused." },
+                  { value: 75, label: t('translatePage.emotionalSensitivitySensitive'), tooltip: "Actively validates feelings alongside the message." },
+                  { value: 100, label: t('translatePage.emotionalSensitivityHigh'), tooltip: "Emotion is central and carefully addressed throughout." }
+                ]}
               />
               
               <ContextSelector
