@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { Header } from '@/components/Header';
 import { MessageCard } from '@/components/MessageCard';
@@ -17,8 +17,8 @@ import {
 } from "@/components/ui/dialog";
 import { 
   coreMessages, 
-  generateMessage, 
   type ContextSettings,
+  type MessageVariant,
   culturalLabels,
   mediumLabels,
   powerLabels 
@@ -44,6 +44,8 @@ export default function Translate() {
   const [selectedMessageId, setSelectedMessageId] = useState<string | null>(null);
   const [context, setContext] = useState<ContextSettings>(defaultContext);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [translation, setTranslation] = useState<MessageVariant | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   
   const culturalOptions = Object.keys(culturalLabels).map((value) => ({
     value,
@@ -72,10 +74,44 @@ export default function Translate() {
     setIsDialogOpen(true);
   };
   
-  const translation = useMemo(() => {
-    if (!selectedMessageId) return null;
-    return generateMessage(selectedMessageId, context);
-  }, [selectedMessageId, context]);
+  // Generate message when context changes or dialog closes
+  useEffect(() => {
+    if (!selectedMessageId || isDialogOpen) return;
+    
+    const generateTranslation = async () => {
+      setIsLoading(true);
+      try {
+        const selectedMessage = coreMessages.find(m => m.id === selectedMessageId);
+        if (!selectedMessage) return;
+        
+        const response = await fetch('/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messageType: selectedMessage.title,
+            messageDescription: selectedMessage.description,
+            context
+          })
+        });
+        
+        if (!response.ok) throw new Error('Failed to generate message');
+        
+        const result = await response.json();
+        setTranslation(result);
+      } catch (error) {
+        console.error('Error generating translation:', error);
+        setTranslation({
+          wording: 'Error generating message. Please try again.',
+          explanation: 'An error occurred while processing your request.',
+          reception: ''
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    generateTranslation();
+  }, [selectedMessageId, context, isDialogOpen]);
   
   const selectedMessage = coreMessages.find(m => m.id === selectedMessageId);
   const selectedMessageKey = selectedMessage ? toCamelCase(selectedMessage.id) : '';
@@ -136,7 +172,14 @@ export default function Translate() {
               )}
             </div>
             
-            {selectedMessageId && translation ? (
+            {isLoading ? (
+              <div className="flex items-center justify-center h-64 rounded-xl border border-dashed border-border">
+                <div className="text-center">
+                  <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+                  <p className="text-muted-foreground">Generating message...</p>
+                </div>
+              </div>
+            ) : selectedMessageId && translation ? (
               <div className="animate-fade-in">
                 <div className="mb-4">
                   <h3 className="text-lg font-medium text-foreground">
