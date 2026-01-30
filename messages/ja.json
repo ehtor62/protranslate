@@ -1,0 +1,136 @@
+{
+  "common": {
+    "home": "ホーム",
+    "translate": "翻訳",
+    "appName": "ProTranslate",
+    "tagline": "プロフェッショナルな意図のための体系的な翻訳エンジン。",
+    "404": "404",
+    "pageNotFound": "ページが見つかりません",
+    "returnHome": "ホームに戻る"
+  },
+  "hero": {
+    "badge": "プロフェッショナルメッセージ翻訳",
+    "headline1": "同じメッセージ。",
+    "headline2": "50のプロフェッショナル翻訳。",
+    "description": "言語翻訳ではありません。<em>意味</em>の翻訳です。コンテキスト、パワーダイナミクス、文化的規範を調整して、必要な正確なプロフェッショナルメッセージを作成します。",
+    "ctaPrimary": "メッセージを翻訳",
+    "ctaSecondary": "仕組みを見る",
+    "livePreview": "ライブプレビュー"
+  },
+  "messageTypes": {
+    "title": "翻訳:",
+    "termination": "雇用の終了",
+    "rejection": "提案の拒否",
+    "boundary": "境界線の設定",
+    "negativeFeedback": "否定的なフィードバック",
+    "sayingNo": "断る",
+    "withdrawing": "サポートの撤回"
+  },
+  "features": {
+    "sectionTitle": "コンテキストがすべて",
+    "sectionDescription": "同じ意図でも、誰に話しかけているか、相手がどのように情報を受け取ることを好むか、どのような文化的規範が適用されるかによって、異なる言葉が必要です。",
+    "contextAware": {
+      "title": "コンテキストを意識した翻訳",
+      "description": "フォーマル度、率直さ、パワーダイナミクス、感情的な感受性を調整して、正確な適切なトーンを得ることができます。"
+    },
+    "culturalCalibration": {
+      "title": "文化的調整",
+      "description": "米国、英国、ドイツ、日本、国際的なコンテキストでのコミュニケーション規範を尊重した翻訳。"
+    },
+    "mediumSpecific": {
+      "title": "メディア固有の出力",
+      "description": "対面での会話、メール、正式な書面通知のための異なる言い回し。"
+    },
+    "powerDynamic": {
+      "title": "パワーダイナミクスの認識",
+      "description": "階層の上、横、下のどの方向に話しているかに応じて調整された言語。"
+    }
+  },
+  "cta": {
+    "title": "翻訳の準備はできましたか？",
+    "description": "メッセージを選択し、コンテキストを調整して、あらゆる状況に対してプロフェッショナルに調整された言い回しを取得します。",
+    "button": "翻訳を開始"
+  },
+  "translatePage": {
+    "title": "翻訳ツール",
+    "description": "メッセージタイプを選択し、コンテキストパラメータを調整して、プロフェッショナルに調整された翻訳を取得します。",
+    "step1": "コアメッセージを選択",
+    "step2": "コンテキストを調整",
+    "step3": "翻訳を取得",
+    "formality": "フォーマル度",
+    "formalityLow": "カジュアル",
+    "formalityHigh": "制度的",
+    "directness": "率直さ",
+    "directnessLow": "間接的",
+    "directnessHigh": "率直",
+    "emotionalSensitivity": "感情的な感受性",
+    "emotionalSensitivityLow": "低",
+    "emotionalSensitivityHigh": "高",
+    "powerRelationship": "パワー関係",
+    "culturalContext": "文化的コンテキスト",
+    "medium": "メディア",
+    "selectMessage": "開始するメッセージを選択してください",
+    "wording": "言い回し",
+    "explanation": "説明",
+    "reception": "予想される受け取り方"
+  },
+  "messages": {
+    "termination": {
+      "title": "雇用の終了",
+      "description": "組織での誰かの雇用を終了する",
+      "category": "雇用"
+    },
+    "rejection": {
+      "title": "提案の拒否",
+      "description": "ビジネス提案、ピッチ、またはリクエストを断る",
+      "category": "ビジネス"
+    },
+    "boundary": {
+      "title": "境界線の設定",
+      "description": "行動、リクエスト、または期待に対する制限を確立する",
+      "category": "対人関係"
+    },
+    "negativeFeedback": {
+      "title": "否定的なフィードバックを与える",
+      "description": "パフォーマンスや行動に関する批判を伝える",
+      "category": "パフォーマンス"
+    },
+    "sayingNo": {
+      "title": "断る",
+      "description": "リクエスト、招待、または機会を断る",
+      "category": "一般"
+    },
+    "withdrawingSupport": {
+      "title": "サポートの撤回",
+      "description": "関与、スポンサーシップ、または支援を終了する",
+      "category": "ビジネス"
+    }
+  },
+  "culturalContext": {
+    "neutral": "ニュートラル / インターナショナル",
+    "us": "アメリカ合衆国",
+    "uk": "イギリス",
+    "germany": "ドイツ",
+    "japan": "日本"
+  },
+  "medium": {
+    "inPerson": "対面での会話",
+    "email": "メール",
+    "writtenNotice": "書面通知 / 手紙"
+  },
+  "powerRelationship": {
+    "more": "あなたの方がパワーがある",
+    "equal": "対等な立場",
+    "less": "相手の方がパワーがある"
+  },
+  "demo": {
+    "formalEmail": "同僚への正式なメール",
+    "directConversation": "マネージャーとの率直な会話",
+    "sensitiveLetter": "大切な従業員への配慮のある手紙"
+  },
+  "samples": {
+    "formalEmail": "貴殿の貢献に感謝申し上げます。しかしながら、[日付]をもって雇用関係を終了させていただくことをお知らせいたします。この移行期間中、サポートを提供いたします。",
+    "directConversation": "率直に申し上げます。あなたのポジションは廃止されます。次のステップについて話し合い、最終日は[日付]となります。",
+    "sensitiveLetter": "当組織への献身的なご奉仕を深く感謝しております。慎重に検討した結果、誠に遺憾ながら[日付]付で雇用関係を終了させていただくことをお知らせいたします。この困難な移行期間を通じて、貴殿をサポートすることをお約束いたします。"
+  }
+}

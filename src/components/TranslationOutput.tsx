@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { MessageVariant, ContextSettings, culturalLabels, mediumLabels, powerLabels } from '@/data/messages';
 import { CheckCircle, AlertTriangle, Info, Copy, Check } from 'lucide-react';
@@ -12,6 +13,7 @@ interface TranslationOutputProps {
 
 export function TranslationOutput({ variant, context, className }: TranslationOutputProps) {
   const [copied, setCopied] = React.useState(false);
+  const t = useTranslations();
   
   const handleCopy = async () => {
     await navigator.clipboard.writeText(variant.wording);
@@ -20,12 +22,12 @@ export function TranslationOutput({ variant, context, className }: TranslationOu
   };
   
   const contextSummary = [
-    `${context.formality}% formal`,
-    `${context.directness}% direct`,
-    powerLabels[context.powerRelationship],
-    `${context.emotionalSensitivity}% sensitivity`,
-    culturalLabels[context.culturalContext],
-    mediumLabels[context.medium]
+    `${context.formality}% ${t('translatePage.formalityLow').toLowerCase()}`,
+    `${context.directness}% ${t('translatePage.directnessLow').toLowerCase()}`,
+    t(`powerRelationship.${context.powerRelationship}`),
+    `${context.emotionalSensitivity}% ${t('translatePage.emotionalSensitivityLow').toLowerCase()}`,
+    t(`culturalContext.${context.culturalContext}`),
+    t(`medium.${context.medium === 'in-person' ? 'inPerson' : context.medium === 'written-notice' ? 'writtenNotice' : context.medium}`)
   ];
   
   return (
@@ -68,7 +70,7 @@ export function TranslationOutput({ variant, context, className }: TranslationOu
         <div className="flex gap-3 p-4 rounded-lg bg-primary/5 border border-primary/20">
           <Info className="w-5 h-5 text-primary shrink-0 mt-0.5" />
           <div>
-            <h4 className="text-sm font-medium text-foreground mb-1">Why this works</h4>
+            <h4 className="text-sm font-medium text-foreground mb-1">{t('translatePage.explanation')}</h4>
             <p className="text-sm text-muted-foreground">{variant.explanation}</p>
           </div>
         </div>
@@ -79,7 +81,7 @@ export function TranslationOutput({ variant, context, className }: TranslationOu
         <div className="flex gap-3 p-4 rounded-lg bg-muted">
           <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
           <div>
-            <h4 className="text-sm font-medium text-foreground mb-1">How it's likely to be received</h4>
+            <h4 className="text-sm font-medium text-foreground mb-1">{t('translatePage.reception')}</h4>
             <p className="text-sm text-muted-foreground">{variant.reception}</p>
           </div>
         </div>

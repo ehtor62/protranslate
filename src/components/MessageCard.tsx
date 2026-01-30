@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { type CoreMessage } from '@/data/messages';
 import { Briefcase, UserX, Shield, MessageSquare, XCircle, LogOut } from 'lucide-react';
@@ -18,8 +19,15 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   'withdrawing-support': LogOut,
 };
 
+// Convert kebab-case to camelCase for translation keys
+const toCamelCase = (str: string) => {
+  return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+};
+
 export function MessageCard({ message, isSelected, onClick }: MessageCardProps) {
   const Icon = iconMap[message.id] || Briefcase;
+  const t = useTranslations('messages');
+  const messageKey = toCamelCase(message.id);
   
   return (
     <button
@@ -44,13 +52,13 @@ export function MessageCard({ message, isSelected, onClick }: MessageCardProps) 
             "font-medium text-sm transition-colors",
             isSelected ? "text-foreground" : "text-secondary-foreground"
           )}>
-            {message.title}
+            {t(`${messageKey}.title`)}
           </h3>
           <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
-            {message.description}
+            {t(`${messageKey}.description`)}
           </p>
           <span className="inline-block mt-2 text-xs px-2 py-0.5 rounded bg-muted text-tertiary">
-            {message.category}
+            {t(`${messageKey}.category`)}
           </span>
         </div>
       </div>

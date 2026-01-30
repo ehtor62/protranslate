@@ -1,48 +1,50 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { generateMessage, type ContextSettings } from '@/data/messages';
-
-const demoContexts: { label: string; settings: ContextSettings }[] = [
-  {
-    label: 'Formal email to a colleague',
-    settings: {
-      formality: 75,
-      directness: 50,
-      powerRelationship: 'equal',
-      emotionalSensitivity: 40,
-      culturalContext: 'us',
-      medium: 'email'
-    }
-  },
-  {
-    label: 'Direct conversation with a manager',
-    settings: {
-      formality: 45,
-      directness: 80,
-      powerRelationship: 'less',
-      emotionalSensitivity: 30,
-      culturalContext: 'germany',
-      medium: 'in-person'
-    }
-  },
-  {
-    label: 'Sensitive letter to a valued employee',
-    settings: {
-      formality: 85,
-      directness: 40,
-      powerRelationship: 'more',
-      emotionalSensitivity: 80,
-      culturalContext: 'japan',
-      medium: 'written-notice'
-    }
-  }
-];
 
 export function HeroDemo() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const t = useTranslations('demo');
+  
+  const demoContexts: { labelKey: string; settings: ContextSettings }[] = [
+    {
+      labelKey: 'formalEmail',
+      settings: {
+        formality: 75,
+        directness: 50,
+        powerRelationship: 'equal',
+        emotionalSensitivity: 40,
+        culturalContext: 'us',
+        medium: 'email'
+      }
+    },
+    {
+      labelKey: 'directConversation',
+      settings: {
+        formality: 45,
+        directness: 80,
+        powerRelationship: 'less',
+        emotionalSensitivity: 30,
+        culturalContext: 'germany',
+        medium: 'in-person'
+      }
+    },
+    {
+      labelKey: 'sensitiveLetter',
+      settings: {
+        formality: 85,
+        directness: 40,
+        powerRelationship: 'more',
+        emotionalSensitivity: 80,
+        culturalContext: 'japan',
+        medium: 'written-notice'
+      }
+    }
+  ];
   
   useEffect(() => {
     const interval = setInterval(() => {
@@ -57,7 +59,8 @@ export function HeroDemo() {
   }, []);
   
   const currentDemo = demoContexts[activeIndex];
-  const message = generateMessage('termination', currentDemo.settings);
+  const tSamples = useTranslations('samples');
+  const demoMessage = tSamples(currentDemo.labelKey);
   
   return (
     <div className="space-y-4">
@@ -80,7 +83,7 @@ export function HeroDemo() {
                 : "bg-muted text-muted-foreground hover:text-foreground"
             )}
           >
-            {demo.label}
+            {t(demo.labelKey)}
           </button>
         ))}
       </div>
@@ -88,12 +91,12 @@ export function HeroDemo() {
       {/* Message preview */}
       <div
         className={cn(
-          "p-4 rounded-lg bg-background/80 border border-border transition-all duration-300",
+          "p-4 rounded-lg bg-background/80 border border-border transition-all duration-300 min-h-[100px]",
           isAnimating && "opacity-0 translate-y-2"
         )}
       >
-        <p className="text-sm text-foreground/90 font-mono">
-          Subject: {message.wording.split('\n')[0].slice(0, 50)}...
+        <p className="text-sm text-foreground/90 font-mono break-words line-clamp-4 whitespace-pre-line">
+          {demoMessage}
         </p>
       </div>
       

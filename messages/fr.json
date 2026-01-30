@@ -1,0 +1,136 @@
+{
+  "common": {
+    "home": "Accueil",
+    "translate": "Traduire",
+    "appName": "ProTranslate",
+    "tagline": "Un moteur de traduction systématique pour l'intention professionnelle.",
+    "404": "404",
+    "pageNotFound": "Page non trouvée",
+    "returnHome": "Retour à l'accueil"
+  },
+  "hero": {
+    "badge": "Traduction de messages professionnels",
+    "headline1": "Le même message.",
+    "headline2": "50 traductions professionnelles.",
+    "description": "Pas de traduction linguistique. Traduction de <em>signification</em>. Ajustez le contexte, la dynamique de pouvoir et les normes culturelles pour créer le message professionnel exact dont vous avez besoin.",
+    "ctaPrimary": "Traduisez votre message",
+    "ctaSecondary": "Voir comment ça marche",
+    "livePreview": "Aperçu en direct"
+  },
+  "messageTypes": {
+    "title": "Traduire :",
+    "termination": "Licenciement",
+    "rejection": "Rejet d'une proposition",
+    "boundary": "Fixer des limites",
+    "negativeFeedback": "Donner un feedback négatif",
+    "sayingNo": "Dire non",
+    "withdrawing": "Retirer le soutien"
+  },
+  "features": {
+    "sectionTitle": "Le contexte est primordial",
+    "sectionDescription": "La même intention nécessite des mots différents selon la personne à qui vous parlez, comment elle préfère recevoir l'information et quelles normes culturelles s'appliquent.",
+    "contextAware": {
+      "title": "Traduction contextuelle",
+      "description": "Ajustez la formalité, la franchise, la dynamique de pouvoir et la sensibilité émotionnelle pour obtenir exactement le bon ton."
+    },
+    "culturalCalibration": {
+      "title": "Calibration culturelle",
+      "description": "Des traductions qui respectent les normes de communication américaines, britanniques, allemandes, japonaises et internationales."
+    },
+    "mediumSpecific": {
+      "title": "Sortie spécifique au support",
+      "description": "Des formulations différentes pour les conversations en personne, les e-mails et les avis écrits formels."
+    },
+    "powerDynamic": {
+      "title": "Conscience de la dynamique de pouvoir",
+      "description": "Langage calibré que vous parliez vers le haut, latéralement ou vers le bas dans la hiérarchie."
+    }
+  },
+  "cta": {
+    "title": "Prêt à traduire ?",
+    "description": "Choisissez votre message, ajustez le contexte et obtenez une formulation professionnellement calibrée pour toute situation.",
+    "button": "Commencer à traduire"
+  },
+  "translatePage": {
+    "title": "Outil de traduction",
+    "description": "Sélectionnez un type de message, ajustez les paramètres de contexte et obtenez une traduction professionnellement calibrée.",
+    "step1": "Sélectionner un message principal",
+    "step2": "Ajuster le contexte",
+    "step3": "Obtenir la traduction",
+    "formality": "Formalité",
+    "formalityLow": "Décontracté",
+    "formalityHigh": "Institutionnel",
+    "directness": "Franchise",
+    "directnessLow": "Indirect",
+    "directnessHigh": "Direct",
+    "emotionalSensitivity": "Sensibilité émotionnelle",
+    "emotionalSensitivityLow": "Faible",
+    "emotionalSensitivityHigh": "Élevée",
+    "powerRelationship": "Relation de pouvoir",
+    "culturalContext": "Contexte culturel",
+    "medium": "Support",
+    "selectMessage": "Sélectionnez un message pour commencer",
+    "wording": "Formulation",
+    "explanation": "Explication",
+    "reception": "Réception probable"
+  },
+  "messages": {
+    "termination": {
+      "title": "Licenciement",
+      "description": "Mettre fin à l'emploi de quelqu'un dans votre organisation",
+      "category": "Emploi"
+    },
+    "rejection": {
+      "title": "Rejet d'une proposition",
+      "description": "Décliner une proposition commerciale, un pitch ou une demande",
+      "category": "Affaires"
+    },
+    "boundary": {
+      "title": "Fixer une limite",
+      "description": "Établir des limites sur le comportement, les demandes ou les attentes",
+      "category": "Interpersonnel"
+    },
+    "negativeFeedback": {
+      "title": "Donner un feedback négatif",
+      "description": "Communiquer des critiques sur la performance ou le comportement",
+      "category": "Performance"
+    },
+    "sayingNo": {
+      "title": "Dire non",
+      "description": "Décliner une demande, une invitation ou une opportunité",
+      "category": "Général"
+    },
+    "withdrawingSupport": {
+      "title": "Retirer le soutien",
+      "description": "Mettre fin à l'implication, au parrainage ou au soutien",
+      "category": "Affaires"
+    }
+  },
+  "culturalContext": {
+    "neutral": "Neutre / International",
+    "us": "États-Unis",
+    "uk": "Royaume-Uni",
+    "germany": "Allemagne",
+    "japan": "Japon"
+  },
+  "medium": {
+    "inPerson": "Conversation en personne",
+    "email": "E-mail",
+    "writtenNotice": "Avis écrit / Lettre"
+  },
+  "powerRelationship": {
+    "more": "Vous avez plus de pouvoir",
+    "equal": "À égalité",
+    "less": "Ils ont plus de pouvoir"
+  },
+  "demo": {
+    "formalEmail": "E-mail formel à un collègue",
+    "directConversation": "Conversation directe avec un manager",
+    "sensitiveLetter": "Lettre délicate à un employé précieux"
+  },
+  "samples": {
+    "formalEmail": "Nous apprécions vos contributions. Cependant, nous devons vous informer que votre emploi prendra fin le [date]. Nous fournirons un soutien pendant cette transition.",
+    "directConversation": "Je dois être direct avec vous. Votre poste est supprimé. Nous discuterons des prochaines étapes et votre dernier jour sera le [date].",
+    "sensitiveLetter": "Nous apprécions profondément votre service dévoué à notre organisation. Après mûre réflexion, nous regrettons de vous informer que nous devons mettre fin à votre emploi, à compter du [date]. Nous nous engageons à vous soutenir pendant cette transition difficile."
+  }
+}

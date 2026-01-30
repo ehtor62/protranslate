@@ -1,0 +1,136 @@
+{
+  "common": {
+    "home": "Home",
+    "translate": "Translate",
+    "appName": "ProTranslate",
+    "tagline": "A systematic translation engine for professional intent.",
+    "404": "404",
+    "pageNotFound": "Page not found",
+    "returnHome": "Return home"
+  },
+  "hero": {
+    "badge": "Professional message translation",
+    "headline1": "The same message.",
+    "headline2": "50 professional translations.",
+    "description": "Not language translation. <em>Meaning</em> translation. Adjust context, power dynamics, and cultural norms to craft the exact professional message you need.",
+    "ctaPrimary": "Translate your message",
+    "ctaSecondary": "See how it works",
+    "livePreview": "Live Preview"
+  },
+  "messageTypes": {
+    "title": "Translate:",
+    "termination": "Terminating employment",
+    "rejection": "Rejecting a proposal",
+    "boundary": "Setting boundaries",
+    "negativeFeedback": "Giving negative feedback",
+    "sayingNo": "Saying no",
+    "withdrawing": "Withdrawing support"
+  },
+  "features": {
+    "sectionTitle": "Context is everything",
+    "sectionDescription": "The same intent requires different words depending on who you're speaking to, how they prefer to receive information, and what cultural norms apply.",
+    "contextAware": {
+      "title": "Context-aware translation",
+      "description": "Adjust formality, directness, power dynamics, and emotional sensitivity to get exactly the right tone."
+    },
+    "culturalCalibration": {
+      "title": "Cultural calibration",
+      "description": "Translations that respect communication norms across US, UK, German, Japanese, and international contexts."
+    },
+    "mediumSpecific": {
+      "title": "Medium-specific output",
+      "description": "Different wording for in-person conversations, emails, and formal written notices."
+    },
+    "powerDynamic": {
+      "title": "Power dynamic awareness",
+      "description": "Calibrated language whether you're speaking up, across, or down the hierarchy."
+    }
+  },
+  "cta": {
+    "title": "Ready to translate?",
+    "description": "Choose your message, adjust the context, and get professionally calibrated wording for any situation.",
+    "button": "Start translating"
+  },
+  "translatePage": {
+    "title": "Translation Tool",
+    "description": "Select a message type, adjust context parameters, and get a professionally calibrated translation.",
+    "step1": "Select a core message",
+    "step2": "Adjust context",
+    "step3": "Get translation",
+    "formality": "Formality",
+    "formalityLow": "Casual",
+    "formalityHigh": "Institutional",
+    "directness": "Directness",
+    "directnessLow": "Indirect",
+    "directnessHigh": "Blunt",
+    "emotionalSensitivity": "Emotional Sensitivity",
+    "emotionalSensitivityLow": "Low",
+    "emotionalSensitivityHigh": "High",
+    "powerRelationship": "Power Relationship",
+    "culturalContext": "Cultural Context",
+    "medium": "Medium",
+    "selectMessage": "Select a message to begin",
+    "wording": "Wording",
+    "explanation": "Explanation",
+    "reception": "Likely Reception"
+  },
+  "messages": {
+    "termination": {
+      "title": "Terminating employment",
+      "description": "Ending someone's employment with your organization",
+      "category": "Employment"
+    },
+    "rejection": {
+      "title": "Rejecting a proposal",
+      "description": "Declining a business proposal, pitch, or request",
+      "category": "Business"
+    },
+    "boundary": {
+      "title": "Setting a boundary",
+      "description": "Establishing limits on behavior, requests, or expectations",
+      "category": "Interpersonal"
+    },
+    "negativeFeedback": {
+      "title": "Giving negative feedback",
+      "description": "Communicating criticism about performance or behavior",
+      "category": "Performance"
+    },
+    "sayingNo": {
+      "title": "Saying no",
+      "description": "Declining a request, invitation, or opportunity",
+      "category": "General"
+    },
+    "withdrawingSupport": {
+      "title": "Withdrawing support",
+      "description": "Ending involvement, sponsorship, or backing",
+      "category": "Business"
+    }
+  },
+  "culturalContext": {
+    "neutral": "Neutral / International",
+    "us": "United States",
+    "uk": "United Kingdom",
+    "germany": "Germany",
+    "japan": "Japan"
+  },
+  "medium": {
+    "inPerson": "In-person conversation",
+    "email": "Email",
+    "writtenNotice": "Written notice / Letter"
+  },
+  "powerRelationship": {
+    "more": "You have more power",
+    "equal": "Equal standing",
+    "less": "They have more power"
+  },
+  "demo": {
+    "formalEmail": "Formal email to a colleague",
+    "directConversation": "Direct conversation with a manager",
+    "sensitiveLetter": "Sensitive letter to a valued employee"
+  },
+  "samples": {
+    "formalEmail": "We appreciate your contributions. However, we must inform you that your employment will conclude on [date]. We'll provide support during this transition.",
+    "directConversation": "I need to be direct with you. Your position is being eliminated. We'll discuss next steps and your final day will be [date].",
+    "sensitiveLetter": "We deeply value your dedicated service to our organization. After careful consideration, we regret to inform you that we must conclude your employment, effective [date]. We are committed to supporting you through this difficult transition."
+  }
+}

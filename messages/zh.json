@@ -1,0 +1,136 @@
+{
+  "common": {
+    "home": "首页",
+    "translate": "翻译",
+    "appName": "ProTranslate",
+    "tagline": "专业意图的系统化翻译引擎。",
+    "404": "404",
+    "pageNotFound": "页面未找到",
+    "returnHome": "返回首页"
+  },
+  "hero": {
+    "badge": "专业信息翻译",
+    "headline1": "同一条信息。",
+    "headline2": "50种专业翻译。",
+    "description": "不是语言翻译。是<em>意义</em>翻译。调整上下文、权力动态和文化规范，创建您所需的准确专业信息。",
+    "ctaPrimary": "翻译您的信息",
+    "ctaSecondary": "查看工作原理",
+    "livePreview": "实时预览"
+  },
+  "messageTypes": {
+    "title": "翻译：",
+    "termination": "终止雇佣",
+    "rejection": "拒绝提案",
+    "boundary": "设定界限",
+    "negativeFeedback": "给予负面反馈",
+    "sayingNo": "说不",
+    "withdrawing": "撤回支持"
+  },
+  "features": {
+    "sectionTitle": "上下文决定一切",
+    "sectionDescription": "相同的意图需要不同的措辞，取决于您与谁交谈、他们喜欢如何接收信息以及适用哪些文化规范。",
+    "contextAware": {
+      "title": "上下文感知翻译",
+      "description": "调整正式程度、直接性、权力动态和情感敏感度，以获得恰到好处的语气。"
+    },
+    "culturalCalibration": {
+      "title": "文化校准",
+      "description": "尊重美国、英国、德国、日本和国际背景下的沟通规范的翻译。"
+    },
+    "mediumSpecific": {
+      "title": "媒介特定输出",
+      "description": "针对面对面对话、电子邮件和正式书面通知的不同措辞。"
+    },
+    "powerDynamic": {
+      "title": "权力动态意识",
+      "description": "无论您是向上、平级还是向下级别交流，都能使用校准过的语言。"
+    }
+  },
+  "cta": {
+    "title": "准备好翻译了吗？",
+    "description": "选择您的信息，调整上下文，获得针对任何情况的专业校准措辞。",
+    "button": "开始翻译"
+  },
+  "translatePage": {
+    "title": "翻译工具",
+    "description": "选择消息类型，调整上下文参数，并获得专业校准的翻译。",
+    "step1": "选择核心信息",
+    "step2": "调整上下文",
+    "step3": "获取翻译",
+    "formality": "正式程度",
+    "formalityLow": "随意",
+    "formalityHigh": "正式",
+    "directness": "直接性",
+    "directnessLow": "间接",
+    "directnessHigh": "直接",
+    "emotionalSensitivity": "情感敏感度",
+    "emotionalSensitivityLow": "低",
+    "emotionalSensitivityHigh": "高",
+    "powerRelationship": "权力关系",
+    "culturalContext": "文化背景",
+    "medium": "媒介",
+    "selectMessage": "选择一条消息开始",
+    "wording": "措辞",
+    "explanation": "说明",
+    "reception": "可能的接受方式"
+  },
+  "messages": {
+    "termination": {
+      "title": "终止雇佣",
+      "description": "终止某人在您组织中的雇佣关系",
+      "category": "雇佣"
+    },
+    "rejection": {
+      "title": "拒绝提案",
+      "description": "拒绝商业提案、推介或请求",
+      "category": "商业"
+    },
+    "boundary": {
+      "title": "设定界限",
+      "description": "对行为、请求或期望设定限制",
+      "category": "人际关系"
+    },
+    "negativeFeedback": {
+      "title": "给予负面反馈",
+      "description": "传达对表现或行为的批评",
+      "category": "表现"
+    },
+    "sayingNo": {
+      "title": "说不",
+      "description": "拒绝请求、邀请或机会",
+      "category": "一般"
+    },
+    "withdrawingSupport": {
+      "title": "撤回支持",
+      "description": "结束参与、赞助或支持",
+      "category": "商业"
+    }
+  },
+  "culturalContext": {
+    "neutral": "中立 / 国际",
+    "us": "美国",
+    "uk": "英国",
+    "germany": "德国",
+    "japan": "日本"
+  },
+  "medium": {
+    "inPerson": "面对面对话",
+    "email": "电子邮件",
+    "writtenNotice": "书面通知 / 信函"
+  },
+  "powerRelationship": {
+    "more": "您拥有更多权力",
+    "equal": "平等地位",
+    "less": "他们拥有更多权力"
+  },
+  "demo": {
+    "formalEmail": "给同事的正式邮件",
+    "directConversation": "与经理的直接对话",
+    "sensitiveLetter": "给重要员工的敏感信函"
+  },
+  "samples": {
+    "formalEmail": "我们感谢您的贡献。但是，我们必须通知您，您的雇佣关系将在[日期]结束。我们将在此过渡期间提供支持。",
+    "directConversation": "我需要直接告诉你。你的职位被取消了。我们将讨论后续步骤，你的最后一天将是[日期]。",
+    "sensitiveLetter": "我们深深感谢您对本组织的敬业服务。经过慎重考虑，我们遗憾地通知您，我们必须终止您的雇佣关系，自[日期]起生效。我们承诺在这个困难的过渡期间为您提供支持。"
+  }
+}

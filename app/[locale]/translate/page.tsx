@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from 'react';
+import { useTranslations } from 'next-intl';
 import { Header } from '@/components/Header';
 import { MessageCard } from '@/components/MessageCard';
 import { ContextSlider } from '@/components/ContextSlider';
@@ -33,25 +34,26 @@ const defaultContext: ContextSettings = {
   medium: 'in-person'
 };
 
-const culturalOptions = Object.entries(culturalLabels).map(([value, label]) => ({
-  value,
-  label
-}));
-
-const mediumOptions = Object.entries(mediumLabels).map(([value, label]) => ({
-  value,
-  label
-}));
-
-const powerOptions = Object.entries(powerLabels).map(([value, label]) => ({
-  value,
-  label
-}));
-
 export default function Translate() {
+  const t = useTranslations();
   const [selectedMessageId, setSelectedMessageId] = useState<string | null>(null);
   const [context, setContext] = useState<ContextSettings>(defaultContext);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  
+  const culturalOptions = Object.keys(culturalLabels).map((value) => ({
+    value,
+    label: t(`culturalContext.${value}`)
+  }));
+
+  const mediumOptions = Object.keys(mediumLabels).map((value) => ({
+    value,
+    label: t(`medium.${value === 'in-person' ? 'inPerson' : value === 'written-notice' ? 'writtenNotice' : value}`)
+  }));
+
+  const powerOptions = Object.keys(powerLabels).map((value) => ({
+    value,
+    label: t(`powerRelationship.${value}`)
+  }));
   
   const updateContext = <K extends keyof ContextSettings>(
     key: K,
@@ -79,10 +81,10 @@ export default function Translate() {
       <main className="container py-8 lg:py-12">
         <div className="mb-8">
           <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-            Translation Tool
+            {t('translatePage.title')}
           </h1>
           <p className="text-muted-foreground">
-            Select a message type, adjust context parameters, and get a professionally calibrated translation.
+            {t('translatePage.description')}
           </p>
         </div>
         
@@ -93,7 +95,7 @@ export default function Translate() {
               <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-medium">
                 1
               </span>
-              <h2 className="font-medium text-foreground">Select a core message</h2>
+              <h2 className="font-medium text-foreground">{t('translatePage.step1')}</h2>
             </div>
             
             <div className="grid gap-3">
@@ -114,7 +116,7 @@ export default function Translate() {
               <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-medium">
                 2
               </span>
-              <h2 className="font-medium text-foreground">Translation output</h2>
+              <h2 className="font-medium text-foreground">{t('translatePage.step3')}</h2>
               {selectedMessageId && (
                 <Button
                   onClick={() => setIsDialogOpen(true)}
@@ -123,7 +125,7 @@ export default function Translate() {
                   className="ml-auto"
                 >
                   <Settings className="w-4 h-4 mr-2" />
-                  Adjust Context
+                  {t('translatePage.step2')}
                 </Button>
               )}
             </div>
@@ -132,10 +134,10 @@ export default function Translate() {
               <div className="animate-fade-in">
                 <div className="mb-4">
                   <h3 className="text-lg font-medium text-foreground">
-                    {selectedMessage?.title}
+                    {t(`messages.${selectedMessage?.id}.title`)}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    {selectedMessage?.description}
+                    {t(`messages.${selectedMessage?.id}.description`)}
                   </p>
                 </div>
                 
@@ -146,7 +148,7 @@ export default function Translate() {
                 <div className="text-center">
                   <ArrowRight className="w-8 h-8 text-muted-foreground mx-auto mb-3 rotate-180 lg:rotate-0" />
                   <p className="text-muted-foreground">
-                    Select a message type to see translations
+                    {t('translatePage.selectMessage')}
                   </p>
                 </div>
               </div>
@@ -158,53 +160,53 @@ export default function Translate() {
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Adjust Context</DialogTitle>
+              <DialogTitle>{t('translatePage.step2')}</DialogTitle>
               <DialogDescription>
-                Fine-tune the translation parameters to match your specific situation.
+                {t('translatePage.description')}
               </DialogDescription>
             </DialogHeader>
             
             <div className="space-y-6 py-4">
               <ContextSlider
-                label="Formality"
+                label={t('translatePage.formality')}
                 value={context.formality}
                 onChange={(v) => updateContext('formality', v)}
-                leftLabel="Casual"
-                rightLabel="Institutional"
+                leftLabel={t('translatePage.formalityLow')}
+                rightLabel={t('translatePage.formalityHigh')}
               />
               
               <ContextSlider
-                label="Directness"
+                label={t('translatePage.directness')}
                 value={context.directness}
                 onChange={(v) => updateContext('directness', v)}
-                leftLabel="Indirect"
-                rightLabel="Blunt"
+                leftLabel={t('translatePage.directnessLow')}
+                rightLabel={t('translatePage.directnessHigh')}
               />
               
               <ContextSlider
-                label="Emotional sensitivity"
+                label={t('translatePage.emotionalSensitivity')}
                 value={context.emotionalSensitivity}
                 onChange={(v) => updateContext('emotionalSensitivity', v)}
-                leftLabel="Low"
-                rightLabel="High"
+                leftLabel={t('translatePage.emotionalSensitivityLow')}
+                rightLabel={t('translatePage.emotionalSensitivityHigh')}
               />
               
               <ContextSelector
-                label="Power relationship"
+                label={t('translatePage.powerRelationship')}
                 value={context.powerRelationship}
                 onChange={(v) => updateContext('powerRelationship', v as ContextSettings['powerRelationship'])}
                 options={powerOptions}
               />
               
               <ContextSelector
-                label="Cultural context"
+                label={t('translatePage.culturalContext')}
                 value={context.culturalContext}
                 onChange={(v) => updateContext('culturalContext', v as ContextSettings['culturalContext'])}
                 options={culturalOptions}
               />
               
               <ContextSelector
-                label="Communication medium"
+                label={t('translatePage.medium')}
                 value={context.medium}
                 onChange={(v) => updateContext('medium', v as ContextSettings['medium'])}
                 options={mediumOptions}

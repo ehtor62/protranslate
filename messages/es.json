@@ -1,0 +1,136 @@
+{
+  "common": {
+    "home": "Inicio",
+    "translate": "Traducir",
+    "appName": "ProTranslate",
+    "tagline": "Un motor de traducción sistemático para intenciones profesionales.",
+    "404": "404",
+    "pageNotFound": "Página no encontrada",
+    "returnHome": "Volver al inicio"
+  },
+  "hero": {
+    "badge": "Traducción de mensajes profesionales",
+    "headline1": "El mismo mensaje.",
+    "headline2": "50 traducciones profesionales.",
+    "description": "No traducción de idiomas. Traducción de <em>significado</em>. Ajusta el contexto, la dinámica de poder y las normas culturales para crear el mensaje profesional exacto que necesitas.",
+    "ctaPrimary": "Traduce tu mensaje",
+    "ctaSecondary": "Ver cómo funciona",
+    "livePreview": "Vista previa en vivo"
+  },
+  "messageTypes": {
+    "title": "Traducir:",
+    "termination": "Terminación de empleo",
+    "rejection": "Rechazo de una propuesta",
+    "boundary": "Establecer límites",
+    "negativeFeedback": "Dar comentarios negativos",
+    "sayingNo": "Decir no",
+    "withdrawing": "Retirar apoyo"
+  },
+  "features": {
+    "sectionTitle": "El contexto lo es todo",
+    "sectionDescription": "La misma intención requiere diferentes palabras dependiendo de con quién estés hablando, cómo prefieran recibir información y qué normas culturales apliquen.",
+    "contextAware": {
+      "title": "Traducción consciente del contexto",
+      "description": "Ajusta la formalidad, la directividad, la dinámica de poder y la sensibilidad emocional para obtener exactamente el tono correcto."
+    },
+    "culturalCalibration": {
+      "title": "Calibración cultural",
+      "description": "Traducciones que respetan las normas de comunicación de EE.UU., Reino Unido, Alemania, Japón y contextos internacionales."
+    },
+    "mediumSpecific": {
+      "title": "Salida específica del medio",
+      "description": "Diferentes palabras para conversaciones en persona, correos electrónicos y avisos escritos formales."
+    },
+    "powerDynamic": {
+      "title": "Conciencia de la dinámica de poder",
+      "description": "Lenguaje calibrado ya sea que estés hablando hacia arriba, al mismo nivel o hacia abajo en la jerarquía."
+    }
+  },
+  "cta": {
+    "title": "¿Listo para traducir?",
+    "description": "Elige tu mensaje, ajusta el contexto y obtén una redacción profesionalmente calibrada para cualquier situación.",
+    "button": "Comenzar a traducir"
+  },
+  "translatePage": {
+    "title": "Herramienta de traducción",
+    "description": "Selecciona un tipo de mensaje, ajusta los parámetros de contexto y obtén una traducción profesionalmente calibrada.",
+    "step1": "Selecciona un mensaje principal",
+    "step2": "Ajustar contexto",
+    "step3": "Obtener traducción",
+    "formality": "Formalidad",
+    "formalityLow": "Casual",
+    "formalityHigh": "Institucional",
+    "directness": "Directividad",
+    "directnessLow": "Indirecto",
+    "directnessHigh": "Directo",
+    "emotionalSensitivity": "Sensibilidad emocional",
+    "emotionalSensitivityLow": "Baja",
+    "emotionalSensitivityHigh": "Alta",
+    "powerRelationship": "Relación de poder",
+    "culturalContext": "Contexto cultural",
+    "medium": "Medio",
+    "selectMessage": "Selecciona un mensaje para comenzar",
+    "wording": "Redacción",
+    "explanation": "Explicación",
+    "reception": "Recepción probable"
+  },
+  "messages": {
+    "termination": {
+      "title": "Terminación de empleo",
+      "description": "Finalizar el empleo de alguien en tu organización",
+      "category": "Empleo"
+    },
+    "rejection": {
+      "title": "Rechazo de una propuesta",
+      "description": "Declinar una propuesta comercial, presentación o solicitud",
+      "category": "Negocios"
+    },
+    "boundary": {
+      "title": "Establecer un límite",
+      "description": "Establecer límites sobre comportamiento, solicitudes o expectativas",
+      "category": "Interpersonal"
+    },
+    "negativeFeedback": {
+      "title": "Dar comentarios negativos",
+      "description": "Comunicar críticas sobre el rendimiento o comportamiento",
+      "category": "Rendimiento"
+    },
+    "sayingNo": {
+      "title": "Decir no",
+      "description": "Declinar una solicitud, invitación u oportunidad",
+      "category": "General"
+    },
+    "withdrawingSupport": {
+      "title": "Retirar apoyo",
+      "description": "Finalizar participación, patrocinio o respaldo",
+      "category": "Negocios"
+    }
+  },
+  "culturalContext": {
+    "neutral": "Neutral / Internacional",
+    "us": "Estados Unidos",
+    "uk": "Reino Unido",
+    "germany": "Alemania",
+    "japan": "Japón"
+  },
+  "medium": {
+    "inPerson": "Conversación en persona",
+    "email": "Correo electrónico",
+    "writtenNotice": "Aviso escrito / Carta"
+  },
+  "powerRelationship": {
+    "more": "Tienes más poder",
+    "equal": "En igualdad de condiciones",
+    "less": "Tienen más poder"
+  },
+  "demo": {
+    "formalEmail": "Correo formal a un colega",
+    "directConversation": "Conversación directa con un gerente",
+    "sensitiveLetter": "Carta sensible a un empleado valioso"
+  },
+  "samples": {
+    "formalEmail": "Apreciamos sus contribuciones. Sin embargo, debemos informarle que su empleo concluirá el [fecha]. Brindaremos apoyo durante esta transición.",
+    "directConversation": "Necesito ser directo contigo. Tu puesto está siendo eliminado. Discutiremos los próximos pasos y tu último día será el [fecha].",
+    "sensitiveLetter": "Valoramos profundamente su dedicado servicio a nuestra organización. Después de una cuidadosa consideración, lamentamos informarle que debemos concluir su empleo, efectivo el [fecha]. Estamos comprometidos a apoyarle durante esta difícil transición."
+  }
+}

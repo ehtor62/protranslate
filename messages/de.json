@@ -1,0 +1,136 @@
+{
+  "common": {
+    "home": "Startseite",
+    "translate": "Übersetzen",
+    "appName": "ProTranslate",
+    "tagline": "Ein systematisches Übersetzungssystem für professionelle Absichten.",
+    "404": "404",
+    "pageNotFound": "Seite nicht gefunden",
+    "returnHome": "Zur Startseite"
+  },
+  "hero": {
+    "badge": "Professionelle Nachrichtenübersetzung",
+    "headline1": "Die gleiche Nachricht.",
+    "headline2": "50 professionelle Übersetzungen.",
+    "description": "Keine Sprachübersetzung. <em>Bedeutungs</em>übersetzung. Passen Sie Kontext, Machtdynamik und kulturelle Normen an, um genau die professionelle Nachricht zu erstellen, die Sie benötigen.",
+    "ctaPrimary": "Übersetzen Sie Ihre Nachricht",
+    "ctaSecondary": "So funktioniert's",
+    "livePreview": "Live-Vorschau"
+  },
+  "messageTypes": {
+    "title": "Übersetzen:",
+    "termination": "Kündigung",
+    "rejection": "Ablehnung eines Vorschlags",
+    "boundary": "Grenzen setzen",
+    "negativeFeedback": "Negatives Feedback geben",
+    "sayingNo": "Nein sagen",
+    "withdrawing": "Unterstützung zurückziehen"
+  },
+  "features": {
+    "sectionTitle": "Kontext ist alles",
+    "sectionDescription": "Dieselbe Absicht erfordert unterschiedliche Worte, abhängig davon, mit wem Sie sprechen, wie sie Informationen bevorzugen und welche kulturellen Normen gelten.",
+    "contextAware": {
+      "title": "Kontextbewusste Übersetzung",
+      "description": "Passen Sie Formalität, Direktheit, Machtdynamik und emotionale Sensibilität an, um genau den richtigen Ton zu erhalten."
+    },
+    "culturalCalibration": {
+      "title": "Kulturelle Kalibrierung",
+      "description": "Übersetzungen, die Kommunikationsnormen in den USA, Großbritannien, Deutschland, Japan und internationalen Kontexten respektieren."
+    },
+    "mediumSpecific": {
+      "title": "Medienspezifische Ausgabe",
+      "description": "Unterschiedliche Formulierungen für persönliche Gespräche, E-Mails und formelle schriftliche Mitteilungen."
+    },
+    "powerDynamic": {
+      "title": "Bewusstsein für Machtdynamik",
+      "description": "Kalibrierte Sprache, egal ob Sie nach oben, auf gleicher Ebene oder nach unten in der Hierarchie sprechen."
+    }
+  },
+  "cta": {
+    "title": "Bereit zum Übersetzen?",
+    "description": "Wählen Sie Ihre Nachricht, passen Sie den Kontext an und erhalten Sie professionell kalibrierte Formulierungen für jede Situation.",
+    "button": "Jetzt übersetzen"
+  },
+  "translatePage": {
+    "title": "Übersetzungstool",
+    "description": "Wählen Sie einen Nachrichtentyp aus, passen Sie Kontextparameter an und erhalten Sie eine professionell kalibrierte Übersetzung.",
+    "step1": "Wählen Sie eine Kernnachricht",
+    "step2": "Kontext anpassen",
+    "step3": "Übersetzung erhalten",
+    "formality": "Formalität",
+    "formalityLow": "Ungezwungen",
+    "formalityHigh": "Institutionell",
+    "directness": "Direktheit",
+    "directnessLow": "Indirekt",
+    "directnessHigh": "Direkt",
+    "emotionalSensitivity": "Emotionale Sensibilität",
+    "emotionalSensitivityLow": "Niedrig",
+    "emotionalSensitivityHigh": "Hoch",
+    "powerRelationship": "Machtverhältnis",
+    "culturalContext": "Kultureller Kontext",
+    "medium": "Medium",
+    "selectMessage": "Wählen Sie eine Nachricht aus, um zu beginnen",
+    "wording": "Formulierung",
+    "explanation": "Erklärung",
+    "reception": "Wahrscheinliche Aufnahme"
+  },
+  "messages": {
+    "termination": {
+      "title": "Kündigung",
+      "description": "Das Arbeitsverhältnis mit jemandem in Ihrer Organisation beenden",
+      "category": "Beschäftigung"
+    },
+    "rejection": {
+      "title": "Ablehnung eines Vorschlags",
+      "description": "Einen Geschäftsvorschlag, Pitch oder eine Anfrage ablehnen",
+      "category": "Geschäft"
+    },
+    "boundary": {
+      "title": "Eine Grenze setzen",
+      "description": "Grenzen für Verhalten, Anfragen oder Erwartungen festlegen",
+      "category": "Zwischenmenschlich"
+    },
+    "negativeFeedback": {
+      "title": "Negatives Feedback geben",
+      "description": "Kritik an Leistung oder Verhalten kommunizieren",
+      "category": "Leistung"
+    },
+    "sayingNo": {
+      "title": "Nein sagen",
+      "description": "Eine Anfrage, Einladung oder Gelegenheit ablehnen",
+      "category": "Allgemein"
+    },
+    "withdrawingSupport": {
+      "title": "Unterstützung zurückziehen",
+      "description": "Beteiligung, Sponsoring oder Unterstützung beenden",
+      "category": "Geschäft"
+    }
+  },
+  "culturalContext": {
+    "neutral": "Neutral / International",
+    "us": "Vereinigte Staaten",
+    "uk": "Vereinigtes Königreich",
+    "germany": "Deutschland",
+    "japan": "Japan"
+  },
+  "medium": {
+    "inPerson": "Persönliches Gespräch",
+    "email": "E-Mail",
+    "writtenNotice": "Schriftliche Mitteilung / Brief"
+  },
+  "powerRelationship": {
+    "more": "Sie haben mehr Macht",
+    "equal": "Gleichgestellt",
+    "less": "Sie haben mehr Macht"
+  },
+  "demo": {
+    "formalEmail": "Formelle E-Mail an einen Kollegen",
+    "directConversation": "Direktes Gespräch mit einem Manager",
+    "sensitiveLetter": "Sensibler Brief an einen geschätzten Mitarbeiter"
+  },
+  "samples": {
+    "formalEmail": "Wir schätzen Ihre Beiträge. Wir müssen Sie jedoch darüber informieren, dass Ihr Arbeitsverhältnis am [Datum] endet. Wir werden Sie während dieser Übergangszeit unterstützen.",
+    "directConversation": "Ich muss direkt mit Ihnen sein. Ihre Position wird gestrichen. Wir werden die nächsten Schritte besprechen und Ihr letzter Tag wird der [Datum] sein.",
+    "sensitiveLetter": "Wir schätzen Ihren engagierten Dienst für unsere Organisation sehr. Nach sorgfältiger Überlegung bedauern wir, Ihnen mitteilen zu müssen, dass wir Ihr Arbeitsverhältnis mit Wirkung zum [Datum] beenden müssen. Wir verpflichten uns, Sie während dieser schwierigen Übergangszeit zu unterstützen."
+  }
+}
