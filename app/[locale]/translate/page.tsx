@@ -170,11 +170,11 @@ export default function Translate() {
                 onChange={(v) => updateContext('formality', v)}
                 showLabelInHandle={true}
                 multipleLabels={[
-                  { value: 0, label: t('translatePage.formalityCasual'), tooltip: "Relaxed, conversational language with no formal structure." },
-                  { value: 20, label: t('translatePage.formalityInformal'), tooltip: "Friendly and professional, but without strict conventions." },
-                  { value: 40, label: t('translatePage.formalityNeutral'), tooltip: "Standard professional tone with balanced structure and clarity." },
-                  { value: 60, label: t('translatePage.formalityFormal'), tooltip: "Polished, structured language following professional norms." },
-                  { value: 80, label: t('translatePage.formalityInstitutional'), tooltip: "Official, policy-aligned wording suitable for legal or HR contexts." }
+                  { value: 0, label: t('translatePage.formalityCasual'), tooltip: t('translatePage.formalityCasualTooltip') },
+                  { value: 20, label: t('translatePage.formalityInformal'), tooltip: t('translatePage.formalityInformalTooltip') },
+                  { value: 40, label: t('translatePage.formalityNeutral'), tooltip: t('translatePage.formalityNeutralTooltip') },
+                  { value: 60, label: t('translatePage.formalityFormal'), tooltip: t('translatePage.formalityFormalTooltip') },
+                  { value: 80, label: t('translatePage.formalityInstitutional'), tooltip: t('translatePage.formalityInstitutionalTooltip') }
                 ]}
               />
               
@@ -184,11 +184,11 @@ export default function Translate() {
                 onChange={(v) => updateContext('directness', v)}
                 showLabelInHandle={true}
                 multipleLabels={[
-                  { value: 0, label: t('translatePage.directnessIndirect'), tooltip: "The message is implied rather than stated outright." },
-                  { value: 25, label: t('translatePage.directnessDiplomatic'), tooltip: "Clear intent delivered with softening language." },
-                  { value: 50, label: t('translatePage.directnessClear'), tooltip: "The message is explicit, balanced, and easy to understand." },
-                  { value: 75, label: t('translatePage.directnessDirect'), tooltip: "The point is stated plainly with minimal cushioning." },
-                  { value: 100, label: t('translatePage.directnessBlunt'), tooltip: "The message is delivered without softening or mitigation." }
+                  { value: 0, label: t('translatePage.directnessIndirect'), tooltip: t('translatePage.directnessIndirectTooltip') },
+                  { value: 25, label: t('translatePage.directnessDiplomatic'), tooltip: t('translatePage.directnessDiplomaticTooltip') },
+                  { value: 50, label: t('translatePage.directnessClear'), tooltip: t('translatePage.directnessClearTooltip') },
+                  { value: 75, label: t('translatePage.directnessDirect'), tooltip: t('translatePage.directnessDirectTooltip') },
+                  { value: 100, label: t('translatePage.directnessBlunt'), tooltip: t('translatePage.directnessBluntTooltip') }
                 ]}
               />
               
@@ -198,11 +198,11 @@ export default function Translate() {
                 onChange={(v) => updateContext('emotionalSensitivity', v)}
                 showLabelInHandle={true}
                 multipleLabels={[
-                  { value: 0, label: t('translatePage.emotionalSensitivityLow'), tooltip: "Focuses on facts and outcomes, not emotions." },
-                  { value: 25, label: t('translatePage.emotionalSensitivityContained'), tooltip: "Acknowledges emotion briefly without centering it." },
-                  { value: 50, label: t('translatePage.emotionalSensitivityAttentive'), tooltip: "Recognizes emotional impact while staying task-focused." },
-                  { value: 75, label: t('translatePage.emotionalSensitivitySensitive'), tooltip: "Actively validates feelings alongside the message." },
-                  { value: 100, label: t('translatePage.emotionalSensitivityHigh'), tooltip: "Emotion is central and carefully addressed throughout." }
+                  { value: 0, label: t('translatePage.emotionalSensitivityLow'), tooltip: t('translatePage.emotionalSensitivityLowTooltip') },
+                  { value: 25, label: t('translatePage.emotionalSensitivityContained'), tooltip: t('translatePage.emotionalSensitivityContainedTooltip') },
+                  { value: 50, label: t('translatePage.emotionalSensitivityAttentive'), tooltip: t('translatePage.emotionalSensitivityAttentiveTooltip') },
+                  { value: 75, label: t('translatePage.emotionalSensitivitySensitive'), tooltip: t('translatePage.emotionalSensitivitySensitiveTooltip') },
+                  { value: 100, label: t('translatePage.emotionalSensitivityHigh'), tooltip: t('translatePage.emotionalSensitivityHighTooltip') }
                 ]}
               />
               
