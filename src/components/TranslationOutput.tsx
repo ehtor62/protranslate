@@ -51,10 +51,19 @@ export function TranslationOutput({ variant, context, className }: TranslationOu
   const contextSummary = [
     getFormalityLabel(context.formality).toLowerCase(),
     getDirectnessLabel(context.directness).toLowerCase(),
-    t(`powerRelationship.${context.powerRelationship}`),
     getEmotionalSensitivityLabel(context.emotionalSensitivity).toLowerCase(),
+    t(`powerRelationship.${context.powerRelationship}`),
     t(`culturalContext.${context.culturalContext}`),
     t(`medium.${context.medium === 'in-person' ? 'inPerson' : context.medium === 'written-notice' ? 'writtenNotice' : context.medium}`)
+  ];
+  
+  const contextLabels = [
+    `Formality ${context.formality}%`,
+    `Directness ${context.directness}%`,
+    `Emotions ${context.emotionalSensitivity}%`,
+    'Power',
+    'Culture',
+    'Medium'
   ];
   
   return (
@@ -62,12 +71,14 @@ export function TranslationOutput({ variant, context, className }: TranslationOu
       {/* Context summary tags */}
       <div className="flex flex-wrap gap-2">
         {contextSummary.map((tag, i) => (
-          <span
-            key={i}
-            className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground"
-          >
-            {tag}
-          </span>
+          <div key={i} className="flex flex-col gap-1 items-center">
+            <span className="text-xs px-2 py-0.5 rounded-full bg-primary text-primary-foreground font-medium">
+              {contextLabels[i]}
+            </span>
+            <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+              {tag}
+            </span>
+          </div>
         ))}
       </div>
       

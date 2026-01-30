@@ -25,6 +25,11 @@ import {
 } from '@/data/messages';
 import { ArrowRight, Settings } from 'lucide-react';
 
+// Convert kebab-case to camelCase for translation keys
+const toCamelCase = (str: string) => {
+  return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+};
+
 const defaultContext: ContextSettings = {
   formality: 60,
   directness: 50,
@@ -73,6 +78,7 @@ export default function Translate() {
   }, [selectedMessageId, context]);
   
   const selectedMessage = coreMessages.find(m => m.id === selectedMessageId);
+  const selectedMessageKey = selectedMessage ? toCamelCase(selectedMessage.id) : '';
   
   return (
     <div className="min-h-screen bg-background">
@@ -134,10 +140,10 @@ export default function Translate() {
               <div className="animate-fade-in">
                 <div className="mb-4">
                   <h3 className="text-lg font-medium text-foreground">
-                    {t(`messages.${selectedMessage?.id}.title`)}
+                    {t(`messages.${selectedMessageKey}.title`)}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    {t(`messages.${selectedMessage?.id}.description`)}
+                    {t(`messages.${selectedMessageKey}.description`)}
                   </p>
                 </div>
                 
@@ -158,9 +164,18 @@ export default function Translate() {
 
         {/* Context Adjustment Dialog */}
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogContent>
+          <DialogContent hideCloseButton>
             <DialogHeader>
-              <DialogTitle>{t('translatePage.step2')}</DialogTitle>
+              <div className="flex items-center justify-between">
+                <DialogTitle>{t('translatePage.step2')}</DialogTitle>
+                <Button 
+                  className="bg-orange-500 hover:bg-orange-600 text-white"
+                  size="sm"
+                  onClick={() => setIsDialogOpen(false)}
+                >
+                  Next
+                </Button>
+              </div>
             </DialogHeader>
             
             <div className="space-y-6 py-4">
