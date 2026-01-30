@@ -58,12 +58,12 @@ export function TranslationOutput({ variant, context, className }: TranslationOu
   ];
   
   const contextLabels = [
-    `Formality ${context.formality}%`,
-    `Directness ${context.directness}%`,
-    `Emotions ${context.emotionalSensitivity}%`,
-    'Power',
-    'Culture',
-    'Medium'
+    `${t('translatePage.formality')} ${context.formality}%`,
+    `${t('translatePage.directness')} ${context.directness}%`,
+    `${t('translatePage.emotionalSensitivity')} ${context.emotionalSensitivity}%`,
+    t('translatePage.powerRelationship'),
+    t('translatePage.culturalContext'),
+    t('translatePage.medium')
   ];
   
   return (
@@ -130,7 +130,7 @@ export function TranslationOutput({ variant, context, className }: TranslationOu
         <div className="flex gap-3 p-4 rounded-lg bg-warning/10 border border-warning/30">
           <AlertTriangle className="w-5 h-5 text-warning shrink-0 mt-0.5" />
           <div>
-            <h4 className="text-sm font-medium text-foreground mb-1">Important consideration</h4>
+            <h4 className="text-sm font-medium text-foreground mb-1">{t('translatePage.importantConsideration')}</h4>
             <p className="text-sm text-muted-foreground">{variant.warning}</p>
           </div>
         </div>

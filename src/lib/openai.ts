@@ -32,10 +32,21 @@ function getEmotionalSensitivityLabel(value: number): string {
   return 'High';
 }
 
-function buildPrompt(messageType: string, messageDescription: string, context: ContextSettings): string {
+function buildPrompt(messageType: string, messageDescription: string, context: ContextSettings, locale: string): string {
   const formalityLabel = getFormalityLabel(context.formality);
   const directnessLabel = getDirectnessLabel(context.directness);
   const sensitivityLabel = getEmotionalSensitivityLabel(context.emotionalSensitivity);
+  
+  const languageMap: Record<string, string> = {
+    'en': 'English',
+    'es': 'Spanish',
+    'fr': 'French',
+    'de': 'German',
+    'ja': 'Japanese',
+    'zh': 'Chinese'
+  };
+  
+  const targetLanguage = languageMap[locale] || 'English';
   
   const powerRelationshipMap = {
     'more': 'You have more power',
@@ -70,15 +81,17 @@ function buildPrompt(messageType: string, messageDescription: string, context: C
 - Cultural Context: ${culturalMap[context.culturalContext]}
 - Medium: ${mediumMap[context.medium]}
 
+**IMPORTANT**: Generate all text fields (wording, explanation, reception, warning) in ${targetLanguage}. The entire response must be in ${targetLanguage}.
+
 **Instructions**:
 Generate a message that appropriately balances all these parameters. The message should be culturally aware, professionally appropriate, and calibrated to the specified tone and context.
 
 **Return a JSON object with exactly these fields**:
 {
-  "wording": "The actual message text, formatted appropriately for the medium",
-  "explanation": "A brief explanation of why this wording was chosen given the context parameters",
-  "reception": "How this message is likely to be received by the recipient",
-  "warning": "Optional: any important cautions or considerations (leave empty string if none)"
+  "wording": "The actual message text, formatted appropriately for the medium (in ${targetLanguage})",
+  "explanation": "A brief explanation of why this wording was chosen given the context parameters (in ${targetLanguage})",
+  "reception": "How this message is likely to be received by the recipient (in ${targetLanguage})",
+  "warning": "IMPORTANT: Include practical cautions, legal considerations, cultural sensitivities, or important next steps. Examples: 'Have HR present', 'Document in writing', 'Consider cultural timing', 'Prepare for emotional reaction'. Only leave empty if truly no special considerations apply. (in ${targetLanguage})"
 }
 
 Return ONLY valid JSON, no markdown formatting or additional text.`;
@@ -87,10 +100,11 @@ Return ONLY valid JSON, no markdown formatting or additional text.`;
 export async function generateMessageWithAI(
   messageType: string,
   messageDescription: string,
-  context: ContextSettings
+  context: ContextSettings,
+  locale: string = 'en'
 ): Promise<MessageVariant> {
   try {
-    const prompt = buildPrompt(messageType, messageDescription, context);
+    const prompt = buildPrompt(messageType, messageDescription, context, locale);
     
     const completion = await openai.chat.completions.create({
       model: 'gpt-4o',
@@ -119,7 +133,7 @@ export async function generateMessageWithAI(
       wording: result.wording || '',
       explanation: result.explanation || '',
       reception: result.reception || '',
-      warning: result.warning || undefined
+      warning: result.warning && result.warning.trim() !== '' ? result.warning : undefined
     };
   } catch (error) {
     console.error('Error generating message with AI:', error);

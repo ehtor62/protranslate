@@ -56,8 +56,7 @@
     "description": "Passen Sie die Kontextparameter an.",
     "step1": "Wählen Sie eine Kernnachricht",
     "step2": "Kontext anpassen",
-    "step3": "Übersetzung erhalten",
-    "formality": "Formalität",
+    "step3": "Übersetzung erhalten",    "createPhrase": "Phrase Erstellen",    "close": "Schließen",    "formality": "Formalität",
     "formalityCasual": "Lässig",
     "formalityInformal": "Informell",
     "formalityNeutral": "Neutral",
@@ -94,6 +93,7 @@
     "culturalContext": "Kultureller Kontext",
     "medium": "Medium",
     "selectMessage": "Wählen Sie eine Nachricht aus, um zu beginnen",
+    "importantConsideration": "Wichtiger Hinweis",
     "wording": "Formulierung",
     "explanation": "Erklärung",
     "reception": "Wahrscheinliche Aufnahme"
@@ -145,7 +145,7 @@
   "powerRelationship": {
     "more": "Sie haben mehr Macht",
     "equal": "Gleichgestellt",
-    "less": "Sie haben mehr Macht"
+    "less": "Sie haben weniger Macht"
   },
   "demo": {
     "formalEmail": "Formelle E-Mail an einen Kollegen",

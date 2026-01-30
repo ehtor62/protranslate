@@ -57,6 +57,8 @@
     "step1": "コアメッセージを選択",
     "step2": "コンテキストを調整",
     "step3": "翻訳を取得",
+    "createPhrase": "フレーズを作成",
+    "close": "閉じる",
     "formality": "フォーマル度",
     "formalityCasual": "カジュアル",
     "formalityInformal": "くだけた",
@@ -94,6 +96,7 @@
     "culturalContext": "文化的コンテキスト",
     "medium": "メディア",
     "selectMessage": "開始するメッセージを選択してください",
+    "importantConsideration": "重要な考慮事項",
     "wording": "言い回し",
     "explanation": "説明",
     "reception": "予想される受け取り方"
@@ -145,7 +148,7 @@
   "powerRelationship": {
     "more": "あなたの方がパワーがある",
     "equal": "対等な立場",
-    "less": "相手の方がパワーがある"
+    "less": "あなたの方がパワーがない"
   },
   "demo": {
     "formalEmail": "同僚への正式なメール",

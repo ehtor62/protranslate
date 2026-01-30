@@ -57,6 +57,8 @@
     "step1": "Select a core message",
     "step2": "Adjust context",
     "step3": "Get translation",
+    "createPhrase": "Create Phrase",
+    "close": "Close",
     "formality": "Formality",
     "formalityCasual": "Casual",
     "formalityInformal": "Informal",
@@ -94,6 +96,7 @@
     "culturalContext": "Cultural Context",
     "medium": "Medium",
     "selectMessage": "Select a message to begin",
+    "importantConsideration": "Important consideration",
     "wording": "Wording",
     "explanation": "Explanation",
     "reception": "Likely Reception"
@@ -145,7 +148,7 @@
   "powerRelationship": {
     "more": "You have more power",
     "equal": "Equal standing",
-    "less": "They have more power"
+    "less": "You have less power"
   },
   "demo": {
     "formalEmail": "Formal email to a colleague",

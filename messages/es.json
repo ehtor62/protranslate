@@ -56,8 +56,7 @@
     "description": "Ajusta los parámetros de contexto.",
     "step1": "Selecciona un mensaje principal",
     "step2": "Ajustar contexto",
-    "step3": "Obtener traducción",
-    "formality": "Formalidad",
+    "step3": "Obtener traducción",    "createPhrase": "Crear Frase",    "close": "Cerrar",    "formality": "Formalidad",
     "formalityCasual": "Casual",
     "formalityInformal": "Informal",
     "formalityNeutral": "Neutral",
@@ -94,6 +93,7 @@
     "culturalContext": "Contexto cultural",
     "medium": "Medio",
     "selectMessage": "Selecciona un mensaje para comenzar",
+    "importantConsideration": "Consideración importante",
     "wording": "Redacción",
     "explanation": "Explicación",
     "reception": "Recepción probable"
@@ -145,7 +145,7 @@
   "powerRelationship": {
     "more": "Tienes más poder",
     "equal": "En igualdad de condiciones",
-    "less": "Tienen más poder"
+    "less": "Tienes menos poder"
   },
   "demo": {
     "formalEmail": "Correo formal a un colega",

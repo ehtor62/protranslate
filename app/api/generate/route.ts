@@ -5,7 +5,7 @@ import { ContextSettings } from '@/data/messages';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { messageType, messageDescription, context } = body;
+    const { messageType, messageDescription, context, locale = 'en' } = body;
 
     if (!messageType || !messageDescription || !context) {
       return NextResponse.json(
@@ -17,7 +17,8 @@ export async function POST(request: NextRequest) {
     const result = await generateMessageWithAI(
       messageType,
       messageDescription,
-      context as ContextSettings
+      context as ContextSettings,
+      locale
     );
 
     return NextResponse.json(result);

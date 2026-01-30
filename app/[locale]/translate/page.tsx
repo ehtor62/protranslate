@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Header } from '@/components/Header';
 import { MessageCard } from '@/components/MessageCard';
 import { ContextSlider } from '@/components/ContextSlider';
@@ -41,11 +41,13 @@ const defaultContext: ContextSettings = {
 
 export default function Translate() {
   const t = useTranslations();
+  const locale = useLocale();
   const [selectedMessageId, setSelectedMessageId] = useState<string | null>(null);
   const [context, setContext] = useState<ContextSettings>(defaultContext);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [translation, setTranslation] = useState<MessageVariant | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [shouldGenerate, setShouldGenerate] = useState(false);
   
   const culturalOptions = Object.keys(culturalLabels).map((value) => ({
     value,
@@ -74,9 +76,11 @@ export default function Translate() {
     setIsDialogOpen(true);
   };
   
-  // Generate message when context changes or dialog closes
+  // Generate message when dialog closes with shouldGenerate flag
   useEffect(() => {
-    if (!selectedMessageId || isDialogOpen) return;
+    if (!selectedMessageId || isDialogOpen || !shouldGenerate) return;
+    
+    setShouldGenerate(false); // Reset flag
     
     const generateTranslation = async () => {
       setIsLoading(true);
@@ -90,7 +94,8 @@ export default function Translate() {
           body: JSON.stringify({
             messageType: selectedMessage.title,
             messageDescription: selectedMessage.description,
-            context
+            context,
+            locale
           })
         });
         
@@ -211,13 +216,25 @@ export default function Translate() {
             <DialogHeader>
               <div className="flex items-center justify-between">
                 <DialogTitle>{t('translatePage.step2')}</DialogTitle>
-                <Button 
-                  className="bg-orange-500 hover:bg-orange-600 text-white"
-                  size="sm"
-                  onClick={() => setIsDialogOpen(false)}
-                >
-                  Next
-                </Button>
+                <div className="flex gap-2">
+                  <Button 
+                    variant="orange"
+                    size="sm"
+                    onClick={() => {
+                      setShouldGenerate(true);
+                      setIsDialogOpen(false);
+                    }}
+                  >
+                    {t('translatePage.createPhrase')}
+                  </Button>
+                  <Button 
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setIsDialogOpen(false)}
+                  >
+                    {t('translatePage.close')}
+                  </Button>
+                </div>
               </div>
             </DialogHeader>
             

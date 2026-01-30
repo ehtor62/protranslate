@@ -56,8 +56,7 @@
     "description": "调整上下文参数。",
     "step1": "选择核心信息",
     "step2": "调整上下文",
-    "step3": "获取翻译",
-    "formality": "正式程度",
+    "step3": "获取翻译",    "createPhrase": "创建短语",    "close": "关闭",    "formality": "正式程度",
     "formalityCasual": "随意",
     "formalityInformal": "非正式",
     "formalityNeutral": "中立",
@@ -94,6 +93,7 @@
     "culturalContext": "文化背景",
     "medium": "媒介",
     "selectMessage": "选择一条消息开始",
+    "importantConsideration": "重要考虑",
     "wording": "措辞",
     "explanation": "说明",
     "reception": "可能的接受方式"
@@ -145,7 +145,7 @@
   "powerRelationship": {
     "more": "您拥有更多权力",
     "equal": "平等地位",
-    "less": "他们拥有更多权力"
+    "less": "你的权力较少"
   },
   "demo": {
     "formalEmail": "给同事的正式邮件",
