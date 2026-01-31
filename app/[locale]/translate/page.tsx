@@ -95,6 +95,9 @@ export default function Translate() {
     
     setShouldGenerate(false); // Reset flag
     
+    // Scroll to top to show output field
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
     const generateTranslation = async () => {
       setIsLoading(true);
       try {
