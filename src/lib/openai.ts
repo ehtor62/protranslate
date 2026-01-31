@@ -82,6 +82,8 @@ function buildPrompt(messageType: string, messageDescription: string, context: C
     'asia-thailand': 'Thailand',
     'asia-malaysia': 'Malaysia',
     'asia-indonesia': 'Indonesia',
+    'asia-iran': 'Iran',
+    'asia-singapore': 'Singapore',
     'japan': 'South America',
     'africa': 'Africa'
   };
