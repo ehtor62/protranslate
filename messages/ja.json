@@ -81,7 +81,7 @@
     "directnessClearTooltip": "メッセージは明確でバランスが取れており、理解しやすいです。",
     "directnessDirectTooltip": "要点は最小限の緊衝材で明確に述べられます。",
     "directnessBluntTooltip": "メッセージは柔らかくしたり緩和したりせずに伝えられます。",
-    "emotionalSensitivity": "感情的配慮",
+    "emotionalSensitivity": "感情",
     "emotionalSensitivityLow": "低い",
     "emotionalSensitivityContained": "抑制的",
     "emotionalSensitivityAttentive": "配慮的",

@@ -76,7 +76,7 @@ function buildPrompt(messageType: string, messageDescription: string, context: C
 **Context Parameters**:
 - Formality: ${formalityLabel} (${context.formality}%)
 - Directness: ${directnessLabel} (${context.directness}%)
-- Emotional Sensitivity: ${sensitivityLabel} (${context.emotionalSensitivity}%)
+- Emotions: ${sensitivityLabel} (${context.emotionalSensitivity}%)
 - Power Relationship: ${powerRelationshipMap[context.powerRelationship]}
 - Cultural Context: ${culturalMap[context.culturalContext]}
 - Medium: ${mediumMap[context.medium]}
