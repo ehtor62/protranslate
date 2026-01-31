@@ -45,6 +45,9 @@ export default function Translate() {
   const [selectedMessageId, setSelectedMessageId] = useState<string | null>(null);
   const [context, setContext] = useState<ContextSettings>(defaultContext);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isCustomInputOpen, setIsCustomInputOpen] = useState(false);
+  const [customTitle, setCustomTitle] = useState('');
+  const [customDescription, setCustomDescription] = useState('');
   const [translation, setTranslation] = useState<MessageVariant | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [shouldGenerate, setShouldGenerate] = useState(false);
@@ -73,6 +76,16 @@ export default function Translate() {
 
   const handleMessageSelect = (messageId: string) => {
     setSelectedMessageId(messageId);
+    if (messageId === 'custom-input') {
+      setIsCustomInputOpen(true);
+    } else {
+      setIsDialogOpen(true);
+    }
+  };
+  
+  const handleCustomInputSubmit = () => {
+    if (!customTitle.trim() || !customDescription.trim()) return;
+    setIsCustomInputOpen(false);
     setIsDialogOpen(true);
   };
   
@@ -85,15 +98,24 @@ export default function Translate() {
     const generateTranslation = async () => {
       setIsLoading(true);
       try {
-        const selectedMessage = coreMessages.find(m => m.id === selectedMessageId);
-        if (!selectedMessage) return;
+        let messageType, messageDescription;
+        
+        if (selectedMessageId === 'custom-input') {
+          messageType = customTitle;
+          messageDescription = customDescription;
+        } else {
+          const selectedMessage = coreMessages.find(m => m.id === selectedMessageId);
+          if (!selectedMessage) return;
+          messageType = selectedMessage.title;
+          messageDescription = selectedMessage.description;
+        }
         
         const response = await fetch('/api/generate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            messageType: selectedMessage.title,
-            messageDescription: selectedMessage.description,
+            messageType,
+            messageDescription,
             context,
             locale
           })
@@ -188,10 +210,14 @@ export default function Translate() {
               <div className="animate-fade-in">
                 <div className="mb-4">
                   <h3 className="text-lg font-medium text-foreground">
-                    {t(`messages.${selectedMessageKey}.title`)}
+                    {selectedMessageId === 'custom-input' 
+                      ? customTitle 
+                      : t(`messages.${selectedMessageKey}.title`)}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    {t(`messages.${selectedMessageKey}.description`)}
+                    {selectedMessageId === 'custom-input'
+                      ? customDescription
+                      : t(`messages.${selectedMessageKey}.description`)}
                   </p>
                 </div>
                 
@@ -209,6 +235,69 @@ export default function Translate() {
             )}
           </div>
         </div>
+
+        {/* Custom Input Dialog */}
+        <Dialog open={isCustomInputOpen} onOpenChange={setIsCustomInputOpen}>
+          <DialogContent className="sm:max-w-[500px]">
+            <DialogHeader>
+              <DialogTitle>{t('translatePage.customInputTitle')}</DialogTitle>
+              <DialogDescription>
+                {t('translatePage.customInputDescription')}
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="space-y-4 py-4">
+              <div className="space-y-2">
+                <label htmlFor="custom-title" className="text-sm font-medium text-foreground">
+                  {t('translatePage.customInputTitleLabel')}
+                </label>
+                <input
+                  id="custom-title"
+                  type="text"
+                  placeholder={t('translatePage.customInputTitlePlaceholder')}
+                  value={customTitle}
+                  onChange={(e) => setCustomTitle(e.target.value)}
+                  className="w-full px-3 py-2 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="custom-description" className="text-sm font-medium text-foreground">
+                  {t('translatePage.customInputTopicLabel')}
+                </label>
+                <textarea
+                  id="custom-description"
+                  placeholder={t('translatePage.customInputTopicPlaceholder')}
+                  value={customDescription}
+                  onChange={(e) => setCustomDescription(e.target.value)}
+                  rows={4}
+                  className="w-full px-3 py-2 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 resize-none"
+                />
+              </div>
+            </div>
+            
+            <div className="flex justify-end gap-2">
+              <Button 
+                variant="outline"
+                onClick={() => {
+                  setIsCustomInputOpen(false);
+                  setSelectedMessageId(null);
+                  setCustomTitle('');
+                  setCustomDescription('');
+                }}
+              >
+                {t('translatePage.cancel')}
+              </Button>
+              <Button 
+                variant="orange"
+                onClick={handleCustomInputSubmit}
+                disabled={!customTitle.trim() || !customDescription.trim()}
+              >
+                {t('translatePage.continue')}
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
 
         {/* Context Adjustment Dialog */}
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>

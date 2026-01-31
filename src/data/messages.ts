@@ -57,6 +57,12 @@ export const coreMessages: CoreMessage[] = [
     title: 'Withdrawing support',
     description: 'Ending involvement, sponsorship, or backing',
     category: 'Business'
+  },
+  {
+    id: 'custom-input',
+    title: 'Custom Input',
+    description: 'Enter your own topic',
+    category: 'General'
   }
 ];
 

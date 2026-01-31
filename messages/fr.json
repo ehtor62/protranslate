@@ -24,7 +24,8 @@
     "boundary": "Fixer des limites",
     "negativeFeedback": "Donner un feedback négatif",
     "sayingNo": "Dire non",
-    "withdrawing": "Retirer le soutien"
+    "withdrawing": "Retirer le soutien",
+    "customInput": "Saisie Personnalisée"
   },
   "features": {
     "sectionTitle": "Le contexte est primordial",
@@ -96,7 +97,15 @@
     "importantConsideration": "Considération importante",
     "wording": "Formulation",
     "explanation": "Explication",
-    "reception": "Réception probable"
+    "reception": "Réception probable",
+    "customInputTitle": "Saisie Personnalisée",
+    "customInputDescription": "Entrez votre propre titre de message et description du sujet",
+    "customInputTitleLabel": "Titre",
+    "customInputTitlePlaceholder": "ex., Refuser une demande de réunion",
+    "customInputTopicLabel": "Description du Sujet",
+    "customInputTopicPlaceholder": "ex., Refuser poliment une invitation à une réunion en raison de conflits d'horaire",
+    "cancel": "Annuler",
+    "continue": "Continuer"
   },
   "messages": {
     "termination": {
@@ -127,8 +136,11 @@
     "withdrawingSupport": {
       "title": "Retirer le soutien",
       "description": "Mettre fin à l'implication, au parrainage ou au soutien",
-      "category": "Affaires"
-    }
+      "category": "Affaires"    },
+    "customInput": {
+      "title": "Saisie Personnalisée",
+      "description": "Entrez votre propre sujet",
+      "category": "General"    }
   },
   "culturalContext": {
     "neutral": "Neutre / International",

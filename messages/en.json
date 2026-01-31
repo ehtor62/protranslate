@@ -24,7 +24,8 @@
     "boundary": "Setting boundaries",
     "negativeFeedback": "Giving negative feedback",
     "sayingNo": "Saying no",
-    "withdrawing": "Withdrawing support"
+    "withdrawing": "Withdrawing support",
+    "customInput": "Custom Input"
   },
   "features": {
     "sectionTitle": "Context is everything",
@@ -99,7 +100,15 @@
     "importantConsideration": "Important consideration",
     "wording": "Wording",
     "explanation": "Explanation",
-    "reception": "Likely Reception"
+    "reception": "Likely Reception",
+    "customInputTitle": "Custom Input",
+    "customInputDescription": "Enter your own message title and topic description",
+    "customInputTitleLabel": "Title",
+    "customInputTitlePlaceholder": "e.g., Declining a meeting request",
+    "customInputTopicLabel": "Topic Description",
+    "customInputTopicPlaceholder": "e.g., Politely declining a meeting invitation due to schedule conflicts",
+    "cancel": "Cancel",
+    "continue": "Continue"
   },
   "messages": {
     "termination": {
@@ -131,6 +140,11 @@
       "title": "Withdrawing support",
       "description": "Ending involvement, sponsorship, or backing",
       "category": "Business"
+    },
+    "customInput": {
+      "title": "Custom Input",
+      "description": "Enter your own topic",
+      "category": "General"
     }
   },
   "culturalContext": {

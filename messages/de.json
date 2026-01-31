@@ -24,7 +24,8 @@
     "boundary": "Grenzen setzen",
     "negativeFeedback": "Negatives Feedback geben",
     "sayingNo": "Nein sagen",
-    "withdrawing": "Unterstützung zurückziehen"
+    "withdrawing": "Unterstützung zurückziehen",
+    "customInput": "Benutzerdefinierte Eingabe"
   },
   "features": {
     "sectionTitle": "Kontext ist alles",
@@ -96,7 +97,15 @@
     "importantConsideration": "Wichtiger Hinweis",
     "wording": "Formulierung",
     "explanation": "Erklärung",
-    "reception": "Wahrscheinliche Aufnahme"
+    "reception": "Wahrscheinliche Aufnahme",
+    "customInputTitle": "Benutzerdefinierte Eingabe",
+    "customInputDescription": "Geben Sie Ihren eigenen Nachrichtentitel und Themenbeschreibung ein",
+    "customInputTitleLabel": "Titel",
+    "customInputTitlePlaceholder": "z.B. Ablehnung einer Besprechungsanfrage",
+    "customInputTopicLabel": "Themenbeschreibung",
+    "customInputTopicPlaceholder": "z.B. Höfliche Ablehnung einer Besprechungseinladung aufgrund von Terminüberschneidungen",
+    "cancel": "Abbrechen",
+    "continue": "Weiter"
   },
   "messages": {
     "termination": {
@@ -128,6 +137,11 @@
       "title": "Unterstützung zurückziehen",
       "description": "Beteiligung, Sponsoring oder Unterstützung beenden",
       "category": "Geschäft"
+    },
+    "customInput": {
+      "title": "Benutzerdefinierte Eingabe",
+      "description": "Geben Sie Ihr eigenes Thema ein",
+      "category": "Allgemein"
     }
   },
   "culturalContext": {

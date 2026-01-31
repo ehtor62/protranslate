@@ -24,7 +24,8 @@
     "boundary": "设定界限",
     "negativeFeedback": "给予负面反馈",
     "sayingNo": "说不",
-    "withdrawing": "撤回支持"
+    "withdrawing": "撤回支持",
+    "customInput": "自定义输入"
   },
   "features": {
     "sectionTitle": "上下文决定一切",
@@ -96,7 +97,15 @@
     "importantConsideration": "重要考虑",
     "wording": "措辞",
     "explanation": "说明",
-    "reception": "可能的接受方式"
+    "reception": "可能的接收方式",
+    "customInputTitle": "自定义输入",
+    "customInputDescription": "输入您自己的消息标题和主题描述",
+    "customInputTitleLabel": "标题",
+    "customInputTitlePlaceholder": "例如，拒绝会议请求",
+    "customInputTopicLabel": "主题描述",
+    "customInputTopicPlaceholder": "例如，因日程冲突礼貌地拒绝会议邀请",
+    "cancel": "取消",
+    "continue": "继续"
   },
   "messages": {
     "termination": {
@@ -127,8 +136,11 @@
     "withdrawingSupport": {
       "title": "撤回支持",
       "description": "结束参与、赞助或支持",
-      "category": "商业"
-    }
+      "category": "商业"    },
+    "customInput": {
+      "title": "自定义输入",
+      "description": "输入您自己的主题",
+      "category": "General"    }
   },
   "culturalContext": {
     "neutral": "中立 / 国际",

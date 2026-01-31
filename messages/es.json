@@ -24,7 +24,8 @@
     "boundary": "Establecer límites",
     "negativeFeedback": "Dar comentarios negativos",
     "sayingNo": "Decir no",
-    "withdrawing": "Retirar apoyo"
+    "withdrawing": "Retirar apoyo",
+    "customInput": "Entrada Personalizada"
   },
   "features": {
     "sectionTitle": "El contexto lo es todo",
@@ -96,7 +97,15 @@
     "importantConsideration": "Consideración importante",
     "wording": "Redacción",
     "explanation": "Explicación",
-    "reception": "Recepción probable"
+    "reception": "Recepción probable",
+    "customInputTitle": "Entrada Personalizada",
+    "customInputDescription": "Ingrese su propio título de mensaje y descripción del tema",
+    "customInputTitleLabel": "Título",
+    "customInputTitlePlaceholder": "ej., Rechazar una solicitud de reunión",
+    "customInputTopicLabel": "Descripción del Tema",
+    "customInputTopicPlaceholder": "ej., Rechazar cortésmente una invitación a una reunión debido a conflictos de horario",
+    "cancel": "Cancelar",
+    "continue": "Continuar"
   },
   "messages": {
     "termination": {
@@ -127,8 +136,11 @@
     "withdrawingSupport": {
       "title": "Retirar apoyo",
       "description": "Finalizar participación, patrocinio o respaldo",
-      "category": "Negocios"
-    }
+      "category": "Negocios"    },
+    "customInput": {
+      "title": "Entrada Personalizada",
+      "description": "Ingrese su propio tema",
+      "category": "General"    }
   },
   "culturalContext": {
     "neutral": "Neutral / Internacional",
