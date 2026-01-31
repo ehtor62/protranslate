@@ -54,12 +54,36 @@ function buildPrompt(messageType: string, messageDescription: string, context: C
     'less': 'They have more power'
   };
   
-  const culturalMap = {
+  const culturalMap: Record<string, string> = {
     'neutral': 'Neutral/International',
-    'us': 'United States',
-    'uk': 'United Kingdom',
-    'germany': 'Germany',
-    'japan': 'Japan'
+    'us': 'North America', // Fallback, should not reach API
+    'usa': 'USA',
+    'canada': 'Canada',
+    'uk': 'Europe', // Fallback, should not reach API
+    'europe-uk': 'UK',
+    'europe-scandinavia': 'Scandinavia',
+    'europe-spain': 'Spain',
+    'europe-france': 'France',
+    'europe-benelux': 'Benelux',
+    'europe-germany': 'Germany',
+    'europe-switzerland': 'Switzerland',
+    'europe-italy': 'Italy',
+    'europe-poland': 'Poland',
+    'europe-romania': 'Romania',
+    'europe-greece': 'Greece',
+    'germany': 'Asia', // Fallback, should not reach API
+    'asia-russia': 'Russia',
+    'asia-china': 'China',
+    'asia-india': 'India',
+    'asia-japan': 'Japan',
+    'asia-turkey': 'Turkey',
+    'asia-saudi-arabia': 'Saudi Arabia',
+    'asia-uae': 'UAE',
+    'asia-thailand': 'Thailand',
+    'asia-malaysia': 'Malaysia',
+    'asia-indonesia': 'Indonesia',
+    'japan': 'South America',
+    'africa': 'Africa'
   };
   
   const mediumMap = {
