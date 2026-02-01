@@ -8,10 +8,11 @@ import { Button } from '@/components/ui/button';
 interface TranslationOutputProps {
   variant: MessageVariant;
   context: ContextSettings;
+  targetLanguage?: string | null;
   className?: string;
 }
 
-export function TranslationOutput({ variant, context, className }: TranslationOutputProps) {
+export function TranslationOutput({ variant, context, targetLanguage, className }: TranslationOutputProps) {
   const [copied, setCopied] = React.useState(false);
   const t = useTranslations();
   
@@ -48,7 +49,25 @@ export function TranslationOutput({ variant, context, className }: TranslationOu
     return t('translatePage.emotionalSensitivityHigh');
   };
   
+  // Get language label
+  const getLanguageLabel = (lang?: string | null) => {
+    if (!lang) return t('translatePage.languageEnglish');
+    const languageKeyMap: Record<string, string> = {
+      'en': 'languageEnglish',
+      'es': 'languageSpanish',
+      'fr': 'languageFrench',
+      'de': 'languageGerman',
+      'it': 'languageItalian',
+      'pt': 'languagePortuguese',
+      'nl': 'languageDutch',
+      'ja': 'languageJapanese',
+      'zh': 'languageChinese'
+    };
+    return t(`translatePage.${languageKeyMap[lang] || 'languageEnglish'}`);
+  };
+  
   const contextSummary = [
+    getLanguageLabel(targetLanguage),
     getFormalityLabel(context.formality).toLowerCase(),
     getDirectnessLabel(context.directness).toLowerCase(),
     getEmotionalSensitivityLabel(context.emotionalSensitivity).toLowerCase(),
@@ -58,6 +77,7 @@ export function TranslationOutput({ variant, context, className }: TranslationOu
   ];
   
   const contextLabels = [
+    t('translatePage.translateTo'),
     `${t('translatePage.formality')} ${context.formality}%`,
     `${t('translatePage.directness')} ${context.directness}%`,
     `${t('translatePage.emotionalSensitivity')} ${context.emotionalSensitivity}%`,

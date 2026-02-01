@@ -10,37 +10,40 @@ export function HeroDemo() {
   const [isAnimating, setIsAnimating] = useState(false);
   const t = useTranslations('demo');
   
-  const demoContexts: { labelKey: string; settings: ContextSettings }[] = [
+  const demoContexts: { labelKey: string; settings: ContextSettings; targetLanguage: string }[] = [
     {
       labelKey: 'formalEmail',
+      targetLanguage: 'en',
       settings: {
         formality: 75,
         directness: 45,
         powerRelationship: 'equal',
         emotionalSensitivity: 40,
-        culturalContext: 'us',
+        culturalContext: 'usa',
         medium: 'email'
       }
     },
     {
       labelKey: 'directConversation',
+      targetLanguage: 'de',
       settings: {
         formality: 40,
         directness: 80,
         powerRelationship: 'less',
         emotionalSensitivity: 35,
-        culturalContext: 'germany',
+        culturalContext: 'europe-germany',
         medium: 'in-person'
       }
     },
     {
       labelKey: 'sensitiveLetter',
+      targetLanguage: 'en',
       settings: {
         formality: 85,
         directness: 38,
         powerRelationship: 'more',
         emotionalSensitivity: 80,
-        culturalContext: 'japan',
+        culturalContext: 'asia-japan',
         medium: 'written-notice'
       }
     }
@@ -60,11 +63,36 @@ export function HeroDemo() {
   
   const currentDemo = demoContexts[activeIndex];
   const tSamples = useTranslations('samples');
-  const demoMessage = tSamples(currentDemo.labelKey);
+  
+  // Get demo message based on target language
+  const getDemoMessage = () => {
+    if (currentDemo.targetLanguage === 'de' && currentDemo.labelKey === 'directConversation') {
+      return 'Ich muss direkt mit Ihnen sein. Ihre Position wird gestrichen. Wir werden die nächsten Schritte besprechen und Ihr letzter Tag wird der [Datum] sein.';
+    }
+    return tSamples(currentDemo.labelKey);
+  };
+  
+  const demoMessage = getDemoMessage();
   const tPage = useTranslations('translatePage');
   const tPower = useTranslations('powerRelationship');
   const tCulture = useTranslations('culturalContext');
   const tMedium = useTranslations('medium');
+  
+  // Get language label
+  const getLanguageLabel = (lang: string) => {
+    const languageKeyMap: Record<string, string> = {
+      'en': 'languageEnglish',
+      'es': 'languageSpanish',
+      'fr': 'languageFrench',
+      'de': 'languageGerman',
+      'it': 'languageItalian',
+      'pt': 'languagePortuguese',
+      'nl': 'languageDutch',
+      'ja': 'languageJapanese',
+      'zh': 'languageChinese'
+    };
+    return tPage(languageKeyMap[lang] || 'languageEnglish');
+  };
   
   // Get formality label based on value
   const getFormalityLabel = (value: number) => {
@@ -135,6 +163,14 @@ export function HeroDemo() {
       
       {/* Context indicators - matching TranslationOutput layout */}
       <div className="flex flex-wrap gap-2">
+        <div className="flex flex-col gap-1 items-center">
+          <span className="text-xs px-2 py-0.5 rounded-full bg-primary text-primary-foreground font-medium">
+            {tPage('translateTo')}
+          </span>
+          <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+            {getLanguageLabel(currentDemo.targetLanguage)}
+          </span>
+        </div>
         <div className="flex flex-col gap-1 items-center">
           <span className="text-xs px-2 py-0.5 rounded-full bg-primary text-primary-foreground font-medium">
             {tPage('formality')} {context.formality}%

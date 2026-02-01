@@ -62,6 +62,8 @@ export default function Translate() {
   const [isEuropeModalOpen, setIsEuropeModalOpen] = useState(false);
   const [isAsiaModalOpen, setIsAsiaModalOpen] = useState(false);
   const [isAfricaModalOpen, setIsAfricaModalOpen] = useState(false);
+  const [targetLanguage, setTargetLanguage] = useState<string | null>(locale);
+  const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
   
   const southAmericaSubregions = [
     'central-america', 'colombia', 'peru', 'argentina', 'brasil'
@@ -255,7 +257,8 @@ export default function Translate() {
             messageType,
             messageDescription,
             context,
-            locale
+            locale,
+            targetLanguage
           })
         });
 
@@ -359,7 +362,7 @@ export default function Translate() {
                   </p>
                 </div>
                 
-                <TranslationOutput variant={translation} context={context} />
+                <TranslationOutput variant={translation} context={context} targetLanguage={targetLanguage} />
               </div>
             ) : (
               <div className="flex items-center justify-center h-64 rounded-xl border border-dashed border-border">
@@ -562,12 +565,54 @@ export default function Translate() {
               </div>
               
 
-              <ContextSelector
-                label={t('translatePage.medium')}
-                value={context.medium}
-                onChange={(v) => updateContext('medium', v as ContextSettings['medium'])}
-                options={mediumOptions}
-              />
+              {/* Medium and Language in one row */}
+              <div className="space-y-3">
+                <div className="flex gap-2">
+                  <div className="flex-[3]">
+                    <span className="text-sm font-medium text-foreground">{t('translatePage.medium')}</span>
+                  </div>
+                  <div className="flex-1">
+                    <span className="text-sm font-medium text-foreground">{t('translatePage.translateTo')}</span>
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 gap-2">
+                  {/* Medium Buttons - 3 buttons */}
+                  {mediumOptions.map((option) => (
+                    <button
+                      key={option.value}
+                      onClick={() => updateContext('medium', option.value as ContextSettings['medium'])}
+                      className={`px-3 py-2 text-sm rounded-lg border transition-all duration-200 ${
+                        context.medium === option.value
+                          ? "bg-primary/10 border-primary text-primary"
+                          : "bg-secondary border-border text-muted-foreground hover:border-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+
+                  {/* Language Button - 1 button */}
+                  <button
+                    onClick={() => setIsLanguageModalOpen(true)}
+                    className={`px-3 py-2 text-sm rounded-lg border transition-all duration-200 ${
+                      targetLanguage
+                        ? "bg-primary/10 border-primary text-primary"
+                        : "bg-secondary border-border text-muted-foreground hover:border-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {!targetLanguage && 'Language'}
+                    {targetLanguage === 'en' && t('translatePage.languageEnglish')}
+                    {targetLanguage === 'es' && t('translatePage.languageSpanish')}
+                    {targetLanguage === 'fr' && t('translatePage.languageFrench')}
+                    {targetLanguage === 'de' && t('translatePage.languageGerman')}
+                    {targetLanguage === 'it' && t('translatePage.languageItalian')}
+                    {targetLanguage === 'pt' && t('translatePage.languagePortuguese')}
+                    {targetLanguage === 'nl' && t('translatePage.languageDutch')}
+                    {targetLanguage === 'ja' && t('translatePage.languageJapanese')}
+                    {targetLanguage === 'zh' && t('translatePage.languageChinese')}
+                  </button>
+                </div>
+              </div>
             </div>
           </DialogContent>
         </Dialog>
@@ -611,6 +656,101 @@ export default function Translate() {
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.brasil')}
+              </button>
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Language Selection Modal */}
+        <Dialog open={isLanguageModalOpen} onOpenChange={setIsLanguageModalOpen}>
+          <DialogContent className="sm:max-w-[500px]">
+            <DialogHeader>
+              <DialogTitle>{t('translatePage.translateTo')}</DialogTitle>
+              <DialogDescription>
+                Select target language
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid grid-cols-3 gap-3 py-4">
+              <button
+                onClick={() => {
+                  setTargetLanguage('en');
+                  setIsLanguageModalOpen(false);
+                }}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('translatePage.languageEnglish')}
+              </button>
+              <button
+                onClick={() => {
+                  setTargetLanguage('es');
+                  setIsLanguageModalOpen(false);
+                }}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('translatePage.languageSpanish')}
+              </button>
+              <button
+                onClick={() => {
+                  setTargetLanguage('fr');
+                  setIsLanguageModalOpen(false);
+                }}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('translatePage.languageFrench')}
+              </button>
+              <button
+                onClick={() => {
+                  setTargetLanguage('de');
+                  setIsLanguageModalOpen(false);
+                }}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('translatePage.languageGerman')}
+              </button>
+              <button
+                onClick={() => {
+                  setTargetLanguage('it');
+                  setIsLanguageModalOpen(false);
+                }}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('translatePage.languageItalian')}
+              </button>
+              <button
+                onClick={() => {
+                  setTargetLanguage('pt');
+                  setIsLanguageModalOpen(false);
+                }}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('translatePage.languagePortuguese')}
+              </button>
+              <button
+                onClick={() => {
+                  setTargetLanguage('nl');
+                  setIsLanguageModalOpen(false);
+                }}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('translatePage.languageDutch')}
+              </button>
+              <button
+                onClick={() => {
+                  setTargetLanguage('ja');
+                  setIsLanguageModalOpen(false);
+                }}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('translatePage.languageJapanese')}
+              </button>
+              <button
+                onClick={() => {
+                  setTargetLanguage('zh');
+                  setIsLanguageModalOpen(false);
+                }}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('translatePage.languageChinese')}
               </button>
             </div>
           </DialogContent>

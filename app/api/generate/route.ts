@@ -5,7 +5,7 @@ import { ContextSettings } from '@/data/messages';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { messageType, messageDescription, context, locale = 'en' } = body;
+    const { messageType, messageDescription, context, locale = 'en', targetLanguage } = body;
 
     if (!messageType || !messageDescription || !context) {
       return NextResponse.json(
@@ -18,7 +18,8 @@ export async function POST(request: NextRequest) {
       messageType,
       messageDescription,
       context as ContextSettings,
-      locale
+      locale,
+      targetLanguage
     );
 
     return NextResponse.json(result);
