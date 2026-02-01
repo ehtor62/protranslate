@@ -147,31 +147,31 @@ export default function Translate() {
             </DialogHeader>
             <div className="grid grid-cols-2 gap-3 py-4">
               <button
-                onClick={() => handleSouthAmericaSelection('central-america')}
+                onClick={(e) => { e.stopPropagation(); handleSouthAmericaSelection('central-america'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.central-america')}
               </button>
               <button
-                onClick={() => handleSouthAmericaSelection('colombia')}
+                onClick={(e) => { e.stopPropagation(); handleSouthAmericaSelection('colombia'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.colombia')}
               </button>
               <button
-                onClick={() => handleSouthAmericaSelection('peru')}
+                onClick={(e) => { e.stopPropagation(); handleSouthAmericaSelection('peru'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.peru')}
               </button>
               <button
-                onClick={() => handleSouthAmericaSelection('argentina')}
+                onClick={(e) => { e.stopPropagation(); handleSouthAmericaSelection('argentina'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.argentina')}
               </button>
               <button
-                onClick={() => handleSouthAmericaSelection('brasil')}
+                onClick={(e) => { e.stopPropagation(); handleSouthAmericaSelection('brasil'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.brasil')}
@@ -628,31 +628,31 @@ export default function Translate() {
             </DialogHeader>
             <div className="grid grid-cols-2 gap-3 py-4">
               <button
-                onClick={() => handleSouthAmericaSelection('central-america')}
+                onClick={(e) => { e.stopPropagation(); handleSouthAmericaSelection('central-america'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.central-america')}
               </button>
               <button
-                onClick={() => handleSouthAmericaSelection('colombia')}
+                onClick={(e) => { e.stopPropagation(); handleSouthAmericaSelection('colombia'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.colombia')}
               </button>
               <button
-                onClick={() => handleSouthAmericaSelection('peru')}
+                onClick={(e) => { e.stopPropagation(); handleSouthAmericaSelection('peru'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.peru')}
               </button>
               <button
-                onClick={() => handleSouthAmericaSelection('argentina')}
+                onClick={(e) => { e.stopPropagation(); handleSouthAmericaSelection('argentina'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.argentina')}
               </button>
               <button
-                onClick={() => handleSouthAmericaSelection('brasil')}
+                onClick={(e) => { e.stopPropagation(); handleSouthAmericaSelection('brasil'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.brasil')}
@@ -768,19 +768,19 @@ export default function Translate() {
             
             <div className="grid grid-cols-2 gap-3 py-4">
               <button
-                onClick={() => handleNorthAmericaSelection('usa')}
+                onClick={(e) => { e.stopPropagation(); handleNorthAmericaSelection('usa'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.usa')}
               </button>
               <button
-                onClick={() => handleNorthAmericaSelection('canada')}
+                onClick={(e) => { e.stopPropagation(); handleNorthAmericaSelection('canada'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.canada')}
               </button>
               <button
-                onClick={() => handleNorthAmericaSelection('mexico')}
+                onClick={(e) => { e.stopPropagation(); handleNorthAmericaSelection('mexico'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.mexico')}
@@ -801,67 +801,67 @@ export default function Translate() {
             
             <div className="grid grid-cols-3 gap-3 py-4">
               <button
-                onClick={() => handleEuropeSelection('europe-uk' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleEuropeSelection('europe-uk' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.europe-uk')}
               </button>
               <button
-                onClick={() => handleEuropeSelection('europe-scandinavia' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleEuropeSelection('europe-scandinavia' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.europe-scandinavia')}
               </button>
               <button
-                onClick={() => handleEuropeSelection('europe-spain' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleEuropeSelection('europe-spain' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.europe-spain')}
               </button>
               <button
-                onClick={() => handleEuropeSelection('europe-france' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleEuropeSelection('europe-france' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.europe-france')}
               </button>
               <button
-                onClick={() => handleEuropeSelection('europe-benelux' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleEuropeSelection('europe-benelux' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.europe-benelux')}
               </button>
               <button
-                onClick={() => handleEuropeSelection('europe-germany' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleEuropeSelection('europe-germany' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.europe-germany')}
               </button>
               <button
-                onClick={() => handleEuropeSelection('europe-switzerland' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleEuropeSelection('europe-switzerland' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.europe-switzerland')}
               </button>
               <button
-                onClick={() => handleEuropeSelection('europe-italy' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleEuropeSelection('europe-italy' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.europe-italy')}
               </button>
               <button
-                onClick={() => handleEuropeSelection('europe-poland' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleEuropeSelection('europe-poland' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.europe-poland')}
               </button>
               <button
-                onClick={() => handleEuropeSelection('europe-romania' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleEuropeSelection('europe-romania' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.europe-romania')}
               </button>
               <button
-                onClick={() => handleEuropeSelection('europe-greece' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleEuropeSelection('europe-greece' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.europe-greece')}
@@ -882,61 +882,61 @@ export default function Translate() {
             
             <div className="grid grid-cols-3 gap-3 py-4">
               <button
-                onClick={() => handleAsiaSelection('asia-russia' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleAsiaSelection('asia-russia' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.asia-russia')}
               </button>
               <button
-                onClick={() => handleAsiaSelection('asia-china' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleAsiaSelection('asia-china' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.asia-china')}
               </button>
               <button
-                onClick={() => handleAsiaSelection('asia-india' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleAsiaSelection('asia-india' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.asia-india')}
               </button>
               <button
-                onClick={() => handleAsiaSelection('asia-japan' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleAsiaSelection('asia-japan' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.asia-japan')}
               </button>
               <button
-                onClick={() => handleAsiaSelection('asia-turkey' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleAsiaSelection('asia-turkey' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.asia-turkey')}
               </button>
               <button
-                onClick={() => handleAsiaSelection('asia-saudi-arabia' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleAsiaSelection('asia-saudi-arabia' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.asia-saudi-arabia')}
               </button>
               <button
-                onClick={() => handleAsiaSelection('asia-uae' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleAsiaSelection('asia-uae' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.asia-uae')}
               </button>
               <button
-                onClick={() => handleAsiaSelection('asia-thailand' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleAsiaSelection('asia-thailand' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.asia-thailand')}
               </button>
               <button
-                onClick={() => handleAsiaSelection('asia-malaysia' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleAsiaSelection('asia-malaysia' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.asia-malaysia')}
               </button>
               <button
-                onClick={() => handleAsiaSelection('asia-indonesia' as ContextSettings['culturalContext'])}
+                onClick={(e) => { e.stopPropagation(); handleAsiaSelection('asia-indonesia' as ContextSettings['culturalContext']); }}
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.asia-indonesia')}
@@ -956,37 +956,37 @@ export default function Translate() {
             </DialogHeader>
             <div className="grid grid-cols-2 gap-3 py-4">
               <button
-                onClick={() => handleAfricaSelection('morocco')}
+                onClick={(e) => { e.stopPropagation(); handleAfricaSelection('morocco'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.morocco')}
               </button>
               <button
-                onClick={() => handleAfricaSelection('egypt')}
+                onClick={(e) => { e.stopPropagation(); handleAfricaSelection('egypt'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.egypt')}
               </button>
               <button
-                onClick={() => handleAfricaSelection('congo')}
+                onClick={(e) => { e.stopPropagation(); handleAfricaSelection('congo'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.congo')}
               </button>
               <button
-                onClick={() => handleAfricaSelection('angola')}
+                onClick={(e) => { e.stopPropagation(); handleAfricaSelection('angola'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.angola')}
               </button>
               <button
-                onClick={() => handleAfricaSelection('namibia')}
+                onClick={(e) => { e.stopPropagation(); handleAfricaSelection('namibia'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.namibia')}
               </button>
               <button
-                onClick={() => handleAfricaSelection('south-africa')}
+                onClick={(e) => { e.stopPropagation(); handleAfricaSelection('south-africa'); }}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.south-africa')}
