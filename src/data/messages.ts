@@ -23,6 +23,12 @@ export interface CoreMessage {
 
 export const coreMessages: CoreMessage[] = [
   {
+    id: 'custom-input',
+    title: 'Custom Input',
+    description: 'Enter your own topic',
+    category: 'General'
+  },
+  {
     id: 'termination',
     title: 'Terminating employment',
     description: 'Ending someone\'s employment with your organization',
@@ -57,12 +63,6 @@ export const coreMessages: CoreMessage[] = [
     title: 'Withdrawing support',
     description: 'Ending involvement, sponsorship, or backing',
     category: 'Business'
-  },
-  {
-    id: 'custom-input',
-    title: 'Custom Input',
-    description: 'Enter your own topic',
-    category: 'General'
   }
 ];
 

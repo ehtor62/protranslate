@@ -155,6 +155,17 @@ export function TranslationOutput({ variant, context, targetLanguage, className 
           </div>
         </div>
       )}
+
+      {/* Disclaimer */}
+      <div className="mt-4">
+        <h4 className="text-xs font-semibold text-foreground mb-2">{t('translatePage.disclaimerTitle')}</h4>
+        <p className="text-[0.65rem] text-muted-foreground leading-relaxed">
+          {t('translatePage.disclaimerText1')}
+        </p>
+        <p className="text-[0.65rem] text-muted-foreground leading-relaxed mt-2">
+          {t('translatePage.disclaimerText2')}
+        </p>
+      </div>
     </div>
   );
 }

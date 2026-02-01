@@ -344,7 +344,7 @@ export default function Translate() {
               <div className="flex items-center justify-center h-64 rounded-xl border border-dashed border-border">
                 <div className="text-center">
                   <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
-                  <p className="text-muted-foreground">Generating message...</p>
+                  <p className="text-muted-foreground">{t('translatePage.generatingMessage')}</p>
                 </div>
               </div>
             ) : selectedMessageId && translation ? (
