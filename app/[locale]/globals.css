@@ -79,6 +79,7 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
@@ -86,6 +87,8 @@
     font-family: 'Inter', system-ui, sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     min-height: 100vh;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   #root {
@@ -123,6 +126,17 @@
     @apply w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16;
     max-width: 1400px;
   }
+
+  /* Prevent horizontal scroll on mobile */
+  img, video, iframe, embed, object {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Ensure all elements use border-box sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 /* Custom scrollbar */

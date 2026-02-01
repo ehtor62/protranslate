@@ -20,6 +20,12 @@ export const metadata: Metadata = {
   description: "Professional message translation with context awareness",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
