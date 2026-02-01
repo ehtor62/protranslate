@@ -2,7 +2,7 @@
 "use client";
 
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Header } from '@/components/Header';
 import { MessageCard } from '@/components/MessageCard';
@@ -64,6 +64,7 @@ export default function Translate() {
   const [isAfricaModalOpen, setIsAfricaModalOpen] = useState(false);
   const [targetLanguage, setTargetLanguage] = useState<string | null>(locale);
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
+  const outputRef = useRef<HTMLDivElement>(null);
   
   const southAmericaSubregions = [
     'central-america', 'colombia', 'peru', 'argentina', 'brasil'
@@ -232,8 +233,10 @@ export default function Translate() {
 
     setShouldGenerate(false); // Reset flag
 
-    // Scroll to top to show output field
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Scroll to output section to show spinner and results
+    if (outputRef.current) {
+      outputRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
     const generateTranslation = async () => {
       setIsLoading(true);
@@ -321,7 +324,7 @@ export default function Translate() {
           </div>
           
           {/* Right panel - Output */}
-          <div>
+          <div ref={outputRef}>
             <div className="flex items-center gap-2 mb-6">
               <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-medium">
                 2
