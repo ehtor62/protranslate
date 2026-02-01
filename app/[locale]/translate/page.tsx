@@ -581,7 +581,7 @@ export default function Translate() {
                     <button
                       key={option.value}
                       onClick={() => updateContext('medium', option.value as ContextSettings['medium'])}
-                      className={`px-3 py-2 text-sm rounded-lg border transition-all duration-200 ${
+                      className={`px-3 py-2 text-sm rounded-lg border transition-all duration-200 whitespace-normal leading-tight ${
                         context.medium === option.value
                           ? "bg-primary/10 border-primary text-primary"
                           : "bg-secondary border-border text-muted-foreground hover:border-muted-foreground hover:text-foreground"
