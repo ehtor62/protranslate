@@ -179,7 +179,19 @@
     "asia-iran": "Iran",
     "asia-singapore": "Singapore",
     "japan": "South America",
-    "africa": "Africa"
+    "south-america": "South America",
+    "central-america": "Central America",
+    "colombia": "Colombia",
+    "peru": "Peru",
+    "argentina": "Argentina",
+    "brasil": "Brasil",
+    "africa": "Africa",
+    "morocco": "Morocco",
+    "egypt": "Egypt",
+    "congo": "Congo",
+    "angola": "Angola",
+    "namibia": "Namibia",
+    "south-africa": "South Africa"
   },
   "medium": {
     "inPerson": "In-person conversation",

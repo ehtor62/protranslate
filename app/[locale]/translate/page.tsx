@@ -1,4 +1,6 @@
+
 "use client";
+
 
 import { useState, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
@@ -43,6 +45,10 @@ const defaultContext: ContextSettings = {
 export default function Translate() {
   const t = useTranslations();
   const locale = useLocale();
+  const mediumOptions = Object.keys(mediumLabels).map((value) => ({
+    value,
+    label: t(`medium.${value === 'in-person' ? 'inPerson' : value === 'written-notice' ? 'writtenNotice' : value}`)
+  }));
   const [selectedMessageId, setSelectedMessageId] = useState<string | null>(null);
   const [context, setContext] = useState<ContextSettings>(defaultContext);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -55,20 +61,31 @@ export default function Translate() {
   const [isNorthAmericaModalOpen, setIsNorthAmericaModalOpen] = useState(false);
   const [isEuropeModalOpen, setIsEuropeModalOpen] = useState(false);
   const [isAsiaModalOpen, setIsAsiaModalOpen] = useState(false);
+  const [isAfricaModalOpen, setIsAfricaModalOpen] = useState(false);
   
+  const southAmericaSubregions = [
+    'central-america', 'colombia', 'peru', 'argentina', 'brasil'
+  ];
+  const africaSubregions = [
+    'morocco', 'egypt', 'congo', 'angola', 'namibia', 'south-africa'
+  ];
   const culturalOptions = Object.keys(culturalLabels)
-    .filter(key => key !== 'mexico' && !key.startsWith('usa') && !key.startsWith('canada') && !key.startsWith('europe-') && !key.startsWith('asia-'))
+    .filter(key => key !== 'mexico' && key !== 'japan' && !key.startsWith('usa') && !key.startsWith('canada') && !key.startsWith('europe-') && !key.startsWith('asia-') && !southAmericaSubregions.includes(key) && !africaSubregions.includes(key))
     .map((value) => ({
       value,
       label: t(`culturalContext.${value}`)
     }));
   
-  // ...existing code...
+  const [isSouthAmericaModalOpen, setIsSouthAmericaModalOpen] = useState(false);
+  const handleSouthAmericaSelection = (subcategory: 'central-america' | 'colombia' | 'peru' | 'argentina' | 'brasil') => {
+    setContext((prev) => ({ ...prev, culturalContext: subcategory }));
+    setIsSouthAmericaModalOpen(false);
+  };
 
-  const mediumOptions = Object.keys(mediumLabels).map((value) => ({
-    value,
-    label: t(`medium.${value === 'in-person' ? 'inPerson' : value === 'written-notice' ? 'writtenNotice' : value}`)
-  }));
+  const handleAfricaSelection = (subcategory: 'morocco' | 'egypt' | 'congo' | 'angola' | 'namibia' | 'south-africa') => {
+    setContext((prev) => ({ ...prev, culturalContext: subcategory }));
+    setIsAfricaModalOpen(false);
+  };
 
   const powerOptions = Object.keys(powerLabels).map((value) => ({
     value,
@@ -86,7 +103,7 @@ export default function Translate() {
     if (value === 'us') {
       // Open North America modal
       setIsNorthAmericaModalOpen(true);
-    } else if (value === 'usa' || value === 'canada') {
+    } else if (value === 'usa' || value === 'canada' || value === 'mexico') {
       // User clicked on already selected subcategory, reopen modal to allow changing
       setIsNorthAmericaModalOpen(true);
     } else if (value === 'uk') {
@@ -101,10 +118,65 @@ export default function Translate() {
     } else if (value.startsWith('asia-')) {
       // User clicked on already selected Asian subcategory, reopen modal to allow changing
       setIsAsiaModalOpen(true);
+    } else if (value === 'south-america') {
+      // Open South America modal
+      setIsSouthAmericaModalOpen(true);
+    } else if (["central-america", "colombia", "peru", "argentina", "brasil"].includes(value)) {
+      setIsSouthAmericaModalOpen(true);
+    } else if (value === 'africa') {
+      // Open Africa modal
+      setIsAfricaModalOpen(true);
+    } else if (africaSubregions.includes(value)) {
+      setIsAfricaModalOpen(true);
     } else {
       updateContext('culturalContext', value as ContextSettings['culturalContext']);
     }
   };
+
+
+        {/* South America Subcategory Modal */}
+        <Dialog open={isSouthAmericaModalOpen} onOpenChange={setIsSouthAmericaModalOpen}>
+          <DialogContent className="sm:max-w-[400px]">
+            <DialogHeader>
+              <DialogTitle>{t('culturalContext.south-america')}</DialogTitle>
+              <DialogDescription>
+                Select a specific region
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid grid-cols-2 gap-3 py-4">
+              <button
+                onClick={() => handleSouthAmericaSelection('central-america')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.central-america')}
+              </button>
+              <button
+                onClick={() => handleSouthAmericaSelection('colombia')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.colombia')}
+              </button>
+              <button
+                onClick={() => handleSouthAmericaSelection('peru')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.peru')}
+              </button>
+              <button
+                onClick={() => handleSouthAmericaSelection('argentina')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.argentina')}
+              </button>
+              <button
+                onClick={() => handleSouthAmericaSelection('brasil')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.brasil')}
+              </button>
+            </div>
+          </DialogContent>
+        </Dialog>
 
   const handleNorthAmericaSelection = (subcategory: 'usa' | 'canada' | 'mexico') => {
     updateContext('culturalContext', subcategory);
@@ -134,6 +206,10 @@ export default function Translate() {
       updateContext('culturalContext', 'uk' as ContextSettings['culturalContext']);
     } else if (context.culturalContext.startsWith('asia-')) {
       updateContext('culturalContext', 'germany' as ContextSettings['culturalContext']);
+    } else if (southAmericaSubregions.includes(context.culturalContext)) {
+      updateContext('culturalContext', 'south-america' as ContextSettings['culturalContext']);
+    } else if (africaSubregions.includes(context.culturalContext)) {
+      updateContext('culturalContext', 'africa' as ContextSettings['culturalContext']);
     }
     if (messageId === 'custom-input') {
       setIsCustomInputOpen(true);
@@ -450,6 +526,10 @@ export default function Translate() {
                       ? (context.culturalContext === 'uk' || context.culturalContext.startsWith('europe-'))
                       : option.value === 'germany'
                       ? (context.culturalContext === 'germany' || context.culturalContext.startsWith('asia-'))
+                      : option.value === 'south-america'
+                      ? (context.culturalContext === 'south-america' || southAmericaSubregions.includes(context.culturalContext))
+                      : option.value === 'africa'
+                      ? (context.culturalContext === 'africa' || africaSubregions.includes(context.culturalContext))
                       : context.culturalContext === option.value;
                     
                     const displayLabel = option.value === 'us' && (context.culturalContext === 'usa' || context.culturalContext === 'canada' || context.culturalContext === 'mexico')
@@ -457,6 +537,10 @@ export default function Translate() {
                       : option.value === 'uk' && context.culturalContext.startsWith('europe-')
                       ? t(`culturalContext.${context.culturalContext}`)
                       : option.value === 'germany' && context.culturalContext.startsWith('asia-')
+                      ? t(`culturalContext.${context.culturalContext}`)
+                      : option.value === 'south-america' && southAmericaSubregions.includes(context.culturalContext)
+                      ? t(`culturalContext.${context.culturalContext}`)
+                      : option.value === 'africa' && africaSubregions.includes(context.culturalContext)
                       ? t(`culturalContext.${context.culturalContext}`)
                       : option.label;
                     
@@ -477,12 +561,57 @@ export default function Translate() {
                 </div>
               </div>
               
+
               <ContextSelector
                 label={t('translatePage.medium')}
                 value={context.medium}
                 onChange={(v) => updateContext('medium', v as ContextSettings['medium'])}
                 options={mediumOptions}
               />
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* South America Subcategory Modal */}
+        <Dialog open={isSouthAmericaModalOpen} onOpenChange={setIsSouthAmericaModalOpen}>
+          <DialogContent className="sm:max-w-[400px]">
+            <DialogHeader>
+              <DialogTitle>{t('culturalContext.south-america')}</DialogTitle>
+              <DialogDescription>
+                Select a specific region
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid grid-cols-2 gap-3 py-4">
+              <button
+                onClick={() => handleSouthAmericaSelection('central-america')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.central-america')}
+              </button>
+              <button
+                onClick={() => handleSouthAmericaSelection('colombia')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.colombia')}
+              </button>
+              <button
+                onClick={() => handleSouthAmericaSelection('peru')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.peru')}
+              </button>
+              <button
+                onClick={() => handleSouthAmericaSelection('argentina')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.argentina')}
+              </button>
+              <button
+                onClick={() => handleSouthAmericaSelection('brasil')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.brasil')}
+              </button>
             </div>
           </DialogContent>
         </Dialog>
@@ -514,7 +643,7 @@ export default function Translate() {
                 onClick={() => handleNorthAmericaSelection('mexico')}
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
-                {t('culturalContext.mexico', 'Mexico')}
+                {t('culturalContext.mexico')}
               </button>
             </div>
           </DialogContent>
@@ -671,6 +800,56 @@ export default function Translate() {
                 className="px-4 py-4 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.asia-indonesia')}
+              </button>
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Africa Subcategory Modal */}
+        <Dialog open={isAfricaModalOpen} onOpenChange={setIsAfricaModalOpen}>
+          <DialogContent className="sm:max-w-[400px]">
+            <DialogHeader>
+              <DialogTitle>{t('culturalContext.africa')}</DialogTitle>
+              <DialogDescription>
+                Select a specific region
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid grid-cols-2 gap-3 py-4">
+              <button
+                onClick={() => handleAfricaSelection('morocco')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.morocco')}
+              </button>
+              <button
+                onClick={() => handleAfricaSelection('egypt')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.egypt')}
+              </button>
+              <button
+                onClick={() => handleAfricaSelection('congo')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.congo')}
+              </button>
+              <button
+                onClick={() => handleAfricaSelection('angola')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.angola')}
+              </button>
+              <button
+                onClick={() => handleAfricaSelection('namibia')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.namibia')}
+              </button>
+              <button
+                onClick={() => handleAfricaSelection('south-africa')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.south-africa')}
               </button>
             </div>
           </DialogContent>
