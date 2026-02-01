@@ -44,12 +44,8 @@ export default async function RootLayout(
   }
 
   return (
-    <html lang={locale}>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>
-        <LocaleProviders>
-          {children}
-        </LocaleProviders>
-      </body>
-    </html>
+    <LocaleProviders>
+      {children}
+    </LocaleProviders>
   );
 }

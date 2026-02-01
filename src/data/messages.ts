@@ -10,7 +10,7 @@ export interface ContextSettings {
   directness: number; // 0-100: Indirect -> Blunt
   powerRelationship: 'more' | 'equal' | 'less'; // Your power relative to recipient
   emotionalSensitivity: number; // 0-100: Low -> High
-  culturalContext: 'neutral' | 'us' | 'usa' | 'canada' | 'uk' | 'europe-uk' | 'europe-scandinavia' | 'europe-spain' | 'europe-france' | 'europe-benelux' | 'europe-germany' | 'europe-switzerland' | 'europe-italy' | 'europe-poland' | 'europe-romania' | 'europe-greece' | 'germany' | 'asia-russia' | 'asia-china' | 'asia-india' | 'asia-japan' | 'asia-turkey' | 'asia-saudi-arabia' | 'asia-uae' | 'asia-thailand' | 'asia-malaysia' | 'asia-indonesia' | 'asia-iran' | 'asia-singapore' | 'japan' | 'africa';
+  culturalContext: 'neutral' | 'us' | 'usa' | 'canada' | 'mexico' | 'uk' | 'europe-uk' | 'europe-scandinavia' | 'europe-spain' | 'europe-france' | 'europe-benelux' | 'europe-germany' | 'europe-switzerland' | 'europe-italy' | 'europe-poland' | 'europe-romania' | 'europe-greece' | 'germany' | 'asia-russia' | 'asia-china' | 'asia-india' | 'asia-japan' | 'asia-turkey' | 'asia-saudi-arabia' | 'asia-uae' | 'asia-thailand' | 'asia-malaysia' | 'asia-indonesia' | 'asia-iran' | 'asia-singapore' | 'japan' | 'africa';
   medium: 'in-person' | 'email' | 'written-notice';
 }
 
@@ -71,6 +71,7 @@ export const culturalLabels: Record<string, string> = {
   'us': 'North America',
   'usa': 'USA',
   'canada': 'Canada',
+  'mexico': 'Mexico',
   'uk': 'Europe',
   'europe-uk': 'UK',
   'europe-scandinavia': 'Scandinavia',

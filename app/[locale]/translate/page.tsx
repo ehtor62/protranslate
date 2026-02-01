@@ -57,7 +57,7 @@ export default function Translate() {
   const [isAsiaModalOpen, setIsAsiaModalOpen] = useState(false);
   
   const culturalOptions = Object.keys(culturalLabels)
-    .filter(key => !key.startsWith('usa') && !key.startsWith('canada') && !key.startsWith('europe-') && !key.startsWith('asia-'))
+    .filter(key => key !== 'mexico' && !key.startsWith('usa') && !key.startsWith('canada') && !key.startsWith('europe-') && !key.startsWith('asia-'))
     .map((value) => ({
       value,
       label: t(`culturalContext.${value}`)
@@ -106,7 +106,7 @@ export default function Translate() {
     }
   };
 
-  const handleNorthAmericaSelection = (subcategory: 'usa' | 'canada') => {
+  const handleNorthAmericaSelection = (subcategory: 'usa' | 'canada' | 'mexico') => {
     updateContext('culturalContext', subcategory);
     setIsNorthAmericaModalOpen(false);
   };
@@ -124,7 +124,11 @@ export default function Translate() {
   const handleMessageSelect = (messageId: string) => {
     setSelectedMessageId(messageId);
     // Reset cultural context subcategories back to parent region for new queries
-    if (context.culturalContext === 'usa' || context.culturalContext === 'canada') {
+    if (
+      context.culturalContext === 'usa' ||
+      context.culturalContext === 'canada' ||
+      context.culturalContext === 'mexico'
+    ) {
       updateContext('culturalContext', 'us' as ContextSettings['culturalContext']);
     } else if (context.culturalContext.startsWith('europe-')) {
       updateContext('culturalContext', 'uk' as ContextSettings['culturalContext']);
@@ -448,7 +452,7 @@ export default function Translate() {
                       ? (context.culturalContext === 'germany' || context.culturalContext.startsWith('asia-'))
                       : context.culturalContext === option.value;
                     
-                    const displayLabel = option.value === 'us' && (context.culturalContext === 'usa' || context.culturalContext === 'canada')
+                    const displayLabel = option.value === 'us' && (context.culturalContext === 'usa' || context.culturalContext === 'canada' || context.culturalContext === 'mexico')
                       ? t(`culturalContext.${context.culturalContext}`)
                       : option.value === 'uk' && context.culturalContext.startsWith('europe-')
                       ? t(`culturalContext.${context.culturalContext}`)
@@ -461,7 +465,7 @@ export default function Translate() {
                         key={option.value}
                         onClick={() => handleCulturalContextChange(option.value)}
                         className={`px-3 py-2 text-sm rounded-lg border transition-all duration-200 ${
-                          isActive
+                          isActive || (option.value === 'us' && context.culturalContext === 'mexico')
                             ? "bg-primary/10 border-primary text-primary"
                             : "bg-secondary border-border text-muted-foreground hover:border-muted-foreground hover:text-foreground"
                         }`}
@@ -505,6 +509,12 @@ export default function Translate() {
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('culturalContext.canada')}
+              </button>
+              <button
+                onClick={() => handleNorthAmericaSelection('mexico')}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('culturalContext.mexico', 'Mexico')}
               </button>
             </div>
           </DialogContent>
