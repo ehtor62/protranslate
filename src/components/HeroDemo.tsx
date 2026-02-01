@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { type ContextSettings } from '@/data/messages';
 
-export function HeroDemo() {
+export function HeroDemo({ locale }: { locale: string }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const t = useTranslations('demo');
@@ -13,7 +13,7 @@ export function HeroDemo() {
   const demoContexts: { labelKey: string; settings: ContextSettings; targetLanguage: string }[] = [
     {
       labelKey: 'formalEmail',
-      targetLanguage: 'en',
+      targetLanguage: locale === 'de' ? 'de' : locale === 'fr' ? 'fr' : locale === 'es' ? 'es' : locale === 'ja' ? 'ja' : locale === 'zh' ? 'zh' : 'en',
       settings: {
         formality: 75,
         directness: 45,
@@ -25,7 +25,7 @@ export function HeroDemo() {
     },
     {
       labelKey: 'directConversation',
-      targetLanguage: 'de',
+      targetLanguage: locale === 'de' || locale === 'fr' || locale === 'es' || locale === 'ja' || locale === 'zh' ? 'en' : 'de',
       settings: {
         formality: 40,
         directness: 80,
@@ -37,7 +37,7 @@ export function HeroDemo() {
     },
     {
       labelKey: 'sensitiveLetter',
-      targetLanguage: 'en',
+      targetLanguage: locale === 'de' ? 'de' : locale === 'fr' ? 'fr' : locale === 'es' ? 'es' : locale === 'ja' ? 'ja' : locale === 'zh' ? 'zh' : 'en',
       settings: {
         formality: 85,
         directness: 38,
@@ -66,8 +66,12 @@ export function HeroDemo() {
   
   // Get demo message based on target language
   const getDemoMessage = () => {
-    if (currentDemo.targetLanguage === 'de' && currentDemo.labelKey === 'directConversation') {
-      return 'Ich muss direkt mit Ihnen sein. Ihre Position wird gestrichen. Wir werden die nächsten Schritte besprechen und Ihr letzter Tag wird der [Datum] sein.';
+    if (currentDemo.labelKey === 'directConversation') {
+      if (currentDemo.targetLanguage === 'de') {
+        return 'Ich muss direkt mit Ihnen sein. Ihre Position wird gestrichen. Wir werden die nächsten Schritte besprechen und Ihr letzter Tag wird der [Datum] sein.';
+      } else if (currentDemo.targetLanguage === 'en') {
+        return 'I need to be direct with you. Your position is being eliminated. We\'ll discuss next steps and your final day will be [date].';
+      }
     }
     return tSamples(currentDemo.labelKey);
   };

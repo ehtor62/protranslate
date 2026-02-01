@@ -96,7 +96,7 @@ export default function Home() {
                   <Shield className="w-4 h-4 text-primary" />
                   <span className="text-sm font-medium text-foreground">{t('hero.livePreview')}</span>
                 </div>
-                <HeroDemo />
+                <HeroDemo locale={locale} />
               </div>
             </div>
           </div>
