@@ -4,15 +4,41 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
-import { Languages } from 'lucide-react';
+import { Languages, User, LogOut } from 'lucide-react';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { useAuth } from '@/contexts/AuthContext';
+import { auth } from '@/lib/firebase';
+import { signOut } from 'firebase/auth';
+import { Button } from './ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 export function Header() {
   const pathname = usePathname();
   const t = useTranslations('common');
+  const { user } = useAuth();
   
   // Extract locale from pathname
   const locale = pathname.split('/')[1];
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error('Sign out error:', error);
+    }
+  };
+
+  const getUserInitial = () => {
+    if (user?.email) {
+      return user.email.charAt(0).toUpperCase();
+    }
+    return 'U';
+  };
   
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg">
@@ -48,6 +74,31 @@ export function Header() {
             {t('translate')}
           </Link>
           <LanguageSwitcher />
+          
+          {user && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  className="h-9 w-9 rounded-full p-0 bg-primary/10 hover:bg-primary/20"
+                >
+                  <span className="text-sm font-medium text-primary">
+                    {getUserInitial()}
+                  </span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <div className="px-2 py-1.5 text-sm">
+                  <div className="font-medium text-foreground">{user.displayName || 'User'}</div>
+                  <div className="text-xs text-muted-foreground truncate">{user.email}</div>
+                </div>
+                <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer">
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Sign out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </nav>
       </div>
     </header>

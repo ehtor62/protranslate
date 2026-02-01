@@ -9,6 +9,8 @@ import { MessageCard } from '@/components/MessageCard';
 import { ContextSlider } from '@/components/ContextSlider';
 import { ContextSelector } from '@/components/ContextSelector';
 import { TranslationOutput } from '@/components/TranslationOutput';
+import { AuthModal } from '@/components/AuthModal';
+import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -45,6 +47,7 @@ const defaultContext: ContextSettings = {
 export default function Translate() {
   const t = useTranslations();
   const locale = useLocale();
+  const { user, loading } = useAuth();
   const mediumOptions = Object.keys(mediumLabels).map((value) => ({
     value,
     label: t(`medium.${value === 'in-person' ? 'inPerson' : value === 'written-notice' ? 'writtenNotice' : value}`)
@@ -58,6 +61,7 @@ export default function Translate() {
   const [translation, setTranslation] = useState<MessageVariant | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [shouldGenerate, setShouldGenerate] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isNorthAmericaModalOpen, setIsNorthAmericaModalOpen] = useState(false);
   const [isEuropeModalOpen, setIsEuropeModalOpen] = useState(false);
   const [isAsiaModalOpen, setIsAsiaModalOpen] = useState(false);
@@ -443,6 +447,17 @@ export default function Translate() {
           </DialogContent>
         </Dialog>
 
+        {/* Auth Modal */}
+        <AuthModal 
+          isOpen={isAuthModalOpen} 
+          onClose={() => setIsAuthModalOpen(false)}
+          onSuccess={() => {
+            // After successful auth, reopen the context dialog and generate
+            setIsDialogOpen(true);
+            setShouldGenerate(true);
+          }}
+        />
+
         {/* Context Adjustment Dialog */}
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent hideCloseButton>
@@ -454,8 +469,13 @@ export default function Translate() {
                     variant="orange"
                     size="sm"
                     onClick={() => {
-                      setShouldGenerate(true);
-                      setIsDialogOpen(false);
+                      if (!user) {
+                        setIsDialogOpen(false);
+                        setIsAuthModalOpen(true);
+                      } else {
+                        setShouldGenerate(true);
+                        setIsDialogOpen(false);
+                      }
                     }}
                   >
                     {t('translatePage.createPhrase')}
