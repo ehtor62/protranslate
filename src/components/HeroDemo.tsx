@@ -15,7 +15,7 @@ export function HeroDemo() {
       labelKey: 'formalEmail',
       settings: {
         formality: 75,
-        directness: 50,
+        directness: 45,
         powerRelationship: 'equal',
         emotionalSensitivity: 40,
         culturalContext: 'us',
@@ -25,10 +25,10 @@ export function HeroDemo() {
     {
       labelKey: 'directConversation',
       settings: {
-        formality: 45,
+        formality: 40,
         directness: 80,
         powerRelationship: 'less',
-        emotionalSensitivity: 30,
+        emotionalSensitivity: 35,
         culturalContext: 'germany',
         medium: 'in-person'
       }
@@ -37,7 +37,7 @@ export function HeroDemo() {
       labelKey: 'sensitiveLetter',
       settings: {
         formality: 85,
-        directness: 40,
+        directness: 38,
         powerRelationship: 'more',
         emotionalSensitivity: 80,
         culturalContext: 'japan',
@@ -61,6 +61,39 @@ export function HeroDemo() {
   const currentDemo = demoContexts[activeIndex];
   const tSamples = useTranslations('samples');
   const demoMessage = tSamples(currentDemo.labelKey);
+  const tPage = useTranslations('translatePage');
+  const tPower = useTranslations('powerRelationship');
+  const tCulture = useTranslations('culturalContext');
+  const tMedium = useTranslations('medium');
+  
+  // Get formality label based on value
+  const getFormalityLabel = (value: number) => {
+    if (value <= 20) return tPage('formalityCasual');
+    if (value <= 40) return tPage('formalityInformal');
+    if (value <= 60) return tPage('formalityNeutral');
+    if (value <= 80) return tPage('formalityFormal');
+    return tPage('formalityInstitutional');
+  };
+  
+  // Get directness label based on value
+  const getDirectnessLabel = (value: number) => {
+    if (value <= 12) return tPage('directnessIndirect');
+    if (value <= 37) return tPage('directnessDiplomatic');
+    if (value <= 62) return tPage('directnessClear');
+    if (value <= 87) return tPage('directnessDirect');
+    return tPage('directnessBlunt');
+  };
+  
+  // Get emotional sensitivity label based on value
+  const getEmotionalSensitivityLabel = (value: number) => {
+    if (value <= 12) return tPage('emotionalSensitivityLow');
+    if (value <= 37) return tPage('emotionalSensitivityContained');
+    if (value <= 62) return tPage('emotionalSensitivityAttentive');
+    if (value <= 87) return tPage('emotionalSensitivitySensitive');
+    return tPage('emotionalSensitivityHigh');
+  };
+  
+  const context = currentDemo.settings;
   
   return (
     <div className="space-y-4">
@@ -100,20 +133,56 @@ export function HeroDemo() {
         </p>
       </div>
       
-      {/* Context indicators */}
-      <div className="flex items-center gap-4 text-xs text-muted-foreground">
-        <span className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-primary" />
-          {currentDemo.settings.formality}% formal
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-primary/60" />
-          {currentDemo.settings.directness}% direct
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-primary/30" />
-          {currentDemo.settings.emotionalSensitivity}% emotion
-        </span>
+      {/* Context indicators - matching TranslationOutput layout */}
+      <div className="flex flex-wrap gap-2">
+        <div className="flex flex-col gap-1 items-center">
+          <span className="text-xs px-2 py-0.5 rounded-full bg-primary text-primary-foreground font-medium">
+            {tPage('formality')} {context.formality}%
+          </span>
+          <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+            {getFormalityLabel(context.formality).toLowerCase()}
+          </span>
+        </div>
+        <div className="flex flex-col gap-1 items-center">
+          <span className="text-xs px-2 py-0.5 rounded-full bg-primary text-primary-foreground font-medium">
+            {tPage('directness')} {context.directness}%
+          </span>
+          <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+            {getDirectnessLabel(context.directness).toLowerCase()}
+          </span>
+        </div>
+        <div className="flex flex-col gap-1 items-center">
+          <span className="text-xs px-2 py-0.5 rounded-full bg-primary text-primary-foreground font-medium">
+            {tPage('emotionalSensitivity')} {context.emotionalSensitivity}%
+          </span>
+          <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+            {getEmotionalSensitivityLabel(context.emotionalSensitivity).toLowerCase()}
+          </span>
+        </div>
+        <div className="flex flex-col gap-1 items-center">
+          <span className="text-xs px-2 py-0.5 rounded-full bg-primary text-primary-foreground font-medium">
+            {tPage('powerRelationship')}
+          </span>
+          <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+            {tPower(context.powerRelationship)}
+          </span>
+        </div>
+        <div className="flex flex-col gap-1 items-center">
+          <span className="text-xs px-2 py-0.5 rounded-full bg-primary text-primary-foreground font-medium">
+            {tPage('culturalContext')}
+          </span>
+          <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+            {tCulture(context.culturalContext)}
+          </span>
+        </div>
+        <div className="flex flex-col gap-1 items-center">
+          <span className="text-xs px-2 py-0.5 rounded-full bg-primary text-primary-foreground font-medium">
+            {tPage('medium')}
+          </span>
+          <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+            {tMedium(context.medium === 'in-person' ? 'inPerson' : context.medium === 'written-notice' ? 'writtenNotice' : context.medium)}
+          </span>
+        </div>
       </div>
     </div>
   );
