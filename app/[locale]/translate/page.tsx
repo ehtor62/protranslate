@@ -567,50 +567,51 @@ export default function Translate() {
 
               {/* Medium and Language in one row */}
               <div className="space-y-3">
-                <div className="flex gap-2">
-                  <div className="flex-[3]">
+                <div className="flex gap-4">
+                  {/* Medium Section - 2/3 width */}
+                  <div className="flex-[2] space-y-2">
                     <span className="text-sm font-medium text-foreground">{t('translatePage.medium')}</span>
+                    <div className="flex flex-col gap-2">
+                      {mediumOptions.map((option) => (
+                        <button
+                          key={option.value}
+                          onClick={() => updateContext('medium', option.value as ContextSettings['medium'])}
+                          className={`px-3 py-2 text-sm rounded-lg border transition-all duration-200 ${
+                            context.medium === option.value
+                              ? "bg-primary/10 border-primary text-primary"
+                              : "bg-secondary border-border text-muted-foreground hover:border-muted-foreground hover:text-foreground"
+                          }`}
+                        >
+                          {option.label}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                  <div className="flex-1">
+
+                  {/* Language Section - 1/3 width */}
+                  <div className="flex-1 space-y-2">
                     <span className="text-sm font-medium text-foreground">{t('translatePage.translateTo')}</span>
-                  </div>
-                </div>
-                <div className="grid grid-cols-4 gap-2">
-                  {/* Medium Buttons - 3 buttons */}
-                  {mediumOptions.map((option) => (
                     <button
-                      key={option.value}
-                      onClick={() => updateContext('medium', option.value as ContextSettings['medium'])}
-                      className={`px-3 py-2 text-sm rounded-lg border transition-all duration-200 whitespace-normal leading-tight ${
-                        context.medium === option.value
+                      onClick={() => setIsLanguageModalOpen(true)}
+                      className={`w-full px-3 py-2 text-sm rounded-lg border transition-all duration-200 flex items-center justify-center ${
+                        targetLanguage
                           ? "bg-primary/10 border-primary text-primary"
                           : "bg-secondary border-border text-muted-foreground hover:border-muted-foreground hover:text-foreground"
                       }`}
+                      style={{ height: 'calc(100% - 1.75rem)' }}
                     >
-                      {option.label}
+                      {!targetLanguage && 'Language'}
+                      {targetLanguage === 'en' && t('translatePage.languageEnglish')}
+                      {targetLanguage === 'es' && t('translatePage.languageSpanish')}
+                      {targetLanguage === 'fr' && t('translatePage.languageFrench')}
+                      {targetLanguage === 'de' && t('translatePage.languageGerman')}
+                      {targetLanguage === 'it' && t('translatePage.languageItalian')}
+                      {targetLanguage === 'pt' && t('translatePage.languagePortuguese')}
+                      {targetLanguage === 'nl' && t('translatePage.languageDutch')}
+                      {targetLanguage === 'ja' && t('translatePage.languageJapanese')}
+                      {targetLanguage === 'zh' && t('translatePage.languageChinese')}
                     </button>
-                  ))}
-
-                  {/* Language Button - 1 button */}
-                  <button
-                    onClick={() => setIsLanguageModalOpen(true)}
-                    className={`px-3 py-2 text-sm rounded-lg border transition-all duration-200 ${
-                      targetLanguage
-                        ? "bg-primary/10 border-primary text-primary"
-                        : "bg-secondary border-border text-muted-foreground hover:border-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    {!targetLanguage && 'Language'}
-                    {targetLanguage === 'en' && t('translatePage.languageEnglish')}
-                    {targetLanguage === 'es' && t('translatePage.languageSpanish')}
-                    {targetLanguage === 'fr' && t('translatePage.languageFrench')}
-                    {targetLanguage === 'de' && t('translatePage.languageGerman')}
-                    {targetLanguage === 'it' && t('translatePage.languageItalian')}
-                    {targetLanguage === 'pt' && t('translatePage.languagePortuguese')}
-                    {targetLanguage === 'nl' && t('translatePage.languageDutch')}
-                    {targetLanguage === 'ja' && t('translatePage.languageJapanese')}
-                    {targetLanguage === 'zh' && t('translatePage.languageChinese')}
-                  </button>
+                  </div>
                 </div>
               </div>
             </div>
