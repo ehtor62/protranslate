@@ -672,7 +672,8 @@ export default function Translate() {
             </DialogHeader>
             <div className="grid grid-cols-3 gap-3 py-4">
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   setTargetLanguage('en');
                   setIsLanguageModalOpen(false);
                 }}
@@ -681,7 +682,8 @@ export default function Translate() {
                 {t('translatePage.languageEnglish')}
               </button>
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   setTargetLanguage('es');
                   setIsLanguageModalOpen(false);
                 }}
@@ -690,7 +692,8 @@ export default function Translate() {
                 {t('translatePage.languageSpanish')}
               </button>
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   setTargetLanguage('fr');
                   setIsLanguageModalOpen(false);
                 }}
@@ -699,7 +702,8 @@ export default function Translate() {
                 {t('translatePage.languageFrench')}
               </button>
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   setTargetLanguage('de');
                   setIsLanguageModalOpen(false);
                 }}
@@ -708,7 +712,8 @@ export default function Translate() {
                 {t('translatePage.languageGerman')}
               </button>
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   setTargetLanguage('it');
                   setIsLanguageModalOpen(false);
                 }}
@@ -717,7 +722,8 @@ export default function Translate() {
                 {t('translatePage.languageItalian')}
               </button>
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   setTargetLanguage('pt');
                   setIsLanguageModalOpen(false);
                 }}
@@ -726,7 +732,8 @@ export default function Translate() {
                 {t('translatePage.languagePortuguese')}
               </button>
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   setTargetLanguage('nl');
                   setIsLanguageModalOpen(false);
                 }}
@@ -735,7 +742,8 @@ export default function Translate() {
                 {t('translatePage.languageDutch')}
               </button>
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   setTargetLanguage('ja');
                   setIsLanguageModalOpen(false);
                 }}
@@ -744,7 +752,8 @@ export default function Translate() {
                 {t('translatePage.languageJapanese')}
               </button>
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   setTargetLanguage('zh');
                   setIsLanguageModalOpen(false);
                 }}
