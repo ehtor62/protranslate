@@ -1,0 +1,2 @@
+/* This file is required for Next.js root layout. Import your actual CSS from app/[locale]/globals.css or add global styles here. */
+@import "./[locale]/globals.css";

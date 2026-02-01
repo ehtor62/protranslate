@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
-import { generateMessage, type ContextSettings } from '@/data/messages';
+import { type ContextSettings } from '@/data/messages';
 
 export function HeroDemo() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -56,7 +56,7 @@ export function HeroDemo() {
     }, 10000);
     
     return () => clearInterval(interval);
-  }, []);
+  }, [demoContexts.length]);
   
   const currentDemo = demoContexts[activeIndex];
   const tSamples = useTranslations('samples');

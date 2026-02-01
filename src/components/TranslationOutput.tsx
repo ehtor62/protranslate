@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
-import { MessageVariant, ContextSettings, culturalLabels, mediumLabels, powerLabels } from '@/data/messages';
+import { MessageVariant, ContextSettings } from '@/data/messages';
 import { CheckCircle, AlertTriangle, Info, Copy, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 

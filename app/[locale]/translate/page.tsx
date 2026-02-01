@@ -30,6 +30,7 @@ const toCamelCase = (str: string) => {
   return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
 };
 
+// Removed unused getCulturalContextDisplay
 const defaultContext: ContextSettings = {
   formality: 60,
   directness: 50,
@@ -62,19 +63,7 @@ export default function Translate() {
       label: t(`culturalContext.${value}`)
     }));
   
-  // Get display value for cultural context (show subcategory if selected)
-  const getCulturalContextDisplay = () => {
-    if (context.culturalContext === 'usa' || context.culturalContext === 'canada') {
-      return {
-        value: 'us',
-        displayLabel: t(`culturalContext.${context.culturalContext}`)
-      };
-    }
-    return {
-      value: context.culturalContext,
-      displayLabel: t(`culturalContext.${context.culturalContext}`)
-    };
-  };
+  // ...existing code...
 
   const mediumOptions = Object.keys(mediumLabels).map((value) => ({
     value,
@@ -158,17 +147,17 @@ export default function Translate() {
   // Generate message when dialog closes with shouldGenerate flag
   useEffect(() => {
     if (!selectedMessageId || isDialogOpen || !shouldGenerate) return;
-    
+
     setShouldGenerate(false); // Reset flag
-    
+
     // Scroll to top to show output field
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    
+
     const generateTranslation = async () => {
       setIsLoading(true);
       try {
         let messageType, messageDescription;
-        
+
         if (selectedMessageId === 'custom-input') {
           messageType = customTitle;
           messageDescription = customDescription;
@@ -178,7 +167,7 @@ export default function Translate() {
           messageType = selectedMessage.title;
           messageDescription = selectedMessage.description;
         }
-        
+
         const response = await fetch('/api/generate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -189,9 +178,9 @@ export default function Translate() {
             locale
           })
         });
-        
+
         if (!response.ok) throw new Error('Failed to generate message');
-        
+
         const result = await response.json();
         setTranslation(result);
       } catch (error) {
@@ -205,9 +194,9 @@ export default function Translate() {
         setIsLoading(false);
       }
     };
-    
+
     generateTranslation();
-  }, [selectedMessageId, context, isDialogOpen]);
+  }, [selectedMessageId, context, isDialogOpen, shouldGenerate, customTitle, customDescription, locale]);
   
   const selectedMessage = coreMessages.find(m => m.id === selectedMessageId);
   const selectedMessageKey = selectedMessage ? toCamelCase(selectedMessage.id) : '';
