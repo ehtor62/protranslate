@@ -257,9 +257,19 @@ export default function Translate() {
           messageDescription = selectedMessage.description;
         }
 
+        // Get Firebase auth token
+        const idToken = user ? await user.getIdToken() : null;
+        
+        if (!idToken) {
+          throw new Error('Authentication required');
+        }
+
         const response = await fetch('/api/generate', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${idToken}`
+          },
           body: JSON.stringify({
             messageType,
             messageDescription,

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateMessageWithAI } from '@/lib/openai';
 import { ContextSettings } from '@/data/messages';
+import { verifyIdToken } from '@/lib/firebase-admin';
 
 // Simple in-memory rate limiter
 // For production, consider using Redis or a service like Upstash
@@ -51,8 +52,27 @@ function getClientIdentifier(request: NextRequest): string {
 
 export async function POST(request: NextRequest) {
   try {
-    // Rate limiting check
-    const identifier = getClientIdentifier(request);
+    // Authentication check
+    const authHeader = request.headers.get('authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      return NextResponse.json(
+        { error: 'Unauthorized - Missing authentication token' },
+        { status: 401 }
+      );
+    }
+
+    const token = authHeader.substring(7); // Remove 'Bearer ' prefix
+    const decodedToken = await verifyIdToken(token);
+    
+    if (!decodedToken) {
+      return NextResponse.json(
+        { error: 'Unauthorized - Invalid authentication token' },
+        { status: 401 }
+      );
+    }
+
+    // Rate limiting check (now per authenticated user)
+    const identifier = decodedToken.uid; // Use user ID instead of IP
     if (!rateLimit(identifier, 6, 60000)) { // 6 requests per minute
       return NextResponse.json(
         { error: 'Rate limit exceeded. Please try again later.' },
