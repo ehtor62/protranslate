@@ -104,10 +104,10 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>
+          <DialogTitle className="sr-only">
             {isSignUp ? (t('signUp') || 'Sign Up') : (t('signIn') || 'Sign In')}
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-white whitespace-pre-line">
             {isSignUp 
               ? (t('signUpDescription') || 'Create an account to continue') 
               : (t('signInDescription') || 'Sign in to your account to continue')}

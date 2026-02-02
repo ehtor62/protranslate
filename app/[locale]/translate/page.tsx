@@ -530,8 +530,7 @@ export default function Translate() {
           isOpen={isAuthModalOpen} 
           onClose={() => setIsAuthModalOpen(false)}
           onSuccess={() => {
-            // After successful auth, reopen the context dialog and generate
-            setIsDialogOpen(true);
+            // After successful auth, directly trigger generation without opening context dialog
             setShouldGenerate(true);
           }}
         />
