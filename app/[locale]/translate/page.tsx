@@ -269,15 +269,35 @@ export default function Translate() {
           })
         });
 
-        if (!response.ok) throw new Error('Failed to generate message');
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          let errorMessage = t('errors.genericError');
+          
+          // Map API errors to localized messages
+          if (response.status === 429) {
+            errorMessage = t('errors.rateLimitExceeded');
+          } else if (response.status === 400 && errorData.error?.includes('too long')) {
+            errorMessage = t('errors.messageTooLong');
+          } else if (response.status === 500) {
+            errorMessage = t('errors.generationFailed');
+          }
+          
+          throw new Error(errorMessage);
+        }
 
         const result = await response.json();
         setTranslation(result);
       } catch (error) {
         console.error('Error generating translation:', error);
+        
+        // Use the error message if it's from our API, otherwise show network error
+        const errorMessage = error instanceof Error && error.message 
+          ? error.message
+          : t('errors.networkError');
+        
         setTranslation({
-          wording: 'Error generating message. Please try again.',
-          explanation: 'An error occurred while processing your request.',
+          wording: errorMessage,
+          explanation: '',
           reception: ''
         });
       } finally {
@@ -396,31 +416,79 @@ export default function Translate() {
             
             <div className="space-y-4 py-4">
               <div className="space-y-2">
-                <label htmlFor="custom-title" className="text-sm font-medium text-foreground">
-                  {t('translatePage.customInputTitleLabel')}
-                </label>
+                <div className="flex items-center justify-between">
+                  <label htmlFor="custom-title" className="text-sm font-medium text-foreground">
+                    {t('translatePage.customInputTitleLabel')}
+                  </label>
+                  <span className={`text-xs ${
+                    customTitle.length > 60 
+                      ? 'text-destructive font-medium' 
+                      : customTitle.length > 54 
+                      ? 'text-orange-500' 
+                      : 'text-muted-foreground'
+                  }`}>
+                    {customTitle.length}/60
+                  </span>
+                </div>
                 <input
                   id="custom-title"
                   type="text"
                   placeholder={t('translatePage.customInputTitlePlaceholder')}
                   value={customTitle}
-                  onChange={(e) => setCustomTitle(e.target.value)}
-                  className="w-full px-3 py-2 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                  onChange={(e) => {
+                    if (e.target.value.length <= 60) {
+                      setCustomTitle(e.target.value);
+                    }
+                  }}
+                  className={`w-full px-3 py-2 rounded-md border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                    customTitle.length > 60
+                      ? 'border-destructive focus:ring-destructive'
+                      : 'border-input focus:ring-ring'
+                  }`}
                 />
+                {customTitle.length > 60 && (
+                  <p className="text-xs text-destructive mt-1">
+                    {t('errors.titleLimitExceeded')}
+                  </p>
+                )}
               </div>
               
               <div className="space-y-2">
-                <label htmlFor="custom-description" className="text-sm font-medium text-foreground">
-                  {t('translatePage.customInputTopicLabel')}
-                </label>
+                <div className="flex items-center justify-between">
+                  <label htmlFor="custom-description" className="text-sm font-medium text-foreground">
+                    {t('translatePage.customInputTopicLabel')}
+                  </label>
+                  <span className={`text-xs ${
+                    customDescription.length > 1000 
+                      ? 'text-destructive font-medium' 
+                      : customDescription.length > 900 
+                      ? 'text-orange-500' 
+                      : 'text-muted-foreground'
+                  }`}>
+                    {customDescription.length}/1000
+                  </span>
+                </div>
                 <textarea
                   id="custom-description"
                   placeholder={t('translatePage.customInputTopicPlaceholder')}
                   value={customDescription}
-                  onChange={(e) => setCustomDescription(e.target.value)}
+                  onChange={(e) => {
+                    if (e.target.value.length <= 1000) {
+                      setCustomDescription(e.target.value);
+                    }
+                  }}
                   rows={4}
-                  className="w-full px-3 py-2 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 resize-none"
+                  className={`w-full px-3 py-2 rounded-md border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-offset-2 resize-none ${
+                    customDescription.length > 1000
+                      ? 'border-destructive focus:ring-destructive'
+                      : 'border-input focus:ring-ring'
+                  }`}
                 />
+                {customDescription.length > 1000 && (
+                  <p className="text-xs text-destructive mt-1">
+                    {t('errors.characterLimitExceeded')}
+                  </p>
+                )}
               </div>
             </div>
             
@@ -439,7 +507,7 @@ export default function Translate() {
               <Button 
                 variant="orange"
                 onClick={handleCustomInputSubmit}
-                disabled={!customTitle.trim() || !customDescription.trim()}
+                disabled={!customTitle.trim() || !customDescription.trim() || customTitle.length > 60 || customDescription.length > 1000}
               >
                 {t('translatePage.continue')}
               </Button>

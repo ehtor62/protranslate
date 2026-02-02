@@ -140,6 +140,11 @@ export async function generateMessageWithAI(
   try {
     const prompt = buildPrompt(messageType, messageDescription, context, locale, targetLanguage);
     
+    // Safety check: prevent excessively long prompts (max ~3000 chars, ~750 tokens)
+    if (prompt.length > 3000) {
+      throw new Error('Generated prompt exceeds maximum length');
+    }
+    
     const completion = await openai.chat.completions.create({
       model: 'gpt-4o',
       messages: [

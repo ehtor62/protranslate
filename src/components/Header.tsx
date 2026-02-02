@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { Languages, User, LogOut } from 'lucide-react';
@@ -19,6 +19,7 @@ import {
 
 export function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const t = useTranslations('common');
   const { user } = useAuth();
   
@@ -28,6 +29,7 @@ export function Header() {
   const handleSignOut = async () => {
     try {
       await signOut(auth);
+      router.push(`/${locale}`);
     } catch (error) {
       console.error('Sign out error:', error);
     }

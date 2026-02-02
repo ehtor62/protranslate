@@ -238,6 +238,14 @@
   "samples": {
     "formalEmail": "Apreciamos sus contribuciones. Sin embargo, debemos informarle que su empleo concluirá el [fecha]. Brindaremos apoyo durante esta transición.",
     "directConversation": "Necesito ser directo contigo. Tu puesto está siendo eliminado. Discutiremos los próximos pasos y tu último día será el [fecha].",
-    "sensitiveLetter": "Valoramos profundamente su dedicado servicio a nuestra organización. Después de una cuidadosa consideración, lamentamos informarle que debemos concluir su empleo, efectivo el [fecha]. Estamos comprometidos a apoyarle durante esta difícil transición."
+    "sensitiveLetter": "Valoramos profundamente su dedicado servicio a nuestra organización. Después de una cuidadosa consideración, lamentamos informarle que debemos concluir su empleo, efectivo el [fecha]. Estamos comprometidos a apoyarle durante esta difícil transición."  },
+  "errors": {
+    "rateLimitExceeded": "Has realizado demasiadas solicitudes. Por favor, espera un momento e inténtalo de nuevo.",
+    "messageTooLong": "Tu mensaje es demasiado largo. Por favor, acórtalo e inténtalo de nuevo.",
+    "generationFailed": "No se pudo generar la traducción. Por favor, inténtalo de nuevo.",
+    "networkError": "Error de red. Por favor, verifica tu conexión e inténtalo de nuevo.",
+    "genericError": "Ocurrió un error. Por favor, inténtalo de nuevo.",
+    "characterLimitExceeded": "Límite de caracteres excedido. Máximo 1000 caracteres permitidos.",
+    "titleLimitExceeded": "Límite de título excedido. Máximo 60 caracteres permitidos."
   }
 }

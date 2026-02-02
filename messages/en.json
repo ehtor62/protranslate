@@ -241,5 +241,14 @@
     "formalEmail": "We appreciate your contributions. However, we must inform you that your employment will conclude on [date]. We'll provide support during this transition.",
     "directConversation": "I need to be direct with you. Your position is being eliminated. We'll discuss next steps and your final day will be [date].",
     "sensitiveLetter": "We deeply value your dedicated service to our organization. After careful consideration, we regret to inform you that we must conclude your employment, effective [date]. We are committed to supporting you through this difficult transition."
+  },
+  "errors": {
+    "rateLimitExceeded": "You've made too many requests. Please wait a moment and try again.",
+    "messageTooLong": "Your message is too long. Please shorten it and try again.",
+    "generationFailed": "Unable to generate translation. Please try again.",
+    "networkError": "Network error. Please check your connection and try again.",
+    "genericError": "An error occurred. Please try again.",
+    "characterLimitExceeded": "Character limit exceeded. Maximum 1000 characters allowed.",
+    "titleLimitExceeded": "Title limit exceeded. Maximum 60 characters allowed."
   }
 }
