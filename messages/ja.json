@@ -9,6 +9,19 @@
     "pageNotFound": "ページが見つかりません",
     "returnHome": "ホームに戻る"
   },
+  "credits": {
+    "remaining": "残り{count}回のプロフェッショナルな書き換えがあります"
+  },
+  "pricing": {
+    "title": "従量課金制",
+    "subtitle": "必要に応じてクレジットを購入。サブスクリプション不要。",
+    "rewriteCount": "{count}回の書き換え",
+    "feature1": "全言語対応",
+    "feature2": "有効期限なし",
+    "feature3": "文脈を考慮した翻訳",
+    "buyNow": "今すぐ購入",
+    "freeTrialNote": "新規ユーザーは5回の無料書き換えでサービスをお試しいただけます"
+  },
   "hero": {
     "badge": "プロフェッショナルメッセージ翻訳",
     "headline1": "難しいメッセージ。",
@@ -311,6 +324,7 @@
     "networkError": "ネットワークエラー。接続を確認して再度お試しください。",
     "genericError": "エラーが発生しました。もう一度お試しください。",
     "characterLimitExceeded": "文字数制限を超えています。最大1000文字まで入力できます。",
-    "titleLimitExceeded": "タイトルの文字数制限を超えています。最大60文字まで入力できます。"
+    "titleLimitExceeded": "タイトルの文字数制限を超えています。最大60文字まで入力できます。",
+    "insufficientCredits": "無料クレジットをすべて使い切りました。続けるには購入してください。"
   }
 }

@@ -9,6 +9,19 @@
     "pageNotFound": "Seite nicht gefunden",
     "returnHome": "Zur Startseite"
   },
+  "credits": {
+    "remaining": "Sie haben noch {count} professionelle Umschreibungen"
+  },
+  "pricing": {
+    "title": "Nutzungsbasierte Zahlung",
+    "subtitle": "Kaufen Sie Credits nach Bedarf. Kein Abonnement erforderlich.",
+    "rewriteCount": "{count} Umschreibungen",
+    "feature1": "Alle Sprachen unterstützt",
+    "feature2": "Läuft nie ab",
+    "feature3": "Kontextbewusste Übersetzung",
+    "buyNow": "Jetzt Kaufen",
+    "freeTrialNote": "Neue Benutzer erhalten 5 kostenlose Umschreibungen zum Testen des Dienstes"
+  },
   "hero": {
     "badge": "Professionelle Nachrichtenübersetzung",
     "headline1": "Eine schwierige Nachricht.",
@@ -307,6 +320,7 @@
     "networkError": "Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
     "genericError": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
     "characterLimitExceeded": "Zeichenlimit überschritten. Maximal 1000 Zeichen erlaubt.",
-    "titleLimitExceeded": "Titellimit überschritten. Maximal 60 Zeichen erlaubt."
+    "titleLimitExceeded": "Titellimit überschritten. Maximal 60 Zeichen erlaubt.",
+    "insufficientCredits": "Sie haben alle kostenlosen Credits verbraucht. Bitte kaufen Sie mehr, um fortzufahren."
   }
 }

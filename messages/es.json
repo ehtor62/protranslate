@@ -9,6 +9,19 @@
     "pageNotFound": "Página no encontrada",
     "returnHome": "Volver al inicio"
   },
+  "credits": {
+    "remaining": "Te quedan {count} reescrituras profesionales"
+  },
+  "pricing": {
+    "title": "Pago por Uso",
+    "subtitle": "Compra créditos según los necesites. Sin suscripción requerida.",
+    "rewriteCount": "{count} reescrituras",
+    "feature1": "Todos los idiomas soportados",
+    "feature2": "Nunca caduca",
+    "feature3": "Traducción contextual",
+    "buyNow": "Comprar Ahora",
+    "freeTrialNote": "Los nuevos usuarios obtienen 5 reescrituras gratis para probar el servicio"
+  },
   "hero": {
     "badge": "Traducción de mensajes profesionales",
     "headline1": "Un mensaje difícil.",
@@ -247,6 +260,7 @@
     "networkError": "Error de red. Por favor, verifica tu conexión e inténtalo de nuevo.",
     "genericError": "Ocurrió un error. Por favor, inténtalo de nuevo.",
     "characterLimitExceeded": "Límite de caracteres excedido. Máximo 1000 caracteres permitidos.",
-    "titleLimitExceeded": "Límite de título excedido. Máximo 60 caracteres permitidos."
+    "titleLimitExceeded": "Límite de título excedido. Máximo 60 caracteres permitidos.",
+    "insufficientCredits": "Has usado todos tus créditos gratuitos. Por favor compra más para continuar."
   }
 }

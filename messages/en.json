@@ -9,6 +9,19 @@
     "pageNotFound": "Page not found",
     "returnHome": "Return home"
   },
+  "credits": {
+    "remaining": "You have {count} professional rewrites left"
+  },
+  "pricing": {
+    "title": "Pay-Per-Use",
+    "subtitle": "Buy credits as you need them. No subscription required.",
+    "rewriteCount": "{count} rewrites",
+    "feature1": "All languages supported",
+    "feature2": "Never expires",
+    "feature3": "Context-aware translation",
+    "buyNow": "Buy Now",
+    "freeTrialNote": "New users get 5 free rewrites to try the service"
+  },
   "hero": {
     "badge": "Professional message translation",
     "headline1": "One difficult message.",
@@ -250,6 +263,7 @@
     "networkError": "Network error. Please check your connection and try again.",
     "genericError": "An error occurred. Please try again.",
     "characterLimitExceeded": "Character limit exceeded. Maximum 1000 characters allowed.",
-    "titleLimitExceeded": "Title limit exceeded. Maximum 60 characters allowed."
+    "titleLimitExceeded": "Title limit exceeded. Maximum 60 characters allowed.",
+    "insufficientCredits": "You've used all your free credits. Please purchase more to continue."
   }
 }

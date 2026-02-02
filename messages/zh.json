@@ -9,6 +9,19 @@
     "pageNotFound": "页面未找到",
     "returnHome": "返回首页"
   },
+  "credits": {
+    "remaining": "您还有{count}次专业重写机会"
+  },
+  "pricing": {
+    "title": "按使用付费",
+    "subtitle": "根据需要购买积分。无需订阅。",
+    "rewriteCount": "{count}次重写",
+    "feature1": "支持所有语言",
+    "feature2": "永不过期",
+    "feature3": "上下文感知翻译",
+    "buyNow": "立即购买",
+    "freeTrialNote": "新用户可获得5次免费重写以试用服务"
+  },
   "hero": {
     "badge": "专业信息翻译",
     "headline1": "一条困难的信息。",
@@ -305,6 +318,7 @@
     "networkError": "网络错误。请检查您的连接后重试。",
     "genericError": "发生错误。请重试。",
     "characterLimitExceeded": "超过字符限制。最多允许1000个字符。",
-    "titleLimitExceeded": "超过标题限制。最多允许60个字符。"
+    "titleLimitExceeded": "超出标题限制。最多60个字符。",
+    "insufficientCredits": "您已用完所有免费余额。请购买更多以继续。"
   }
 }

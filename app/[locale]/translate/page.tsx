@@ -68,6 +68,7 @@ export default function Translate() {
   const [isAfricaModalOpen, setIsAfricaModalOpen] = useState(false);
   const [targetLanguage, setTargetLanguage] = useState<string | null>(locale);
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
+  const [credits, setCredits] = useState<number | null>(null);
   const outputRef = useRef<HTMLDivElement>(null);
   
   const southAmericaSubregions = [
@@ -286,24 +287,36 @@ export default function Translate() {
           // Map API errors to localized messages
           if (response.status === 429) {
             errorMessage = t('errors.rateLimitExceeded');
+          } else if (response.status === 402) {
+            errorMessage = t('errors.insufficientCredits');
+            setCredits(0); // Update credits display
           } else if (response.status === 400 && errorData.error?.includes('too long')) {
             errorMessage = t('errors.messageTooLong');
           } else if (response.status === 500) {
             errorMessage = t('errors.generationFailed');
           }
           
-          throw new Error(errorMessage);
+          // Display error message to user without throwing
+          setTranslation({
+            wording: errorMessage,
+            explanation: '',
+            reception: ''
+          });
+          return;
         }
 
         const result = await response.json();
         setTranslation(result);
+        
+        // Update credits from response
+        if (typeof result.remainingCredits === 'number') {
+          setCredits(result.remainingCredits);
+        }
       } catch (error) {
         console.error('Error generating translation:', error);
         
-        // Use the error message if it's from our API, otherwise show network error
-        const errorMessage = error instanceof Error && error.message 
-          ? error.message
-          : t('errors.networkError');
+        // Handle network errors and unexpected exceptions
+        const errorMessage = t('errors.networkError');
         
         setTranslation({
           wording: errorMessage,
@@ -317,6 +330,34 @@ export default function Translate() {
 
     generateTranslation();
   }, [selectedMessageId, context, isDialogOpen, shouldGenerate, customTitle, customDescription, locale]);
+  
+  // Fetch user credits when user logs in
+  useEffect(() => {
+    const fetchCredits = async () => {
+      if (!user) {
+        setCredits(null);
+        return;
+      }
+      
+      try {
+        const idToken = await user.getIdToken();
+        const response = await fetch('/api/credits', {
+          headers: {
+            'Authorization': `Bearer ${idToken}`
+          }
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          setCredits(data.credits);
+        }
+      } catch (error) {
+        console.error('Error fetching credits:', error);
+      }
+    };
+    
+    fetchCredits();
+  }, [user]);
   
   const selectedMessage = coreMessages.find(m => m.id === selectedMessageId);
   const selectedMessageKey = selectedMessage ? toCamelCase(selectedMessage.id) : '';
@@ -399,7 +440,7 @@ export default function Translate() {
                   </p>
                 </div>
                 
-                <TranslationOutput variant={translation} context={context} targetLanguage={targetLanguage} />
+                <TranslationOutput variant={translation} context={context} targetLanguage={targetLanguage} credits={credits} />
               </div>
             ) : (
               <div className="flex items-center justify-center h-64 rounded-xl border border-dashed border-border">

@@ -10,9 +10,10 @@ interface TranslationOutputProps {
   context: ContextSettings;
   targetLanguage?: string | null;
   className?: string;
+  credits?: number | null;
 }
 
-export function TranslationOutput({ variant, context, targetLanguage, className }: TranslationOutputProps) {
+export function TranslationOutput({ variant, context, targetLanguage, className, credits }: TranslationOutputProps) {
   const [copied, setCopied] = React.useState(false);
   const t = useTranslations();
   
@@ -122,6 +123,13 @@ export function TranslationOutput({ variant, context, targetLanguage, className 
           )}
         </Button>
       </div>
+      
+      {/* Credits counter */}
+      {typeof credits === 'number' && (
+        <div className="text-sm text-muted-foreground text-center">
+          {t('credits.remaining', { count: credits })}
+        </div>
+      )}
       
       {/* Explanation */}
       {variant.explanation && (

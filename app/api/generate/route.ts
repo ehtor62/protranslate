@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateMessageWithAI } from '@/lib/openai';
 import { ContextSettings } from '@/data/messages';
-import { verifyIdToken } from '@/lib/firebase-admin';
+import { verifyIdToken, decrementUserCredits, getUserCredits } from '@/lib/firebase-admin';
 
 // Simple in-memory rate limiter
 // For production, consider using Redis or a service like Upstash
@@ -80,6 +80,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Check user credits
+    const remainingCredits = await decrementUserCredits(identifier);
+    
+    if (remainingCredits === null) {
+      return NextResponse.json(
+        { error: 'Insufficient credits. Please purchase more credits to continue.' },
+        { status: 402 }
+      );
+    }
+
     const body = await request.json();
     const { messageType, messageDescription, context, locale = 'en', targetLanguage } = body;
 
@@ -123,7 +133,10 @@ export async function POST(request: NextRequest) {
       targetLanguage
     );
 
-    return NextResponse.json(result);
+    return NextResponse.json({
+      ...result,
+      remainingCredits
+    });
   } catch (error) {
     console.error('API route error:', error);
     return NextResponse.json(
