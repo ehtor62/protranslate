@@ -2,6 +2,7 @@
   "common": {
     "home": "Home",
     "translate": "Translate",
+    "pricing": "Pricing",
     "appName": "ProTranslate",
     "tagline": "A systematic translation engine for professional intent.",
     "404": "404",
@@ -12,7 +13,7 @@
     "badge": "Professional message translation",
     "headline1": "One difficult message.",
     "headline2": "50 professional translations.",
-    "description": "Not only language translation. <em>Meaning</em> translation. Adjust context, power dynamics, and cultural norms to craft the exact professional message you need.",
+    "description": "Not only language translation. <em>Meaning</em> translation. Adjust context, power dynamics, and cultural norms to craft the exact professional message you need. Avoid misunderstandings, escalation, and regret — in one click.",
     "ctaPrimary": "Translate your message",
     "ctaSecondary": "See how it works",
     "livePreview": "Live Preview"

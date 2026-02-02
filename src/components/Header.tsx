@@ -44,7 +44,7 @@ export function Header() {
   
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-16 items-start md:items-center justify-between pt-4 md:pt-0">
         <Link href={`/${locale}`} className="flex items-center gap-2 group">
           <div className="p-1.5 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
             <Languages className="w-5 h-5 text-primary" />
@@ -52,7 +52,7 @@ export function Header() {
           <span className="font-semibold text-foreground">{t('appName')}</span>
         </Link>
         
-        <nav className="flex items-center gap-6">
+        <nav className="flex items-center gap-6 mt-8 md:mt-0">
           <Link
             href={`/${locale}/translate`}
             className={cn(
@@ -63,6 +63,17 @@ export function Header() {
             )}
           >
             {t('translate')}
+          </Link>
+          <Link
+            href={`/${locale}/pricing`}
+            className={cn(
+              "text-sm transition-colors",
+              pathname.startsWith(`/${locale}/pricing`)
+                ? "text-foreground"
+                : "text-muted-foreground hover:text-foreground"
+            )}
+          >
+            {t('pricing')}
           </Link>
           <LanguageSwitcher />
           

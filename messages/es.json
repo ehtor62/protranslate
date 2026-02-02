@@ -2,6 +2,7 @@
   "common": {
     "home": "Inicio",
     "translate": "Traducir",
+    "pricing": "Precios",
     "appName": "ProTranslate",
     "tagline": "Un motor de traducción sistemático para intenciones profesionales.",
     "404": "404",
@@ -12,7 +13,7 @@
     "badge": "Traducción de mensajes profesionales",
     "headline1": "Un mensaje difícil.",
     "headline2": "50 traducciones profesionales.",
-    "description": "No solo traducción de idioma. Traducción de <em>significado</em>. Ajusta el contexto, las dinámicas de poder y las normas culturales para crear el mensaje profesional exacto que necesitas.",
+    "description": "No solo traducción de idioma. Traducción de <em>significado</em>. Ajusta el contexto, las dinámicas de poder y las normas culturales para crear el mensaje profesional exacto que necesitas. Evita malentendidos, escaladas y arrepentimientos — en un clic.",
     "ctaPrimary": "Traduce tu mensaje",
     "ctaSecondary": "Ver cómo funciona",
     "livePreview": "Vista previa en vivo"

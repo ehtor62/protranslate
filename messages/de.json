@@ -2,6 +2,7 @@
   "common": {
     "home": "Startseite",
     "translate": "Übersetzen",
+    "pricing": "Preise",
     "appName": "ProTranslate",
     "tagline": "Ein systematisches Übersetzungssystem für professionelle Absichten.",
     "404": "404",
@@ -12,7 +13,7 @@
     "badge": "Professionelle Nachrichtenübersetzung",
     "headline1": "Eine schwierige Nachricht.",
     "headline2": "50 professionelle Übersetzungen.",
-    "description": "Nicht nur Sprachübersetzung. <em>Bedeutungs</em>übersetzung. Passen Sie Kontext, Machtdynamik und kulturelle Normen an, um genau die professionelle Nachricht zu erstellen, die Sie benötigen.",
+    "description": "Nicht nur Sprachübersetzung. <em>Bedeutungs</em>übersetzung. Passen Sie Kontext, Machtdynamiken und kulturelle Normen an, um die genaue professionelle Nachricht zu erstellen, die Sie benötigen. Vermeiden Sie Missverständnisse, Eskalation und Bedauern — mit einem Klick.",
     "ctaPrimary": "Übersetzen Sie Ihre Nachricht",
     "ctaSecondary": "So funktioniert's",
     "livePreview": "Live-Vorschau"

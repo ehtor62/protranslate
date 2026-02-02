@@ -2,6 +2,7 @@
   "common": {
     "home": "首页",
     "translate": "翻译",
+    "pricing": "定价",
     "appName": "ProTranslate",
     "tagline": "专业意图的系统化翻译引擎。",
     "404": "404",
@@ -12,7 +13,7 @@
     "badge": "专业信息翻译",
     "headline1": "一条困难的信息。",
     "headline2": "50种专业翻译。",
-    "description": "不仅仅是语言翻译。是<em>意义</em>翻译。调整上下文、权力动态和文化规范，创建您所需的准确专业信息。",
+    "description": "不仅仅是语言翻译。<em>意义</em>翻译。调整上下文、权力动态和文化规范，以创建您需要的确切专业信息。避免误解、升级和后悔 — 一键完成。",
     "ctaPrimary": "翻译您的信息",
     "ctaSecondary": "查看工作原理",
     "livePreview": "实时预览"
