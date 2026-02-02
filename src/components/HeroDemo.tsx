@@ -68,7 +68,7 @@ export function HeroDemo({ locale }: { locale: string }) {
   const getDemoMessage = () => {
     if (currentDemo.labelKey === 'directConversation') {
       if (currentDemo.targetLanguage === 'de') {
-        return 'Ich muss direkt mit Ihnen sein. Ihre Position wird gestrichen. Wir werden die nächsten Schritte besprechen und Ihr letzter Tag wird der [Datum] sein.';
+        return 'Ich muss offen mit Ihnen sprechen. Ihre Position wird gestrichen. Wir werden die nächsten Schritte besprechen und Ihr letzter Tag wird der [Datum] sein.';
       } else if (currentDemo.targetLanguage === 'en') {
         return 'I need to be direct with you. Your position is being eliminated. We\'ll discuss next steps and your final day will be [date].';
       }

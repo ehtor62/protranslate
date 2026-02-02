@@ -52,17 +52,6 @@ export function Header() {
         
         <nav className="flex items-center gap-6">
           <Link
-            href={`/${locale}`}
-            className={cn(
-              "text-sm transition-colors",
-              pathname === `/${locale}` || pathname === `/${locale}/`
-                ? "text-foreground"
-                : "text-muted-foreground hover:text-foreground"
-            )}
-          >
-            {t('home')}
-          </Link>
-          <Link
             href={`/${locale}/translate`}
             className={cn(
               "text-sm transition-colors",
@@ -82,9 +71,7 @@ export function Header() {
                   variant="ghost" 
                   className="h-9 w-9 rounded-full p-0 bg-primary/10 hover:bg-primary/20"
                 >
-                  <span className="text-sm font-medium text-primary">
-                    {getUserInitial()}
-                  </span>
+                  <User className="w-4 h-4 text-primary" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">

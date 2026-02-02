@@ -27,6 +27,33 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const getErrorMessage = (errorCode: string): string => {
+    switch (errorCode) {
+      case 'auth/invalid-credential':
+        return 'Invalid email or password. Please try again.';
+      case 'auth/user-not-found':
+        return 'No account found with this email address.';
+      case 'auth/wrong-password':
+        return 'Incorrect password. Please try again.';
+      case 'auth/email-already-in-use':
+        return 'This email is already registered. Please sign in instead.';
+      case 'auth/weak-password':
+        return 'Password should be at least 6 characters long.';
+      case 'auth/invalid-email':
+        return 'Please enter a valid email address.';
+      case 'auth/user-disabled':
+        return 'This account has been disabled. Please contact support.';
+      case 'auth/too-many-requests':
+        return 'Too many failed attempts. Please try again later.';
+      case 'auth/popup-closed-by-user':
+        return 'Sign-in was cancelled. Please try again.';
+      case 'auth/network-request-failed':
+        return 'Network error. Please check your connection and try again.';
+      default:
+        return 'Authentication failed. Please try again.';
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -41,7 +68,8 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
       onSuccess();
       onClose();
     } catch (err: any) {
-      setError(err.message || 'Authentication failed');
+      const errorCode = err.code || '';
+      setError(getErrorMessage(errorCode));
     } finally {
       setLoading(false);
     }
@@ -57,7 +85,8 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
       onSuccess();
       onClose();
     } catch (err: any) {
-      setError(err.message || 'Google sign-in failed');
+      const errorCode = err.code || '';
+      setError(getErrorMessage(errorCode));
     } finally {
       setLoading(false);
     }
@@ -176,7 +205,10 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
 
             <button
               type="button"
-              onClick={() => setIsSignUp(!isSignUp)}
+              onClick={() => {
+                setIsSignUp(!isSignUp);
+                setError('');
+              }}
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               {isSignUp 
