@@ -54,8 +54,18 @@ export async function getUserCredits(userId: string): Promise<number> {
     
     if (!userDoc.exists) {
       // New user - initialize with 5 credits
+      // Try to get email from Firebase Auth for easier identification
+      let email = null;
+      try {
+        const userRecord = await adminAuth.getUser(userId);
+        email = userRecord.email;
+      } catch (authError) {
+        console.warn('Could not fetch user email:', authError);
+      }
+      
       await adminDb.collection('users').doc(userId).set({
         credits: 5,
+        email: email,
         createdAt: new Date(),
       });
       return 5;
@@ -81,8 +91,18 @@ export async function decrementUserCredits(userId: string): Promise<number | nul
     
     if (!userDoc.exists) {
       // New user - initialize with 5 credits and decrement to 4
+      // Try to get email from Firebase Auth for easier identification
+      let email = null;
+      try {
+        const userRecord = await adminAuth.getUser(userId);
+        email = userRecord.email;
+      } catch (authError) {
+        console.warn('Could not fetch user email:', authError);
+      }
+      
       await userRef.set({
         credits: 4,
+        email: email,
         createdAt: new Date(),
         lastUsed: new Date(),
       });
