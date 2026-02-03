@@ -10,7 +10,9 @@
     "returnHome": "返回首页"
   },
   "credits": {
-    "remaining": "您还有{count}次专业重写机会"
+    "remaining": "您还有{count}次专业重写机会",
+    "nextRequiresCredits": "下次重写将需要积分。",
+    "viewPlans": "查看套餐"
   },
   "pricing": {
     "title": "按使用付费",
@@ -21,8 +23,16 @@
     "feature3": "上下文感知翻译",
     "buyNow": "立即购买",
     "freeTrialNote": "新用户可获得5次免费重写以试用服务"
-  },
-  "hero": {
+  },  "pricingModal": {
+    "title": "这次重写已准备就绪。",
+    "subtitle": "添加积分以继续。",
+    "popular": "最受欢迎",
+    "forCredits": "{count}积分",
+    "neverExpires": "积分永不过期",
+    "noSubscription": "无需订阅",
+    "buyNow": "立即购买",
+    "securePayment": "由Stripe提供的安全支付"
+  },  "hero": {
     "badge": "专业信息翻译",
     "headline1": "说出困难的话。",
     "headline2": "专业地。",
@@ -127,7 +137,7 @@
   "auth": {
     "signIn": "登录",
     "signUp": "注册",
-    "signInDescription": "您的消息已准备好进行专业改写。请登录。\n或注册以创建免费账户来接收它。",
+    "signInDescription": "专业版本已准备就绪。\n登录或创建免费账户以解锁它。",
     "signUpDescription": "创建账户以继续",
     "email": "电子邮件",
     "emailPlaceholder": "your@email.com",

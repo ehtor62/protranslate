@@ -10,7 +10,9 @@
     "returnHome": "ホームに戻る"
   },
   "credits": {
-    "remaining": "残り{count}回のプロフェッショナルな書き換えがあります"
+    "remaining": "残り{count}回のプロフェッショナルな書き換えがあります",
+    "nextRequiresCredits": "次の書き換えにはクレジットが必要です。",
+    "viewPlans": "プランを表示"
   },
   "pricing": {
     "title": "従量課金制",
@@ -21,8 +23,16 @@
     "feature3": "文脈を考慮した翻訳",
     "buyNow": "今すぐ購入",
     "freeTrialNote": "新規ユーザーは5回の無料書き換えでサービスをお試しいただけます"
-  },
-  "hero": {
+  },  "pricingModal": {
+    "title": "この書き換えの準備ができました。",
+    "subtitle": "続けるにはクレジットを追加してください。",
+    "popular": "人気",
+    "forCredits": "{count}クレジット分",
+    "neverExpires": "クレジットは永久有効",
+    "noSubscription": "サブスクリプション不要",
+    "buyNow": "今すぐ購入",
+    "securePayment": "Stripeによる安全な決済"
+  },  "hero": {
     "badge": "プロフェッショナルメッセージ翻訳",
     "headline1": "難しいことを言う。",
     "headline2": "プロフェッショナルに。",
@@ -130,7 +140,7 @@
   "auth": {
     "signIn": "ログイン",
     "signUp": "登録",
-    "signInDescription": "メッセージはプロフェッショナルに書き換える準備ができました。サインインしてください。\nまたは、登録して無料アカウントを作成して受け取ってください。",
+    "signInDescription": "プロフェッショナル版が準備できました。\nサインインまたは無料アカウントを作成してロック解除してください。",
     "signUpDescription": "続行するにはアカウントを作成してください",
     "email": "メール",
     "emailPlaceholder": "your@email.jp",

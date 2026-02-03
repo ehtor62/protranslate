@@ -10,7 +10,9 @@
     "returnHome": "Retour à l'accueil"
   },
   "credits": {
-    "remaining": "Il vous reste {count} réécritures professionnelles"
+    "remaining": "Il vous reste {count} réécritures professionnelles",
+    "nextRequiresCredits": "La prochaine réécriture nécessitera des crédits.",
+    "viewPlans": "Voir les forfaits"
   },  "pricing": {
     "title": "Paiement à l'Usage",
     "subtitle": "Achetez des crédits selon vos besoins. Aucun abonnement requis.",
@@ -20,6 +22,16 @@
     "feature3": "Traduction contextuelle",
     "buyNow": "Acheter Maintenant",
     "freeTrialNote": "Les nouveaux utilisateurs reçoivent 5 réécriture gratuites pour essayer le service"
+  },
+  "pricingModal": {
+    "title": "Cette réécriture est prête.",
+    "subtitle": "Ajoutez des crédits pour continuer.",
+    "popular": "Le Plus Populaire",
+    "forCredits": "pour {count} crédits",
+    "neverExpires": "Les crédits n'expirent jamais",
+    "noSubscription": "Aucun abonnement requis",
+    "buyNow": "Acheter Maintenant",
+    "securePayment": "Paiement sécurisé par Stripe"
   },  "hero": {
     "badge": "Traduction de messages professionnels",
     "headline1": "Dites ce qui est difficile.",
@@ -67,7 +79,7 @@
   "auth": {
     "signIn": "Se connecter",
     "signUp": "S'inscrire",
-    "signInDescription": "Votre message est prêt à être réécrit professionnellement. Veuillez vous connecter.\nOu créez un compte GRATUIT pour le recevoir en vous inscrivant.",
+    "signInDescription": "La version professionnelle est prête.\nConnectez-vous ou créez un compte GRATUIT pour la débloquer.",
     "signUpDescription": "Créez un compte pour continuer",
     "email": "E-mail",
     "emailPlaceholder": "votre@email.fr",

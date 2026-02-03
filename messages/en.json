@@ -10,7 +10,9 @@
     "returnHome": "Return home"
   },
   "credits": {
-    "remaining": "You have {count} professional rewrites left"
+    "remaining": "You have {count} professional rewrites left",
+    "nextRequiresCredits": "Next rewrite will require credits.",
+    "viewPlans": "View plans"
   },
   "pricing": {
     "title": "Pay-Per-Use",
@@ -21,6 +23,16 @@
     "feature3": "Context-aware translation",
     "buyNow": "Buy Now",
     "freeTrialNote": "New users get 5 free rewrites to try the service"
+  },
+  "pricingModal": {
+    "title": "This rewrite is ready to go.",
+    "subtitle": "Add credits to continue.",
+    "popular": "Most Popular",
+    "forCredits": "for {count} credits",
+    "neverExpires": "Credits never expire",
+    "noSubscription": "No subscription required",
+    "buyNow": "Buy Now",
+    "securePayment": "Secure payment powered by Stripe"
   },
   "hero": {
     "badge": "Professional message translation",
@@ -69,7 +81,7 @@
   "auth": {
     "signIn": "Sign In",
     "signUp": "Sign Up",
-    "signInDescription": "Your message is ready to be rewritten professionally. Please sign in.\nOr create a FREE account to receive it by signing up.",
+    "signInDescription": "The professional version is ready.\nSign in or create a FREE account to unlock it.",
     "signUpDescription": "Create an account to continue",
     "email": "Email",
     "emailPlaceholder": "you@example.com",

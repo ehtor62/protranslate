@@ -1,9 +1,10 @@
 import React from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { MessageVariant, ContextSettings } from '@/data/messages';
 import { CheckCircle, AlertTriangle, Info, Copy, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 interface TranslationOutputProps {
   variant: MessageVariant;
@@ -16,6 +17,7 @@ interface TranslationOutputProps {
 export function TranslationOutput({ variant, context, targetLanguage, className, credits }: TranslationOutputProps) {
   const [copied, setCopied] = React.useState(false);
   const t = useTranslations();
+  const locale = useLocale();
   
   const handleCopy = async () => {
     await navigator.clipboard.writeText(variant.wording);
@@ -126,8 +128,22 @@ export function TranslationOutput({ variant, context, targetLanguage, className,
       
       {/* Credits counter */}
       {typeof credits === 'number' && (
-        <div className="text-sm text-muted-foreground text-center">
-          {t('credits.remaining', { count: credits })}
+        <div className="text-sm text-left space-y-2">
+          <div className="text-primary font-medium">
+            {t('credits.remaining', { count: credits })}
+          </div>
+          {credits === 0 && (
+            <div className="space-y-4">
+              <div className="text-muted-foreground">
+                {t('credits.nextRequiresCredits') || 'Next rewrite will require credits'}
+              </div>
+              <Link href={`/${locale}/pricing`} className="block mt-4">
+                <button className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors">
+                  {t('credits.viewPlans') || 'View plans'}
+                </button>
+              </Link>
+            </div>
+          )}
         </div>
       )}
       

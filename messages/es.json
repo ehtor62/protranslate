@@ -10,7 +10,9 @@
     "returnHome": "Volver al inicio"
   },
   "credits": {
-    "remaining": "Te quedan {count} reescrituras profesionales"
+    "remaining": "Te quedan {count} reescrituras profesionales",
+    "nextRequiresCredits": "La próxima reescritura requerirá créditos.",
+    "viewPlans": "Ver planes"
   },
   "pricing": {
     "title": "Pago por Uso",
@@ -21,8 +23,16 @@
     "feature3": "Traducción contextual",
     "buyNow": "Comprar Ahora",
     "freeTrialNote": "Los nuevos usuarios obtienen 5 reescrituras gratis para probar el servicio"
-  },
-  "hero": {
+  },  "pricingModal": {
+    "title": "Esta reescritura está lista.",
+    "subtitle": "Añade créditos para continuar.",
+    "popular": "Más Popular",
+    "forCredits": "por {count} créditos",
+    "neverExpires": "Los créditos nunca caducan",
+    "noSubscription": "No se requiere suscripción",
+    "buyNow": "Comprar Ahora",
+    "securePayment": "Pago seguro con Stripe"
+  },  "hero": {
     "badge": "Traducción de mensajes profesionales",
     "headline1": "Di lo difícil.",
     "headline2": "Profesionalmente.",
@@ -69,7 +79,7 @@
   "auth": {
     "signIn": "Iniciar sesión",
     "signUp": "Registrarse",
-    "signInDescription": "Tu mensaje está listo para ser reescrito profesionalmente. Por favor, inicia sesión.\nO crea una cuenta GRATUITA para recibirlo registrándote.",
+    "signInDescription": "La versión profesional está lista.\nInicia sesión o crea una cuenta GRATUITA para desbloquearla.",
     "signUpDescription": "Cree una cuenta para continuar",
     "email": "Correo electrónico",
     "emailPlaceholder": "tu@email.com",

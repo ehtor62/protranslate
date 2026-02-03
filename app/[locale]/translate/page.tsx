@@ -10,6 +10,7 @@ import { ContextSlider } from '@/components/ContextSlider';
 import { ContextSelector } from '@/components/ContextSelector';
 import { TranslationOutput } from '@/components/TranslationOutput';
 import { AuthModal } from '@/components/AuthModal';
+import { PricingModal } from '@/components/PricingModal';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import {
@@ -62,6 +63,7 @@ export default function Translate() {
   const [isLoading, setIsLoading] = useState(false);
   const [shouldGenerate, setShouldGenerate] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isPricingModalOpen, setIsPricingModalOpen] = useState(false);
   const [isNorthAmericaModalOpen, setIsNorthAmericaModalOpen] = useState(false);
   const [isEuropeModalOpen, setIsEuropeModalOpen] = useState(false);
   const [isAsiaModalOpen, setIsAsiaModalOpen] = useState(false);
@@ -576,6 +578,12 @@ export default function Translate() {
           }}
         />
 
+        {/* Pricing Modal */}
+        <PricingModal
+          isOpen={isPricingModalOpen}
+          onClose={() => setIsPricingModalOpen(false)}
+        />
+
         {/* Context Adjustment Dialog */}
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent hideCloseButton>
@@ -590,6 +598,9 @@ export default function Translate() {
                       if (!user) {
                         setIsDialogOpen(false);
                         setIsAuthModalOpen(true);
+                      } else if (credits === 0) {
+                        setIsDialogOpen(false);
+                        setIsPricingModalOpen(true);
                       } else {
                         setShouldGenerate(true);
                         setIsDialogOpen(false);

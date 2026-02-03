@@ -10,7 +10,9 @@
     "returnHome": "Zur Startseite"
   },
   "credits": {
-    "remaining": "Sie haben noch {count} professionelle Umschreibungen"
+    "remaining": "Sie haben noch {count} professionelle Umschreibungen",
+    "nextRequiresCredits": "Die nächste Umschreibung erfordert Credits.",
+    "viewPlans": "Pläne ansehen"
   },
   "pricing": {
     "title": "Nutzungsbasierte Zahlung",
@@ -21,8 +23,16 @@
     "feature3": "Kontextbewusste Übersetzung",
     "buyNow": "Jetzt Kaufen",
     "freeTrialNote": "Neue Benutzer erhalten 5 kostenlose Umschreibungen zum Testen des Dienstes"
-  },
-  "hero": {
+  },  "pricingModal": {
+    "title": "Diese Umschreibung ist bereit.",
+    "subtitle": "Fügen Sie Credits hinzu, um fortzufahren.",
+    "popular": "Am Beliebtesten",
+    "forCredits": "für {count} Credits",
+    "neverExpires": "Credits laufen nie ab",
+    "noSubscription": "Kein Abonnement erforderlich",
+    "buyNow": "Jetzt Kaufen",
+    "securePayment": "Sichere Zahlung mit Stripe"
+  },  "hero": {
     "badge": "Professionelle Nachrichtenübersetzung",
     "headline1": "Sagen Sie das Schwierige.",
     "headline2": "Professionell.",
@@ -127,7 +137,7 @@
   "auth": {
     "signIn": "Anmelden",
     "signUp": "Registrieren",
-    "signInDescription": "Ihre Nachricht ist bereit, professionell umgeschrieben zu werden. Bitte melden Sie sich an.\nOder erstellen Sie ein KOSTENLOSES Konto, um sie zu erhalten, indem Sie sich registrieren.",
+    "signInDescription": "Die professionelle Version ist bereit.\nMelden Sie sich an oder erstellen Sie ein KOSTENLOSES Konto, um sie freizuschalten.",
     "signUpDescription": "Erstellen Sie ein Konto, um fortzufahren",
     "email": "E-Mail",
     "emailPlaceholder": "ihre@email.de",
