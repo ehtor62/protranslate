@@ -33,6 +33,34 @@ aitranslator/
 └── ...config files
 ```
 
+## Admin API Routes
+
+### Add Credits to User
+**Endpoint:** `POST /api/admin/add-credits`
+
+Add credits to a user's account (useful for promotions, support, or manual adjustments).
+
+**Request:**
+```bash
+curl -X POST http://localhost:3000/api/admin/add-credits \
+  -H "Authorization: Bearer YOUR_FIREBASE_ID_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"amount": 10}'
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "credits": 15
+}
+```
+
+**Notes:**
+- Requires valid Firebase authentication token
+- Default amount is 5 credits if not specified
+- Creates user document if it doesn't exist
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

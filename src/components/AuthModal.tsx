@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
 import {
@@ -26,6 +26,8 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
+  const [resetEmailSent, setResetEmailSent] = useState(false);
 
   const getErrorMessage = (errorCode: string): string => {
     switch (errorCode) {
@@ -92,11 +94,29 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
     }
   };
 
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      setResetEmailSent(true);
+    } catch (err: any) {
+      const errorCode = err.code || '';
+      setError(getErrorMessage(errorCode));
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleClose = () => {
     setEmail('');
     setPassword('');
     setError('');
     setIsSignUp(false);
+    setIsForgotPassword(false);
+    setResetEmailSent(false);
     onClose();
   };
 
@@ -105,66 +125,122 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="sr-only">
-            {isSignUp ? (t('signUp') || 'Sign Up') : (t('signIn') || 'Sign In')}
+            {isForgotPassword ? (t('forgotPassword') || 'Forgot Password') : isSignUp ? (t('signUp') || 'Sign Up') : (t('signIn') || 'Sign In')}
           </DialogTitle>
-          <DialogDescription className="text-white whitespace-pre-line">
-            {isSignUp 
+          <DialogDescription className="text-white whitespace-pre-line text-xl">
+            {isForgotPassword
+              ? (t('forgotPasswordDescription') || 'Enter your email address and we will send you a link to reset your password.')
+              : isSignUp 
               ? (t('signUpDescription') || 'Create an account to continue') 
               : (t('signInDescription') || 'Sign in to your account to continue')}
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4 py-4">
-          <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium text-foreground">
-              {t('email') || 'Email'}
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-              placeholder={t('emailPlaceholder') || 'you@example.com'}
-            />
-          </div>
+        <form onSubmit={isForgotPassword ? handleForgotPassword : handleSubmit} className="space-y-4 py-4">
+          {resetEmailSent ? (
+            <div className="space-y-4">
+              <div className="p-4 rounded-lg bg-primary/10 border border-primary/20">
+                <p className="text-sm text-foreground">
+                  {t('resetEmailSent') || 'Password reset email sent! Check your inbox for instructions.'}
+                </p>
+              </div>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  setIsForgotPassword(false);
+                  setResetEmailSent(false);
+                  setEmail('');
+                }}
+                className="w-full"
+              >
+                {t('backToSignIn') || 'Back to Sign In'}
+              </Button>
+            </div>
+          ) : (
+            <>
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-medium text-foreground">
+                  {t('email') || 'Email'}
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                  placeholder={t('emailPlaceholder') || 'you@example.com'}
+                />
+              </div>
 
-          <div className="space-y-2">
-            <label htmlFor="password" className="text-sm font-medium text-foreground">
-              {t('password') || 'Password'}
-            </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              minLength={6}
-              className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-              placeholder={t('passwordPlaceholder') || '••••••••'}
-            />
-          </div>
+              {!isForgotPassword && (
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <label htmlFor="password" className="text-sm font-medium text-foreground">
+                      {t('password') || 'Password'}
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsForgotPassword(true);
+                        setError('');
+                      }}
+                      className="text-sm text-primary hover:text-primary/80 transition-colors font-medium"
+                    >
+                      {t('forgotPassword') || 'Forgot password?'}
+                    </button>
+                  </div>
+                  <input
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    minLength={6}
+                    className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder={t('passwordPlaceholder') || '••••••••'}
+                  />
+                </div>
+              )}
 
-          {error && (
-            <p className="text-sm text-red-500">{error}</p>
-          )}
+              {error && (
+                <p className="text-sm text-red-500">{error}</p>
+              )}
 
-          <div className="flex flex-col gap-3">
-            <Button 
-              type="submit" 
-              variant="orange"
-              disabled={loading}
-              className="w-full"
-            >
-              {loading 
-                ? (t('loading') || 'Loading...') 
-                : isSignUp 
-                  ? (t('signUp') || 'Sign Up') 
-                  : (t('signIn') || 'Sign In')}
-            </Button>
+              <div className="flex flex-col gap-3">
+                <Button 
+                  type="submit" 
+                  variant="orange"
+                  disabled={loading}
+                  className="w-full"
+                >
+                  {loading 
+                    ? (t('loading') || 'Loading...') 
+                    : isForgotPassword
+                      ? (t('sendResetLink') || 'Send Reset Link')
+                      : isSignUp 
+                      ? (t('signUp') || 'Sign Up') 
+                      : (t('signIn') || 'Sign In')}
+                </Button>
 
-            <div className="relative">
+                {isForgotPassword && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => {
+                      setIsForgotPassword(false);
+                      setError('');
+                    }}
+                    className="w-full"
+                  >
+                    {t('backToSignIn') || 'Back to Sign In'}
+                  </Button>
+                )}
+
+                {!isForgotPassword && (
+                  <>
+                    <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t border-border" />
               </div>
@@ -203,19 +279,23 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
               {t('continueWithGoogle') || 'Continue with Google'}
             </Button>
 
-            <button
-              type="button"
-              onClick={() => {
-                setIsSignUp(!isSignUp);
-                setError('');
-              }}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {isSignUp 
-                ? (t('alreadyHaveAccount') || 'Already have an account? Sign in') 
-                : (t('needAccount') || "Don't have an account? Sign up")}
-            </button>
-          </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsSignUp(!isSignUp);
+                        setError('');
+                      }}
+                      className="text-sm text-primary hover:text-primary/80 transition-colors font-medium"
+                    >
+                      {isSignUp 
+                        ? (t('alreadyHaveAccount') || 'Already have an account? Sign in') 
+                        : (t('needAccount') || "Don't have an account? Sign up")}
+                    </button>
+                  </>
+                )}
+              </div>
+            </>
+          )}
         </form>
       </DialogContent>
     </Dialog>

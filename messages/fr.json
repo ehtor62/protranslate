@@ -22,9 +22,9 @@
     "freeTrialNote": "Les nouveaux utilisateurs reçoivent 5 réécriture gratuites pour essayer le service"
   },  "hero": {
     "badge": "Traduction de messages professionnels",
-    "headline1": "Un message difficile.",
-    "headline2": "50 traductions professionnelles.",
-    "description": "Pas seulement une traduction linguistique. Une traduction de <em>signification</em>. Ajustez le contexte, les dynamiques de pouvoir et les normes culturelles pour créer le message professionnel exact dont vous avez besoin. Évitez les malentendus, l'escalade et les regrets — en un clic.",
+    "headline1": "Dites ce qui est difficile.",
+    "headline2": "Professionnellement.",
+    "description": "Traduisez l'intention, pas seulement les mots. Façonnez le ton, les dynamiques de pouvoir et le contexte en un message que vous pouvez envoyer avec confiance.",
     "ctaPrimary": "Traduisez votre message",
     "ctaSecondary": "Voir comment ça marche",
     "livePreview": "Aperçu en direct"
@@ -67,7 +67,7 @@
   "auth": {
     "signIn": "Se connecter",
     "signUp": "S'inscrire",
-    "signInDescription": "ou créez un compte gratuit pour générer votre première traduction",
+    "signInDescription": "Votre message est prêt à être réécrit professionnellement. Veuillez vous connecter.\nOu créez un compte GRATUIT pour le recevoir en vous inscrivant.",
     "signUpDescription": "Créez un compte pour continuer",
     "email": "E-mail",
     "emailPlaceholder": "votre@email.fr",
@@ -77,7 +77,12 @@
     "alreadyHaveAccount": "Vous avez déjà un compte ? Se connecter",
     "needAccount": "Pas encore de compte ? S'inscrire",
     "orContinueWith": "Ou continuer avec",
-    "continueWithGoogle": "Continuer avec Google"
+    "continueWithGoogle": "Continuer avec Google",
+    "forgotPassword": "Mot de passe oublié ?",
+    "forgotPasswordDescription": "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+    "sendResetLink": "Envoyer le lien de réinitialisation",
+    "resetEmailSent": "E-mail de réinitialisation du mot de passe envoyé ! Consultez votre boîte de réception pour les instructions.",
+    "backToSignIn": "Retour à la connexion"
   },
   "translatePage": {
     "title": "Assistant de Traduction IA",

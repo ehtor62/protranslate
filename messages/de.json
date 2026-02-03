@@ -24,9 +24,9 @@
   },
   "hero": {
     "badge": "Professionelle Nachrichtenübersetzung",
-    "headline1": "Eine schwierige Nachricht.",
-    "headline2": "50 professionelle Übersetzungen.",
-    "description": "Nicht nur Sprachübersetzung. <em>Bedeutungs</em>übersetzung. Passen Sie Kontext, Machtdynamiken und kulturelle Normen an, um die genaue professionelle Nachricht zu erstellen, die Sie benötigen. Vermeiden Sie Missverständnisse, Eskalation und Bedauern — mit einem Klick.",
+    "headline1": "Sagen Sie das Schwierige.",
+    "headline2": "Professionell.",
+    "description": "Übersetzen Sie die Absicht, nicht nur die Worte. Gestalten Sie Ton, Machtdynamiken und Kontext zu einer Nachricht, die Sie mit Zuversicht senden können.",
     "ctaPrimary": "Übersetzen Sie Ihre Nachricht",
     "ctaSecondary": "So funktioniert's",
     "livePreview": "Live-Vorschau"
@@ -127,7 +127,7 @@
   "auth": {
     "signIn": "Anmelden",
     "signUp": "Registrieren",
-    "signInDescription": "oder erstellen Sie ein kostenloses Konto, um Ihre erste Übersetzung zu generieren",
+    "signInDescription": "Ihre Nachricht ist bereit, professionell umgeschrieben zu werden. Bitte melden Sie sich an.\nOder erstellen Sie ein KOSTENLOSES Konto, um sie zu erhalten, indem Sie sich registrieren.",
     "signUpDescription": "Erstellen Sie ein Konto, um fortzufahren",
     "email": "E-Mail",
     "emailPlaceholder": "ihre@email.de",
@@ -137,7 +137,12 @@
     "alreadyHaveAccount": "Haben Sie bereits ein Konto? Anmelden",
     "needAccount": "Noch kein Konto? Registrieren",
     "orContinueWith": "Oder fortfahren mit",
-    "continueWithGoogle": "Mit Google fortfahren"
+    "continueWithGoogle": "Mit Google fortfahren",
+    "forgotPassword": "Passwort vergessen?",
+    "forgotPasswordDescription": "Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.",
+    "sendResetLink": "Zurücksetzungslink senden",
+    "resetEmailSent": "E-Mail zum Zurücksetzen des Passworts gesendet! Überprüfen Sie Ihren Posteingang für Anweisungen.",
+    "backToSignIn": "Zurück zur Anmeldung"
   },
   "translatePage": {
     "title": "KI-Übersetzungsassistent",

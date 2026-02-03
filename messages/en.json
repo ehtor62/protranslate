@@ -24,9 +24,9 @@
   },
   "hero": {
     "badge": "Professional message translation",
-    "headline1": "One difficult message.",
-    "headline2": "50 professional translations.",
-    "description": "Not only language translation. <em>Meaning</em> translation. Adjust context, power dynamics, and cultural norms to craft the exact professional message you need. Avoid misunderstandings, escalation, and regret — in one click.",
+    "headline1": "Say the hard thing.",
+    "headline2": "Professionally.",
+    "description": "Translate intent, not just words. Shape tone, power dynamics, and context into a message you can send with confidence.",
     "ctaPrimary": "Translate your message",
     "ctaSecondary": "See how it works",
     "livePreview": "Live Preview"
@@ -79,7 +79,12 @@
     "alreadyHaveAccount": "Already have an account? Sign in",
     "needAccount": "Don't have an account? Sign up",
     "orContinueWith": "Or continue with",
-    "continueWithGoogle": "Continue with Google"
+    "continueWithGoogle": "Continue with Google",
+    "forgotPassword": "Forgot password?",
+    "forgotPasswordDescription": "Enter your email address and we will send you a link to reset your password.",
+    "sendResetLink": "Send Reset Link",
+    "resetEmailSent": "Password reset email sent! Check your inbox for instructions.",
+    "backToSignIn": "Back to Sign In"
   },
   "translatePage": {
     "title": "AI Translation Assistant",

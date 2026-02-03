@@ -24,9 +24,9 @@
   },
   "hero": {
     "badge": "Traducción de mensajes profesionales",
-    "headline1": "Un mensaje difícil.",
-    "headline2": "50 traducciones profesionales.",
-    "description": "No solo traducción de idioma. Traducción de <em>significado</em>. Ajusta el contexto, las dinámicas de poder y las normas culturales para crear el mensaje profesional exacto que necesitas. Evita malentendidos, escaladas y arrepentimientos — en un clic.",
+    "headline1": "Di lo difícil.",
+    "headline2": "Profesionalmente.",
+    "description": "Traduce la intención, no solo las palabras. Moldea el tono, las dinámicas de poder y el contexto en un mensaje que puedes enviar con confianza.",
     "ctaPrimary": "Traduce tu mensaje",
     "ctaSecondary": "Ver cómo funciona",
     "livePreview": "Vista previa en vivo"
@@ -69,7 +69,7 @@
   "auth": {
     "signIn": "Iniciar sesión",
     "signUp": "Registrarse",
-    "signInDescription": "o crea una cuenta gratuita para generar tu primera traducción",
+    "signInDescription": "Tu mensaje está listo para ser reescrito profesionalmente. Por favor, inicia sesión.\nO crea una cuenta GRATUITA para recibirlo registrándote.",
     "signUpDescription": "Cree una cuenta para continuar",
     "email": "Correo electrónico",
     "emailPlaceholder": "tu@email.com",
@@ -79,7 +79,12 @@
     "alreadyHaveAccount": "¿Ya tienes cuenta? Iniciar sesión",
     "needAccount": "¿No tienes cuenta? Registrarse",
     "orContinueWith": "O continuar con",
-    "continueWithGoogle": "Continuar con Google"
+    "continueWithGoogle": "Continuar con Google",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "forgotPasswordDescription": "Ingresa tu dirección de correo electrónico y te enviaremos un enlace para restablecer tu contraseña.",
+    "sendResetLink": "Enviar enlace de restablecimiento",
+    "resetEmailSent": "¡Correo de restablecimiento de contraseña enviado! Revisa tu bandeja de entrada para obtener instrucciones.",
+    "backToSignIn": "Volver a iniciar sesión"
   },
   "translatePage": {
     "title": "Asistente de Traducción IA",

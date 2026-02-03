@@ -24,9 +24,9 @@
   },
   "hero": {
     "badge": "プロフェッショナルメッセージ翻訳",
-    "headline1": "難しいメッセージ。",
-    "headline2": "50のプロフェッショナル翻訳。",
-    "description": "単なる言語翻訳ではありません。<em>意味</em>の翻訳です。コンテキスト、パワーダイナミクス、文化的規範を調整して、必要な正確なプロフェッショナルメッセージを作成します。誤解、エスカレーション、後悔を避ける — ワンクリックで。",
+    "headline1": "難しいことを言う。",
+    "headline2": "プロフェッショナルに。",
+    "description": "言葉だけでなく、意図を翻訳します。トーン、力関係、文脈を形作り、自信を持って送信できるメッセージにします。",
     "ctaPrimary": "メッセージを翻訳",
     "ctaSecondary": "仕組みを見る",
     "livePreview": "ライブプレビュー"
@@ -130,7 +130,7 @@
   "auth": {
     "signIn": "ログイン",
     "signUp": "登録",
-    "signInDescription": "または無料アカウントを作成して最初の翻訳を生成",
+    "signInDescription": "メッセージはプロフェッショナルに書き換える準備ができました。サインインしてください。\nまたは、登録して無料アカウントを作成して受け取ってください。",
     "signUpDescription": "続行するにはアカウントを作成してください",
     "email": "メール",
     "emailPlaceholder": "your@email.jp",
@@ -140,7 +140,12 @@
     "alreadyHaveAccount": "すでにアカウントをお持ちですか？ログイン",
     "needAccount": "アカウントをお持ちではありませんか？登録",
     "orContinueWith": "または続行",
-    "continueWithGoogle": "Googleで続行"
+    "continueWithGoogle": "Googleで続行",
+    "forgotPassword": "パスワードをお忘れですか？",
+    "forgotPasswordDescription": "メールアドレスを入力していただければ、パスワードリセット用のリンクをお送りします。",
+    "sendResetLink": "リセットリンクを送信",
+    "resetEmailSent": "パスワードリセットメールを送信しました！手順については受信トレイを確認してください。",
+    "backToSignIn": "サインインに戻る"
   },
   "translatePage": {
     "title": "AI翻訳アシスタント",
