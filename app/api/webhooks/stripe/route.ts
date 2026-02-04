@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import { adminDb } from '@/lib/firebase-admin';
+import Stripe from 'stripe';
 
-// This should be set in your .env.local file
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2024-12-18.acacia',
+});
+
 const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
 
 export async function POST(request: NextRequest) {
@@ -10,37 +14,75 @@ export async function POST(request: NextRequest) {
     const body = await request.text();
     const signature = request.headers.get('stripe-signature');
 
-    if (!signature || !STRIPE_WEBHOOK_SECRET) {
-      console.error('Missing stripe signature or webhook secret');
+    console.log('[Webhook] Received event, signature present:', !!signature);
+
+    if (!signature) {
+      console.error('[Webhook] Missing stripe signature');
       return NextResponse.json(
-        { error: 'Webhook configuration error' },
+        { error: 'Missing signature' },
         { status: 400 }
       );
     }
 
-    // For now, we'll parse the event directly
-    // In production, you should verify the signature using Stripe's SDK
-    const event = JSON.parse(body);
+    if (!STRIPE_WEBHOOK_SECRET) {
+      console.error('[Webhook] STRIPE_WEBHOOK_SECRET not configured');
+      return NextResponse.json(
+        { error: 'Webhook secret not configured' },
+        { status: 500 }
+      );
+    }
+
+    // Verify the event using Stripe's SDK
+    let event: Stripe.Event;
+    try {
+      event = stripe.webhooks.constructEvent(
+        body,
+        signature,
+        STRIPE_WEBHOOK_SECRET
+      );
+      console.log('[Webhook] Event verified:', event.type);
+    } catch (err) {
+      console.error('[Webhook] Signature verification failed:', err);
+      return NextResponse.json(
+        { error: 'Invalid signature' },
+        { status: 400 }
+      );
+    }
 
     // Handle the checkout.session.completed event
     if (event.type === 'checkout.session.completed') {
-      const session = event.data.object;
+      const session = event.data.object as Stripe.Checkout.Session;
+      
+      console.log('[Webhook] Processing checkout.session.completed');
+      console.log('[Webhook] Session ID:', session.id);
+      console.log('[Webhook] Client reference ID:', session.client_reference_id);
       
       // Get user ID from client_reference_id
       const userId = session.client_reference_id;
       
       if (!userId) {
-        console.error('No user ID in session');
+        console.error('[Webhook] No user ID in session');
         return NextResponse.json({ error: 'No user ID' }, { status: 400 });
       }
 
-      // Get the number of credits from metadata or line items
-      // You'll need to configure this in your Stripe product metadata
-      const lineItems = session.line_items?.data || [];
-      const metadata = session.metadata || {};
-      
-      // Extract credits from metadata (you can set this in Stripe dashboard)
-      const creditsToAdd = parseInt(metadata.credits || '0', 10);
+      // Retrieve the full session with line items to get product metadata
+      const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
+        expand: ['line_items.data.price.product'],
+      });
+
+      console.log('[Webhook] Retrieved full session with line items');
+
+      // Extract credits from the first line item's product metadata
+      let creditsToAdd = 0;
+      if (fullSession.line_items?.data && fullSession.line_items.data.length > 0) {
+        const lineItem = fullSession.line_items.data[0];
+        const product = lineItem.price?.product as Stripe.Product | undefined;
+        
+        if (product && typeof product === 'object' && product.metadata?.credits) {
+          creditsToAdd = parseInt(product.metadata.credits, 10);
+          console.log('[Webhook] Credits from product metadata:', creditsToAdd);
+        }
+      }
       
       if (creditsToAdd > 0) {
         // Add credits to user's account
@@ -53,13 +95,15 @@ export async function POST(request: NextRequest) {
           lastPurchase: new Date().toISOString(),
         });
 
-        console.log(`Added ${creditsToAdd} credits to user ${userId}`);
+        console.log(`[Webhook] ✓ Added ${creditsToAdd} credits to user ${userId}. New total: ${currentCredits + creditsToAdd}`);
+      } else {
+        console.warn('[Webhook] No credits to add. Check product metadata in Stripe Dashboard.');
       }
     }
 
     return NextResponse.json({ received: true });
   } catch (error) {
-    console.error('Webhook error:', error);
+    console.error('[Webhook] Error:', error);
     return NextResponse.json(
       { error: 'Webhook handler failed' },
       { status: 500 }
