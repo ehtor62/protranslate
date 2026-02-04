@@ -10,14 +10,24 @@
     "returnHome": "Volver al inicio"
   },
   "credits": {
-    "remaining": "Te quedan {count} reescrituras profesionales",
-    "nextRequiresCredits": "La próxima reescritura requerirá créditos.",
-    "viewPlans": "Ver planes"
+    "remaining": "Te {count, plural, =1 {queda # reescritura profesional} other {quedan # reescrituras profesionales}}",
+    "nextRequiresCredits": "La próxima reescritura requerirá créditos.",    "earnCreditsNote": "O gana créditos gratis invitando a un colega.",    "viewPlans": "Ver planes",
+    "inviteEarnCredits": "Invitar & ganar créditos"
+  },
+  "inviteModal": {
+    "title": "Invitar & Ganar Créditos",
+    "description": "¿Conoces a alguien que tenga dificultades con mensajes profesionales difíciles? Invítalo y gana 10 reescrituras gratuitas cuando empiece a usar la herramienta.",
+    "footnote": "Recibirás los créditos después de que tu invitado termine sus reescrituras gratuitas y genere su próximo mensaje.",
+    "yourLink": "Tu enlace de referido",
+    "copyLink": "Copiar enlace",
+    "linkCopied": "¡Enlace copiado!",
+    "shareInstructions": "Comparte este enlace con colegas que necesiten ayuda con mensajes profesionales.",
+    "close": "Cerrar"
   },
   "pricing": {
     "title": "Pago por Uso",
     "subtitle": "Compra saldo según lo necesites. Sin suscripción requerida.",
-    "rewriteCount": "{count} reescrituras",
+    "rewriteCount": "{count, plural, =1 {# reescritura} other {# reescrituras}}",
     "starterPack": "Paquete Inicial",
     "professionalPack": "Paquete Profesional",
     "powerPack": "Paquete Power",

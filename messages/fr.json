@@ -10,13 +10,25 @@
     "returnHome": "Retour à l'accueil"
   },
   "credits": {
-    "remaining": "Il vous reste {count} réécritures professionnelles",
+    "remaining": "Il vous reste {count, plural, =1 {# réécriture professionnelle} other {# réécritures professionnelles}}",
     "nextRequiresCredits": "La prochaine réécriture nécessitera des crédits.",
-    "viewPlans": "Voir les forfaits"
+    "earnCreditsNote": "Ou gagnez des crédits gratuits en invitant un collègue.",
+    "viewPlans": "Voir les forfaits",
+    "inviteEarnCredits": "Inviter & gagner des crédits"
+  },
+  "inviteModal": {
+    "title": "Inviter & Gagner des Crédits",
+    "description": "Connaissez-vous quelqu'un qui a du mal avec les messages professionnels difficiles ? Invitez-le et gagnez 10 réécritures gratuites lorsqu'il commence à utiliser l'outil.",
+    "footnote": "Vous recevrez les crédits après que votre invité aura terminé ses réécritures gratuites et généré son prochain message.",
+    "yourLink": "Votre lien de parrainage",
+    "copyLink": "Copier le lien",
+    "linkCopied": "Lien copié !",
+    "shareInstructions": "Partagez ce lien avec des collègues qui ont besoin d'aide pour la messagerie professionnelle.",
+    "close": "Fermer"
   },  "pricing": {
     "title": "Paiement à l'Usage",
     "subtitle": "Achetez du solde selon vos besoins. Aucun abonnement requis.",
-    "rewriteCount": "{count} réécriture",
+    "rewriteCount": "{count, plural, =1 {# réécriture} other {# réécritures}}",
     "starterPack": "Pack Débutant",
     "professionalPack": "Pack Professionnel",
     "powerPack": "Pack Power",

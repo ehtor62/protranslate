@@ -11,13 +11,23 @@
   },
   "credits": {
     "remaining": "Sie haben noch {count, plural, one {# freie professionelle Umschreibung} other {# freie professionelle Umschreibungen}}",
-    "nextRequiresCredits": "Die nächste Umschreibung erfordert Guthaben.",
-    "viewPlans": "Pläne ansehen"
+    "nextRequiresCredits": "Die nächste Umschreibung erfordert Guthaben.",    "earnCreditsNote": "Oder verdienen Sie kostenlose Credits, indem Sie einen Kollegen einladen.",    "viewPlans": "Pläne ansehen",
+    "inviteEarnCredits": "Einladen & Credits verdienen"
+  },
+  "inviteModal": {
+    "title": "Einladen & Credits verdienen",
+    "description": "Kennen Sie jemanden, der Schwierigkeiten mit schwierigen professionellen Nachrichten hat? Laden Sie ihn ein und verdienen Sie 10 kostenlose Umschreibungen, wenn er das Tool zu nutzen beginnt.",
+    "footnote": "Sie erhalten die Credits, nachdem Ihr Eingeladener seine kostenlosen Umschreibungen abgeschlossen und seine nächste Nachricht generiert hat.",
+    "yourLink": "Ihr Empfehlungslink",
+    "copyLink": "Link kopieren",
+    "linkCopied": "Link kopiert!",
+    "shareInstructions": "Teilen Sie diesen Link mit Kollegen, die Hilfe bei professionellen Nachrichten benötigen.",
+    "close": "Schließen"
   },
   "pricing": {
     "title": "Nutzungsbasierte Zahlung",
     "subtitle": "Kaufen Sie Guthaben nach Bedarf. Kein Abonnement erforderlich.",
-    "rewriteCount": "{count} Umschreibungen",
+    "rewriteCount": "{count, plural, one {# Umschreibung} other {# Umschreibungen}}",
     "starterPack": "Starter-Paket",
     "professionalPack": "Profi-Paket",
     "powerPack": "Power-Paket",

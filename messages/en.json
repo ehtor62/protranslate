@@ -10,14 +10,26 @@
     "returnHome": "Return home"
   },
   "credits": {
-    "remaining": "You have {count} professional rewrites left",
+    "remaining": "You have {count, plural, =1 {# professional rewrite} other {# professional rewrites}} left",
     "nextRequiresCredits": "Next rewrite will require credits.",
-    "viewPlans": "View plans"
+    "earnCreditsNote": "Or earn free credits by inviting a colleague.",
+    "viewPlans": "View plans",
+    "inviteEarnCredits": "Invite & earn credits"
+  },
+  "inviteModal": {
+    "title": "Invite & Earn Credits",
+    "description": "Know someone who struggles with difficult professional messages? Invite them and earn 10 free rewrites when they start using the tool.",
+    "footnote": "You'll receive the credits after your invitee finishes their free rewrites and generates their next message.",
+    "yourLink": "Your referral link",
+    "copyLink": "Copy Link",
+    "linkCopied": "Link copied!",
+    "shareInstructions": "Share this link with colleagues who need help with professional messaging.",
+    "close": "Close"
   },
   "pricing": {
     "title": "Pay-Per-Use",
     "subtitle": "Buy credits as you need it. No subscription required.",
-    "rewriteCount": "{count} rewrites",
+    "rewriteCount": "{count, plural, =1 {# rewrite} other {# rewrites}}",
     "starterPack": "Starter Pack",
     "professionalPack": "Professional Pack",
     "powerPack": "Power Pack",

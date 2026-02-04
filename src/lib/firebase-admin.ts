@@ -127,3 +127,93 @@ export async function decrementUserCredits(userId: string): Promise<number | nul
     return null;
   }
 }
+
+/**
+ * Track referral when a user signs up with a referral code
+ * @param newUserId - The new user's ID
+ * @param referralCode - The referral code used
+ */
+export async function trackReferral(newUserId: string, referralCode: string): Promise<boolean> {
+  try {
+    // Find the referrer by referral code
+    const referrerQuery = await adminDb.collection('users')
+      .where('referralCode', '==', referralCode.toUpperCase())
+      .limit(1)
+      .get();
+
+    if (referrerQuery.empty) {
+      console.warn('Referral code not found:', referralCode);
+      return false;
+    }
+
+    const referrerId = referrerQuery.docs[0].id;
+    
+    // Create referral record
+    await adminDb.collection('referrals').add({
+      referrerId,
+      referredUserId: newUserId,
+      referralCode,
+      status: 'pending', // pending -> completed (after free credits used)
+      createdAt: new Date().toISOString(),
+      creditsAwarded: false
+    });
+
+    // Update new user with referrer info
+    await adminDb.collection('users').doc(newUserId).update({
+      referredBy: referrerId,
+      referredByCode: referralCode
+    });
+
+    return true;
+  } catch (error) {
+    console.error('Error tracking referral:', error);
+    return false;
+  }
+}
+
+/**
+ * Check if user has used all free credits and award referrer if conditions met
+ * @param userId - The user ID
+ */
+export async function checkAndAwardReferralCredits(userId: string): Promise<void> {
+  try {
+    const userDoc = await adminDb.collection('users').doc(userId).get();
+    const userData = userDoc.data();
+
+    if (!userData?.referredBy) {
+      return; // User was not referred
+    }
+
+    // Check if this is their first paid generation (after using free credits)
+    const referralsQuery = await adminDb.collection('referrals')
+      .where('referredUserId', '==', userId)
+      .where('creditsAwarded', '==', false)
+      .get();
+
+    if (referralsQuery.empty) {
+      return; // No pending referral rewards
+    }
+
+    const referralDoc = referralsQuery.docs[0];
+    const referralData = referralDoc.data();
+
+    // Award 10 credits to the referrer
+    const referrerRef = adminDb.collection('users').doc(referralData.referrerId);
+    await referrerRef.update({
+      credits: (await referrerRef.get()).data()?.credits || 0 + 10,
+      creditsEarnedFromReferrals: ((await referrerRef.get()).data()?.creditsEarnedFromReferrals || 0) + 10,
+      referralCount: ((await referrerRef.get()).data()?.referralCount || 0) + 1
+    });
+
+    // Mark referral as completed
+    await referralDoc.ref.update({
+      creditsAwarded: true,
+      status: 'completed',
+      completedAt: new Date().toISOString()
+    });
+
+    console.log(`Awarded 10 credits to referrer ${referralData.referrerId} for referring ${userId}`);
+  } catch (error) {
+    console.error('Error awarding referral credits:', error);
+  }
+}
