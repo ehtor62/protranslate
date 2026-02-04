@@ -44,7 +44,8 @@
     "freeTrialNote": "Los nuevos usuarios obtienen 5 reescrituras gratis para probar el servicio",
     "rolloverNote": "Las reescrituras no utilizadas se acumulan. Actualiza en cualquier momento.",
     "starterNote": "Probablemente necesitarás más si escribes regularmente.",
-    "professionalNote": "La mayoría de los usuarios eligen esto."
+    "professionalNote": "La mayoría de los usuarios eligen esto.",
+    "powerNote": "Nunca más pienses en créditos."
   },  "pricingModal": {
     "title": "Esta reescritura está lista.",
     "subtitle": "Añade saldo para continuar.",

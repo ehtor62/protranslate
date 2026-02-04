@@ -45,7 +45,8 @@
     "freeTrialNote": "Les nouveaux utilisateurs reçoivent 5 réécriture gratuites pour essayer le service",
     "rolloverNote": "Les réécritures non utilisées sont reportées. Mise à niveau à tout moment.",
     "starterNote": "Vous aurez probablement besoin de plus si vous écrivez régulièrement.",
-    "professionalNote": "La plupart des utilisateurs choisissent cela."
+    "professionalNote": "La plupart des utilisateurs choisissent cela.",
+    "powerNote": "Ne pensez plus jamais aux crédits."
   },
   "pricingModal": {
     "title": "Cette réécriture est prête.",

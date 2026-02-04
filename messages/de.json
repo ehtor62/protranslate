@@ -44,7 +44,8 @@
     "freeTrialNote": "Neue Benutzer erhalten 5 kostenlose Umschreibungen zum Testen des Dienstes",
     "rolloverNote": "Ungenutzte Umschreibungen werden übertragen. Hochstufung jederzeit.",
     "starterNote": "Sie werden wahrscheinlich mehr brauchen, wenn Sie regelmäßig schreiben.",
-    "professionalNote": "Die meisten Benutzer wählen dies."
+    "professionalNote": "Die meisten Benutzer wählen dies.",
+    "powerNote": "Denken Sie nie wieder über Guthaben nach."
   },  "pricingModal": {
     "title": "Diese Umschreibung ist bereit.",
     "subtitle": "Fügen Sie Guthaben hinzu, um fortzufahren.",
