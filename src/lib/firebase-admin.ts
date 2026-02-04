@@ -53,26 +53,13 @@ export async function getUserCredits(userId: string): Promise<number> {
     const userDoc = await adminDb.collection('users').doc(userId).get();
     
     if (!userDoc.exists) {
-      // New user - initialize with 5 credits
-      // Try to get email from Firebase Auth for easier identification
-      let email = null;
-      try {
-        const userRecord = await adminAuth.getUser(userId);
-        email = userRecord.email;
-      } catch (authError) {
-        console.warn('Could not fetch user email:', authError);
-      }
-      
-      await adminDb.collection('users').doc(userId).set({
-        credits: 3,
-        email: email,
-        createdAt: new Date(),
-      });
-      return 3;
+      // User doesn't exist yet - return default without creating
+      // The user will be created when they use their first credit
+      return 5;
     }
     
     const data = userDoc.data();
-    return data?.credits ?? 3;
+    return data?.credits ?? 5;
   } catch (error) {
     console.error('Error getting user credits:', error);
     return 0;
@@ -90,7 +77,7 @@ export async function decrementUserCredits(userId: string): Promise<number | nul
     const userDoc = await userRef.get();
     
     if (!userDoc.exists) {
-      // New user - initialize with 3 credits and decrement to 2
+      // New user - initialize with 5 credits, then deduct 1 for this translation
       // Try to get email from Firebase Auth for easier identification
       let email = null;
       try {
@@ -100,13 +87,21 @@ export async function decrementUserCredits(userId: string): Promise<number | nul
         console.warn('Could not fetch user email:', authError);
       }
       
+      // Initialize with 5 credits
       await userRef.set({
-        credits: 2,
+        credits: 5,
         email: email,
         createdAt: new Date(),
         lastUsed: new Date(),
       });
-      return 2;
+      
+      // Now deduct 1 credit for this translation
+      await userRef.update({
+        credits: 4,
+        lastUsed: new Date(),
+      });
+      
+      return 4;
     }
     
     const currentCredits = userDoc.data()?.credits ?? 0;

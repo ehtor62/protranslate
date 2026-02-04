@@ -1,12 +1,37 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { Header } from '@/components/Header';
-import { Check } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useAuth } from '@/contexts/AuthContext';
+
+// Extend HTMLElement to include the custom stripe-pricing-table element
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'stripe-pricing-table': {
+        'pricing-table-id': string;
+        'publishable-key': string;
+        'customer-email'?: string;
+        'client-reference-id'?: string;
+      };
+    }
+  }
+}
 
 export default function PricingPage() {
   const t = useTranslations('pricing');
+  const { user } = useAuth();
+
+  useEffect(() => {
+    // Load Stripe pricing table script
+    if (!document.querySelector('script[src*="stripe.com/v3/pricing-table.js"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://js.stripe.com/v3/pricing-table.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
   
   const packs = [
     { name: 'starterPack', rewrites: 50, price: '€7.99', description: 'starterDesc' },
@@ -19,7 +44,7 @@ export default function PricingPage() {
       <Header />
       
       <main className="container py-12 lg:py-20">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               {t('title')}
@@ -35,79 +60,20 @@ export default function PricingPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {packs.map((pack, index) => (
-              <div key={pack.rewrites} className="flex flex-col">
-                <div
-                  className={`relative p-6 rounded-xl border-2 transition-colors flex flex-col ${
-                    pack.popular
-                      ? 'border-primary bg-primary/5'
-                      : 'border-border bg-surface-elevated hover:border-primary'
-                  }`}
-                >
-                  {pack.popular && (
-                    <div className="absolute -top-2.5 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-primary text-primary-foreground text-xs font-bold px-2.5 py-0.5 rounded-full whitespace-nowrap">
-                        {t('popular') || 'Most Popular'}
-                      </span>
-                    </div>
-                  )}
-                  <div className="text-center mb-6">
-                    <div className="text-base font-bold text-foreground mb-2">
-                      ⭐ {t(pack.name)}
-                    </div>
-                    <div className="text-3xl font-bold text-foreground mb-2">
-                      {pack.price}
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      {t('rewriteCount', { count: pack.rewrites })}
-                    </div>
-                  </div>
-
-                  <ul className="space-y-3 mb-6">
-                    <li className="flex items-center gap-2 text-sm">
-                      <Check className="w-4 h-4 text-primary shrink-0" />
-                      <span>{t('feature1')}</span>
-                    </li>
-                    <li className="flex items-center gap-2 text-sm">
-                      <Check className="w-4 h-4 text-primary shrink-0" />
-                      <span>{t('feature2')}</span>
-                    </li>
-                    <li className="flex items-center gap-2 text-sm">
-                      <Check className="w-4 h-4 text-primary shrink-0" />
-                      <span>{t('feature3')}</span>
-                    </li>
-                  </ul>
-
-                  <div className="flex-1">
-                    {pack.description && (
-                      <div className="mb-4 text-xs text-primary font-medium">
-                        👉 {t(pack.description)}
-                      </div>
-                    )}
-                  </div>
-
-                  <Button className="w-full mt-auto">
-                    {t('buyNow')}
-                  </Button>
-                </div>
-                {pack.name === 'starterPack' && (
-                  <div className="mt-3 text-xs text-muted-foreground text-center">
-                    {t('starterNote')}
-                  </div>
-                )}
-                {pack.name === 'professionalPack' && (
-                  <div className="mt-3 text-xs text-muted-foreground text-center">
-                    {t('professionalNote')}
-                  </div>
-                )}
-                {pack.name === 'powerPack' && (
-                  <div className="mt-3 text-xs text-muted-foreground text-center invisible">
-                    &nbsp;
-                  </div>
-                )}
-              </div>
-            ))}
+          <div className="bg-surface-elevated rounded-xl p-8 shadow-lg">
+            {user ? (
+              <stripe-pricing-table 
+                pricing-table-id="prctbl_1Sx3BECmaIZImua13XHmGnDT"
+                publishable-key="pk_test_51SwmHXCmaIZImua1jsq89Qbmzqc64orLNCy3Qg6eSiHvUexZxLXscgAlbEcdZDAe4afLIQTdQSnKYlVmnkCT3yt600sEZxIebU"
+                customer-email={user.email || undefined}
+                client-reference-id={user.uid}
+              />
+            ) : (
+              <stripe-pricing-table 
+                pricing-table-id="prctbl_1Sx3BECmaIZImua13XHmGnDT"
+                publishable-key="pk_test_51SwmHXCmaIZImua1jsq89Qbmzqc64orLNCy3Qg6eSiHvUexZxLXscgAlbEcdZDAe4afLIQTdQSnKYlVmnkCT3yt600sEZxIebU"
+              />
+            )}
           </div>
         </div>
       </main>
