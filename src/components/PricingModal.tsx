@@ -17,10 +17,10 @@ interface PricingModalProps {
 }
 
 const pricingTiers = [
-  { credits: 10, price: 1.99, popular: false },
-  { credits: 50, price: 7.99, popular: true },
-  { credits: 150, price: 19.99, popular: false },
-  { credits: 500, price: 49.99, popular: false },
+  { name: 'starterPack', credits: 10, price: 1.99, popular: false, description: 'starterDesc' },
+  { name: 'professionalPack', credits: 50, price: 7.99, popular: true, description: 'professionalDesc' },
+  { name: 'powerPack', credits: 150, price: 19.99, popular: false, description: 'powerDesc' },
+  { name: 'teamPack', credits: 500, price: 49.99, popular: false, description: 'teamDesc' },
 ];
 
 export function PricingModal({ isOpen, onClose }: PricingModalProps) {
@@ -64,24 +64,38 @@ export function PricingModal({ isOpen, onClose }: PricingModalProps) {
               
               <div className="flex items-center justify-between">
                 <div className="flex-1">
+                  <div className="text-sm font-semibold text-foreground mb-1">
+                    {t(`pricing.${tier.name}`) || tier.name}
+                  </div>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-bold">${tier.price}</span>
+                    <span className="text-2xl font-bold">€{tier.price}</span>
                     <span className="text-sm text-muted-foreground">
-                      {t('pricingModal.forCredits', { count: tier.credits }) || `for ${tier.credits} credits`}
+                      {t('pricingModal.forCredits', { count: tier.credits }) || `for ${tier.credits} balance`}
                     </span>
                   </div>
                   <div className="mt-1.5 flex items-center gap-2 text-xs text-muted-foreground">
                     <Check className="w-3.5 h-3.5 text-primary" />
                     <span>
-                      {t('pricingModal.neverExpires') || 'Credits never expire'}
+                      {t('pricing.feature1') || 'All languages supported'}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     <Check className="w-3.5 h-3.5 text-primary" />
                     <span>
-                      {t('pricingModal.noSubscription') || 'No subscription required'}
+                      {t('pricing.feature2') || 'Meaning-aware professional rewriting'}
                     </span>
                   </div>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <Check className="w-3.5 h-3.5 text-primary" />
+                    <span>
+                      {t('pricing.feature3') || 'Never expires'}
+                    </span>
+                  </div>
+                  {tier.description && (
+                    <div className="mt-2 text-xs text-primary font-medium">
+                      👉 {t(`pricing.${tier.description}`)}
+                    </div>
+                  )}
                 </div>
                 
                 <Button

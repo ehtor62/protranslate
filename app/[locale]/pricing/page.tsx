@@ -9,10 +9,10 @@ export default function PricingPage() {
   const t = useTranslations('pricing');
   
   const packs = [
-    { rewrites: 10, price: '€1.99' },
-    { rewrites: 50, price: '€7.99' },
-    { rewrites: 150, price: '€19.99' },
-    { rewrites: 500, price: '€49.99' }
+    { name: 'starterPack', rewrites: 10, price: '€1.99', description: 'starterDesc' },
+    { name: 'professionalPack', rewrites: 50, price: '€7.99', popular: true, description: 'professionalDesc' },
+    { name: 'powerPack', rewrites: 150, price: '€19.99', description: 'powerDesc' },
+    { name: 'teamPack', rewrites: 500, price: '€49.99', description: 'teamDesc' }
   ];
 
   return (
@@ -21,7 +21,7 @@ export default function PricingPage() {
       
       <main className="container py-12 lg:py-20">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               {t('title')}
             </h1>
@@ -30,14 +30,34 @@ export default function PricingPage() {
             </p>
           </div>
 
+          <div className="mb-8 p-6 rounded-xl bg-muted text-center">
+            <p className="text-sm text-muted-foreground">
+              {t('freeTrialNote')}
+            </p>
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {packs.map((pack) => (
               <div
                 key={pack.rewrites}
-                className="relative p-6 rounded-xl border border-border bg-surface-elevated hover:border-primary transition-colors"
+                className={`relative p-6 rounded-xl border-2 transition-colors flex flex-col ${
+                  pack.popular
+                    ? 'border-primary bg-primary/5'
+                    : 'border-border bg-surface-elevated hover:border-primary'
+                }`}
               >
+                {pack.popular && (
+                  <div className="absolute -top-2.5 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-primary text-primary-foreground text-xs font-bold px-2.5 py-0.5 rounded-full whitespace-nowrap">
+                      {t('popular') || 'Most Popular'}
+                    </span>
+                  </div>
+                )}
                 <div className="text-center mb-6">
-                  <div className="text-4xl font-bold text-foreground mb-2">
+                  <div className="text-base font-bold text-foreground mb-2">
+                    ⭐ {t(pack.name)}
+                  </div>
+                  <div className="text-3xl font-bold text-foreground mb-2">
                     {pack.price}
                   </div>
                   <div className="text-sm text-muted-foreground">
@@ -60,17 +80,19 @@ export default function PricingPage() {
                   </li>
                 </ul>
 
-                <Button className="w-full">
+                <div className="flex-1">
+                  {pack.description && (
+                    <div className="mb-4 text-xs text-primary font-medium">
+                      👉 {t(pack.description)}
+                    </div>
+                  )}
+                </div>
+
+                <Button className="w-full mt-auto">
                   {t('buyNow')}
                 </Button>
               </div>
             ))}
-          </div>
-
-          <div className="mt-12 p-6 rounded-xl bg-muted text-center">
-            <p className="text-sm text-muted-foreground">
-              {t('freeTrialNote')}
-            </p>
           </div>
         </div>
       </main>
