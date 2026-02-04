@@ -2,8 +2,10 @@
 
 import { useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { Header } from '@/components/Header';
 import { useAuth } from '@/contexts/AuthContext';
+import { toast } from 'sonner';
 
 // Extend HTMLElement to include the custom stripe-pricing-table element
 declare global {
@@ -21,6 +23,8 @@ declare global {
 
 export default function PricingPage() {
   const t = useTranslations('pricing');
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const { user } = useAuth();
 
   useEffect(() => {
@@ -32,6 +36,15 @@ export default function PricingPage() {
       document.body.appendChild(script);
     }
   }, []);
+  
+  // Show success toast when returning from payment
+  useEffect(() => {
+    if (searchParams.get('payment') === 'success') {
+      toast.success(t('paymentSuccess') || 'Payment successful! Your credits have been added.');
+      // Clean up URL
+      router.replace('/pricing');
+    }
+  }, [searchParams, router, t]);
   
   const packs = [
     { name: 'starterPack', rewrites: 50, price: '€7.99', description: 'starterDesc' },
@@ -67,11 +80,13 @@ export default function PricingPage() {
                 publishable-key="pk_test_51SwmHXCmaIZImua1jsq89Qbmzqc64orLNCy3Qg6eSiHvUexZxLXscgAlbEcdZDAe4afLIQTdQSnKYlVmnkCT3yt600sEZxIebU"
                 customer-email={user.email || undefined}
                 client-reference-id={user.uid}
+                success-url={`${window.location.origin}/translate?payment=success`}
               />
             ) : (
               <stripe-pricing-table 
                 pricing-table-id="prctbl_1Sx3BECmaIZImua13XHmGnDT"
                 publishable-key="pk_test_51SwmHXCmaIZImua1jsq89Qbmzqc64orLNCy3Qg6eSiHvUexZxLXscgAlbEcdZDAe4afLIQTdQSnKYlVmnkCT3yt600sEZxIebU"
+                success-url={`${window.location.origin}/pricing?payment=success`}
               />
             )}
           </div>

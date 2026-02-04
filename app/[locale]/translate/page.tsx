@@ -4,6 +4,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { Header } from '@/components/Header';
 import { MessageCard } from '@/components/MessageCard';
 import { ContextSlider } from '@/components/ContextSlider';
@@ -13,6 +14,7 @@ import { AuthModal } from '@/components/AuthModal';
 import { PricingModal } from '@/components/PricingModal';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 import {
   Dialog,
   DialogContent,
@@ -48,6 +50,8 @@ const defaultContext: ContextSettings = {
 export default function Translate() {
   const t = useTranslations();
   const locale = useLocale();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const { user, loading } = useAuth();
   const mediumOptions = Object.keys(mediumLabels).map((value) => ({
     value,
@@ -360,6 +364,15 @@ export default function Translate() {
     
     fetchCredits();
   }, [user]);
+  
+  // Show success toast when returning from payment
+  useEffect(() => {
+    if (searchParams.get('payment') === 'success') {
+      toast.success(t('payment.success') || 'Payment successful! Your credits have been added.');
+      // Clean up URL
+      router.replace('/translate');
+    }
+  }, [searchParams, router, t]);
   
   const selectedMessage = coreMessages.find(m => m.id === selectedMessageId);
   const selectedMessageKey = selectedMessage ? toCamelCase(selectedMessage.id) : '';

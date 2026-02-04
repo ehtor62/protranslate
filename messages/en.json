@@ -46,7 +46,11 @@
     "freeTrialNote": "New users get 5 free rewrites to try the service",
     "rolloverNote": "Unused rewrites roll over. Upgrade anytime.",
     "starterNote": "You'll likely need more if you write regularly.",
-    "professionalNote": "Most users choose this."
+    "professionalNote": "Most users choose this.",
+    "paymentSuccess": "Payment successful! Your credits have been added."
+  },
+  "payment": {
+    "success": "Payment successful! Your credits have been added."
   },
   "pricingModal": {
     "title": "This rewrite is ready to go.",

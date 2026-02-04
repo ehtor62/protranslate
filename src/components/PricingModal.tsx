@@ -78,6 +78,7 @@ export function PricingModal({ isOpen, onClose }: PricingModalProps) {
               publishable-key="pk_test_51SwmHXCmaIZImua1jsq89Qbmzqc64orLNCy3Qg6eSiHvUexZxLXscgAlbEcdZDAe4afLIQTdQSnKYlVmnkCT3yt600sEZxIebU"
               customer-email={user.email || undefined}
               client-reference-id={user.uid}
+              success-url={`${window.location.origin}/translate?payment=success`}
             />
           ) : (
             <div className="text-center py-8 text-muted-foreground">
