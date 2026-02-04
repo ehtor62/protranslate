@@ -1,7 +1,7 @@
 {
   "common": {
     "home": "Início",
-    "translate": "Traduzir",
+    "translate": "Reescrever",
     "pricing": "Preços",
     "appName": "Sentenly",
     "tagline": "Um sistema de tradução sistemático para mensagens profissionais.",
@@ -11,7 +11,7 @@
   },
   "credits": {
     "remaining": "Você tem {count} reescritas profissionais restantes",
-    "nextRequiresCredits": "A próxima reescrita exigirá saldo.",
+    "nextRequiresCredits": "A próxima reescrita exigirá créditos.",
     "viewPlans": "Ver planos"
   },
   "pricing": {
@@ -23,15 +23,18 @@
     "powerPack": "Pacote Power",
     "teamPack": "Equipe / Uso Intenso",
     "popular": "Mais Popular",
-    "starterDesc": "Perfeito para uma situação difícil — experimente várias versões.",
-    "professionalDesc": "Para comunicação de trabalho contínua.",
-    "powerDesc": "Para gerentes, fundadores, consultores",
+    "starterDesc": "Perfeito para feedback, e-mails ou situações pontuais.",
+    "professionalDesc": "Ideal para gerentes, consultores e funções voltadas ao cliente.",
+    "powerDesc": "Construído para fundadores, RH, recrutadores e equipes.",
     "teamDesc": "Melhor valor por reescrita",
     "feature1": "Todos os idiomas suportados",
     "feature2": "Reescrita profissional com reconhecimento de significado",
     "feature3": "Nunca expira",
     "buyNow": "Comprar Agora",
-    "freeTrialNote": "Novos usuários recebem 3 reescritas gratuitas para experimentar o serviço"
+    "freeTrialNote": "Novos usuários recebem 5 reescritas gratuitas para experimentar o serviço",
+    "rolloverNote": "Reescritas não utilizadas são acumuladas. Atualize a qualquer momento.",
+    "starterNote": "Você provavelmente precisará de mais se escrever regularmente.",
+    "professionalNote": "A maioria dos usuários escolhe isso."
   },  "pricingModal": {
     "title": "Esta reescrita está pronta.",
     "subtitle": "Adicione saldo para continuar.",
@@ -81,7 +84,7 @@
     }
   },
   "cta": {
-    "title": "Pronto para traduzir?",
+    "title": "Pronto para reescrever?",
     "description": "Escolha sua mensagem, ajuste o contexto e obtenha formulação profissional calibrada para qualquer situação.",
     "button": "Começar a traduzir"
   },

@@ -1,7 +1,7 @@
 {
   "common": {
     "home": "Startseite",
-    "translate": "Übersetzen",
+    "translate": "Umschreiben",
     "pricing": "Preise",
     "appName": "Sentenly",
     "tagline": "Ein systematisches Übersetzungssystem für professionelle Nachrichten.",
@@ -10,7 +10,7 @@
     "returnHome": "Zur Startseite"
   },
   "credits": {
-    "remaining": "Sie haben noch {count} professionelle Umschreibungen",
+    "remaining": "Sie haben noch {count, plural, one {# freie professionelle Umschreibung} other {# freie professionelle Umschreibungen}}",
     "nextRequiresCredits": "Die nächste Umschreibung erfordert Guthaben.",
     "viewPlans": "Pläne ansehen"
   },
@@ -23,20 +23,23 @@
     "powerPack": "Power-Paket",
     "teamPack": "Team / Intensive Nutzung",
     "popular": "Am Beliebtesten",
-    "starterDesc": "Perfekt für eine schwierige Situation — probieren Sie mehrere Versionen aus.",
-    "professionalDesc": "Für laufende Arbeitskommunikation.",
-    "powerDesc": "Für Manager, Gründer, Berater",
+    "starterDesc": "Perfekt für Feedback, E-Mails oder einmalige Situationen.",
+    "professionalDesc": "Ideal für Manager, Berater und kundenorientierte Rollen.",
+    "powerDesc": "Entwickelt für Gründer, HR, Recruiter und Teams.",
     "teamDesc": "Bestes Preis-Leistungs-Verhältnis pro Umschreibung",
     "feature1": "Alle Sprachen unterstützt",
     "feature2": "Kontextbewusste professionelle Umschreibung",
     "feature3": "Läuft nie ab",
     "buyNow": "Jetzt Kaufen",
-    "freeTrialNote": "Neue Benutzer erhalten 3 kostenlose Umschreibungen zum Testen des Dienstes"
+    "freeTrialNote": "Neue Benutzer erhalten 5 kostenlose Umschreibungen zum Testen des Dienstes",
+    "rolloverNote": "Ungenutzte Umschreibungen werden übertragen. Hochstufung jederzeit.",
+    "starterNote": "Sie werden wahrscheinlich mehr brauchen, wenn Sie regelmäßig schreiben.",
+    "professionalNote": "Die meisten Benutzer wählen dies."
   },  "pricingModal": {
     "title": "Diese Umschreibung ist bereit.",
     "subtitle": "Fügen Sie Guthaben hinzu, um fortzufahren.",
     "popular": "Am Beliebtesten",
-    "forCredits": "für {count} Guthaben",
+    "forCredits": "für {count} Umschreibungen",
     "neverExpires": "Guthaben laufen nie ab",
     "noSubscription": "Kein Abonnement erforderlich",
     "buyNow": "Jetzt Kaufen",
@@ -81,7 +84,7 @@
     }
   },
   "cta": {
-    "title": "Bereit zum Übersetzen?",
+    "title": "Bereit zum Umschreiben?",
     "description": "Wählen Sie Ihre Nachricht, passen Sie den Kontext an und erhalten Sie professionell kalibrierte Formulierungen für jede Situation.",
     "button": "Jetzt übersetzen"
   },

@@ -1,7 +1,7 @@
 {
   "common": {
     "home": "Accueil",
-    "translate": "Traduire",
+    "translate": "Réécrire",
     "pricing": "Tarifs",
     "appName": "Sentenly",
     "tagline": "Un système de traduction systématique pour les messages professionnels.",
@@ -11,7 +11,7 @@
   },
   "credits": {
     "remaining": "Il vous reste {count} réécritures professionnelles",
-    "nextRequiresCredits": "La prochaine réécriture nécessitera du solde.",
+    "nextRequiresCredits": "La prochaine réécriture nécessitera des crédits.",
     "viewPlans": "Voir les forfaits"
   },  "pricing": {
     "title": "Paiement à l'Usage",
@@ -22,15 +22,18 @@
     "powerPack": "Pack Power",
     "teamPack": "Équipe / Usage Intensif",
     "popular": "Le Plus Populaire",
-    "starterDesc": "Parfait pour une situation difficile — essayez plusieurs versions.",
-    "professionalDesc": "Pour la communication professionnelle continue.",
-    "powerDesc": "Pour managers, fondateurs, consultants",
+    "starterDesc": "Parfait pour les retours, les e-mails ou les situations ponctuelles.",
+    "professionalDesc": "Idéal pour les managers, consultants et rôles en contact client.",
+    "powerDesc": "Conçu pour fondateurs, RH, recruteurs et équipes.",
     "teamDesc": "Meilleur rapport qualité-prix par réécriture",
     "feature1": "Toutes les langues supportées",
     "feature2": "Réécriture professionnelle consciente du sens",
     "feature3": "N'expire jamais",
     "buyNow": "Acheter Maintenant",
-    "freeTrialNote": "Les nouveaux utilisateurs reçoivent 3 réécriture gratuites pour essayer le service"
+    "freeTrialNote": "Les nouveaux utilisateurs reçoivent 5 réécriture gratuites pour essayer le service",
+    "rolloverNote": "Les réécritures non utilisées sont reportées. Mise à niveau à tout moment.",
+    "starterNote": "Vous aurez probablement besoin de plus si vous écrivez régulièrement.",
+    "professionalNote": "La plupart des utilisateurs choisissent cela."
   },
   "pricingModal": {
     "title": "Cette réécriture est prête.",
@@ -81,7 +84,7 @@
     }
   },
   "cta": {
-    "title": "Prêt à traduire ?",
+    "title": "Prêt à réécrire ?",
     "description": "Choisissez votre message, ajustez le contexte et obtenez une formulation professionnellement calibrée pour toute situation.",
     "button": "Commencer à traduire"
   },

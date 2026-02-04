@@ -1,7 +1,7 @@
 {
   "common": {
     "home": "Home",
-    "translate": "Traduci",
+    "translate": "Riscrivi",
     "pricing": "Prezzi",
     "appName": "Sentenly",
     "tagline": "Un sistema di traduzione sistematico per messaggi professionali.",
@@ -11,7 +11,7 @@
   },
   "credits": {
     "remaining": "Hai {count} riscritture professionali rimanenti",
-    "nextRequiresCredits": "La prossima riscrittura richiederà saldo.",
+    "nextRequiresCredits": "La prossima riscrittura richiederà crediti.",
     "viewPlans": "Visualizza piani"
   },
   "pricing": {
@@ -23,16 +23,20 @@
     "powerPack": "Pacchetto Power",
     "teamPack": "Team / Uso Intensivo",
     "popular": "Più Popolare",
-    "starterDesc": "Perfetto per una situazione difficile — prova più versioni.",
-    "professionalDesc": "Per la comunicazione lavorativa continua.",
-    "powerDesc": "Per manager, fondatori, consulenti",
+    "starterDesc": "Perfetto per feedback, email o situazioni occasionali.",
+    "professionalDesc": "Ideale per manager, consulenti e ruoli a contatto con i clienti.",
+    "powerDesc": "Progettato per fondatori, HR, recruiter e team.",
     "teamDesc": "Miglior valore per riscrittura",
     "feature1": "Tutte le lingue supportate",
     "feature2": "Riscrittura professionale consapevole del significato",
     "feature3": "Non scade mai",
     "buyNow": "Acquista Ora",
-    "freeTrialNote": "I nuovi utenti ottengono 3 riscritture gratuite per provare il servizio"
-  },  "pricingModal": {
+    "freeTrialNote": "I nuovi utenti ottengono 5 riscritture gratuite per provare il servizio",
+    "rolloverNote": "Le riscritture non utilizzate si accumulano. Aggiorna in qualsiasi momento.",
+    "starterNote": "Probabilmente avrai bisogno di più se scrivi regolarmente.",
+    "professionalNote": "La maggior parte degli utenti sceglie questo."
+  },
+  "pricingModal": {
     "title": "Questa riscrittura è pronta.",
     "subtitle": "Aggiungi saldo per continuare.",
     "popular": "Più Popolare",
@@ -41,7 +45,8 @@
     "noSubscription": "Nessun abbonamento richiesto",
     "buyNow": "Acquista Ora",
     "securePayment": "Pagamento sicuro con Stripe"
-  },  "hero": {
+  },
+  "hero": {
     "badge": "Formulazione professionale di messaggi",
     "headline1": "Un messaggio difficile.",
     "headline2": "Formulato professionalmente.",
@@ -51,39 +56,39 @@
     "livePreview": "Anteprima dal vivo"
   },
   "messageTypes": {
-    "title": "翻訳:",
-    "termination": "雇用の終了",
-    "rejection": "提案の拒否",
-    "boundary": "境界線の設定",
-    "negativeFeedback": "否定的なフィードバック",
-    "sayingNo": "断る",
-    "withdrawing": "サポートの撤回",
-    "customInput": "カスタム入力"
+    "title": "Traduci:",
+    "termination": "Termine del rapporto di lavoro",
+    "rejection": "Rifiuto di una proposta",
+    "boundary": "Stabilire confini",
+    "negativeFeedback": "Dare feedback negativo",
+    "sayingNo": "Dire di no",
+    "withdrawing": "Ritiro del supporto",
+    "customInput": "Input personalizzato"
   },
   "features": {
-    "sectionTitle": "コンテキストがすべて",
-    "sectionDescription": "同じ意図でも、誰に話しかけているか、相手がどのように情報を受け取ることを好むか、どのような文化的規範が適用されるかによって、異なる言葉が必要です。",
+    "sectionTitle": "Il contesto è tutto",
+    "sectionDescription": "La stessa intenzione richiede parole diverse a seconda di con chi stai parlando, come preferiscono ricevere informazioni e quali norme culturali si applicano.",
     "contextAware": {
-      "title": "コンテキストを意識した翻訳",
-      "description": "フォーマル度、率直さ、パワーダイナミクス、感情的な感受性を調整して、正確な適切なトーンを得ることができます。"
+      "title": "Traduzione consapevole del contesto",
+      "description": "Regola formalità, franchezza, dinamiche di potere e sensibilità emotiva per ottenere il tono appropriato esatto."
     },
     "culturalCalibration": {
-      "title": "文化的調整",
-      "description": "米国、英国、ドイツ、日本、国際的なコンテキストでのコミュニケーション規範を尊重した翻訳。"
+      "title": "Calibrazione culturale",
+      "description": "Traduzione che rispetta le norme di comunicazione negli Stati Uniti, nel Regno Unito, in Germania, in Giappone e in contesti internazionali."
     },
     "mediumSpecific": {
-      "title": "メディア固有の出力",
-      "description": "対面での会話、メール、正式な書面通知のための異なる言い回し。"
+      "title": "Output specifico per mezzo",
+      "description": "Formulazione diversa per conversazioni di persona, email o avvisi scritti formali."
     },
     "powerDynamic": {
-      "title": "パワーダイナミクスの認識",
-      "description": "階層の上、横、下のどの方向に話しているかに応じて調整された言語。"
+      "title": "Consapevolezza delle dinamiche di potere",
+      "description": "Linguaggio adattato a seconda che tu stia parlando verso l'alto, in orizzontale o verso il basso nella gerarchia."
     }
   },
   "cta": {
-    "title": "翻訳の準備はできましたか？",
-    "description": "メッセージを選択し、コンテキストを調整して、あらゆる状況に対してプロフェッショナルに調整された言い回しを取得します。",
-    "button": "翻訳を開始"
+    "title": "Pronto a riscrivere?",
+    "description": "Scegli il tuo messaggio, regola il contesto e ottieni una formulazione professionale calibrata per ogni situazione.",
+    "button": "Inizia a riscrivere"
   },
   "translatePage": {
     "title": "Strumento di Traduzione",

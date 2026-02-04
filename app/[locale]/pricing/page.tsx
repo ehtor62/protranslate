@@ -9,10 +9,9 @@ export default function PricingPage() {
   const t = useTranslations('pricing');
   
   const packs = [
-    { name: 'starterPack', rewrites: 10, price: '€1.99', description: 'starterDesc' },
-    { name: 'professionalPack', rewrites: 50, price: '€7.99', popular: true, description: 'professionalDesc' },
-    { name: 'powerPack', rewrites: 150, price: '€19.99', description: 'powerDesc' },
-    { name: 'teamPack', rewrites: 500, price: '€49.99', description: 'teamDesc' }
+    { name: 'starterPack', rewrites: 50, price: '€7.99', description: 'starterDesc' },
+    { name: 'professionalPack', rewrites: 150, price: '€19.99', popular: true, description: 'professionalDesc' },
+    { name: 'powerPack', rewrites: 500, price: '€49.99', description: 'powerDesc' }
   ];
 
   return (
@@ -36,61 +35,77 @@ export default function PricingPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {packs.map((pack) => (
-              <div
-                key={pack.rewrites}
-                className={`relative p-6 rounded-xl border-2 transition-colors flex flex-col ${
-                  pack.popular
-                    ? 'border-primary bg-primary/5'
-                    : 'border-border bg-surface-elevated hover:border-primary'
-                }`}
-              >
-                {pack.popular && (
-                  <div className="absolute -top-2.5 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-primary text-primary-foreground text-xs font-bold px-2.5 py-0.5 rounded-full whitespace-nowrap">
-                      {t('popular') || 'Most Popular'}
-                    </span>
-                  </div>
-                )}
-                <div className="text-center mb-6">
-                  <div className="text-base font-bold text-foreground mb-2">
-                    ⭐ {t(pack.name)}
-                  </div>
-                  <div className="text-3xl font-bold text-foreground mb-2">
-                    {pack.price}
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    {t('rewriteCount', { count: pack.rewrites })}
-                  </div>
-                </div>
-
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center gap-2 text-sm">
-                    <Check className="w-4 h-4 text-primary shrink-0" />
-                    <span>{t('feature1')}</span>
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <Check className="w-4 h-4 text-primary shrink-0" />
-                    <span>{t('feature2')}</span>
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <Check className="w-4 h-4 text-primary shrink-0" />
-                    <span>{t('feature3')}</span>
-                  </li>
-                </ul>
-
-                <div className="flex-1">
-                  {pack.description && (
-                    <div className="mb-4 text-xs text-primary font-medium">
-                      👉 {t(pack.description)}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {packs.map((pack, index) => (
+              <div key={pack.rewrites} className="flex flex-col">
+                <div
+                  className={`relative p-6 rounded-xl border-2 transition-colors flex flex-col ${
+                    pack.popular
+                      ? 'border-primary bg-primary/5'
+                      : 'border-border bg-surface-elevated hover:border-primary'
+                  }`}
+                >
+                  {pack.popular && (
+                    <div className="absolute -top-2.5 left-1/2 transform -translate-x-1/2">
+                      <span className="bg-primary text-primary-foreground text-xs font-bold px-2.5 py-0.5 rounded-full whitespace-nowrap">
+                        {t('popular') || 'Most Popular'}
+                      </span>
                     </div>
                   )}
-                </div>
+                  <div className="text-center mb-6">
+                    <div className="text-base font-bold text-foreground mb-2">
+                      ⭐ {t(pack.name)}
+                    </div>
+                    <div className="text-3xl font-bold text-foreground mb-2">
+                      {pack.price}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {t('rewriteCount', { count: pack.rewrites })}
+                    </div>
+                  </div>
 
-                <Button className="w-full mt-auto">
-                  {t('buyNow')}
-                </Button>
+                  <ul className="space-y-3 mb-6">
+                    <li className="flex items-center gap-2 text-sm">
+                      <Check className="w-4 h-4 text-primary shrink-0" />
+                      <span>{t('feature1')}</span>
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <Check className="w-4 h-4 text-primary shrink-0" />
+                      <span>{t('feature2')}</span>
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <Check className="w-4 h-4 text-primary shrink-0" />
+                      <span>{t('feature3')}</span>
+                    </li>
+                  </ul>
+
+                  <div className="flex-1">
+                    {pack.description && (
+                      <div className="mb-4 text-xs text-primary font-medium">
+                        👉 {t(pack.description)}
+                      </div>
+                    )}
+                  </div>
+
+                  <Button className="w-full mt-auto">
+                    {t('buyNow')}
+                  </Button>
+                </div>
+                {pack.name === 'starterPack' && (
+                  <div className="mt-3 text-xs text-muted-foreground text-center">
+                    {t('starterNote')}
+                  </div>
+                )}
+                {pack.name === 'professionalPack' && (
+                  <div className="mt-3 text-xs text-muted-foreground text-center">
+                    {t('professionalNote')}
+                  </div>
+                )}
+                {pack.name === 'powerPack' && (
+                  <div className="mt-3 text-xs text-muted-foreground text-center invisible">
+                    &nbsp;
+                  </div>
+                )}
               </div>
             ))}
           </div>

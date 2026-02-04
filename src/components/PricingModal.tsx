@@ -17,10 +17,9 @@ interface PricingModalProps {
 }
 
 const pricingTiers = [
-  { name: 'starterPack', credits: 10, price: 1.99, popular: false, description: 'starterDesc' },
-  { name: 'professionalPack', credits: 50, price: 7.99, popular: true, description: 'professionalDesc' },
-  { name: 'powerPack', credits: 150, price: 19.99, popular: false, description: 'powerDesc' },
-  { name: 'teamPack', credits: 500, price: 49.99, popular: false, description: 'teamDesc' },
+  { name: 'starterPack', credits: 50, price: 7.99, popular: false, description: 'starterDesc' },
+  { name: 'professionalPack', credits: 150, price: 19.99, popular: true, description: 'professionalDesc' },
+  { name: 'powerPack', credits: 500, price: 49.99, popular: false, description: 'powerDesc' },
 ];
 
 export function PricingModal({ isOpen, onClose }: PricingModalProps) {

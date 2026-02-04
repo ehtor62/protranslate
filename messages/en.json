@@ -1,7 +1,7 @@
 {
   "common": {
     "home": "Home",
-    "translate": "Translate",
+    "translate": "Rewrite",
     "pricing": "Pricing",
     "appName": "Sentenly",
     "tagline": "A systematic translation system for professional messages.",
@@ -11,34 +11,37 @@
   },
   "credits": {
     "remaining": "You have {count} professional rewrites left",
-    "nextRequiresCredits": "Next rewrite will require balance.",
+    "nextRequiresCredits": "Next rewrite will require credits.",
     "viewPlans": "View plans"
   },
   "pricing": {
     "title": "Pay-Per-Use",
-    "subtitle": "Buy balance as you need it. No subscription required.",
+    "subtitle": "Buy credits as you need it. No subscription required.",
     "rewriteCount": "{count} rewrites",
     "starterPack": "Starter Pack",
     "professionalPack": "Professional Pack",
     "powerPack": "Power Pack",
     "teamPack": "Team / Heavy Use",
     "popular": "Most Popular",
-    "starterDesc": "Perfect for one difficult situation — try multiple versions.",
-    "professionalDesc": "For ongoing work communication.",
-    "powerDesc": "For managers, founders, consultants",
+    "starterDesc": "Perfect for feedback, emails, or one-off situations.",
+    "professionalDesc": "Ideal for managers, consultants, and client-facing roles.",
+    "powerDesc": "Built for founders, HR, recruiters, and teams.",
     "teamDesc": "Best value per rewrite",
     "feature1": "All languages supported",
     "feature2": "Meaning-aware professional rewriting",
     "feature3": "Never expires",
     "buyNow": "Buy Now",
-    "freeTrialNote": "New users get 3 free rewrites to try the service"
+    "freeTrialNote": "New users get 5 free rewrites to try the service",
+    "rolloverNote": "Unused rewrites roll over. Upgrade anytime.",
+    "starterNote": "You'll likely need more if you write regularly.",
+    "professionalNote": "Most users choose this."
   },
   "pricingModal": {
     "title": "This rewrite is ready to go.",
-    "subtitle": "Add balance to continue.",
+    "subtitle": "Add credits to continue.",
     "popular": "Most Popular",
-    "forCredits": "for {count} balance",
-    "neverExpires": "Balance never expires",
+    "forCredits": "for {count} rewrites",
+    "neverExpires": "Credits never expire",
     "noSubscription": "No subscription required",
     "buyNow": "Buy Now",
     "securePayment": "Secure payment powered by Stripe"
@@ -83,7 +86,7 @@
     }
   },
   "cta": {
-    "title": "Ready to translate?",
+    "title": "Ready to rewrite?",
     "description": "Choose your message, adjust the context, and get professionally calibrated wording for any situation.",
     "button": "Start translating"
   },
