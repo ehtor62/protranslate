@@ -91,6 +91,22 @@ export default function PricingPage() {
               />
             )}
           </div>
+
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+            <div className="text-center">
+              <p className="text-sm text-primary font-medium">
+                {t('starterNote')}
+              </p>
+            </div>
+            <div className="text-center">
+              <p className="text-sm text-muted-foreground">
+                {t('professionalNote')}
+              </p>
+            </div>
+            <div className="text-center">
+              {/* Empty space for third column */}
+            </div>
+          </div>
         </div>
       </main>
     </div>
