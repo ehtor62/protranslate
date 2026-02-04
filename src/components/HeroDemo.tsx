@@ -13,7 +13,7 @@ export function HeroDemo({ locale }: { locale: string }) {
   const demoContexts: { labelKey: string; settings: ContextSettings; targetLanguage: string }[] = [
     {
       labelKey: 'formalEmail',
-      targetLanguage: locale === 'de' ? 'de' : locale === 'fr' ? 'fr' : locale === 'es' ? 'es' : locale === 'ja' ? 'ja' : locale === 'zh' ? 'zh' : 'en',
+      targetLanguage: locale === 'de' ? 'de' : locale === 'fr' ? 'fr' : locale === 'es' ? 'es' : locale === 'it' ? 'it' : locale === 'pt' ? 'pt' : 'en',
       settings: {
         formality: 75,
         directness: 45,
@@ -25,7 +25,7 @@ export function HeroDemo({ locale }: { locale: string }) {
     },
     {
       labelKey: 'directConversation',
-      targetLanguage: locale === 'de' || locale === 'fr' || locale === 'es' || locale === 'ja' || locale === 'zh' ? 'en' : 'de',
+      targetLanguage: locale === 'de' || locale === 'fr' || locale === 'es' || locale === 'it' || locale === 'pt' ? 'en' : 'de',
       settings: {
         formality: 40,
         directness: 80,
@@ -37,13 +37,13 @@ export function HeroDemo({ locale }: { locale: string }) {
     },
     {
       labelKey: 'sensitiveLetter',
-      targetLanguage: locale === 'de' ? 'de' : locale === 'fr' ? 'fr' : locale === 'es' ? 'es' : locale === 'ja' ? 'ja' : locale === 'zh' ? 'zh' : 'en',
+      targetLanguage: locale === 'de' ? 'de' : locale === 'fr' ? 'fr' : locale === 'es' ? 'es' : locale === 'it' ? 'it' : locale === 'pt' ? 'pt' : 'en',
       settings: {
         formality: 85,
         directness: 38,
         powerRelationship: 'more',
         emotionalSensitivity: 80,
-        culturalContext: 'asia-japan',
+        culturalContext: 'europe-italy',
         medium: 'written-notice'
       }
     }
@@ -91,9 +91,7 @@ export function HeroDemo({ locale }: { locale: string }) {
       'de': 'languageGerman',
       'it': 'languageItalian',
       'pt': 'languagePortuguese',
-      'nl': 'languageDutch',
-      'ja': 'languageJapanese',
-      'zh': 'languageChinese'
+      'nl': 'languageDutch'
     };
     return tPage(languageKeyMap[lang] || 'languageEnglish');
   };

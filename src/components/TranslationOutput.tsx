@@ -62,9 +62,7 @@ export function TranslationOutput({ variant, context, targetLanguage, className,
       'de': 'languageGerman',
       'it': 'languageItalian',
       'pt': 'languagePortuguese',
-      'nl': 'languageDutch',
-      'ja': 'languageJapanese',
-      'zh': 'languageChinese'
+      'nl': 'languageDutch'
     };
     return t(`translatePage.${languageKeyMap[lang] || 'languageEnglish'}`);
   };

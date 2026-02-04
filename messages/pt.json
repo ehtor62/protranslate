@@ -1,0 +1,287 @@
+{
+  "common": {
+    "home": "Início",
+    "translate": "Traduzir",
+    "pricing": "Preços",
+    "appName": "Sentenly",
+    "tagline": "Um sistema de tradução sistemático para mensagens profissionais.",
+    "404": "404",
+    "pageNotFound": "Página não encontrada",
+    "returnHome": "Voltar ao início"
+  },
+  "credits": {
+    "remaining": "Você tem {count} reescritas profissionais restantes",
+    "nextRequiresCredits": "A próxima reescrita exigirá saldo.",
+    "viewPlans": "Ver planos"
+  },
+  "pricing": {
+    "title": "Pagamento por Uso",
+    "subtitle": "Compre saldo quando precisar. Nenhuma assinatura necessária.",
+    "rewriteCount": "{count} reescritas",
+    "starterPack": "Pacote Inicial",
+    "professionalPack": "Pacote Profissional",
+    "powerPack": "Pacote Power",
+    "teamPack": "Equipe / Uso Intenso",
+    "popular": "Mais Popular",
+    "starterDesc": "Perfeito para uma situação difícil — experimente várias versões.",
+    "professionalDesc": "Para comunicação de trabalho contínua.",
+    "powerDesc": "Para gerentes, fundadores, consultores",
+    "teamDesc": "Melhor valor por reescrita",
+    "feature1": "Todos os idiomas suportados",
+    "feature2": "Reescrita profissional com reconhecimento de significado",
+    "feature3": "Nunca expira",
+    "buyNow": "Comprar Agora",
+    "freeTrialNote": "Novos usuários recebem 3 reescritas gratuitas para experimentar o serviço"
+  },  "pricingModal": {
+    "title": "Esta reescrita está pronta.",
+    "subtitle": "Adicione saldo para continuar.",
+    "popular": "Mais Popular",
+    "forCredits": "{count} saldo",
+    "neverExpires": "O saldo nunca expira",
+    "noSubscription": "Sem assinatura necessária",
+    "buyNow": "Comprar Agora",
+    "securePayment": "Pagamento seguro fornecido pela Stripe"
+  },  "hero": {
+    "badge": "Expressão Profissional de Mensagens",
+    "headline1": "Uma mensagem difícil.",
+    "headline2": "Expressa profissionalmente.",
+    "description": "Traduza a intenção em contextos profissionais. Modele o tom, as dinâmicas de poder e as normas culturais para formar uma mensagem que você pode transmitir com confiança. Mesmo em línguas estrangeiras.",
+    "ctaPrimary": "Traduza sua mensagem",
+    "ctaSecondary": "Veja como funciona",
+    "livePreview": "Visualização ao vivo"
+  },
+  "messageTypes": {
+    "title": "Traduzir:",
+    "termination": "Término de Emprego",
+    "rejection": "Rejeição de Proposta",
+    "boundary": "Estabelecer Limites",
+    "negativeFeedback": "Dar Feedback Negativo",
+    "sayingNo": "Dizer Não",
+    "withdrawing": "Retirar Apoio",
+    "customInput": "Entrada Personalizada"
+  },
+  "features": {
+    "sectionTitle": "O contexto determina tudo",
+    "sectionDescription": "A mesma intenção requer diferentes formulações, dependendo com quem você está falando, como eles preferem receber informações e quais normas culturais se aplicam.",
+    "contextAware": {
+      "title": "Tradução Consciente do Contexto",
+      "description": "Ajuste o grau de formalidade, franqueza, dinâmicas de poder e sensibilidade emocional para obter o tom perfeito."
+    },
+    "culturalCalibration": {
+      "title": "Calibração Cultural",
+      "description": "Traduções que respeitam as normas de comunicação em contextos americanos, britânicos, alemães, japoneses e internacionais."
+    },
+    "mediumSpecific": {
+      "title": "Saída Específica do Meio",
+      "description": "Formulações diferentes para conversas presenciais, e-mails e notificações escritas formais."
+    },
+    "powerDynamic": {
+      "title": "Consciência da Dinâmica de Poder",
+      "description": "Use linguagem calibrada, independentemente de você estar se comunicando para cima, horizontal ou para baixo."
+    }
+  },
+  "cta": {
+    "title": "Pronto para traduzir?",
+    "description": "Escolha sua mensagem, ajuste o contexto e obtenha formulação profissional calibrada para qualquer situação.",
+    "button": "Começar a traduzir"
+  },
+  "translatePage": {
+    "title": "Ferramenta de Tradução",
+    "description": "Ajuste os parâmetros de contexto.",
+    "step1": "Escolha a mensagem central",
+    "step2": "Ajuste o contexto",
+    "step3": "Obtenha a tradução",    "createPhrase": "Criar frase",    "close": "Fechar",    "formality": "Formalidade",
+    "formalityCasual": "Casual",
+    "formalityInformal": "Informal",
+    "formalityNeutral": "Neutro",
+    "formalityFormal": "Formal",
+    "formalityInstitutional": "Institucional",
+    "formalityCasualTooltip": "Linguagem conversacional descontraída, sem estrutura formal.",
+    "formalityInformalTooltip": "Amigável e profissional, mas sem convenções rígidas.",
+    "formalityNeutralTooltip": "Tom profissional padrão, com estrutura equilibrada e clareza.",
+    "formalityFormalTooltip": "Linguagem refinada e estruturada, seguindo normas profissionais.",
+    "formalityInstitutionalTooltip": "Expressão oficial e conforme às políticas, adequada para cenários legais ou de RH.",
+    "directness": "Franqueza",
+    "directnessIndirect": "Indireto",
+    "directnessDiplomatic": "Diplomático",
+    "directnessClear": "Claro",
+    "directnessDirect": "Direto",
+    "directnessBlunt": "Franco",
+    "directnessIndirectTooltip": "A mensagem é implícita, em vez de declarada diretamente.",
+    "directnessDiplomaticTooltip": "Transmite intenção clara com linguagem suave.",
+    "directnessClearTooltip": "A mensagem é explícita, equilibrada e fácil de entender.",
+    "directnessDirectTooltip": "Os pontos são claramente expressos com pouco amortecimento.",
+    "directnessBluntTooltip": "A mensagem é transmitida sem suavização ou mitigação.",
+    "emotionalSensitivity": "Emoção",
+    "emotionalSensitivityLow": "Baixa",
+    "emotionalSensitivityContained": "Contida",
+    "emotionalSensitivityAttentive": "Atenta",
+    "emotionalSensitivitySensitive": "Sensível",
+    "emotionalSensitivityHigh": "Alta",
+    "emotionalSensitivityLowTooltip": "Foco em fatos e resultados, não em emoções.",
+    "emotionalSensitivityContainedTooltip": "Reconhece brevemente as emoções, mas não as centraliza.",
+    "emotionalSensitivityAttentiveTooltip": "Reconhece o impacto emocional enquanto mantém o foco na tarefa.",
+    "emotionalSensitivitySensitiveTooltip": "Valida ativamente os sentimentos em paralelo com a mensagem.",
+    "emotionalSensitivityHighTooltip": "As emoções são centrais e tratadas com cuidado durante todo o processo.",
+    "powerRelationship": "Relação de Poder",
+    "culturalContext": "Contexto Cultural",
+    "medium": "Meio",
+    "translateTo": "Traduzir para",
+    "selectMessage": "Selecione uma mensagem para começar",
+    "languageEnglish": "Inglês",
+    "languageSpanish": "Espanhol",
+    "languageFrench": "Francês",
+    "languageGerman": "Alemão",
+    "languageItalian": "Italiano",
+    "languagePortuguese": "Português",
+    "languageDutch": "Holandês",
+    "languageJapanese": "Japonês",
+    "languageChinese": "Chinês",
+    "wording": "Formulação",
+    "explanation": "Explicação",
+    "reception": "Possível recepção",
+    "customInputTitle": "Entrada Personalizada",
+    "customInputDescription": "Digite seu próprio título e descrição do tópico da mensagem",
+    "customInputTitleLabel": "Título",
+    "customInputTitlePlaceholder": "Por exemplo, rejeitar solicitação de reunião",
+    "customInputTopicLabel": "Descrição do Tópico",
+    "customInputTopicPlaceholder": "Por exemplo, recusar educadamente um convite de reunião devido a conflitos de agenda",
+    "cancel": "Cancelar",
+    "continue": "Continuar",
+    "importantConsideration": "Consideração Importante",
+    "disclaimerTitle": "Isenção de Responsabilidade",
+    "disclaimerText1": "O conteúdo gerado por este aplicativo é apenas para fins informativos e educacionais. Não constitui aconselhamento jurídico, profissional ou contratual.",
+    "disclaimerText2": "O uso de qualquer redação, recomendação ou exemplo sugerido é inteiramente por sua conta e risco. Os operadores deste aplicativo não assumem qualquer responsabilidade por quaisquer resultados, decisões ou consequências decorrentes do uso do conteúdo gerado.",
+    "generatingMessage": "Gerando mensagem..."
+  },
+  "auth": {
+    "signIn": "Entrar",
+    "signUp": "Cadastrar",
+    "signInDescription": "A versão profissional está pronta.\nFaça login ou crie uma conta gratuita para desbloqueá-la. Sem assinatura necessária",
+    "signUpDescription": "Crie uma conta para continuar",
+    "email": "E-mail",
+    "emailPlaceholder": "seu@email.com",
+    "password": "Senha",
+    "passwordPlaceholder": "••••••••",
+    "loading": "Carregando...",
+    "alreadyHaveAccount": "Já tem uma conta? Entrar",
+    "needAccount": "Não tem conta? Cadastrar",
+    "orContinueWith": "Ou continuar com",
+    "continueWithGoogle": "Continuar com Google",
+    "forgotPassword": "Esqueceu a senha?",
+    "forgotPasswordDescription": "Digite seu endereço de e-mail e enviaremos um link para redefinir sua senha.",
+    "sendResetLink": "Enviar link de redefinição",
+    "resetEmailSent": "E-mail de redefinição de senha enviado! Verifique sua caixa de entrada para obter instruções.",
+    "backToSignIn": "Voltar para entrar"
+  },
+  "messages": {
+    "termination": {
+      "title": "Término de Emprego",
+      "description": "Encerrar a relação de emprego de alguém em sua organização",
+      "category": "Emprego"
+    },
+    "rejection": {
+      "title": "Rejeição de Proposta",
+      "description": "Recusar uma proposta comercial, apresentação ou solicitação",
+      "category": "Negócios"
+    },
+    "boundary": {
+      "title": "Estabelecer Limites",
+      "description": "Definir limites sobre comportamento, solicitações ou expectativas",
+      "category": "Interpessoal"
+    },
+    "negativeFeedback": {
+      "title": "Dar Feedback Negativo",
+      "description": "Transmitir críticas sobre desempenho ou comportamento",
+      "category": "Desempenho"
+    },
+    "sayingNo": {
+      "title": "Dizer Não",
+      "description": "Recusar uma solicitação, convite ou oportunidade",
+      "category": "Geral"
+    },
+    "withdrawingSupport": {
+      "title": "Retirar Apoio",
+      "description": "Encerrar envolvimento, patrocínio ou apoio",
+      "category": "Negócios"    },
+    "customInput": {
+      "title": "Entrada Personalizada",
+      "description": "Digite seu próprio tópico",
+      "category": "Geral"    }
+  },
+  "culturalContext": {
+    "neutral": "Neutro / Internacional",
+    "us": "América do Norte",
+    "usa": "Estados Unidos",
+    "canada": "Canadá",
+    "mexico": "México",
+    "uk": "Europa",
+    "europe-uk": "Reino Unido",
+    "europe-scandinavia": "Escandinávia",
+    "europe-spain": "Espanha",
+    "europe-france": "França",
+    "europe-benelux": "Benelux",
+    "europe-germany": "Alemanha",
+    "europe-switzerland": "Suíça",
+    "europe-italy": "Itália",
+    "europe-poland": "Polônia",
+    "europe-romania": "Romênia",
+    "europe-greece": "Grécia",
+    "germany": "Ásia",
+    "asia-russia": "Rússia",
+    "asia-china": "China",
+    "asia-india": "Índia",
+    "asia-japan": "Japão",
+    "asia-turkey": "Turquia",
+    "asia-saudi-arabia": "Arábia Saudita",
+    "asia-uae": "Emirados Árabes Unidos",
+    "asia-thailand": "Tailândia",
+    "asia-malaysia": "Malásia",
+    "asia-indonesia": "Indonésia",
+    "asia-iran": "Irã",
+    "asia-singapore": "Singapura",
+    "japan": "Japão",
+    "south-america": "América do Sul",
+    "central-america": "América Central",
+    "colombia": "Colômbia",
+    "peru": "Peru",
+    "argentina": "Argentina",
+    "brasil": "Brasil",
+    "africa": "África",
+    "morocco": "Marrocos",
+    "egypt": "Egito",
+    "congo": "Congo",
+    "angola": "Angola",
+    "namibia": "Namíbia",
+    "south-africa": "África do Sul"
+  },
+  "medium": {
+    "inPerson": "Conversa Presencial",
+    "email": "E-mail",
+    "writtenNotice": "Aviso Escrito / Carta"
+  },
+  "powerRelationship": {
+    "more": "Você tem mais poder",
+    "equal": "Status igual",
+    "less": "Você tem menos poder"
+  },
+  "demo": {
+    "formalEmail": "E-mail formal para colega",
+    "directConversation": "Conversa direta com gerente",
+    "sensitiveLetter": "Carta sensível para funcionário importante"
+  },
+  "samples": {
+    "formalEmail": "Agradecemos suas contribuições. No entanto, devemos informá-lo de que sua relação de emprego será encerrada em [data]. Forneceremos suporte durante esta transição.",
+    "directConversation": "Preciso ser direto com você. Sua posição foi eliminada. Discutiremos os próximos passos, e seu último dia será [data].",
+    "sensitiveLetter": "Agradecemos profundamente seu serviço dedicado a esta organização. Após cuidadosa consideração, lamentamos informá-lo de que devemos encerrar sua relação de emprego, com efeito a partir de [data]. Comprometemo-nos a apoiá-lo durante esta difícil transição."  },
+  "errors": {
+    "rateLimitExceeded": "Você fez muitas solicitações. Por favor, aguarde um momento e tente novamente.",
+    "messageTooLong": "Sua mensagem é muito longa. Por favor, encurte-a e tente novamente.",
+    "generationFailed": "Não foi possível gerar a tradução. Por favor, tente novamente.",
+    "networkError": "Erro de rede. Por favor, verifique sua conexão e tente novamente.",
+    "genericError": "Ocorreu um erro. Por favor, tente novamente.",
+    "characterLimitExceeded": "Limite de caracteres excedido. Máximo de 1000 caracteres permitidos.",
+    "titleLimitExceeded": "Limite de título excedido. Máximo de 60 caracteres.",
+    "insufficientCredits": "Você usou todo o seu saldo gratuito. Por favor, compre mais para continuar."
+  }
+}

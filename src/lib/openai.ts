@@ -44,9 +44,7 @@ function buildPrompt(messageType: string, messageDescription: string, context: C
     'de': 'German',
     'it': 'Italian',
     'pt': 'Portuguese',
-    'nl': 'Dutch',
-    'ja': 'Japanese',
-    'zh': 'Chinese'
+    'nl': 'Dutch'
   };
   
   // Use targetLanguage if provided, otherwise fall back to locale

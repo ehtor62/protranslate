@@ -1,7 +1,7 @@
 import { defineRouting } from 'next-intl/routing';
 import { createNavigation } from 'next-intl/navigation';
 
-export const locales = ['en', 'de', 'fr', 'es', 'ja', 'zh'] as const;
+export const locales = ['en', 'de', 'fr', 'it', 'es', 'pt'] as const;
 export type Locale = (typeof locales)[number];
 
 export const localeNames: Record<Locale, string> = {
@@ -9,13 +9,13 @@ export const localeNames: Record<Locale, string> = {
   es: 'Español',
   fr: 'Français',
   de: 'Deutsch',
-  ja: '日本語',
-  zh: '中文'
+  it: 'Italiano',
+  pt: 'Português'
 };
 
 export const routing = defineRouting({
   // A list of all locales that are supported
-  locales: ['en', 'de', 'fr', 'es', 'ja', 'zh'],
+  locales: ['en', 'de', 'fr', 'it', 'es', 'pt'],
 
   // Used when no locale matches
   defaultLocale: 'en'
