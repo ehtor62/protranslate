@@ -15,7 +15,7 @@ export default async function LocaleProviders({ children }: { children: ReactNod
           <Suspense fallback={null}>
             <ReferralCapture />
           </Suspense>
-          <Sonner />
+          <Sonner position="top-center" expand={true} richColors />
           {children}
         </TooltipProvider>
       </AuthProvider>

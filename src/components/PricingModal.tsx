@@ -25,6 +25,7 @@ declare global {
         'publishable-key': string;
         'customer-email'?: string;
         'client-reference-id'?: string;
+        'success-url'?: string;
       };
     }
   }
@@ -78,7 +79,7 @@ export function PricingModal({ isOpen, onClose }: PricingModalProps) {
               publishable-key="pk_test_51SwmHXCmaIZImua1jsq89Qbmzqc64orLNCy3Qg6eSiHvUexZxLXscgAlbEcdZDAe4afLIQTdQSnKYlVmnkCT3yt600sEZxIebU"
               customer-email={user.email || undefined}
               client-reference-id={user.uid}
-              success-url={`${window.location.origin}/translate?payment=success`}
+              success-url={typeof window !== 'undefined' ? `${window.location.origin}/translate?payment=success` : undefined}
             />
           ) : (
             <div className="text-center py-8 text-muted-foreground">
