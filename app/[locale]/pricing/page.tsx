@@ -99,12 +99,14 @@ export default function PricingPage() {
               </p>
             </div>
             <div className="text-center">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-primary font-medium">
                 {t('professionalNote')}
               </p>
             </div>
             <div className="text-center">
-              {/* Empty space for third column */}
+              <p className="text-sm text-primary font-medium">
+                {t('powerNote')}
+              </p>
             </div>
           </div>
         </div>

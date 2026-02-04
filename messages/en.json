@@ -47,6 +47,7 @@
     "rolloverNote": "Unused rewrites roll over. Upgrade anytime.",
     "starterNote": "You'll likely need more if you write regularly.",
     "professionalNote": "Most users choose this.",
+    "powerNote": "Never think about credits again.",
     "paymentSuccess": "Payment successful! Your credits have been added."
   },
   "payment": {
