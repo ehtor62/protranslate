@@ -3,40 +3,40 @@
     "home": "首页",
     "translate": "翻译",
     "pricing": "定价",
-    "appName": "ProTranslate",
-    "tagline": "专业意图的系统化翻译引擎。",
+    "appName": "Sentenly",
+    "tagline": "专业消息的系统化翻译系统。",
     "404": "404",
     "pageNotFound": "页面未找到",
     "returnHome": "返回首页"
   },
   "credits": {
     "remaining": "您还有{count}次专业重写机会",
-    "nextRequiresCredits": "下次重写将需要积分。",
+    "nextRequiresCredits": "下次重写将需要余额。",
     "viewPlans": "查看套餐"
   },
   "pricing": {
     "title": "按使用付费",
-    "subtitle": "根据需要购买积分。无需订阅。",
+    "subtitle": "根据需要购买余额。无需订阅。",
     "rewriteCount": "{count}次重写",
     "feature1": "支持所有语言",
     "feature2": "永不过期",
     "feature3": "上下文感知翻译",
     "buyNow": "立即购买",
-    "freeTrialNote": "新用户可获得5次免费重写以试用服务"
+    "freeTrialNote": "新用户可获得3次免费重写以试用服务"
   },  "pricingModal": {
     "title": "这次重写已准备就绪。",
-    "subtitle": "添加积分以继续。",
+    "subtitle": "添加余额以继续。",
     "popular": "最受欢迎",
-    "forCredits": "{count}积分",
-    "neverExpires": "积分永不过期",
+    "forCredits": "{count}余额",
+    "neverExpires": "余额永不过期",
     "noSubscription": "无需订阅",
     "buyNow": "立即购买",
     "securePayment": "由Stripe提供的安全支付"
   },  "hero": {
-    "badge": "专业信息翻译",
-    "headline1": "说出困难的话。",
-    "headline2": "专业地。",
-    "description": "翻译意图，而不仅仅是文字。塑造语气、权力动态和上下文，形成您可以自信发送的信息。",
+    "badge": "专业消息表达",
+    "headline1": "一条困难的消息。",
+    "headline2": "专业地表达。",
+    "description": "在专业背景下翻译意图。塑造语气、权力动态和文化规范，形成您可以自信传达的消息。即使是外语。",
     "ctaPrimary": "翻译您的信息",
     "ctaSecondary": "查看工作原理",
     "livePreview": "实时预览"
@@ -137,7 +137,7 @@
   "auth": {
     "signIn": "登录",
     "signUp": "注册",
-    "signInDescription": "专业版本已准备就绪。\n登录或创建免费账户以解锁它。",
+    "signInDescription": "专业版本已准备就绪。\n登录或创建免费账户以解锁它。无需订阅",
     "signUpDescription": "创建账户以继续",
     "email": "电子邮件",
     "emailPlaceholder": "your@email.com",
@@ -155,7 +155,7 @@
     "backToSignIn": "返回登录"
   },
   "translatePage": {
-    "title": "AI翻译助手",
+    "title": "专业信息改写 — AI驱动",
     "description": "选择消息类型并自定义上下文以生成文化适宜的翻译",
     "step1": "选择核心消息",
     "step2": "调整上下文",

@@ -3,40 +3,40 @@
     "home": "ホーム",
     "translate": "翻訳",
     "pricing": "料金",
-    "appName": "ProTranslate",
-    "tagline": "プロフェッショナルな意図のための体系的な翻訳エンジン。",
+    "appName": "Sentenly",
+    "tagline": "プロフェッショナルなメッセージのための体系的な翻訳システム。",
     "404": "404",
     "pageNotFound": "ページが見つかりません",
     "returnHome": "ホームに戻る"
   },
   "credits": {
     "remaining": "残り{count}回のプロフェッショナルな書き換えがあります",
-    "nextRequiresCredits": "次の書き換えにはクレジットが必要です。",
+    "nextRequiresCredits": "次の書き換えには残高が必要です。",
     "viewPlans": "プランを表示"
   },
   "pricing": {
     "title": "従量課金制",
-    "subtitle": "必要に応じてクレジットを購入。サブスクリプション不要。",
+    "subtitle": "必要に応じて残高を購入。サブスクリプション不要。",
     "rewriteCount": "{count}回の書き換え",
     "feature1": "全言語対応",
     "feature2": "有効期限なし",
     "feature3": "文脈を考慮した翻訳",
     "buyNow": "今すぐ購入",
-    "freeTrialNote": "新規ユーザーは5回の無料書き換えでサービスをお試しいただけます"
+    "freeTrialNote": "新規ユーザーは3回の無料書き換えでサービスをお試しいただけます"
   },  "pricingModal": {
     "title": "この書き換えの準備ができました。",
-    "subtitle": "続けるにはクレジットを追加してください。",
+    "subtitle": "続けるには残高を追加してください。",
     "popular": "人気",
-    "forCredits": "{count}クレジット分",
-    "neverExpires": "クレジットは永久有効",
+    "forCredits": "{count}残高分",
+    "neverExpires": "残高は永久有効",
     "noSubscription": "サブスクリプション不要",
     "buyNow": "今すぐ購入",
     "securePayment": "Stripeによる安全な決済"
   },  "hero": {
-    "badge": "プロフェッショナルメッセージ翻訳",
-    "headline1": "難しいことを言う。",
-    "headline2": "プロフェッショナルに。",
-    "description": "言葉だけでなく、意図を翻訳します。トーン、力関係、文脈を形作り、自信を持って送信できるメッセージにします。",
+    "badge": "プロフェッショナルなメッセージの表現",
+    "headline1": "難しいメッセージ。",
+    "headline2": "プロフェッショナルに表現された。",
+    "description": "プロフェッショナルな文脈で意図を翻訳します。トーン、力関係、文化的規範を形作り、自信を持って伝えられるメッセージにします。外国語でも。",
     "ctaPrimary": "メッセージを翻訳",
     "ctaSecondary": "仕組みを見る",
     "livePreview": "ライブプレビュー"
@@ -140,7 +140,7 @@
   "auth": {
     "signIn": "ログイン",
     "signUp": "登録",
-    "signInDescription": "プロフェッショナル版が準備できました。\nサインインまたは無料アカウントを作成してロック解除してください。",
+    "signInDescription": "プロフェッショナル版が準備できました。\nサインインまたは無料アカウントを作成してロック解除してください。サブスクリプション不要",
     "signUpDescription": "続行するにはアカウントを作成してください",
     "email": "メール",
     "emailPlaceholder": "your@email.jp",
@@ -158,7 +158,7 @@
     "backToSignIn": "サインインに戻る"
   },
   "translatePage": {
-    "title": "AI翻訳アシスタント",
+    "title": "プロフェッショナルなメッセージの書き換え — AI搭載",
     "description": "メッセージタイプを選択し、コンテキストをカスタマイズして文化的に適切な翻訳を生成します",
     "step1": "主要メッセージを選択",
     "step2": "コンテキストを調整",
@@ -340,6 +340,6 @@
     "genericError": "エラーが発生しました。もう一度お試しください。",
     "characterLimitExceeded": "文字数制限を超えています。最大1000文字まで入力できます。",
     "titleLimitExceeded": "タイトルの文字数制限を超えています。最大60文字まで入力できます。",
-    "insufficientCredits": "無料クレジットをすべて使い切りました。続けるには購入してください。"
+    "insufficientCredits": "無料残高をすべて使い切りました。続けるには購入してください。"
   }
 }

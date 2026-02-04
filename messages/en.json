@@ -3,42 +3,42 @@
     "home": "Home",
     "translate": "Translate",
     "pricing": "Pricing",
-    "appName": "ProTranslate",
-    "tagline": "A systematic translation engine for professional intent.",
+    "appName": "Sentenly",
+    "tagline": "A systematic translation system for professional messages.",
     "404": "404",
     "pageNotFound": "Page not found",
     "returnHome": "Return home"
   },
   "credits": {
     "remaining": "You have {count} professional rewrites left",
-    "nextRequiresCredits": "Next rewrite will require credits.",
+    "nextRequiresCredits": "Next rewrite will require balance.",
     "viewPlans": "View plans"
   },
   "pricing": {
     "title": "Pay-Per-Use",
-    "subtitle": "Buy credits as you need them. No subscription required.",
+    "subtitle": "Buy balance as you need it. No subscription required.",
     "rewriteCount": "{count} rewrites",
     "feature1": "All languages supported",
     "feature2": "Never expires",
     "feature3": "Context-aware translation",
     "buyNow": "Buy Now",
-    "freeTrialNote": "New users get 5 free rewrites to try the service"
+    "freeTrialNote": "New users get 3 free rewrites to try the service"
   },
   "pricingModal": {
     "title": "This rewrite is ready to go.",
-    "subtitle": "Add credits to continue.",
+    "subtitle": "Add balance to continue.",
     "popular": "Most Popular",
-    "forCredits": "for {count} credits",
-    "neverExpires": "Credits never expire",
+    "forCredits": "for {count} balance",
+    "neverExpires": "Balance never expires",
     "noSubscription": "No subscription required",
     "buyNow": "Buy Now",
     "securePayment": "Secure payment powered by Stripe"
   },
   "hero": {
-    "badge": "Professional message translation",
-    "headline1": "Say the hard thing.",
-    "headline2": "Professionally.",
-    "description": "Translate intent, not just words. Shape tone, power dynamics, and context into a message you can send with confidence.",
+    "badge": "Professional message wording",
+    "headline1": "A difficult message.",
+    "headline2": "Professionally worded.",
+    "description": "Translate intent in a professional context. Shape tone, power dynamics, and cultural norms into a message you can communicate with confidence. Even in foreign languages.",
     "ctaPrimary": "Translate your message",
     "ctaSecondary": "See how it works",
     "livePreview": "Live Preview"
@@ -81,7 +81,7 @@
   "auth": {
     "signIn": "Sign In",
     "signUp": "Sign Up",
-    "signInDescription": "The professional version is ready.\nSign in or create a FREE account to unlock it.",
+    "signInDescription": "The professional version is ready.\nSign in or create a FREE account to unlock it. No subscription required.",
     "signUpDescription": "Create an account to continue",
     "email": "Email",
     "emailPlaceholder": "you@example.com",
@@ -99,7 +99,7 @@
     "backToSignIn": "Back to Sign In"
   },
   "translatePage": {
-    "title": "AI Translation Assistant",
+    "title": "Professional Message Rewriting — Powered by AI",
     "description": "Select a message type and customize the context to generate culturally appropriate translations",
     "step1": "Select a core message",
     "step2": "Adjust context",
@@ -281,6 +281,6 @@
     "genericError": "An error occurred. Please try again.",
     "characterLimitExceeded": "Character limit exceeded. Maximum 1000 characters allowed.",
     "titleLimitExceeded": "Title limit exceeded. Maximum 60 characters allowed.",
-    "insufficientCredits": "You've used all your free credits. Please purchase more to continue."
+    "insufficientCredits": "You've used all your free balance. Please purchase more to continue."
   }
 }

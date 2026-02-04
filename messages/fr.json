@@ -3,40 +3,40 @@
     "home": "Accueil",
     "translate": "Traduire",
     "pricing": "Tarifs",
-    "appName": "ProTranslate",
-    "tagline": "Un moteur de traduction systématique pour l'intention professionnelle.",
+    "appName": "Sentenly",
+    "tagline": "Un système de traduction systématique pour les messages professionnels.",
     "404": "404",
     "pageNotFound": "Page non trouvée",
     "returnHome": "Retour à l'accueil"
   },
   "credits": {
     "remaining": "Il vous reste {count} réécritures professionnelles",
-    "nextRequiresCredits": "La prochaine réécriture nécessitera des crédits.",
+    "nextRequiresCredits": "La prochaine réécriture nécessitera du solde.",
     "viewPlans": "Voir les forfaits"
   },  "pricing": {
     "title": "Paiement à l'Usage",
-    "subtitle": "Achetez des crédits selon vos besoins. Aucun abonnement requis.",
+    "subtitle": "Achetez du solde selon vos besoins. Aucun abonnement requis.",
     "rewriteCount": "{count} réécriture",
     "feature1": "Toutes les langues supportées",
     "feature2": "N'expire jamais",
     "feature3": "Traduction contextuelle",
     "buyNow": "Acheter Maintenant",
-    "freeTrialNote": "Les nouveaux utilisateurs reçoivent 5 réécriture gratuites pour essayer le service"
+    "freeTrialNote": "Les nouveaux utilisateurs reçoivent 3 réécriture gratuites pour essayer le service"
   },
   "pricingModal": {
     "title": "Cette réécriture est prête.",
-    "subtitle": "Ajoutez des crédits pour continuer.",
+    "subtitle": "Ajoutez du solde pour continuer.",
     "popular": "Le Plus Populaire",
-    "forCredits": "pour {count} crédits",
-    "neverExpires": "Les crédits n'expirent jamais",
+    "forCredits": "pour {count} solde",
+    "neverExpires": "Le solde n'expire jamais",
     "noSubscription": "Aucun abonnement requis",
     "buyNow": "Acheter Maintenant",
     "securePayment": "Paiement sécurisé par Stripe"
   },  "hero": {
-    "badge": "Traduction de messages professionnels",
-    "headline1": "Dites ce qui est difficile.",
-    "headline2": "Professionnellement.",
-    "description": "Traduisez l'intention, pas seulement les mots. Façonnez le ton, les dynamiques de pouvoir et le contexte en un message que vous pouvez envoyer avec confiance.",
+    "badge": "Formulation professionnelle de messages",
+    "headline1": "Un message difficile.",
+    "headline2": "Formulé professionnellement.",
+    "description": "Traduisez l'intention dans un contexte professionnel. Façonnez le ton, les dynamiques de pouvoir et les normes culturelles en un message que vous pouvez communiquer avec confiance. Même en langues étrangères.",
     "ctaPrimary": "Traduisez votre message",
     "ctaSecondary": "Voir comment ça marche",
     "livePreview": "Aperçu en direct"
@@ -79,7 +79,7 @@
   "auth": {
     "signIn": "Se connecter",
     "signUp": "S'inscrire",
-    "signInDescription": "La version professionnelle est prête.\nConnectez-vous ou créez un compte GRATUIT pour la débloquer.",
+    "signInDescription": "La version professionnelle est prête.\nConnectez-vous ou créez un compte GRATUIT pour la débloquer. Aucun abonnement requis",
     "signUpDescription": "Créez un compte pour continuer",
     "email": "E-mail",
     "emailPlaceholder": "votre@email.fr",
@@ -97,7 +97,7 @@
     "backToSignIn": "Retour à la connexion"
   },
   "translatePage": {
-    "title": "Assistant de Traduction IA",
+    "title": "Réécriture Professionnelle de Messages — Propulsé par IA",
     "description": "Sélectionnez un type de message et personnalisez le contexte pour générer des traductions culturellement appropriées",
     "step1": "Sélectionner un message principal",
     "step2": "Ajuster le contexte",
@@ -276,6 +276,6 @@
     "genericError": "Une erreur s'est produite. Veuillez réessayer.",
     "characterLimitExceeded": "Limite de caractères dépassée. Maximum 1000 caractères autorisés.",
     "titleLimitExceeded": "Limite de titre dépassée. Maximum 60 caractères autorisés.",
-    "insufficientCredits": "Vous avez utilisé tous vos crédits gratuits. Veuillez en acheter pour continuer."
+    "insufficientCredits": "Vous avez utilisé tout votre solde gratuit. Veuillez en acheter pour continuer."
   }
 }

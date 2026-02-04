@@ -3,40 +3,40 @@
     "home": "Inicio",
     "translate": "Traducir",
     "pricing": "Precios",
-    "appName": "ProTranslate",
-    "tagline": "Un motor de traducción sistemático para intenciones profesionales.",
+    "appName": "Sentenly",
+    "tagline": "Un sistema de traducción sistemático para mensajes profesionales.",
     "404": "404",
     "pageNotFound": "Página no encontrada",
     "returnHome": "Volver al inicio"
   },
   "credits": {
     "remaining": "Te quedan {count} reescrituras profesionales",
-    "nextRequiresCredits": "La próxima reescritura requerirá créditos.",
+    "nextRequiresCredits": "La próxima reescritura requerirá saldo.",
     "viewPlans": "Ver planes"
   },
   "pricing": {
     "title": "Pago por Uso",
-    "subtitle": "Compra créditos según los necesites. Sin suscripción requerida.",
+    "subtitle": "Compra saldo según lo necesites. Sin suscripción requerida.",
     "rewriteCount": "{count} reescrituras",
     "feature1": "Todos los idiomas soportados",
     "feature2": "Nunca caduca",
     "feature3": "Traducción contextual",
     "buyNow": "Comprar Ahora",
-    "freeTrialNote": "Los nuevos usuarios obtienen 5 reescrituras gratis para probar el servicio"
+    "freeTrialNote": "Los nuevos usuarios obtienen 3 reescrituras gratis para probar el servicio"
   },  "pricingModal": {
     "title": "Esta reescritura está lista.",
-    "subtitle": "Añade créditos para continuar.",
+    "subtitle": "Añade saldo para continuar.",
     "popular": "Más Popular",
-    "forCredits": "por {count} créditos",
-    "neverExpires": "Los créditos nunca caducan",
+    "forCredits": "por {count} saldo",
+    "neverExpires": "El saldo nunca caduca",
     "noSubscription": "No se requiere suscripción",
     "buyNow": "Comprar Ahora",
     "securePayment": "Pago seguro con Stripe"
   },  "hero": {
-    "badge": "Traducción de mensajes profesionales",
-    "headline1": "Di lo difícil.",
-    "headline2": "Profesionalmente.",
-    "description": "Traduce la intención, no solo las palabras. Moldea el tono, las dinámicas de poder y el contexto en un mensaje que puedes enviar con confianza.",
+    "badge": "Redacción profesional de mensajes",
+    "headline1": "Un mensaje difícil.",
+    "headline2": "Redactado profesionalmente.",
+    "description": "Traduce la intención en un contexto profesional. Moldea el tono, las dinámicas de poder y las normas culturales en un mensaje que puedes comunicar con confianza. Incluso en idiomas extranjeros.",
     "ctaPrimary": "Traduce tu mensaje",
     "ctaSecondary": "Ver cómo funciona",
     "livePreview": "Vista previa en vivo"
@@ -79,7 +79,7 @@
   "auth": {
     "signIn": "Iniciar sesión",
     "signUp": "Registrarse",
-    "signInDescription": "La versión profesional está lista.\nInicia sesión o crea una cuenta GRATUITA para desbloquearla.",
+    "signInDescription": "La versión profesional está lista.\nInicia sesión o crea una cuenta GRATUITA para desbloquearla. Sin suscripción requerida",
     "signUpDescription": "Cree una cuenta para continuar",
     "email": "Correo electrónico",
     "emailPlaceholder": "tu@email.com",
@@ -97,7 +97,7 @@
     "backToSignIn": "Volver a iniciar sesión"
   },
   "translatePage": {
-    "title": "Asistente de Traducción IA",
+    "title": "Reescritura Profesional de Mensajes — Impulsado por IA",
     "description": "Seleccione un tipo de mensaje y personalice el contexto para generar traducciones culturalmente apropiadas",
     "step1": "Seleccionar mensaje principal",
     "step2": "Ajustar contexto",
@@ -276,6 +276,6 @@
     "genericError": "Ocurrió un error. Por favor, inténtalo de nuevo.",
     "characterLimitExceeded": "Límite de caracteres excedido. Máximo 1000 caracteres permitidos.",
     "titleLimitExceeded": "Límite de título excedido. Máximo 60 caracteres permitidos.",
-    "insufficientCredits": "Has usado todos tus créditos gratuitos. Por favor compra más para continuar."
+    "insufficientCredits": "Has usado todo tu saldo gratuito. Por favor compra más para continuar."
   }
 }

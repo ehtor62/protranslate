@@ -3,40 +3,40 @@
     "home": "Startseite",
     "translate": "Übersetzen",
     "pricing": "Preise",
-    "appName": "ProTranslate",
-    "tagline": "Ein systematisches Übersetzungssystem für professionelle Absichten.",
+    "appName": "Sentenly",
+    "tagline": "Ein systematisches Übersetzungssystem für professionelle Nachrichten.",
     "404": "404",
     "pageNotFound": "Seite nicht gefunden",
     "returnHome": "Zur Startseite"
   },
   "credits": {
     "remaining": "Sie haben noch {count} professionelle Umschreibungen",
-    "nextRequiresCredits": "Die nächste Umschreibung erfordert Credits.",
+    "nextRequiresCredits": "Die nächste Umschreibung erfordert Guthaben.",
     "viewPlans": "Pläne ansehen"
   },
   "pricing": {
     "title": "Nutzungsbasierte Zahlung",
-    "subtitle": "Kaufen Sie Credits nach Bedarf. Kein Abonnement erforderlich.",
+    "subtitle": "Kaufen Sie Guthaben nach Bedarf. Kein Abonnement erforderlich.",
     "rewriteCount": "{count} Umschreibungen",
     "feature1": "Alle Sprachen unterstützt",
     "feature2": "Läuft nie ab",
     "feature3": "Kontextbewusste Übersetzung",
     "buyNow": "Jetzt Kaufen",
-    "freeTrialNote": "Neue Benutzer erhalten 5 kostenlose Umschreibungen zum Testen des Dienstes"
+    "freeTrialNote": "Neue Benutzer erhalten 3 kostenlose Umschreibungen zum Testen des Dienstes"
   },  "pricingModal": {
     "title": "Diese Umschreibung ist bereit.",
-    "subtitle": "Fügen Sie Credits hinzu, um fortzufahren.",
+    "subtitle": "Fügen Sie Guthaben hinzu, um fortzufahren.",
     "popular": "Am Beliebtesten",
-    "forCredits": "für {count} Credits",
-    "neverExpires": "Credits laufen nie ab",
+    "forCredits": "für {count} Guthaben",
+    "neverExpires": "Guthaben laufen nie ab",
     "noSubscription": "Kein Abonnement erforderlich",
     "buyNow": "Jetzt Kaufen",
     "securePayment": "Sichere Zahlung mit Stripe"
   },  "hero": {
-    "badge": "Professionelle Nachrichtenübersetzung",
-    "headline1": "Sagen Sie das Schwierige.",
-    "headline2": "Professionell.",
-    "description": "Übersetzen Sie die Absicht, nicht nur die Worte. Gestalten Sie Ton, Machtdynamiken und Kontext zu einer Nachricht, die Sie mit Zuversicht senden können.",
+    "badge": "Professionelle Nachrichtenformulierung",
+    "headline1": "Eine schwierige Nachricht.",
+    "headline2": "Professionell formuliert.",
+    "description": "Übersetzen Sie die Absicht, im professionellen Kontext. Gestalten Sie Ton, Machtdynamiken und kulturelle Gepflogenheiten zu einer Nachricht, die Sie mit Zuversicht mitteilen können. Auch in Fremdsprachen.",
     "ctaPrimary": "Übersetzen Sie Ihre Nachricht",
     "ctaSecondary": "So funktioniert's",
     "livePreview": "Live-Vorschau"
@@ -137,7 +137,7 @@
   "auth": {
     "signIn": "Anmelden",
     "signUp": "Registrieren",
-    "signInDescription": "Die professionelle Version ist bereit.\nMelden Sie sich an oder erstellen Sie ein KOSTENLOSES Konto, um sie freizuschalten.",
+    "signInDescription": "Die professionelle Version ist bereit.\nMelden Sie sich an oder erstellen Sie ein KOSTENLOSES Konto, um sie freizuschalten. Kein Abo erforderlich.",
     "signUpDescription": "Erstellen Sie ein Konto, um fortzufahren",
     "email": "E-Mail",
     "emailPlaceholder": "ihre@email.de",
@@ -155,7 +155,7 @@
     "backToSignIn": "Zurück zur Anmeldung"
   },
   "translatePage": {
-    "title": "KI-Übersetzungsassistent",
+    "title": "Professionelles Umschreiben von Nachrichten — KI-gestützt",
     "description": "Wählen Sie einen Nachrichtentyp und passen Sie den Kontext an, um kulturell angemessene Übersetzungen zu generieren",
     "step1": "Hauptnachricht auswählen",
     "step2": "Kontext anpassen",

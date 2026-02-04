@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ProTranslate - AI Translation Tool",
+  title: "Sentenly - Professional Message Rewriting",
   description: "Professional message translation with context awareness",
 };
 

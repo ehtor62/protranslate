@@ -64,15 +64,15 @@ export async function getUserCredits(userId: string): Promise<number> {
       }
       
       await adminDb.collection('users').doc(userId).set({
-        credits: 5,
+        credits: 3,
         email: email,
         createdAt: new Date(),
       });
-      return 5;
+      return 3;
     }
     
     const data = userDoc.data();
-    return data?.credits ?? 5;
+    return data?.credits ?? 3;
   } catch (error) {
     console.error('Error getting user credits:', error);
     return 0;
@@ -90,7 +90,7 @@ export async function decrementUserCredits(userId: string): Promise<number | nul
     const userDoc = await userRef.get();
     
     if (!userDoc.exists) {
-      // New user - initialize with 5 credits and decrement to 4
+      // New user - initialize with 3 credits and decrement to 2
       // Try to get email from Firebase Auth for easier identification
       let email = null;
       try {
@@ -101,12 +101,12 @@ export async function decrementUserCredits(userId: string): Promise<number | nul
       }
       
       await userRef.set({
-        credits: 4,
+        credits: 2,
         email: email,
         createdAt: new Date(),
         lastUsed: new Date(),
       });
-      return 4;
+      return 2;
     }
     
     const currentCredits = userDoc.data()?.credits ?? 0;

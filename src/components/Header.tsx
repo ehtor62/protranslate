@@ -1,10 +1,11 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
-import { Languages, User, LogOut } from 'lucide-react';
+import { User, LogOut } from 'lucide-react';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { useAuth } from '@/contexts/AuthContext';
 import { auth } from '@/lib/firebase';
@@ -46,10 +47,20 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg">
       <div className="container flex h-16 items-start md:items-center justify-between pt-4 md:pt-0">
         <Link href={`/${locale}`} className="flex items-center gap-2 group">
-          <div className="p-1.5 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-            <Languages className="w-5 h-5 text-primary" />
+          <div className="relative w-8 h-8">
+            <Image
+              src="/logo.svg"
+              alt="Sentenly Logo"
+              width={32}
+              height={32}
+              className="w-full h-full"
+              priority
+            />
           </div>
-          <span className="font-semibold text-foreground">{t('appName')}</span>
+          <div className="flex flex-col">
+            <span className="font-semibold text-foreground">Sentenly</span>
+            
+          </div>
         </Link>
         
         <nav className="flex items-center gap-6 mt-8 md:mt-0">
