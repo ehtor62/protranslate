@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateMessageWithAI } from '@/lib/openai';
 import { ContextSettings } from '@/data/messages';
-import { verifyIdToken, decrementUserCredits, getUserCredits } from '@/lib/firebase-admin';
+import { verifyIdToken, decrementUserCredits, getUserCredits, checkAndAwardReferralCredits } from '@/lib/firebase-admin';
 
 // Simple in-memory rate limiter
 // For production, consider using Redis or a service like Upstash
@@ -89,6 +89,12 @@ export async function POST(request: NextRequest) {
         { status: 402 }
       );
     }
+
+    // Check and award referral credits if applicable
+    // This runs asynchronously and doesn't block the response
+    checkAndAwardReferralCredits(identifier).catch(error => {
+      console.error('Error checking referral credits:', error);
+    });
 
     const body = await request.json();
     const { messageType, messageDescription, context, locale = 'en', targetLanguage } = body;

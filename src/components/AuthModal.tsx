@@ -63,7 +63,31 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
 
     try {
       if (isSignUp) {
-        await createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        
+        // Check for stored referral code and track it
+        const referralCode = localStorage.getItem('referralCode');
+        if (referralCode) {
+          try {
+            const idToken = await userCredential.user.getIdToken();
+            const response = await fetch('/api/referral/track', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${idToken}`,
+              },
+              body: JSON.stringify({ referralCode }),
+            });
+            
+            if (response.ok) {
+              // Clear the referral code from storage
+              localStorage.removeItem('referralCode');
+            }
+          } catch (trackError) {
+            // Log error but don't block signup
+            console.error('Failed to track referral:', trackError);
+          }
+        }
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
@@ -83,7 +107,32 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
 
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
+      const userCredential = await signInWithPopup(auth, provider);
+      
+      // Check for stored referral code and track it
+      const referralCode = localStorage.getItem('referralCode');
+      if (referralCode) {
+        try {
+          const idToken = await userCredential.user.getIdToken();
+          const response = await fetch('/api/referral/track', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${idToken}`,
+            },
+            body: JSON.stringify({ referralCode }),
+          });
+          
+          if (response.ok) {
+            // Clear the referral code from storage
+            localStorage.removeItem('referralCode');
+          }
+        } catch (trackError) {
+          // Log error but don't block signup
+          console.error('Failed to track referral:', trackError);
+        }
+      }
+      
       onSuccess();
       onClose();
     } catch (err: any) {

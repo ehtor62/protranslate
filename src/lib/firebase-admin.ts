@@ -133,7 +133,7 @@ export async function decrementUserCredits(userId: string): Promise<number | nul
  * @param newUserId - The new user's ID
  * @param referralCode - The referral code used
  */
-export async function trackReferral(newUserId: string, referralCode: string): Promise<boolean> {
+export async function trackReferral(newUserId: string, referralCode: string): Promise<{ success: boolean; error?: string; referrerId?: string }> {
   try {
     // Find the referrer by referral code
     const referrerQuery = await adminDb.collection('users')
@@ -143,10 +143,15 @@ export async function trackReferral(newUserId: string, referralCode: string): Pr
 
     if (referrerQuery.empty) {
       console.warn('Referral code not found:', referralCode);
-      return false;
+      return { success: false, error: 'Invalid referral code' };
     }
 
     const referrerId = referrerQuery.docs[0].id;
+    
+    // Don't allow self-referral
+    if (referrerId === newUserId) {
+      return { success: false, error: 'Cannot use your own referral code' };
+    }
     
     // Create referral record
     await adminDb.collection('referrals').add({
@@ -164,10 +169,10 @@ export async function trackReferral(newUserId: string, referralCode: string): Pr
       referredByCode: referralCode
     });
 
-    return true;
+    return { success: true, referrerId };
   } catch (error) {
     console.error('Error tracking referral:', error);
-    return false;
+    return { success: false, error: 'Failed to track referral' };
   }
 }
 
