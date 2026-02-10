@@ -15,6 +15,8 @@ import { PricingModal } from '@/components/PricingModal';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { sendEmailVerification } from 'firebase/auth';
+import { auth } from '@/lib/firebase';
 import {
   Dialog,
   DialogContent,
@@ -30,7 +32,7 @@ import {
   mediumLabels,
   powerLabels 
 } from '@/data/messages';
-import { ArrowRight, Settings } from 'lucide-react';
+import { ArrowRight, Settings, Mail } from 'lucide-react';
 
 // Convert kebab-case to camelCase for translation keys
 const toCamelCase = (str: string) => {
@@ -52,7 +54,7 @@ export default function Translate() {
   const locale = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { user, loading } = useAuth();
+  const { user, loading, signInAnonymouslyWithState, isEmailVerified, checkEmailVerification } = useAuth();
   const mediumOptions = Object.keys(mediumLabels).map((value) => ({
     value,
     label: t(`medium.${value === 'in-person' ? 'inPerson' : value === 'written-notice' ? 'writtenNotice' : value}`)
@@ -75,6 +77,8 @@ export default function Translate() {
   const [targetLanguage, setTargetLanguage] = useState<string | null>(locale);
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
   const [credits, setCredits] = useState<number | null>(null);
+  const [resendingVerification, setResendingVerification] = useState(false);
+  const [checkingVerification, setCheckingVerification] = useState(false);
   const outputRef = useRef<HTMLDivElement>(null);
   
   const southAmericaSubregions = [
@@ -110,7 +114,19 @@ export default function Translate() {
     key: K,
     value: ContextSettings[K]
   ) => {
-    setContext(prev => ({ ...prev, [key]: value }));
+    const newContext = { ...context, [key]: value };
+    setContext(newContext);
+    
+    // Save draft settings to localStorage if user is not logged in
+    if (!user) {
+      localStorage.setItem('draftSettings', JSON.stringify({
+        context: newContext,
+        selectedMessageId,
+        customTitle,
+        customDescription,
+        targetLanguage
+      }));
+    }
   };
 
   const handleCulturalContextChange = (value: string) => {
@@ -143,54 +159,9 @@ export default function Translate() {
     } else if (africaSubregions.includes(value)) {
       setIsAfricaModalOpen(true);
     } else {
-      updateContext('culturalContext', value as ContextSettings['culturalContext']);
+	  updateContext('culturalContext', value as ContextSettings['culturalContext']);
     }
   };
-
-
-        {/* South America Subcategory Modal */}
-        <Dialog open={isSouthAmericaModalOpen} onOpenChange={setIsSouthAmericaModalOpen}>
-          <DialogContent className="sm:max-w-[400px]">
-            <DialogHeader>
-              <DialogTitle>{t('culturalContext.south-america')}</DialogTitle>
-              <DialogDescription>
-                Select a specific region
-              </DialogDescription>
-            </DialogHeader>
-            <div className="grid grid-cols-2 gap-3 py-4">
-              <button
-                onClick={(e) => { e.stopPropagation(); handleSouthAmericaSelection('central-america'); }}
-                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
-              >
-                {t('culturalContext.central-america')}
-              </button>
-              <button
-                onClick={(e) => { e.stopPropagation(); handleSouthAmericaSelection('colombia'); }}
-                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
-              >
-                {t('culturalContext.colombia')}
-              </button>
-              <button
-                onClick={(e) => { e.stopPropagation(); handleSouthAmericaSelection('peru'); }}
-                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
-              >
-                {t('culturalContext.peru')}
-              </button>
-              <button
-                onClick={(e) => { e.stopPropagation(); handleSouthAmericaSelection('argentina'); }}
-                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
-              >
-                {t('culturalContext.argentina')}
-              </button>
-              <button
-                onClick={(e) => { e.stopPropagation(); handleSouthAmericaSelection('brasil'); }}
-                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
-              >
-                {t('culturalContext.brasil')}
-              </button>
-            </div>
-          </DialogContent>
-        </Dialog>
 
   const handleNorthAmericaSelection = (subcategory: 'usa' | 'canada' | 'mexico') => {
     updateContext('culturalContext', subcategory);
@@ -237,6 +208,97 @@ export default function Translate() {
     setIsCustomInputOpen(false);
     setIsDialogOpen(true);
   };
+  
+  // Load draft settings from localStorage on mount
+  useEffect(() => {
+    if (!user) {
+      const savedDraft = localStorage.getItem('draftSettings');
+      if (savedDraft) {
+        try {
+          const draft = JSON.parse(savedDraft);
+          if (draft.context) setContext(draft.context);
+          if (draft.selectedMessageId) setSelectedMessageId(draft.selectedMessageId);
+          if (draft.customTitle) setCustomTitle(draft.customTitle);
+          if (draft.customDescription) setCustomDescription(draft.customDescription);
+          if (draft.targetLanguage) setTargetLanguage(draft.targetLanguage);
+        } catch (error) {
+          console.error('Error loading draft settings:', error);
+        }
+      }
+    }
+  }, [user]);
+  
+  // Save draft settings to localStorage when they change (for non-logged-in users)
+  useEffect(() => {
+    if (!user) {
+      localStorage.setItem('draftSettings', JSON.stringify({
+        context,
+        selectedMessageId,
+        customTitle,
+        customDescription,
+        targetLanguage
+      }));
+    }
+  }, [context, selectedMessageId, customTitle, customDescription, targetLanguage, user]);
+  
+  // Resend verification email
+  const handleResendVerification = async () => {
+    if (!auth.currentUser) return;
+    
+    setResendingVerification(true);
+    try {
+      await sendEmailVerification(auth.currentUser);
+      toast.success('Verification email sent! Check your inbox.');
+    } catch (error) {
+      console.error('Error sending verification email:', error);
+      toast.error('Failed to send verification email. Please try again later.');
+    } finally {
+      setResendingVerification(false);
+    }
+  };
+
+  // Check verification status manually
+  const handleCheckVerification = async () => {
+    setCheckingVerification(true);
+    try {
+      const verified = await checkEmailVerification();
+      if (verified) {
+        toast.success('Email verified! You can now use all features.');
+      } else {
+        toast.info('Email not verified yet. Please check your inbox.');
+      }
+    } catch (error) {
+      console.error('Error checking verification:', error);
+      toast.error('Failed to check verification status.');
+    } finally {
+      setCheckingVerification(false);
+    }
+  };
+
+  // Auto-poll verification status every 7 seconds
+  useEffect(() => {
+    if (user && !user.isAnonymous && !isEmailVerified) {
+      const pollInterval = setInterval(async () => {
+        await checkEmailVerification();
+      }, 7000);
+
+      return () => clearInterval(pollInterval);
+    }
+  }, [user, isEmailVerified, checkEmailVerification]);
+
+  // Check verification when tab regains focus
+  useEffect(() => {
+    if (user && !user.isAnonymous && !isEmailVerified) {
+      const handleVisibilityChange = () => {
+        if (!document.hidden) {
+          checkEmailVerification();
+        }
+      };
+
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+      return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+    }
+  }, [user, isEmailVerified, checkEmailVerification]);
   
   // Generate message when dialog closes with shouldGenerate flag
   useEffect(() => {
@@ -314,28 +376,29 @@ export default function Translate() {
         const result = await response.json();
         setTranslation(result);
         
-        // Update credits from response
-        if (typeof result.remainingCredits === 'number') {
-          setCredits(result.remainingCredits);
+        // Update credits after successful generation
+        if (user) {
+          const updatedToken = await user.getIdToken();
+          const creditsResponse = await fetch('/api/credits', {
+            headers: {
+              'Authorization': `Bearer ${updatedToken}`
+            }
+          });
+          if (creditsResponse.ok) {
+            const data = await creditsResponse.json();
+            setCredits(data.credits);
+          }
         }
       } catch (error) {
         console.error('Error generating translation:', error);
-        
-        // Handle network errors and unexpected exceptions
-        const errorMessage = t('errors.networkError');
-        
-        setTranslation({
-          wording: errorMessage,
-          explanation: '',
-          reception: ''
-        });
+        toast.error(t('errors.generationFailed'));
       } finally {
         setIsLoading(false);
       }
     };
 
     generateTranslation();
-  }, [selectedMessageId, context, isDialogOpen, shouldGenerate, customTitle, customDescription, locale]);
+  }, [selectedMessageId, isDialogOpen, shouldGenerate, context, customTitle, customDescription, user, locale, targetLanguage, t]);
   
   // Fetch user credits when user logs in
   useEffect(() => {
@@ -344,7 +407,6 @@ export default function Translate() {
         setCredits(null);
         return;
       }
-      
       try {
         const idToken = await user.getIdToken();
         const response = await fetch('/api/credits', {
@@ -352,7 +414,6 @@ export default function Translate() {
             'Authorization': `Bearer ${idToken}`
           }
         });
-        
         if (response.ok) {
           const data = await response.json();
           setCredits(data.credits);
@@ -361,7 +422,6 @@ export default function Translate() {
         console.error('Error fetching credits:', error);
       }
     };
-    
     fetchCredits();
   }, [user]);
   
@@ -381,6 +441,97 @@ export default function Translate() {
     <div className="min-h-screen bg-background">
       <Header />
       
+      {/* Email Verification Banner */}
+      {user && !user.isAnonymous && !isEmailVerified && (
+        <div className="bg-gradient-to-r from-orange-500/10 to-primary/10 border-b border-orange-500/20">
+          <div className="container py-4">
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <div className="flex items-center gap-3">
+                <div className="flex-shrink-0">
+                  <Mail className="w-5 h-5 text-orange-500" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-foreground">
+                    Please verify your email to run translations
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Check your inbox for a verification link
+                  </p>
+                </div>
+              </div>
+              <Button
+                onClick={handleResendVerification}
+                variant="outline"
+                size="sm"
+                disabled={resendingVerification}
+                className="flex-shrink-0"
+              >
+                {resendingVerification ? 'Sending...' : 'Resend Email'}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Email Verification Full-Screen Overlay */}
+      {user && !user.isAnonymous && !isEmailVerified && (
+        <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center">
+          <div className="max-w-md w-full mx-4 p-8 rounded-2xl bg-card border border-border shadow-2xl">
+            <div className="text-center space-y-6">
+              {/* Icon */}
+              <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                <Mail className="w-8 h-8 text-primary" />
+              </div>
+              {/* Title */}
+              <div className="space-y-2">
+                <h2 className="text-2xl font-bold text-foreground">
+                  Check Your Email
+                </h2>
+                <p className="text-sm text-muted-foreground">
+                  We've sent a verification link to <span className="font-medium text-foreground">{user.email}</span>
+                </p>
+              </div>
+              {/* Instructions */}
+              <div className="p-4 rounded-lg bg-muted/50 text-left space-y-2">
+                <p className="text-xs text-muted-foreground">
+                  <span className="font-medium text-foreground">1.</span> Open the email from us
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  <span className="font-medium text-foreground">2.</span> Click the verification link
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  <span className="font-medium text-foreground">3.</span> Come back here and click "I've verified"
+                </p>
+              </div>
+              {/* Action Buttons */}
+              <div className="space-y-3">
+                <Button
+                  onClick={handleCheckVerification}
+                  variant="orange"
+                  size="lg"
+                  disabled={checkingVerification}
+                  className="w-full"
+                >
+                  {checkingVerification ? 'Checking...' : "I've Verified My Email"}
+                </Button>
+                <Button
+                  onClick={handleResendVerification}
+                  variant="outline"
+                  size="sm"
+                  disabled={resendingVerification}
+                  className="w-full"
+                >
+                  {resendingVerification ? 'Sending...' : 'Resend Verification Email'}
+                </Button>
+              </div>
+              {/* Footer */}
+              <p className="text-xs text-muted-foreground">
+                Can't find the email? Check your spam folder
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
       <main className="container py-8 lg:py-12">
         <div className="mb-8">
           <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
@@ -607,17 +758,52 @@ export default function Translate() {
                   <Button 
                     variant="orange"
                     size="sm"
-                    onClick={() => {
+                    onClick={async () => {
+                      // If no user, try to sign in anonymously first (Option C workflow)
                       if (!user) {
+                        try {
+                          await signInAnonymouslyWithState();
+                          // After anonymous sign-in, show auth modal
+                          setIsDialogOpen(false);
+                          setIsAuthModalOpen(true);
+                        } catch (error: any) {
+                          console.error('Error signing in anonymously:', error);
+                          
+                          // If anonymous auth is not enabled, skip it and show auth modal directly
+                          if (error?.code === 'auth/admin-restricted-operation') {
+                            console.warn('Anonymous auth not enabled. Showing auth modal directly.');
+                            setIsDialogOpen(false);
+                            setIsAuthModalOpen(true);
+                          } else {
+                            toast.error('Failed to initialize session. Please try again.');
+                          }
+                        }
+                        return;
+                      }
+                      
+                      // If anonymous, show auth modal to link account
+                      if (user.isAnonymous) {
                         setIsDialogOpen(false);
                         setIsAuthModalOpen(true);
-                      } else if (credits === 0) {
+                        return;
+                      }
+                      
+                      // If email not verified, show banner (handled by UI below)
+                      if (!isEmailVerified) {
+                        toast.error('Please verify your email to generate translations.');
+                        return;
+                      }
+                      
+                      // Check credits
+                      if (credits === 0) {
                         setIsDialogOpen(false);
                         setIsPricingModalOpen(true);
-                      } else {
-                        setShouldGenerate(true);
-                        setIsDialogOpen(false);
+                        return;
                       }
+                      
+                      // All checks passed, generate translation
+                      setShouldGenerate(true);
+                      setIsDialogOpen(false);
                     }}
                   >
                     {t('translatePage.createPhrase')}
@@ -1171,5 +1357,4 @@ export default function Translate() {
         </Dialog>
       </main>
     </div>
-  );
-}
+  );}

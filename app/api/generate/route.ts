@@ -71,6 +71,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Check email verification status (skip for anonymous users during testing)
+    if (!decodedToken.email_verified && decodedToken.firebase?.sign_in_provider !== 'anonymous') {
+      return NextResponse.json(
+        { error: 'Email verification required. Please verify your email to use this feature.' },
+        { status: 403 }
+      );
+    }
+
     // Rate limiting check (now per authenticated user)
     const identifier = decodedToken.uid; // Use user ID instead of IP
     if (!rateLimit(identifier, 6, 60000)) { // 6 requests per minute

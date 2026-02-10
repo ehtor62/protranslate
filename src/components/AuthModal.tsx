@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail, sendEmailVerification } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
+import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -21,6 +22,7 @@ interface AuthModalProps {
 
 export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
   const t = useTranslations('auth');
+  const { user, linkAnonymousAccount } = useAuth();
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -63,36 +65,51 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
 
     try {
       if (isSignUp) {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        
-        // Check for stored referral code and track it
-        const referralCode = localStorage.getItem('referralCode');
-        if (referralCode) {
-          try {
-            const idToken = await userCredential.user.getIdToken();
-            const response = await fetch('/api/referral/track', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${idToken}`,
-              },
-              body: JSON.stringify({ referralCode }),
-            });
-            
-            if (response.ok) {
-              // Clear the referral code from storage
-              localStorage.removeItem('referralCode');
+        // Check if user is anonymous and link account
+        if (user?.isAnonymous) {
+          await linkAnonymousAccount(email, password);
+          // Close modal and show verification screen
+          onSuccess();
+          handleClose();
+        } else {
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          
+          // Send verification email
+          await sendEmailVerification(userCredential.user);
+          
+          // Check for stored referral code and track it
+          const referralCode = localStorage.getItem('referralCode');
+          if (referralCode) {
+            try {
+              const idToken = await userCredential.user.getIdToken();
+              const response = await fetch('/api/referral/track', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${idToken}`,
+                },
+                body: JSON.stringify({ referralCode }),
+              });
+              
+              if (response.ok) {
+                // Clear the referral code from storage
+                localStorage.removeItem('referralCode');
+              }
+            } catch (trackError) {
+              // Log error but don't block signup
+              console.error('Failed to track referral:', trackError);
             }
-          } catch (trackError) {
-            // Log error but don't block signup
-            console.error('Failed to track referral:', trackError);
           }
+          
+          // Close modal and show verification screen
+          onSuccess();
+          handleClose();
         }
       } else {
         await signInWithEmailAndPassword(auth, email, password);
+        onSuccess();
+        onClose();
       }
-      onSuccess();
-      onClose();
     } catch (err: any) {
       const errorCode = err.code || '';
       setError(getErrorMessage(errorCode));
@@ -134,7 +151,7 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
       }
       
       onSuccess();
-      onClose();
+      handleClose();
     } catch (err: any) {
       const errorCode = err.code || '';
       setError(getErrorMessage(errorCode));
@@ -225,21 +242,9 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
 
               {!isForgotPassword && (
                 <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <label htmlFor="password" className="text-sm font-medium text-foreground">
-                      {t('password') || 'Password'}
-                    </label>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setIsForgotPassword(true);
-                        setError('');
-                      }}
-                      className="text-sm text-primary hover:text-primary/80 transition-colors font-medium"
-                    >
-                      {t('forgotPassword') || 'Forgot password?'}
-                    </button>
-                  </div>
+                  <label htmlFor="password" className="text-sm font-medium text-foreground">
+                    {t('password') || 'Password'}
+                  </label>
                   <input
                     id="password"
                     type="password"
@@ -250,6 +255,16 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
                     className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder={t('passwordPlaceholder') || '••••••••'}
                   />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsForgotPassword(true);
+                      setError('');
+                    }}
+                    className="text-sm text-primary hover:text-primary/80 transition-colors font-medium"
+                  >
+                    {t('forgotPassword') || 'Forgot password?'}
+                  </button>
                 </div>
               )}
 

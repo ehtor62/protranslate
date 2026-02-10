@@ -1,28 +1,97 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from 'react';
-import { User, onAuthStateChanged } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
+import { User, onAuthStateChanged, signInAnonymously, EmailAuthProvider, linkWithCredential, sendEmailVerification } from 'firebase/auth';
+import { auth, db } from '@/lib/firebase';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 interface AuthContextType {
   user: User | null;
   loading: boolean;
+  signInAnonymouslyWithState: () => Promise<User>;
+  linkAnonymousAccount: (email: string, password: string) => Promise<void>;
+  isEmailVerified: boolean;
+  checkEmailVerification: () => Promise<boolean>;
 }
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
+  signInAnonymouslyWithState: async () => { throw new Error('Not implemented'); },
+  linkAnonymousAccount: async () => { throw new Error('Not implemented'); },
+  isEmailVerified: false,
+  checkEmailVerification: async () => false,
 });
 
 export const useAuth = () => useContext(AuthContext);
 
+// LocalStorage key for draft settings
+const DRAFT_SETTINGS_KEY = 'draftSettings';
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
+
+  // Sync local draft settings to Firestore
+  const syncDraftSettingsToFirestore = async (userId: string) => {
+    const draftSettings = localStorage.getItem(DRAFT_SETTINGS_KEY);
+    if (draftSettings) {
+      try {
+        const userDocRef = doc(db, 'users', userId);
+        await setDoc(userDocRef, {
+          draftSettings: JSON.parse(draftSettings),
+          updatedAt: new Date().toISOString()
+        }, { merge: true });
+        // Clear localStorage after successful sync
+        localStorage.removeItem(DRAFT_SETTINGS_KEY);
+      } catch (error) {
+        console.error('Error syncing draft settings to Firestore:', error);
+        // Keep settings in localStorage if Firestore fails
+        console.log('Draft settings kept in localStorage due to sync error');
+      }
+    }
+  };
+
+  // Sign in anonymously and migrate localStorage settings to Firestore
+  const signInAnonymouslyWithState = async (): Promise<User> => {
+    const userCredential = await signInAnonymously(auth);
+    // Attempt to sync but don't block on failure
+    syncDraftSettingsToFirestore(userCredential.user.uid).catch(err => {
+      console.warn('Failed to sync draft settings, will retry later:', err);
+    });
+    return userCredential.user;
+  };
+
+  // Link anonymous account with email/password
+  const linkAnonymousAccount = async (email: string, password: string) => {
+    if (!user || !user.isAnonymous) {
+      throw new Error('No anonymous user to link');
+    }
+    
+    const credential = EmailAuthProvider.credential(email, password);
+    await linkWithCredential(user, credential);
+    
+    // Send verification email
+    if (auth.currentUser) {
+      await sendEmailVerification(auth.currentUser);
+    }
+  };
+
+  // Manually check email verification status
+  const checkEmailVerification = async (): Promise<boolean> => {
+    if (!auth.currentUser) return false;
+    
+    await auth.currentUser.reload();
+    const verified = auth.currentUser.emailVerified;
+    setIsEmailVerified(verified);
+    return verified;
+  };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
+      setIsEmailVerified(user?.emailVerified || false);
       setLoading(false);
     });
 
@@ -30,7 +99,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loading }}>
+    <AuthContext.Provider value={{ user, loading, signInAnonymouslyWithState, linkAnonymousAccount, isEmailVerified, checkEmailVerification }}>
       {children}
     </AuthContext.Provider>
   );
