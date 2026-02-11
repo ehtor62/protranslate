@@ -92,6 +92,33 @@ Sign in through the UI, then the frontend automatically includes the Bearer toke
 - Wait 60 seconds and try again
 - Rate limit is per user (UID), not per IP
 
+## Email Verification Setup
+
+### Configure Action URL in Firebase Console
+Firebase email verification links need to redirect to your custom handler page:
+
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Select your project: `protranslate-89464`
+3. Go to **Authentication** → **Templates** 
+4. Click **Email address verification**
+5. Click the pencil icon to edit
+6. Set the **Action URL** to:
+   - **Local dev**: `http://localhost:3000/auth/action`
+   - **Production**: `https://your-domain.com/auth/action`
+7. Click **Save**
+
+**Note**: 
+- The middleware automatically handles locale routing (`/auth/action` → `/en/auth/action`)
+- The action handler is at `/app/[locale]/auth/action/page.tsx`
+- User's browser locale preference determines the language shown
+
+### Test Email Verification
+1. Sign up with a new email
+2. Check your email for verification link
+3. Click the link → should open `/auth/action` page
+4. Should show "Email verified successfully!" message
+5. Auto-redirects to `/translate` after 3 seconds
+
 ## Migration Notes
 
 **Breaking Change**: The API now requires authentication. 
