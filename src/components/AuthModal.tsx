@@ -74,6 +74,22 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
         } else {
           const userCredential = await createUserWithEmailAndPassword(auth, email, password);
           
+          // Initialize user document in Firestore
+          try {
+            const { doc, setDoc, getFirestore } = await import('firebase/firestore');
+            const db = getFirestore();
+            const userDocRef = doc(db, 'users', userCredential.user.uid);
+            await setDoc(userDocRef, {
+              credits: 5,
+              email: email,
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString()
+            });
+          } catch (firestoreError) {
+            console.error('Error initializing user document:', firestoreError);
+            // Don't block signup if Firestore fails
+          }
+          
           // Send verification email
           await sendEmailVerification(userCredential.user);
           
@@ -125,6 +141,35 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
     try {
       const provider = new GoogleAuthProvider();
       const userCredential = await signInWithPopup(auth, provider);
+      
+      // Initialize user document in Firestore (for new users)
+      try {
+        const { doc, setDoc, getDoc, getFirestore } = await import('firebase/firestore');
+        const db = getFirestore();
+        const userDocRef = doc(db, 'users', userCredential.user.uid);
+        const userDoc = await getDoc(userDocRef);
+        
+        if (!userDoc.exists()) {
+          // New user - initialize with all required fields
+          await setDoc(userDocRef, {
+            credits: 5,
+            email: userCredential.user.email,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+          });
+        } else {
+          // Ensure credits field exists for existing users
+          const data = userDoc.data();
+          if (data && typeof data.credits !== 'number') {
+            await setDoc(userDocRef, {
+              credits: 5
+            }, { merge: true });
+          }
+        }
+      } catch (firestoreError) {
+        console.error('Error initializing user document:', firestoreError);
+        // Don't block signin if Firestore fails
+      }
       
       // Check for stored referral code and track it
       const referralCode = localStorage.getItem('referralCode');

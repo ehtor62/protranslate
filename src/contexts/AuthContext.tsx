@@ -43,10 +43,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (draftSettings) {
       try {
         const userDocRef = doc(db, 'users', userId);
-        await setDoc(userDocRef, {
-          draftSettings: JSON.parse(draftSettings),
-          updatedAt: new Date().toISOString()
-        }, { merge: true });
+        
+        // Check if user document exists
+        const userDoc = await getDoc(userDocRef);
+        
+        if (!userDoc.exists()) {
+          // New user - initialize with all required fields
+          let email = null;
+          if (auth.currentUser) {
+            email = auth.currentUser.email;
+          }
+          
+          await setDoc(userDocRef, {
+            credits: 5,
+            email: email,
+            createdAt: new Date().toISOString(),
+            draftSettings: JSON.parse(draftSettings),
+            updatedAt: new Date().toISOString()
+          });
+        } else {
+          // Existing user - just update draft settings
+          await setDoc(userDocRef, {
+            draftSettings: JSON.parse(draftSettings),
+            updatedAt: new Date().toISOString()
+          }, { merge: true });
+        }
+        
         // Clear localStorage after successful sync
         localStorage.removeItem(DRAFT_SETTINGS_KEY);
       } catch (error) {
@@ -75,6 +97,38 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     
     const credential = EmailAuthProvider.credential(email, password);
     await linkWithCredential(user, credential);
+    
+    // Update Firestore with email and ensure all fields are present
+    try {
+      const userDocRef = doc(db, 'users', user.uid);
+      const userDoc = await getDoc(userDocRef);
+      
+      if (!userDoc.exists()) {
+        // Initialize user document with all required fields
+        await setDoc(userDocRef, {
+          credits: 5,
+          email: email,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        });
+      } else {
+        // Update existing document with email
+        await setDoc(userDocRef, {
+          email: email,
+          updatedAt: new Date().toISOString()
+        }, { merge: true });
+        
+        // Ensure credits field exists
+        const data = userDoc.data();
+        if (data && typeof data.credits !== 'number') {
+          await setDoc(userDocRef, {
+            credits: 5
+          }, { merge: true });
+        }
+      }
+    } catch (error) {
+      console.error('Error updating user document after linking:', error);
+    }
     
     // Send verification email
     if (auth.currentUser) {
