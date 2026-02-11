@@ -266,11 +266,25 @@ export default function Translate() {
         toast.success('Email verified! You can now use all features.');
         
         // Check for pending translation request
-        const pendingTranslation = localStorage.getItem('pendingTranslation');
-        if (pendingTranslation) {
-          localStorage.removeItem('pendingTranslation');
-          // Auto-execute the pending translation
-          setShouldGenerate(true);
+        const pendingData = localStorage.getItem('pendingTranslation');
+        if (pendingData) {
+          try {
+            const pending = JSON.parse(pendingData);
+            localStorage.removeItem('pendingTranslation');
+            
+            // Restore the saved state
+            if (pending.selectedMessageId) setSelectedMessageId(pending.selectedMessageId);
+            if (pending.customTitle) setCustomTitle(pending.customTitle);
+            if (pending.customDescription) setCustomDescription(pending.customDescription);
+            if (pending.context) setContext(pending.context);
+            if (pending.targetLanguage) setTargetLanguage(pending.targetLanguage);
+            
+            // Trigger generation (dialog is already closed)
+            setTimeout(() => setShouldGenerate(true), 100);
+            toast.success('Generating your translation...');
+          } catch (err) {
+            console.error('Error parsing pending translation:', err);
+          }
         }
       } else {
         toast.info('Email not verified yet. Please check your inbox.');
@@ -291,10 +305,25 @@ export default function Translate() {
         
         // If just verified, check for pending translation
         if (verified) {
-          const pendingTranslation = localStorage.getItem('pendingTranslation');
-          if (pendingTranslation) {
-            localStorage.removeItem('pendingTranslation');
-            setShouldGenerate(true);
+          const pendingData = localStorage.getItem('pendingTranslation');
+          if (pendingData) {
+            try {
+              const pending = JSON.parse(pendingData);
+              localStorage.removeItem('pendingTranslation');
+              
+              // Restore the saved state
+              if (pending.selectedMessageId) setSelectedMessageId(pending.selectedMessageId);
+              if (pending.customTitle) setCustomTitle(pending.customTitle);
+              if (pending.customDescription) setCustomDescription(pending.customDescription);
+              if (pending.context) setContext(pending.context);
+              if (pending.targetLanguage) setTargetLanguage(pending.targetLanguage);
+              
+              // Trigger generation
+              setTimeout(() => setShouldGenerate(true), 100);
+              toast.success('Email verified! Generating your translation...');
+            } catch (err) {
+              console.error('Error parsing pending translation:', err);
+            }
           }
         }
       }, 15000); // 15 seconds instead of 7
@@ -312,10 +341,25 @@ export default function Translate() {
           
           // If just verified, check for pending translation
           if (verified) {
-            const pendingTranslation = localStorage.getItem('pendingTranslation');
-            if (pendingTranslation) {
-              localStorage.removeItem('pendingTranslation');
-              setShouldGenerate(true);
+            const pendingData = localStorage.getItem('pendingTranslation');
+            if (pendingData) {
+              try {
+                const pending = JSON.parse(pendingData);
+                localStorage.removeItem('pendingTranslation');
+                
+                // Restore the saved state
+                if (pending.selectedMessageId) setSelectedMessageId(pending.selectedMessageId);
+                if (pending.customTitle) setCustomTitle(pending.customTitle);
+                if (pending.customDescription) setCustomDescription(pending.customDescription);
+                if (pending.context) setContext(pending.context);
+                if (pending.targetLanguage) setTargetLanguage(pending.targetLanguage);
+                
+                // Trigger generation
+                setTimeout(() => setShouldGenerate(true), 100);
+                toast.success('Email verified! Generating your translation...');
+              } catch (err) {
+                console.error('Error parsing pending translation:', err);
+              }
             }
           }
         }
@@ -330,11 +374,25 @@ export default function Translate() {
   useEffect(() => {
     const handleVerificationComplete = () => {
       // Check for pending translation and auto-execute
-      const pendingTranslation = localStorage.getItem('pendingTranslation');
-      if (pendingTranslation) {
-        localStorage.removeItem('pendingTranslation');
-        setShouldGenerate(true);
-        toast.success('Email verified! Generating your translation...');
+      const pendingData = localStorage.getItem('pendingTranslation');
+      if (pendingData) {
+        try {
+          const pending = JSON.parse(pendingData);
+          localStorage.removeItem('pendingTranslation');
+          
+          // Restore the saved state
+          if (pending.selectedMessageId) setSelectedMessageId(pending.selectedMessageId);
+          if (pending.customTitle) setCustomTitle(pending.customTitle);
+          if (pending.customDescription) setCustomDescription(pending.customDescription);
+          if (pending.context) setContext(pending.context);
+          if (pending.targetLanguage) setTargetLanguage(pending.targetLanguage);
+          
+          // Trigger generation
+          setTimeout(() => setShouldGenerate(true), 100);
+          toast.success('Email verified! Generating your translation...');
+        } catch (err) {
+          console.error('Error parsing pending translation:', err);
+        }
       }
     };
     
@@ -363,15 +421,22 @@ export default function Translate() {
           messageDescription = customDescription;
         } else {
           const selectedMessage = coreMessages.find(m => m.id === selectedMessageId);
-          if (!selectedMessage) return;
+          if (!selectedMessage) {
+            console.error('[Generate] No message found for ID:', selectedMessageId);
+            toast.error('Please select a message to translate.');
+            return;
+          }
           messageType = selectedMessage.title;
           messageDescription = selectedMessage.description;
         }
+
+        console.log('[Generate] Starting translation:', { messageType, locale: targetLanguage, user: user?.email });
 
         // Get Firebase auth token
         const idToken = user ? await user.getIdToken() : null;
         
         if (!idToken) {
+          console.error('[Generate] No auth token available');
           throw new Error('Authentication required');
         }
 
@@ -390,8 +455,11 @@ export default function Translate() {
           })
         });
 
+        console.log('[Generate] API response status:', response.status);
+
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({}));
+          console.error('[Generate] API error:', errorData);
           let errorMessage = t('errors.genericError');
           
           // Map API errors to localized messages
@@ -400,6 +468,8 @@ export default function Translate() {
           } else if (response.status === 402) {
             errorMessage = t('errors.insufficientCredits');
             setCredits(0); // Update credits display
+          } else if (response.status === 403) {
+            errorMessage = errorData.error || 'Email verification required';
           } else if (response.status === 400 && errorData.error?.includes('too long')) {
             errorMessage = t('errors.messageTooLong');
           } else if (response.status === 500) {
@@ -416,6 +486,7 @@ export default function Translate() {
         }
 
         const result = await response.json();
+        console.log('[Generate] Translation successful');
         setTranslation(result);
         
         // Update credits after successful generation
@@ -432,8 +503,14 @@ export default function Translate() {
           }
         }
       } catch (error) {
-        console.error('Error generating translation:', error);
+        console.error('[Generate] Unexpected error:', error);
         toast.error(t('errors.generationFailed'));
+        // Also show the error in the output
+        setTranslation({
+          wording: t('errors.generationFailed'),
+          explanation: error instanceof Error ? error.message : 'Unknown error',
+          reception: ''
+        });
       } finally {
         setIsLoading(false);
       }
@@ -832,8 +909,15 @@ export default function Translate() {
                       
                       // If email not verified, save pending action and show verification gate
                       if (!isEmailVerified) {
-                        // Save that user wants to generate a translation
-                        localStorage.setItem('pendingTranslation', 'true');
+                        // Save the full translation request for later execution
+                        localStorage.setItem('pendingTranslation', JSON.stringify({
+                          selectedMessageId,
+                          customTitle,
+                          customDescription,
+                          context,
+                          targetLanguage
+                        }));
+                        setIsDialogOpen(false);
                         toast.error('Please verify your email to generate translations.');
                         return;
                       }
