@@ -26,11 +26,15 @@ export function Header() {
   const locale = pathname.split('/')[1];
 
   const handleSignOut = async () => {
+    console.log('[Header] Sign out button clicked');
     try {
+      console.log('[Header] Calling signOutUser');
       await signOutUser();
+      console.log('[Header] signOutUser complete, redirecting to home');
       router.push(`/${locale}`);
     } catch (error) {
-      console.error('Sign out error:', error);
+      console.error('[Header] Sign out error:', error);
+      alert('Failed to sign out. Please try again.');
     }
   };
 

@@ -261,7 +261,7 @@ export default function Translate() {
   const handleCheckVerification = async () => {
     setCheckingVerification(true);
     try {
-      const verified = await checkEmailVerification();
+      const verified = await checkEmailVerification(true); // Force check, ignore throttle
       if (verified) {
         toast.success('Email verified! You can now use all features.');
         
@@ -283,7 +283,7 @@ export default function Translate() {
     }
   };
 
-  // Auto-poll verification status every 7 seconds
+  // Auto-poll verification status every 15 seconds (reduced from 7 to prevent quota issues)
   useEffect(() => {
     if (user && !user.isAnonymous && !isEmailVerified) {
       const pollInterval = setInterval(async () => {
@@ -297,7 +297,7 @@ export default function Translate() {
             setShouldGenerate(true);
           }
         }
-      }, 7000);
+      }, 15000); // 15 seconds instead of 7
 
       return () => clearInterval(pollInterval);
     }

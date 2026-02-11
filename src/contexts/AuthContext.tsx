@@ -11,7 +11,7 @@ interface AuthContextType {
   signInAnonymouslyWithState: () => Promise<User>;
   linkAnonymousAccount: (email: string, password: string) => Promise<void>;
   isEmailVerified: boolean;
-  checkEmailVerification: () => Promise<boolean>;
+  checkEmailVerification: (force?: boolean) => Promise<boolean>;
   signOutUser: () => Promise<void>;
 }
 
@@ -21,7 +21,7 @@ const AuthContext = createContext<AuthContextType>({
   signInAnonymouslyWithState: async () => { throw new Error('Not implemented'); },
   linkAnonymousAccount: async () => { throw new Error('Not implemented'); },
   isEmailVerified: false,
-  checkEmailVerification: async () => false,
+  checkEmailVerification: async (force?: boolean) => false,
   signOutUser: async () => { throw new Error('Not implemented'); },
 });
 
@@ -34,6 +34,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [isEmailVerified, setIsEmailVerified] = useState(false);
+  const [lastCheckTime, setLastCheckTime] = useState<number>(0);
+  const [isChecking, setIsChecking] = useState(false);
 
   // Sync local draft settings to Firestore
   const syncDraftSettingsToFirestore = async (userId: string) => {
@@ -82,12 +84,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // Sign out user and clear all data
   const signOutUser = async (): Promise<void> => {
+    console.log('[AuthContext] Sign out initiated');
     try {
       // Import signOut dynamically to avoid issues
       const { signOut } = await import('firebase/auth');
       
       // Clear ALL localStorage on sign-out (privacy/security)
       if (typeof window !== 'undefined') {
+        console.log('[AuthContext] Clearing localStorage');
         localStorage.removeItem('draftSettings');
         localStorage.removeItem('referralCode');
         localStorage.removeItem('email-verification-success');
@@ -95,47 +99,75 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
       
       // Sign out from Firebase
+      console.log('[AuthContext] Calling Firebase signOut');
       await signOut(auth);
+      console.log('[AuthContext] Firebase signOut complete');
       
       // Reset local state
       setUser(null);
       setIsEmailVerified(false);
+      console.log('[AuthContext] Sign out successful');
     } catch (error) {
-      console.error('Error signing out:', error);
+      console.error('[AuthContext] Error signing out:', error);
       throw error;
     }
   };
 
-  // Manually check email verification status
-  const checkEmailVerification = async (): Promise<boolean> => {
+  // Manually check email verification status (with throttling)
+  const checkEmailVerification = async (force: boolean = false): Promise<boolean> => {
     if (!auth.currentUser) return false;
     
-    await auth.currentUser.reload();
-    const verified = auth.currentUser.emailVerified;
-    setIsEmailVerified(verified);
-    
-    // Broadcast verification to all tabs
-    if (verified && typeof window !== 'undefined' && 'BroadcastChannel' in window) {
-      try {
-        const bc = new BroadcastChannel('auth-verification');
-        bc.postMessage({ type: 'email-verified', verified: true });
-        bc.close();
-      } catch (error) {
-        console.warn('BroadcastChannel not available:', error);
-      }
+    // Prevent simultaneous checks
+    if (isChecking && !force) {
+      console.log('[AuthContext] Check already in progress, skipping');
+      return isEmailVerified;
     }
     
-    return verified;
+    // Throttle: minimum 10 seconds between checks (unless forced)
+    const now = Date.now();
+    if (!force && now - lastCheckTime < 10000) {
+      console.log('[AuthContext] Throttling verification check (too soon)');
+      return isEmailVerified;
+    }
+    
+    setIsChecking(true);
+    setLastCheckTime(now);
+    
+    try {
+      await auth.currentUser.reload();
+      const verified = auth.currentUser.emailVerified;
+      setIsEmailVerified(verified);
+      
+      // Broadcast verification to all tabs
+      if (verified && typeof window !== 'undefined' && 'BroadcastChannel' in window) {
+        try {
+          const bc = new BroadcastChannel('auth-verification');
+          bc.postMessage({ type: 'email-verified', verified: true });
+          bc.close();
+        } catch (error) {
+          console.warn('BroadcastChannel not available:', error);
+        }
+      }
+      
+      return verified;
+    } finally {
+      setIsChecking(false);
+    }
   };
 
   useEffect(() => {
+    console.log('[AuthContext] Setting up auth state listener');
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      console.log('[AuthContext] Auth state changed:', user ? `User: ${user.email || user.uid}` : 'No user');
       setUser(user);
       setIsEmailVerified(user?.emailVerified || false);
       setLoading(false);
     });
 
-    return unsubscribe;
+    return () => {
+      console.log('[AuthContext] Cleaning up auth state listener');
+      unsubscribe();
+    };
   }, []);
 
   // Multi-tab sync: Listen for verification events from other tabs
@@ -150,10 +182,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         bc = new BroadcastChannel('auth-verification');
         bc.onmessage = async (event) => {
           if (event.data?.type === 'email-verified' && event.data?.verified) {
-            const verified = await checkEmailVerification();
+            console.log('[AuthContext] Received verification from another tab');
+            // Just update state without reloading (other tab already confirmed)
+            setIsEmailVerified(true);
             
             // Notify the app about pending translation via custom event
-            if (verified && typeof window !== 'undefined') {
+            if (typeof window !== 'undefined') {
               const pendingEvent = new CustomEvent('verification-complete');
               window.dispatchEvent(pendingEvent);
             }
@@ -167,11 +201,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Fallback: localStorage events for older browsers
     const handleStorageChange = async (e: StorageEvent) => {
       if (e.key === 'email-verification-success' && e.newValue === 'true') {
-        const verified = await checkEmailVerification();
+        console.log('[AuthContext] Received verification via localStorage');
+        setIsEmailVerified(true);
         localStorage.removeItem('email-verification-success'); // Clean up
         
         // Notify the app about pending translation via custom event
-        if (verified && typeof window !== 'undefined') {
+        if (typeof window !== 'undefined') {
           const pendingEvent = new CustomEvent('verification-complete');
           window.dispatchEvent(pendingEvent);
         }
