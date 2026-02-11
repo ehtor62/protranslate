@@ -264,6 +264,14 @@ export default function Translate() {
       const verified = await checkEmailVerification();
       if (verified) {
         toast.success('Email verified! You can now use all features.');
+        
+        // Check for pending translation request
+        const pendingTranslation = localStorage.getItem('pendingTranslation');
+        if (pendingTranslation) {
+          localStorage.removeItem('pendingTranslation');
+          // Auto-execute the pending translation
+          setShouldGenerate(true);
+        }
       } else {
         toast.info('Email not verified yet. Please check your inbox.');
       }
@@ -279,7 +287,16 @@ export default function Translate() {
   useEffect(() => {
     if (user && !user.isAnonymous && !isEmailVerified) {
       const pollInterval = setInterval(async () => {
-        await checkEmailVerification();
+        const verified = await checkEmailVerification();
+        
+        // If just verified, check for pending translation
+        if (verified) {
+          const pendingTranslation = localStorage.getItem('pendingTranslation');
+          if (pendingTranslation) {
+            localStorage.removeItem('pendingTranslation');
+            setShouldGenerate(true);
+          }
+        }
       }, 7000);
 
       return () => clearInterval(pollInterval);
@@ -289,9 +306,18 @@ export default function Translate() {
   // Check verification when tab regains focus
   useEffect(() => {
     if (user && !user.isAnonymous && !isEmailVerified) {
-      const handleVisibilityChange = () => {
+      const handleVisibilityChange = async () => {
         if (!document.hidden) {
-          checkEmailVerification();
+          const verified = await checkEmailVerification();
+          
+          // If just verified, check for pending translation
+          if (verified) {
+            const pendingTranslation = localStorage.getItem('pendingTranslation');
+            if (pendingTranslation) {
+              localStorage.removeItem('pendingTranslation');
+              setShouldGenerate(true);
+            }
+          }
         }
       };
 
@@ -299,6 +325,22 @@ export default function Translate() {
       return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
     }
   }, [user, isEmailVerified, checkEmailVerification]);
+  
+  // Listen for verification events from other tabs (via BroadcastChannel)
+  useEffect(() => {
+    const handleVerificationComplete = () => {
+      // Check for pending translation and auto-execute
+      const pendingTranslation = localStorage.getItem('pendingTranslation');
+      if (pendingTranslation) {
+        localStorage.removeItem('pendingTranslation');
+        setShouldGenerate(true);
+        toast.success('Email verified! Generating your translation...');
+      }
+    };
+    
+    window.addEventListener('verification-complete', handleVerificationComplete);
+    return () => window.removeEventListener('verification-complete', handleVerificationComplete);
+  }, []);
   
   // Generate message when dialog closes with shouldGenerate flag
   useEffect(() => {
@@ -788,8 +830,10 @@ export default function Translate() {
                         return;
                       }
                       
-                      // If email not verified, show banner (handled by UI below)
+                      // If email not verified, save pending action and show verification gate
                       if (!isEmailVerified) {
+                        // Save that user wants to generate a translation
+                        localStorage.setItem('pendingTranslation', 'true');
                         toast.error('Please verify your email to generate translations.');
                         return;
                       }

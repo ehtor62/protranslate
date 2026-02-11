@@ -80,17 +80,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  // Sign out user and clear all local state
+  // Sign out user and clear all data
   const signOutUser = async (): Promise<void> => {
     try {
       // Import signOut dynamically to avoid issues
       const { signOut } = await import('firebase/auth');
       
-      // Clear localStorage
+      // Clear ALL localStorage on sign-out (privacy/security)
       if (typeof window !== 'undefined') {
         localStorage.removeItem('draftSettings');
         localStorage.removeItem('referralCode');
         localStorage.removeItem('email-verification-success');
+        localStorage.removeItem('pendingTranslation');
       }
       
       // Sign out from Firebase
@@ -147,9 +148,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if ('BroadcastChannel' in window) {
       try {
         bc = new BroadcastChannel('auth-verification');
-        bc.onmessage = (event) => {
+        bc.onmessage = async (event) => {
           if (event.data?.type === 'email-verified' && event.data?.verified) {
-            checkEmailVerification();
+            const verified = await checkEmailVerification();
+            
+            // Notify the app about pending translation via custom event
+            if (verified && typeof window !== 'undefined') {
+              const pendingEvent = new CustomEvent('verification-complete');
+              window.dispatchEvent(pendingEvent);
+            }
           }
         };
       } catch (error) {
@@ -158,10 +165,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
     
     // Fallback: localStorage events for older browsers
-    const handleStorageChange = (e: StorageEvent) => {
+    const handleStorageChange = async (e: StorageEvent) => {
       if (e.key === 'email-verification-success' && e.newValue === 'true') {
-        checkEmailVerification();
+        const verified = await checkEmailVerification();
         localStorage.removeItem('email-verification-success'); // Clean up
+        
+        // Notify the app about pending translation via custom event
+        if (verified && typeof window !== 'undefined') {
+          const pendingEvent = new CustomEvent('verification-complete');
+          window.dispatchEvent(pendingEvent);
+        }
       }
     };
     
