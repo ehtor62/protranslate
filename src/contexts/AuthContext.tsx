@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from 'react';
-import { User, onAuthStateChanged, signInAnonymously, EmailAuthProvider, linkWithCredential, sendEmailVerification } from 'firebase/auth';
+import { User, onAuthStateChanged, signInAnonymously, EmailAuthProvider, linkWithCredential, sendEmailVerification, signOut } from 'firebase/auth';
 import { auth, db } from '@/lib/firebase';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 
@@ -86,9 +86,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signOutUser = async (): Promise<void> => {
     console.log('[AuthContext] Sign out initiated');
     try {
-      // Import signOut dynamically to avoid issues
-      const { signOut } = await import('firebase/auth');
-      
       // Clear ALL localStorage on sign-out (privacy/security)
       if (typeof window !== 'undefined') {
         console.log('[AuthContext] Clearing localStorage');
