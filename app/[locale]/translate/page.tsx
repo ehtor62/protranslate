@@ -373,13 +373,16 @@ export default function Translate() {
   // Listen for verification events from other tabs (via BroadcastChannel)
   useEffect(() => {
     const handleVerificationComplete = () => {
+      console.log('[Translate] Verification complete event received');
       // Check for pending translation and auto-execute
       const pendingData = localStorage.getItem('pendingTranslation');
+      console.log('[Translate] Pending translation data:', pendingData);
       if (pendingData) {
         try {
           const pending = JSON.parse(pendingData);
           localStorage.removeItem('pendingTranslation');
           
+          console.log('[Translate] Restoring pending translation:', pending);
           // Restore the saved state
           if (pending.selectedMessageId) setSelectedMessageId(pending.selectedMessageId);
           if (pending.customTitle) setCustomTitle(pending.customTitle);
@@ -388,11 +391,17 @@ export default function Translate() {
           if (pending.targetLanguage) setTargetLanguage(pending.targetLanguage);
           
           // Trigger generation
-          setTimeout(() => setShouldGenerate(true), 100);
+          console.log('[Translate] Triggering auto-generation after verification');
+          setTimeout(() => {
+            console.log('[Translate] Executing setShouldGenerate(true)');
+            setShouldGenerate(true);
+          }, 500);
           toast.success('Email verified! Generating your translation...');
         } catch (err) {
           console.error('Error parsing pending translation:', err);
         }
+      } else {
+        console.log('[Translate] No pending translation found');
       }
     };
     

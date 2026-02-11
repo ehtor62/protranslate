@@ -131,8 +131,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setLastCheckTime(now);
     
     try {
+      console.log('[AuthContext] Reloading user to check verification');
       await auth.currentUser.reload();
       const verified = auth.currentUser.emailVerified;
+      console.log('[AuthContext] Verification status:', verified);
+      
+      // If just verified, force refresh the ID token
+      if (verified && !isEmailVerified) {
+        console.log('[AuthContext] Email just verified! Force refreshing token...');
+        await auth.currentUser.getIdToken(true); // Force refresh token
+        console.log('[AuthContext] Token refreshed');
+      }
+      
       setIsEmailVerified(verified);
       
       // Broadcast verification to all tabs
@@ -180,7 +190,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         bc.onmessage = async (event) => {
           if (event.data?.type === 'email-verified' && event.data?.verified) {
             console.log('[AuthContext] Received verification from another tab');
-            // Just update state without reloading (other tab already confirmed)
+            
+            // Force refresh the token in this tab too
+            if (auth.currentUser) {
+              console.log('[AuthContext] Force refreshing token in this tab...');
+              await auth.currentUser.reload();
+              await auth.currentUser.getIdToken(true); // Force refresh
+              console.log('[AuthContext] Token refreshed in this tab');
+            }
+            
+            // Update state
             setIsEmailVerified(true);
             
             // Notify the app about pending translation via custom event
@@ -199,6 +218,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const handleStorageChange = async (e: StorageEvent) => {
       if (e.key === 'email-verification-success' && e.newValue === 'true') {
         console.log('[AuthContext] Received verification via localStorage');
+        
+        // Force refresh the token
+        if (auth.currentUser) {
+          await auth.currentUser.reload();
+          await auth.currentUser.getIdToken(true);
+        }
+        
         setIsEmailVerified(true);
         localStorage.removeItem('email-verification-success'); // Clean up
         
