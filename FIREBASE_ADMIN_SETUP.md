@@ -103,14 +103,15 @@ Firebase email verification links need to redirect to your custom handler page:
 4. Click **Email address verification**
 5. Click the pencil icon to edit
 6. Set the **Action URL** to:
+   - **Production**: `https://protranslate-ten.vercel.app/auth/action`
    - **Local dev**: `http://localhost:3000/auth/action`
-   - **Production**: `https://your-domain.com/auth/action`
 7. Click **Save**
 
-**Note**: 
+**Important**: 
+- DO NOT use the default Firebase Hosting URL with `/__/` in the path
+- Use your actual Vercel domain: `https://protranslate-ten.vercel.app/auth/action`
 - The proxy (i18n middleware) automatically handles locale routing (`/auth/action` → `/en/auth/action`)
-- The action handler is at `/app/[locale]/auth/action/page.tsx`
-- User's browser locale preference determines the language shown
+- A fallback redirect handler exists at `/app/[locale]/__/auth/action/page.tsx` for legacy links
 
 ### Test Email Verification
 1. Sign up with a new email

@@ -36,6 +36,26 @@ export default function AuthAction() {
             setStatus('success');
             setMessage('Email verified successfully! You can now use all features.');
             
+            // Notify all tabs instantly via BroadcastChannel
+            if (typeof window !== 'undefined' && 'BroadcastChannel' in window) {
+              try {
+                const bc = new BroadcastChannel('auth-verification');
+                bc.postMessage({ type: 'email-verified', verified: true });
+                bc.close();
+              } catch (error) {
+                console.warn('BroadcastChannel not available:', error);
+              }
+            }
+            
+            // Fallback: localStorage event for older browsers
+            try {
+              localStorage.setItem('email-verification-success', 'true');
+              // Clear it after a short delay
+              setTimeout(() => localStorage.removeItem('email-verification-success'), 1000);
+            } catch (error) {
+              console.warn('localStorage not available:', error);
+            }
+            
             // Redirect to translate page after 3 seconds
             setTimeout(() => {
               router.push('/translate');

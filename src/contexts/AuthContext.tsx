@@ -85,6 +85,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     await auth.currentUser.reload();
     const verified = auth.currentUser.emailVerified;
     setIsEmailVerified(verified);
+    
+    // Broadcast verification to all tabs
+    if (verified && typeof window !== 'undefined' && 'BroadcastChannel' in window) {
+      try {
+        const bc = new BroadcastChannel('auth-verification');
+        bc.postMessage({ type: 'email-verified', verified: true });
+        bc.close();
+      } catch (error) {
+        console.warn('BroadcastChannel not available:', error);
+      }
+    }
+    
     return verified;
   };
 
@@ -96,6 +108,42 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     });
 
     return unsubscribe;
+  }, []);
+
+  // Multi-tab sync: Listen for verification events from other tabs
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    let bc: BroadcastChannel | null = null;
+    
+    // Try BroadcastChannel (modern approach)
+    if ('BroadcastChannel' in window) {
+      try {
+        bc = new BroadcastChannel('auth-verification');
+        bc.onmessage = (event) => {
+          if (event.data?.type === 'email-verified' && event.data?.verified) {
+            checkEmailVerification();
+          }
+        };
+      } catch (error) {
+        console.warn('BroadcastChannel not available:', error);
+      }
+    }
+    
+    // Fallback: localStorage events for older browsers
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'email-verification-success' && e.newValue === 'true') {
+        checkEmailVerification();
+        localStorage.removeItem('email-verification-success'); // Clean up
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    
+    return () => {
+      bc?.close();
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
 
   return (
