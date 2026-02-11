@@ -12,6 +12,7 @@ interface AuthContextType {
   linkAnonymousAccount: (email: string, password: string) => Promise<void>;
   isEmailVerified: boolean;
   checkEmailVerification: () => Promise<boolean>;
+  signOutUser: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -21,6 +22,7 @@ const AuthContext = createContext<AuthContextType>({
   linkAnonymousAccount: async () => { throw new Error('Not implemented'); },
   isEmailVerified: false,
   checkEmailVerification: async () => false,
+  signOutUser: async () => { throw new Error('Not implemented'); },
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -75,6 +77,31 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Send verification email
     if (auth.currentUser) {
       await sendEmailVerification(auth.currentUser);
+    }
+  };
+
+  // Sign out user and clear all local state
+  const signOutUser = async (): Promise<void> => {
+    try {
+      // Import signOut dynamically to avoid issues
+      const { signOut } = await import('firebase/auth');
+      
+      // Clear localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('draftSettings');
+        localStorage.removeItem('referralCode');
+        localStorage.removeItem('email-verification-success');
+      }
+      
+      // Sign out from Firebase
+      await signOut(auth);
+      
+      // Reset local state
+      setUser(null);
+      setIsEmailVerified(false);
+    } catch (error) {
+      console.error('Error signing out:', error);
+      throw error;
     }
   };
 
@@ -147,7 +174,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loading, signInAnonymouslyWithState, linkAnonymousAccount, isEmailVerified, checkEmailVerification }}>
+    <AuthContext.Provider value={{ user, loading, signInAnonymouslyWithState, linkAnonymousAccount, isEmailVerified, checkEmailVerification, signOutUser }}>
       {children}
     </AuthContext.Provider>
   );

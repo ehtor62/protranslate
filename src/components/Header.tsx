@@ -8,8 +8,6 @@ import { cn } from '@/lib/utils';
 import { User, LogOut } from 'lucide-react';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { useAuth } from '@/contexts/AuthContext';
-import { auth } from '@/lib/firebase';
-import { signOut } from 'firebase/auth';
 import { Button } from './ui/button';
 import {
   DropdownMenu,
@@ -22,14 +20,14 @@ export function Header() {
   const pathname = usePathname();
   const router = useRouter();
   const t = useTranslations('common');
-  const { user } = useAuth();
+  const { user, signOutUser } = useAuth();
   
   // Extract locale from pathname
   const locale = pathname.split('/')[1];
 
   const handleSignOut = async () => {
     try {
-      await signOut(auth);
+      await signOutUser();
       router.push(`/${locale}`);
     } catch (error) {
       console.error('Sign out error:', error);
