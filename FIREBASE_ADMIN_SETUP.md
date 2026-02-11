@@ -108,7 +108,7 @@ Firebase email verification links need to redirect to your custom handler page:
 7. Click **Save**
 
 **Note**: 
-- The middleware automatically handles locale routing (`/auth/action` → `/en/auth/action`)
+- The proxy (i18n middleware) automatically handles locale routing (`/auth/action` → `/en/auth/action`)
 - The action handler is at `/app/[locale]/auth/action/page.tsx`
 - User's browser locale preference determines the language shown
 
