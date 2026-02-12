@@ -36,12 +36,24 @@ export default function AuthAction() {
             setStatus('success');
             setMessage('Email verified successfully! You can now use all features.');
             
+            // Force reload auth state to ensure token is fresh
+            if (auth.currentUser) {
+              await auth.currentUser.reload();
+              await auth.currentUser.getIdToken(true); // Force token refresh
+            }
+            
             // Notify all tabs instantly via BroadcastChannel
             if (typeof window !== 'undefined' && 'BroadcastChannel' in window) {
               try {
                 const bc = new BroadcastChannel('auth-verification');
-                bc.postMessage({ type: 'email-verified', verified: true });
+                bc.postMessage({ 
+                  type: 'email-verified', 
+                  verified: true, 
+                  timestamp: Date.now(),
+                  source: 'verification-page' // Mark the source
+                });
                 bc.close();
+                console.log('[AuthAction] ✅ Sent verification message via BroadcastChannel');
               } catch (error) {
                 console.warn('BroadcastChannel not available:', error);
               }
@@ -49,17 +61,16 @@ export default function AuthAction() {
             
             // Fallback: localStorage event for older browsers
             try {
-              localStorage.setItem('email-verification-success', 'true');
-              // Clear it after a short delay
-              setTimeout(() => localStorage.removeItem('email-verification-success'), 1000);
+              localStorage.setItem('email-verification-success', Date.now().toString());
+              console.log('[AuthAction] Set verification flag in localStorage');
             } catch (error) {
               console.warn('localStorage not available:', error);
             }
             
-            // Redirect to translate page after 3 seconds
+            // Redirect to translate page after 2 seconds (reduced from 3)
             setTimeout(() => {
               router.push('/translate');
-            }, 3000);
+            }, 2000);
             break;
 
           case 'resetPassword':
