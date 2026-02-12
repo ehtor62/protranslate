@@ -81,6 +81,24 @@ export default function Translate() {
   const [checkingVerification, setCheckingVerification] = useState(false);
   const outputRef = useRef<HTMLDivElement>(null);
   
+  // Debug: Monitor localStorage changes to pendingTranslation
+  useEffect(() => {
+    const checkPending = () => {
+      const pending = localStorage.getItem('pendingTranslation');
+      if (pending) {
+        console.log('[Translate] 📦 pendingTranslation exists in localStorage:', pending);
+      }
+    };
+    
+    // Check immediately
+    checkPending();
+    
+    // Check every 2 seconds for debugging
+    const interval = setInterval(checkPending, 2000);
+    
+    return () => clearInterval(interval);
+  }, []);
+  
   const southAmericaSubregions = [
     'central-america', 'colombia', 'peru', 'argentina', 'brasil'
   ];
@@ -981,6 +999,11 @@ export default function Translate() {
                         console.log('[Translate] 🔍 Verification - stored data exists:', !!verifyStored);
                         
                         setIsDialogOpen(false);
+                        
+                        // DON'T clear the selected message - keep it so UI shows what they selected
+                        // The verification overlay will appear, and after verification, 
+                        // the pending translation will auto-execute without requiring re-selection
+                        
                         toast.info('Please verify your email first. Your translation will run automatically after verification.', {
                           duration: 5000,
                         });
