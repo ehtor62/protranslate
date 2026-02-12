@@ -929,8 +929,22 @@ export default function Translate() {
           isOpen={isAuthModalOpen} 
           onClose={() => setIsAuthModalOpen(false)}
           onSuccess={() => {
-            // After successful auth, directly trigger generation without opening context dialog
-            setShouldGenerate(true);
+            // After successful auth (signup), check if email is verified
+            // If not, the pending translation is already saved - just wait for verification
+            // If verified (e.g. Google sign-in), trigger generation
+            console.log('[Translate] Auth successful, checking verification status...');
+            
+            // Don't trigger immediately - wait a tick for auth state to update
+            setTimeout(() => {
+              if (isEmailVerified) {
+                console.log('[Translate] Email already verified, triggering generation');
+                setShouldGenerate(true);
+              } else {
+                console.log('[Translate] Email not verified, waiting for verification...');
+                // Pending translation already saved when user clicked "Create Phrase"
+                // Just show the verification overlay - it's already visible
+              }
+            }, 100);
           }}
         />
 
