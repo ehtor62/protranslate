@@ -965,6 +965,18 @@ export default function Translate() {
                     variant="orange"
                     size="sm"
                     onClick={async () => {
+                      // FIRST: Save pending translation before any auth checks
+                      // This ensures it's available after verification
+                      const pendingData = {
+                        selectedMessageId,
+                        customTitle,
+                        customDescription,
+                        context,
+                        targetLanguage
+                      };
+                      localStorage.setItem('pendingTranslation', JSON.stringify(pendingData));
+                      console.log('[Translate] 💾 Pre-saved pending translation before auth checks:', pendingData);
+                      
                       // If no user, try to sign in anonymously first (Option C workflow)
                       if (!user) {
                         try {
@@ -994,19 +1006,9 @@ export default function Translate() {
                         return;
                       }
                       
-                      // If email not verified, save pending action and show verification gate
+                      // If email not verified, pending action already saved above, just close dialog
                       if (!isEmailVerified) {
-                        console.log('[Translate] 💾 Email not verified, saving pending translation...');
-                        // Save the full translation request for later execution
-                        const pendingData = {
-                          selectedMessageId,
-                          customTitle,
-                          customDescription,
-                          context,
-                          targetLanguage
-                        };
-                        localStorage.setItem('pendingTranslation', JSON.stringify(pendingData));
-                        console.log('[Translate] ✅ Saved pending translation to localStorage:', pendingData);
+                        console.log('[Translate] 💾 Email not verified (pending already saved), showing verification gate...');
                         
                         // Verify it was saved
                         const verifyStored = localStorage.getItem('pendingTranslation');
