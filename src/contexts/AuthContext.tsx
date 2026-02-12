@@ -265,8 +265,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 await auth.currentUser.getIdToken(true); // Force refresh
                 console.log('[AuthContext] ✅ Token refreshed, emailVerified:', auth.currentUser.emailVerified);
                 
-                // Update user object in state to trigger re-renders
-                setUser({...auth.currentUser});
+                // Update user object in state to trigger re-renders (pass reference, don't spread)
+                setUser(auth.currentUser);
               } catch (error) {
                 console.error('[AuthContext] Error refreshing token:', error);
               }
@@ -302,8 +302,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             await auth.currentUser.getIdToken(true);
             console.log('[AuthContext] ✅ Token refreshed, emailVerified:', auth.currentUser.emailVerified);
             
-            // Update user object in state
-            setUser({...auth.currentUser});
+            // Update user object in state (pass reference, don't spread)
+            setUser(auth.currentUser);
           } catch (error) {
             console.error('[AuthContext] Error refreshing token:', error);
           }

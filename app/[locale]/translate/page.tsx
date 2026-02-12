@@ -380,17 +380,26 @@ export default function Translate() {
   
   // Listen for verification events from other tabs (via BroadcastChannel)
   useEffect(() => {
+    let isProcessing = false; // Guard against duplicate events
+    
     const handleVerificationComplete = async () => {
+      if (isProcessing) {
+        console.log('[Translate] ⚠️ Already processing verification, skipping duplicate event');
+        return;
+      }
+      
+      isProcessing = true;
       console.log('[Translate] 🚀 Verification complete event received!');
       
       // CRITICAL: Wait for token to fully refresh before proceeding
-      if (user) {
+      // Use auth.currentUser directly (not state variable) to ensure we have the Firebase User object with methods
+      if (auth.currentUser) {
         console.log('[Translate] ⏳ Waiting for token refresh...');
         try {
           await new Promise(resolve => setTimeout(resolve, 1500)); // Wait 1.5 seconds
-          await user.reload();
-          const freshToken = await user.getIdToken(true); // Force fresh token
-          console.log('[Translate] ✅ Fresh token obtained, emailVerified:', user.emailVerified);
+          await auth.currentUser.reload();
+          const freshToken = await auth.currentUser.getIdToken(true); // Force fresh token
+          console.log('[Translate] ✅ Fresh token obtained, emailVerified:', auth.currentUser.emailVerified);
         } catch (error) {
           console.error('[Translate] ❌ Error refreshing token:', error);
         }
@@ -955,6 +964,7 @@ export default function Translate() {
                       
                       // If email not verified, save pending action and show verification gate
                       if (!isEmailVerified) {
+                        console.log('[Translate] 💾 Email not verified, saving pending translation...');
                         // Save the full translation request for later execution
                         const pendingData = {
                           selectedMessageId,
@@ -964,13 +974,20 @@ export default function Translate() {
                           targetLanguage
                         };
                         localStorage.setItem('pendingTranslation', JSON.stringify(pendingData));
-                        console.log('[Translate] 💾 Saved pending translation:', pendingData);
+                        console.log('[Translate] ✅ Saved pending translation to localStorage:', pendingData);
+                        
+                        // Verify it was saved
+                        const verifyStored = localStorage.getItem('pendingTranslation');
+                        console.log('[Translate] 🔍 Verification - stored data exists:', !!verifyStored);
+                        
                         setIsDialogOpen(false);
                         toast.info('Please verify your email first. Your translation will run automatically after verification.', {
                           duration: 5000,
                         });
                         return;
                       }
+                      
+                      console.log('[Translate] ✅ Email already verified, proceeding with generation...');
                       
                       // Check credits
                       if (credits === 0) {
