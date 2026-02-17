@@ -79,6 +79,7 @@ export default function Translate() {
   const [credits, setCredits] = useState<number | null>(null);
   const [resendingVerification, setResendingVerification] = useState(false);
   const [checkingVerification, setCheckingVerification] = useState(false);
+  const [lastResendTime, setLastResendTime] = useState<number>(0);
   const outputRef = useRef<HTMLDivElement>(null);
   
   const southAmericaSubregions = [
@@ -245,6 +246,17 @@ export default function Translate() {
   const handleResendVerification = async () => {
     if (!auth.currentUser) return;
     
+    // Rate limiting: 60 seconds between resends
+    const now = Date.now();
+    const timeSinceLastResend = now - lastResendTime;
+    const minInterval = 60000; // 60 seconds
+    
+    if (timeSinceLastResend < minInterval) {
+      const remainingSeconds = Math.ceil((minInterval - timeSinceLastResend) / 1000);
+      toast.error(`Please wait ${remainingSeconds} seconds before resending.`);
+      return;
+    }
+    
     setResendingVerification(true);
     try {
       console.log('[Translate] 📧 TEST: Sending verification email WITHOUT actionCodeSettings...');
@@ -252,6 +264,7 @@ export default function Translate() {
       await sendEmailVerification(auth.currentUser);
       console.log('[Translate] ✅ sendEmailVerification() completed successfully');
       console.log('[Translate] ⚠️ Note: Email may take 1-2 minutes to arrive. Check spam folder!');
+      setLastResendTime(now);
       toast.success('Verification email sent! Please check your inbox (and spam folder).');
     } catch (error: any) {
       console.error('[Translate] ❌ Error sending verification email:', error);
