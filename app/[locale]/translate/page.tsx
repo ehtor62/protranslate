@@ -81,24 +81,6 @@ export default function Translate() {
   const [checkingVerification, setCheckingVerification] = useState(false);
   const outputRef = useRef<HTMLDivElement>(null);
   
-  // Debug: Monitor localStorage changes to pendingTranslation
-  useEffect(() => {
-    const checkPending = () => {
-      const pending = localStorage.getItem('pendingTranslation');
-      if (pending) {
-        console.log('[Translate] 📦 pendingTranslation exists in localStorage:', pending);
-      }
-    };
-    
-    // Check immediately
-    checkPending();
-    
-    // Check every 2 seconds for debugging
-    const interval = setInterval(checkPending, 2000);
-    
-    return () => clearInterval(interval);
-  }, []);
-  
   const southAmericaSubregions = [
     'central-america', 'colombia', 'peru', 'argentina', 'brasil'
   ];
@@ -265,7 +247,11 @@ export default function Translate() {
     
     setResendingVerification(true);
     try {
-      await sendEmailVerification(auth.currentUser);
+      const actionCodeSettings = {
+        url: `${window.location.origin}/translate`,
+        handleCodeInApp: true,
+      };
+      await sendEmailVerification(auth.currentUser, actionCodeSettings);
       toast.success('Verification email sent! Check your inbox.');
     } catch (error) {
       console.error('Error sending verification email:', error);
@@ -316,9 +302,6 @@ export default function Translate() {
   };
 
   // Auto-poll verification status every 15 seconds (reduced from 7 to prevent quota issues)
-  // DISABLED: Now relying on BroadcastChannel for immediate cross-tab sync
-  // This polling was causing race conditions and consuming pendingTranslation prematurely
-  /*
   useEffect(() => {
     if (user && !user.isAnonymous && !isEmailVerified) {
       const pollInterval = setInterval(async () => {
@@ -352,12 +335,8 @@ export default function Translate() {
       return () => clearInterval(pollInterval);
     }
   }, [user, isEmailVerified, checkEmailVerification]);
-  */
 
   // Check verification when tab regains focus
-  // DISABLED: Now relying on BroadcastChannel for immediate cross-tab sync
-  // This was causing race conditions and consuming pendingTranslation prematurely
-  /*
   useEffect(() => {
     if (user && !user.isAnonymous && !isEmailVerified) {
       const handleVisibilityChange = async () => {
@@ -394,81 +373,45 @@ export default function Translate() {
       return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
     }
   }, [user, isEmailVerified, checkEmailVerification]);
-  */
   
   // Listen for verification events from other tabs (via BroadcastChannel)
   useEffect(() => {
-    let isProcessing = false; // Guard against duplicate events
-    
-    const handleVerificationComplete = async () => {
-      if (isProcessing) {
-        console.log('[Translate] ⚠️ Already processing verification, skipping duplicate event');
-        return;
-      }
-      
-      isProcessing = true;
-      console.log('[Translate] 🚀 Verification complete event received!');
-      
-      // CRITICAL: Wait for token to fully refresh before proceeding
-      // Use auth.currentUser directly (not state variable) to ensure we have the Firebase User object with methods
-      if (auth.currentUser) {
-        console.log('[Translate] ⏳ Waiting for token refresh...');
-        try {
-          await new Promise(resolve => setTimeout(resolve, 1500)); // Wait 1.5 seconds
-          await auth.currentUser.reload();
-          const freshToken = await auth.currentUser.getIdToken(true); // Force fresh token
-          console.log('[Translate] ✅ Fresh token obtained, emailVerified:', auth.currentUser.emailVerified);
-        } catch (error) {
-          console.error('[Translate] ❌ Error refreshing token:', error);
-        }
-      }
-      
+    const handleVerificationComplete = () => {
+      console.log('[Translate] Verification complete event received');
       // Check for pending translation and auto-execute
       const pendingData = localStorage.getItem('pendingTranslation');
-      console.log('[Translate] Checking for pending translation:', pendingData ? 'FOUND' : 'NOT FOUND');
-      
+      console.log('[Translate] Pending translation data:', pendingData);
       if (pendingData) {
         try {
           const pending = JSON.parse(pendingData);
           localStorage.removeItem('pendingTranslation');
           
-          console.log('[Translate] ✅ Restoring pending translation:', pending);
-          
-          // Restore the saved state immediately
-          if (pending.selectedMessageId) {
-            console.log('[Translate] Setting selectedMessageId:', pending.selectedMessageId);
-            setSelectedMessageId(pending.selectedMessageId);
-          }
+          console.log('[Translate] Restoring pending translation:', pending);
+          // Restore the saved state
+          if (pending.selectedMessageId) setSelectedMessageId(pending.selectedMessageId);
           if (pending.customTitle) setCustomTitle(pending.customTitle);
           if (pending.customDescription) setCustomDescription(pending.customDescription);
           if (pending.context) setContext(pending.context);
           if (pending.targetLanguage) setTargetLanguage(pending.targetLanguage);
           
-          // Trigger generation with small delay for state propagation
-          console.log('[Translate] ⏱️ Scheduling translation generation...');
+          // Trigger generation
+          console.log('[Translate] Triggering auto-generation after verification');
           setTimeout(() => {
-            console.log('[Translate] 🎯 Executing setShouldGenerate(true) NOW');
+            console.log('[Translate] Executing setShouldGenerate(true)');
             setShouldGenerate(true);
-          }, 500); // Small delay just for state propagation
-          
-          toast.success('Email verified! Generating your translation...', {
-            duration: 4000,
-          });
+          }, 500);
+          toast.success('Email verified! Generating your translation...');
         } catch (err) {
-          console.error('[Translate] ❌ Error parsing pending translation:', err);
-          toast.error('Error restoring translation request. Please try again.');
+          console.error('Error parsing pending translation:', err);
         }
       } else {
-        console.log('[Translate] No pending translation - showing success message only');
-        toast.success('Email verified! You can now use all features.', {
-          duration: 3000,
-        });
+        console.log('[Translate] No pending translation found');
       }
     };
     
     window.addEventListener('verification-complete', handleVerificationComplete);
     return () => window.removeEventListener('verification-complete', handleVerificationComplete);
-  }, [user]);
+  }, []);
   
   // Generate message when dialog closes with shouldGenerate flag
   useEffect(() => {
@@ -500,18 +443,15 @@ export default function Translate() {
           messageDescription = selectedMessage.description;
         }
 
-        console.log('[Generate] Starting translation:', { messageType, locale: targetLanguage, user: user?.email, emailVerified: user?.emailVerified });
+        console.log('[Generate] Starting translation:', { messageType, locale: targetLanguage, user: user?.email });
 
         // Get Firebase auth token
-        console.log('[Generate] Getting ID token...');
-        const idToken = user ? await user.getIdToken(false) : null; // Use cached token (already refreshed)
+        const idToken = user ? await user.getIdToken() : null;
         
         if (!idToken) {
           console.error('[Generate] No auth token available');
           throw new Error('Authentication required');
         }
-        
-        console.log('[Generate] ✅ Token obtained successfully');
 
         const response = await fetch('/api/generate', {
           method: 'POST',
@@ -692,7 +632,7 @@ export default function Translate() {
                   <span className="font-medium text-foreground">2.</span> Click the verification link
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  <span className="font-medium text-foreground">3.</span> Your translation will start automatically!
+                  <span className="font-medium text-foreground">3.</span> Come back here and click "I've verified"
                 </p>
               </div>
               {/* Action Buttons */}
@@ -929,22 +869,8 @@ export default function Translate() {
           isOpen={isAuthModalOpen} 
           onClose={() => setIsAuthModalOpen(false)}
           onSuccess={() => {
-            // After successful auth (signup), check if email is verified
-            // If not, the pending translation is already saved - just wait for verification
-            // If verified (e.g. Google sign-in), trigger generation
-            console.log('[Translate] Auth successful, checking verification status...');
-            
-            // Don't trigger immediately - wait a tick for auth state to update
-            setTimeout(() => {
-              if (isEmailVerified) {
-                console.log('[Translate] Email already verified, triggering generation');
-                setShouldGenerate(true);
-              } else {
-                console.log('[Translate] Email not verified, waiting for verification...');
-                // Pending translation already saved when user clicked "Create Phrase"
-                // Just show the verification overlay - it's already visible
-              }
-            }, 100);
+            // After successful auth, directly trigger generation without opening context dialog
+            setShouldGenerate(true);
           }}
         />
 
@@ -965,18 +891,6 @@ export default function Translate() {
                     variant="orange"
                     size="sm"
                     onClick={async () => {
-                      // FIRST: Save pending translation before any auth checks
-                      // This ensures it's available after verification
-                      const pendingData = {
-                        selectedMessageId,
-                        customTitle,
-                        customDescription,
-                        context,
-                        targetLanguage
-                      };
-                      localStorage.setItem('pendingTranslation', JSON.stringify(pendingData));
-                      console.log('[Translate] 💾 Pre-saved pending translation before auth checks:', pendingData);
-                      
                       // If no user, try to sign in anonymously first (Option C workflow)
                       if (!user) {
                         try {
@@ -1006,27 +920,20 @@ export default function Translate() {
                         return;
                       }
                       
-                      // If email not verified, pending action already saved above, just close dialog
+                      // If email not verified, save pending action and show verification gate
                       if (!isEmailVerified) {
-                        console.log('[Translate] 💾 Email not verified (pending already saved), showing verification gate...');
-                        
-                        // Verify it was saved
-                        const verifyStored = localStorage.getItem('pendingTranslation');
-                        console.log('[Translate] 🔍 Verification - stored data exists:', !!verifyStored);
-                        
+                        // Save the full translation request for later execution
+                        localStorage.setItem('pendingTranslation', JSON.stringify({
+                          selectedMessageId,
+                          customTitle,
+                          customDescription,
+                          context,
+                          targetLanguage
+                        }));
                         setIsDialogOpen(false);
-                        
-                        // DON'T clear the selected message - keep it so UI shows what they selected
-                        // The verification overlay will appear, and after verification, 
-                        // the pending translation will auto-execute without requiring re-selection
-                        
-                        toast.info('Please verify your email first. Your translation will run automatically after verification.', {
-                          duration: 5000,
-                        });
+                        toast.error('Please verify your email to generate translations.');
                         return;
                       }
-                      
-                      console.log('[Translate] ✅ Email already verified, proceeding with generation...');
                       
                       // Check credits
                       if (credits === 0) {

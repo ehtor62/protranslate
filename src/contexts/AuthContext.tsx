@@ -132,7 +132,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     
     // Send verification email
     if (auth.currentUser) {
-      await sendEmailVerification(auth.currentUser);
+      const actionCodeSettings = {
+        url: `${window.location.origin}/translate`,
+        handleCodeInApp: true,
+      };
+      await sendEmailVerification(auth.currentUser, actionCodeSettings);
     }
   };
 
@@ -219,7 +223,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     console.log('[AuthContext] Setting up auth state listener');
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      console.log('[AuthContext] Auth state changed:', user ? `User: ${user.email || user.uid}, verified: ${user.emailVerified}` : 'No user');
+      console.log('[AuthContext] Auth state changed:', user ? `User: ${user.email || user.uid}` : 'No user');
       setUser(user);
       setIsEmailVerified(user?.emailVerified || false);
       setLoading(false);
@@ -237,44 +241,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     let bc: BroadcastChannel | null = null;
     
-    // Check if this is the verification page (to avoid listening to own broadcasts)
-    const isVerificationPage = window.location.pathname.includes('/auth/action');
-    
-    if (isVerificationPage) {
-      console.log('[AuthContext] Verification page detected - skipping broadcast listener');
-      return;
-    }
-    
     // Try BroadcastChannel (modern approach)
     if ('BroadcastChannel' in window) {
       try {
         bc = new BroadcastChannel('auth-verification');
         bc.onmessage = async (event) => {
           if (event.data?.type === 'email-verified' && event.data?.verified) {
-            console.log('[AuthContext] ✅ Received verification broadcast from another tab');
-            
-            // CRITICAL: Update state FIRST to remove UI blocking
-            setIsEmailVerified(true);
-            console.log('[AuthContext] State updated: isEmailVerified = true');
+            console.log('[AuthContext] Received verification from another tab');
             
             // Force refresh the token in this tab too
             if (auth.currentUser) {
-              console.log('[AuthContext] Reloading current user and forcing token refresh...');
-              try {
-                await auth.currentUser.reload();
-                await auth.currentUser.getIdToken(true); // Force refresh
-                console.log('[AuthContext] ✅ Token refreshed, emailVerified:', auth.currentUser.emailVerified);
-                
-                // Update user object in state to trigger re-renders (pass reference, don't spread)
-                setUser(auth.currentUser);
-              } catch (error) {
-                console.error('[AuthContext] Error refreshing token:', error);
-              }
+              console.log('[AuthContext] Force refreshing token in this tab...');
+              await auth.currentUser.reload();
+              await auth.currentUser.getIdToken(true); // Force refresh
+              console.log('[AuthContext] Token refreshed in this tab');
             }
+            
+            // Update state
+            setIsEmailVerified(true);
             
             // Notify the app about pending translation via custom event
             if (typeof window !== 'undefined') {
-              console.log('[AuthContext] 🚀 Dispatching verification-complete event');
               const pendingEvent = new CustomEvent('verification-complete');
               window.dispatchEvent(pendingEvent);
             }
@@ -287,31 +274,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     
     // Fallback: localStorage events for older browsers
     const handleStorageChange = async (e: StorageEvent) => {
-      if (e.key === 'email-verification-success' && e.newValue) {
-        console.log('[AuthContext] ✅ Received verification via localStorage, value:', e.newValue);
-        
-        // CRITICAL: Update state FIRST to remove UI blocking
-        setIsEmailVerified(true);
-        console.log('[AuthContext] State updated: isEmailVerified = true');
+      if (e.key === 'email-verification-success' && e.newValue === 'true') {
+        console.log('[AuthContext] Received verification via localStorage');
         
         // Force refresh the token
         if (auth.currentUser) {
-          console.log('[AuthContext] Reloading user and refreshing token...');
-          try {
-            await auth.currentUser.reload();
-            await auth.currentUser.getIdToken(true);
-            console.log('[AuthContext] ✅ Token refreshed, emailVerified:', auth.currentUser.emailVerified);
-            
-            // Update user object in state (pass reference, don't spread)
-            setUser(auth.currentUser);
-          } catch (error) {
-            console.error('[AuthContext] Error refreshing token:', error);
-          }
+          await auth.currentUser.reload();
+          await auth.currentUser.getIdToken(true);
         }
+        
+        setIsEmailVerified(true);
+        localStorage.removeItem('email-verification-success'); // Clean up
         
         // Notify the app about pending translation via custom event
         if (typeof window !== 'undefined') {
-          console.log('[AuthContext] 🚀 Dispatching verification-complete event from storage handler');
           const pendingEvent = new CustomEvent('verification-complete');
           window.dispatchEvent(pendingEvent);
         }

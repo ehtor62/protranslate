@@ -91,7 +91,11 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
           }
           
           // Send verification email
-          await sendEmailVerification(userCredential.user);
+          const actionCodeSettings = {
+            url: `${window.location.origin}/translate`,
+            handleCodeInApp: true,
+          };
+          await sendEmailVerification(userCredential.user, actionCodeSettings);
           
           // Check for stored referral code and track it
           const referralCode = localStorage.getItem('referralCode');
