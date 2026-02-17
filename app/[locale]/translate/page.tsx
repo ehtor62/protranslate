@@ -247,14 +247,9 @@ export default function Translate() {
     
     setResendingVerification(true);
     try {
-      const actionCodeSettings = {
-        url: `${window.location.origin}/translate`,
-        handleCodeInApp: false,
-      };
-      console.log('[Translate] 📧 Attempting to send verification email...');
+      console.log('[Translate] 📧 TEST: Sending verification email WITHOUT actionCodeSettings...');
       console.log('[Translate] Email:', auth.currentUser.email);
-      console.log('[Translate] Settings:', actionCodeSettings);
-      await sendEmailVerification(auth.currentUser, actionCodeSettings);
+      await sendEmailVerification(auth.currentUser);
       console.log('[Translate] ✅ sendEmailVerification() completed successfully');
       console.log('[Translate] ⚠️ Note: Email may take 1-2 minutes to arrive. Check spam folder!');
       toast.success('Verification email sent! Please check your inbox (and spam folder).');

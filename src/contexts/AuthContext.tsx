@@ -132,17 +132,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     
     // Send verification email with action code settings
     if (auth.currentUser) {
-      const actionCodeSettings = {
-        url: `${window.location.origin}/translate`,
-        handleCodeInApp: false,
-      };
       try {
-        await sendEmailVerification(auth.currentUser, actionCodeSettings);
-        console.log('[AuthContext] Verification email sent successfully');
+        // TEST: Removed actionCodeSettings to see if that's blocking emails
+        await sendEmailVerification(auth.currentUser);
+        console.log('[AuthContext] ✅ Verification email sent successfully (no actionCodeSettings)');
         console.log('[AuthContext] Email sent to:', auth.currentUser.email);
-        console.log('[AuthContext] Action code settings:', actionCodeSettings);
       } catch (error: any) {
-        console.error('[AuthContext] Error sending verification email:', error);
+        console.error('[AuthContext] ❌ Error sending verification email:', error);
         console.error('[AuthContext] Error code:', error?.code);
         console.error('[AuthContext] Error message:', error?.message);
         throw new Error('Failed to send verification email. Please try again.');
