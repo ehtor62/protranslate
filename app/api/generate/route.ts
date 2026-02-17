@@ -71,8 +71,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check email verification status (skip for anonymous users during testing)
-    if (!decodedToken.email_verified && decodedToken.firebase?.sign_in_provider !== 'anonymous') {
+    // Check email verification status (skip for anonymous users and in development mode)
+    const isDevelopment = process.env.NODE_ENV === 'development';
+    if (!decodedToken.email_verified && decodedToken.firebase?.sign_in_provider !== 'anonymous' && !isDevelopment) {
       return NextResponse.json(
         { error: 'Email verification required. Please verify your email to use this feature.' },
         { status: 403 }

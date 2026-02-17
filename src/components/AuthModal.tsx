@@ -90,12 +90,19 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
             // Don't block signup if Firestore fails
           }
           
-          // Send verification email
+          // Send verification email with action code settings
           const actionCodeSettings = {
             url: `${window.location.origin}/translate`,
-            handleCodeInApp: true,
+            handleCodeInApp: false,
           };
-          await sendEmailVerification(userCredential.user, actionCodeSettings);
+          try {
+            await sendEmailVerification(userCredential.user, actionCodeSettings);
+            console.log('[AuthModal] Verification email sent successfully to:', email);
+          } catch (emailError) {
+            console.error('[AuthModal] Error sending verification email:', emailError);
+            // Don't block signup, but warn the user
+            throw new Error('Account created but failed to send verification email. Please use "Resend Email" button.');
+          }
           
           // Check for stored referral code and track it
           const referralCode = localStorage.getItem('referralCode');

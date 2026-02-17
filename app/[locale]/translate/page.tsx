@@ -249,13 +249,15 @@ export default function Translate() {
     try {
       const actionCodeSettings = {
         url: `${window.location.origin}/translate`,
-        handleCodeInApp: true,
+        handleCodeInApp: false,
       };
       await sendEmailVerification(auth.currentUser, actionCodeSettings);
-      toast.success('Verification email sent! Check your inbox.');
-    } catch (error) {
-      console.error('Error sending verification email:', error);
-      toast.error('Failed to send verification email. Please try again later.');
+      console.log('[Translate] Verification email sent to:', auth.currentUser.email);
+      toast.success('Verification email sent! Please check your inbox (and spam folder).');
+    } catch (error: any) {
+      console.error('[Translate] Error resending verification email:', error);
+      const errorMessage = error?.message || 'Unknown error';
+      toast.error(`Failed to send verification email: ${errorMessage}`);
     } finally {
       setResendingVerification(false);
     }
@@ -884,6 +886,9 @@ export default function Translate() {
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent hideCloseButton>
             <DialogHeader>
+              <DialogDescription className="sr-only">
+                Adjust context settings for your translation
+              </DialogDescription>
               <div className="flex items-center justify-between">
                 <DialogTitle>{t('translatePage.step2')}</DialogTitle>
                 <div className="flex gap-2">

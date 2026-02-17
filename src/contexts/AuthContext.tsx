@@ -130,13 +130,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.error('Error updating user document after linking:', error);
     }
     
-    // Send verification email
+    // Send verification email with action code settings
     if (auth.currentUser) {
       const actionCodeSettings = {
         url: `${window.location.origin}/translate`,
-        handleCodeInApp: true,
+        handleCodeInApp: false,
       };
-      await sendEmailVerification(auth.currentUser, actionCodeSettings);
+      try {
+        await sendEmailVerification(auth.currentUser, actionCodeSettings);
+        console.log('[AuthContext] Verification email sent successfully');
+      } catch (error) {
+        console.error('[AuthContext] Error sending verification email:', error);
+        throw new Error('Failed to send verification email. Please try again.');
+      }
     }
   };
 
