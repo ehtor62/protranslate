@@ -139,8 +139,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       try {
         await sendEmailVerification(auth.currentUser, actionCodeSettings);
         console.log('[AuthContext] Verification email sent successfully');
-      } catch (error) {
+        console.log('[AuthContext] Email sent to:', auth.currentUser.email);
+        console.log('[AuthContext] Action code settings:', actionCodeSettings);
+      } catch (error: any) {
         console.error('[AuthContext] Error sending verification email:', error);
+        console.error('[AuthContext] Error code:', error?.code);
+        console.error('[AuthContext] Error message:', error?.message);
         throw new Error('Failed to send verification email. Please try again.');
       }
     }

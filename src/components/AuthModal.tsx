@@ -96,10 +96,13 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
             handleCodeInApp: false,
           };
           try {
+            console.log('[AuthModal] 📧 Sending verification email to:', email);
             await sendEmailVerification(userCredential.user, actionCodeSettings);
-            console.log('[AuthModal] Verification email sent successfully to:', email);
-          } catch (emailError) {
-            console.error('[AuthModal] Error sending verification email:', emailError);
+            console.log('[AuthModal] ✅ Verification email sent successfully');
+          } catch (emailError: any) {
+            console.error('[AuthModal] ❌ Error sending verification email:', emailError);
+            console.error('[AuthModal] Error code:', emailError?.code);
+            console.error('[AuthModal] Error message:', emailError?.message);
             // Don't block signup, but warn the user
             throw new Error('Account created but failed to send verification email. Please use "Resend Email" button.');
           }

@@ -251,11 +251,17 @@ export default function Translate() {
         url: `${window.location.origin}/translate`,
         handleCodeInApp: false,
       };
+      console.log('[Translate] 📧 Attempting to send verification email...');
+      console.log('[Translate] Email:', auth.currentUser.email);
+      console.log('[Translate] Settings:', actionCodeSettings);
       await sendEmailVerification(auth.currentUser, actionCodeSettings);
-      console.log('[Translate] Verification email sent to:', auth.currentUser.email);
+      console.log('[Translate] ✅ sendEmailVerification() completed successfully');
+      console.log('[Translate] ⚠️ Note: Email may take 1-2 minutes to arrive. Check spam folder!');
       toast.success('Verification email sent! Please check your inbox (and spam folder).');
     } catch (error: any) {
-      console.error('[Translate] Error resending verification email:', error);
+      console.error('[Translate] ❌ Error sending verification email:', error);
+      console.error('[Translate] Error code:', error?.code);
+      console.error('[Translate] Error message:', error?.message);
       const errorMessage = error?.message || 'Unknown error';
       toast.error(`Failed to send verification email: ${errorMessage}`);
     } finally {
