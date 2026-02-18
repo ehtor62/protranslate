@@ -220,6 +220,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       
       setIsEmailVerified(verified);
       
+      // If just verified, dispatch event to trigger pending translation in the same tab
+      if (verified && !isEmailVerified && typeof window !== 'undefined') {
+        console.log('[AuthContext] Dispatching verification-complete event in same tab');
+        window.dispatchEvent(new CustomEvent('verification-complete'));
+      }
+      
       // Broadcast verification to all tabs
       if (verified && typeof window !== 'undefined' && 'BroadcastChannel' in window) {
         try {
