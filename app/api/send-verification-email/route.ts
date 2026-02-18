@@ -1,16 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import * as postmark from 'postmark';
+import { Resend } from 'resend';
 import { auth as adminAuth } from '@/lib/firebase-admin';
 
-// Initialize Postmark client
-let postmarkClient: postmark.ServerClient | null = null;
-if (process.env.POSTMARK_SERVER_TOKEN) {
-  postmarkClient = new postmark.ServerClient(process.env.POSTMARK_SERVER_TOKEN);
-}
+// Initialize Resend client
+const resend = process.env.RESEND_API_KEY 
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 /**
- * Send verification email via Postmark for instant delivery
- * Falls back to Firebase if Postmark is not configured
+ * Send verification email via Resend for instant delivery
+ * Falls back to Firebase if Resend is not configured
  */
 export async function POST(request: NextRequest) {
   try {
@@ -35,15 +34,14 @@ export async function POST(request: NextRequest) {
       }
     );
 
-    // Check if Postmark is configured
-    if (postmarkClient && process.env.POSTMARK_FROM_EMAIL) {
-      // Send via Postmark for instant delivery
-      const emailResult = await postmarkClient.sendEmail({
-        From: process.env.POSTMARK_FROM_EMAIL,
-        To: decodedToken.email,
-        Subject: 'Verify your email address',
-        TextBody: `Please verify your email address by clicking this link: ${verificationLink}`,
-        HtmlBody: `
+    // Check if Resend is configured
+    if (resend && process.env.RESEND_FROM_EMAIL) {
+      // Send via Resend for instant delivery
+      const emailResult = await resend.emails.send({
+        from: process.env.RESEND_FROM_EMAIL,
+        to: decodedToken.email,
+        subject: 'Verify your email address',
+        html: `
           <!DOCTYPE html>
           <html>
           <head>
@@ -142,40 +140,38 @@ export async function POST(request: NextRequest) {
           </body>
           </html>
         `,
-        MessageStream: 'outbound',
       });
 
-      console.log('[Postmark] ✅ Verification email sent instantly to:', decodedToken.email);
-      console.log('[Postmark] Message ID:', emailResult.MessageID);
+      console.log('[Resend] ✅ Verification email sent instantly to:', decodedToken.email);
+      console.log('[Resend] Email ID:', emailResult.data?.id);
       
       return NextResponse.json({ 
         success: true,
         message: 'Verification email sent successfully',
-        provider: 'Postmark',
+        provider: 'Resend',
         deliveryTime: 'Instant (< 10 seconds)',
-        messageId: emailResult.MessageID
+        emailId: emailResult.data?.id
       });
     } else {
-      // Fallback: Postmark not configured, log warning
-      console.warn('[Verification API] ⚠️ Postmark not configured - email will be delayed');
-      console.log('[Verification API] Add POSTMARK_SERVER_TOKEN and POSTMARK_FROM_EMAIL to .env.local');
-      console.log('[Verification API] See POSTMARK_SETUP.md for instructions');
+      // Fallback: Resend not configured, log warning
+      console.warn('[Verification API] ⚠️ Resend not configured - email will be delayed');
+      console.log('[Verification API] Add RESEND_API_KEY and RESEND_FROM_EMAIL to .env.local');
+      console.log('[Verification API] See RESEND_SETUP.md for instructions');
       
       return NextResponse.json({ 
         success: true,
         message: 'Verification link generated',
-        provider: 'Firebase (Postmark not configured)',
-        note: 'Configure Postmark for instant delivery - see POSTMARK_SETUP.md'
+        provider: 'Firebase (Resend not configured)',
+        note: 'Configure Resend for instant delivery - see RESEND_SETUP.md'
       });
     }
 
   } catch (error: any) {
     console.error('[Verification API] ❌ Error:', error);
     
-    // Postmark-specific error handling
-    if (error.code) {
-      console.error('[Postmark] Error code:', error.code);
-      console.error('[Postmark] Error message:', error.message);
+    // Resend-specific error handling
+    if (error.message) {
+      console.error('[Resend] Error message:', error.message);
     }
     
     // Handle specific Firebase errors
