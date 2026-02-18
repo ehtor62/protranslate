@@ -325,6 +325,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
+  // Auto-check verification when window regains focus (user returns from verification tab)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handleVisibilityOrFocus = async () => {
+      // Only check if user is logged in and not yet verified
+      if (auth.currentUser && !isEmailVerified && document.visibilityState === 'visible') {
+        console.log('[AuthContext] Window/tab became visible, auto-checking verification status...');
+        await checkEmailVerification(true); // Force check, bypass throttling
+      }
+    };
+
+    window.addEventListener('focus', handleVisibilityOrFocus);
+    document.addEventListener('visibilitychange', handleVisibilityOrFocus);
+    
+    return () => {
+      window.removeEventListener('focus', handleVisibilityOrFocus);
+      document.removeEventListener('visibilitychange', handleVisibilityOrFocus);
+    };
+  }, [isEmailVerified, checkEmailVerification]);
+
   return (
     <AuthContext.Provider value={{ user, loading, signInAnonymouslyWithState, linkAnonymousAccount, isEmailVerified, checkEmailVerification, signOutUser }}>
       {children}
