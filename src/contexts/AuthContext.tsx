@@ -130,20 +130,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.error('Error updating user document after linking:', error);
     }
     
-    // Send verification email with action code settings
+    // Send verification email via SendGrid API (instant delivery!)
     if (auth.currentUser) {
       try {
-        const actionCodeSettings = {
-          url: typeof window !== 'undefined' ? `${window.location.origin}/translate` : 'http://localhost:3000/translate',
-          handleCodeInApp: false,
-        };
-        await sendEmailVerification(auth.currentUser, actionCodeSettings);
-        console.log('[AuthContext] ✅ Verification email sent successfully');
+        const idToken = await auth.currentUser.getIdToken();
+        const response = await fetch('/api/send-verification-email', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${idToken}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.details || 'Failed to send email');
+        }
+
+        const result = await response.json();
+        console.log('[AuthContext] ✅ Verification email sent:', result.provider);
         console.log('[AuthContext] Email sent to:', auth.currentUser.email);
       } catch (error: any) {
         console.error('[AuthContext] ❌ Error sending verification email:', error);
-        console.error('[AuthContext] Error code:', error?.code);
-        console.error('[AuthContext] Error message:', error?.message);
         throw new Error('Failed to send verification email. Please try again.');
       }
     }

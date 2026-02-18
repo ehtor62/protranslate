@@ -90,19 +90,28 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
             // Don't block signup if Firestore fails
           }
           
-          // Send verification email
+          // Send verification email via SendGrid API
           try {
-            const actionCodeSettings = {
-              url: `${window.location.origin}/translate`,
-              handleCodeInApp: false,
-            };
-            console.log('[AuthModal] 📧 Sending verification email to:', email);
-            await sendEmailVerification(userCredential.user, actionCodeSettings);
-            console.log('[AuthModal] ✅ Verification email sent successfully');
+            const idToken = await userCredential.user.getIdToken();
+            console.log('[AuthModal] 📧 Sending verification email via API to:', email);
+            
+            const response = await fetch('/api/send-verification-email', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${idToken}`,
+                'Content-Type': 'application/json',
+              },
+            });
+
+            if (!response.ok) {
+              const error = await response.json();
+              throw new Error(error.details || 'Failed to send email');
+            }
+
+            const result = await response.json();
+            console.log('[AuthModal] ✅ Verification email sent:', result.provider);
           } catch (emailError: any) {
             console.error('[AuthModal] ❌ Error sending verification email:', emailError);
-            console.error('[AuthModal] Error code:', emailError?.code);
-            console.error('[AuthModal] Error message:', emailError?.message);
             // Don't block signup, but warn the user
             throw new Error('Account created but failed to send verification email. Please use "Resend Email" button.');
           }

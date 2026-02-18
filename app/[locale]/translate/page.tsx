@@ -259,21 +259,32 @@ export default function Translate() {
     
     setResendingVerification(true);
     try {
-      const actionCodeSettings = {
-        url: `${window.location.origin}/translate`,
-        handleCodeInApp: false,
-      };
-      console.log('[Translate] 📧 Sending verification email...');
+      const idToken = await auth.currentUser.getIdToken();
+      console.log('[Translate] 📧 Sending verification email via API...');
       console.log('[Translate] Email:', auth.currentUser.email);
-      await sendEmailVerification(auth.currentUser, actionCodeSettings);
-      console.log('[Translate] ✅ sendEmailVerification() completed successfully');
-      console.log('[Translate] ⚠️ Note: Emails via Firebase default service may be delayed. Check spam folder!');
+      
+      const response = await fetch('/api/send-verification-email', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${idToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.details || 'Failed to send email');
+      }
+
+      const result = await response.json();
+      console.log('[Translate] ✅ Verification email sent:', result.provider);
+      if (result.provider?.includes('SendGrid')) {
+        console.log('[Translate] 🚀 Delivery time:', result.deliveryTime);
+      }
       setLastResendTime(now);
-      toast.success('Verification email sent! Please check your inbox (and spam folder).');
+      toast.success('Verification email sent! Check your inbox.');
     } catch (error: any) {
       console.error('[Translate] ❌ Error sending verification email:', error);
-      console.error('[Translate] Error code:', error?.code);
-      console.error('[Translate] Error message:', error?.message);
       const errorMessage = error?.message || 'Unknown error';
       toast.error(`Failed to send verification email: ${errorMessage}`);
     } finally {
