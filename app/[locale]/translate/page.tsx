@@ -299,28 +299,8 @@ export default function Translate() {
       const verified = await checkEmailVerification(true); // Force check, ignore throttle
       if (verified) {
         toast.success('Email verified! You can now use all features.');
-        
-        // Check for pending translation request
-        const pendingData = localStorage.getItem('pendingTranslation');
-        if (pendingData) {
-          try {
-            const pending = JSON.parse(pendingData);
-            localStorage.removeItem('pendingTranslation');
-            
-            // Restore the saved state
-            if (pending.selectedMessageId) setSelectedMessageId(pending.selectedMessageId);
-            if (pending.customTitle) setCustomTitle(pending.customTitle);
-            if (pending.customDescription) setCustomDescription(pending.customDescription);
-            if (pending.context) setContext(pending.context);
-            if (pending.targetLanguage) setTargetLanguage(pending.targetLanguage);
-            
-            // Trigger generation (dialog is already closed)
-            setTimeout(() => setShouldGenerate(true), 100);
-            toast.success('Generating your translation...');
-          } catch (err) {
-            console.error('Error parsing pending translation:', err);
-          }
-        }
+        // Note: Pending translation will be handled by verification-complete event
+        // AuthContext will dispatch the event and the handler below will process it
       } else {
         toast.info('Email not verified yet. Please check your inbox.');
       }
@@ -332,78 +312,10 @@ export default function Translate() {
     }
   };
 
-  // Auto-poll verification status every 15 seconds (reduced from 7 to prevent quota issues)
-  useEffect(() => {
-    if (user && !user.isAnonymous && !isEmailVerified) {
-      const pollInterval = setInterval(async () => {
-        const verified = await checkEmailVerification();
-        
-        // If just verified, check for pending translation
-        if (verified) {
-          const pendingData = localStorage.getItem('pendingTranslation');
-          if (pendingData) {
-            try {
-              const pending = JSON.parse(pendingData);
-              localStorage.removeItem('pendingTranslation');
-              
-              // Restore the saved state
-              if (pending.selectedMessageId) setSelectedMessageId(pending.selectedMessageId);
-              if (pending.customTitle) setCustomTitle(pending.customTitle);
-              if (pending.customDescription) setCustomDescription(pending.customDescription);
-              if (pending.context) setContext(pending.context);
-              if (pending.targetLanguage) setTargetLanguage(pending.targetLanguage);
-              
-              // Trigger generation
-              setTimeout(() => setShouldGenerate(true), 100);
-              toast.success('Email verified! Generating your translation...');
-            } catch (err) {
-              console.error('Error parsing pending translation:', err);
-            }
-          }
-        }
-      }, 15000); // 15 seconds instead of 7
+  // Note: Auto-polling removed - AuthContext now handles verification detection
+  // and dispatches 'verification-complete' event which is handled below
 
-      return () => clearInterval(pollInterval);
-    }
-  }, [user, isEmailVerified, checkEmailVerification]);
-
-  // Check verification when tab regains focus
-  useEffect(() => {
-    if (user && !user.isAnonymous && !isEmailVerified) {
-      const handleVisibilityChange = async () => {
-        if (!document.hidden) {
-          const verified = await checkEmailVerification();
-          
-          // If just verified, check for pending translation
-          if (verified) {
-            const pendingData = localStorage.getItem('pendingTranslation');
-            if (pendingData) {
-              try {
-                const pending = JSON.parse(pendingData);
-                localStorage.removeItem('pendingTranslation');
-                
-                // Restore the saved state
-                if (pending.selectedMessageId) setSelectedMessageId(pending.selectedMessageId);
-                if (pending.customTitle) setCustomTitle(pending.customTitle);
-                if (pending.customDescription) setCustomDescription(pending.customDescription);
-                if (pending.context) setContext(pending.context);
-                if (pending.targetLanguage) setTargetLanguage(pending.targetLanguage);
-                
-                // Trigger generation
-                setTimeout(() => setShouldGenerate(true), 100);
-                toast.success('Email verified! Generating your translation...');
-              } catch (err) {
-                console.error('Error parsing pending translation:', err);
-              }
-            }
-          }
-        }
-      };
-
-      document.addEventListener('visibilitychange', handleVisibilityChange);
-      return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-    }
-  }, [user, isEmailVerified, checkEmailVerification]);
+  // Note: Tab focus checking disabled - AuthContext handles this automatically
   
   // Listen for verification events from other tabs (via BroadcastChannel)
   useEffect(() => {
