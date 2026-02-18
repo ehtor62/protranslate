@@ -41,7 +41,7 @@ const toCamelCase = (str: string) => {
 
 // Removed unused getCulturalContextDisplay
 const defaultContext: ContextSettings = {
-  formality: 60,
+  formality: 50,
   directness: 50,
   powerRelationship: 'equal',
   emotionalSensitivity: 50,
