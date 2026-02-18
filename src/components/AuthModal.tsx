@@ -90,10 +90,14 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
             // Don't block signup if Firestore fails
           }
           
-          // Send verification email - TEST: without actionCodeSettings
+          // Send verification email
           try {
-            console.log('[AuthModal] 📧 TEST: Sending verification email WITHOUT actionCodeSettings to:', email);
-            await sendEmailVerification(userCredential.user);
+            const actionCodeSettings = {
+              url: `${window.location.origin}/translate`,
+              handleCodeInApp: false,
+            };
+            console.log('[AuthModal] 📧 Sending verification email to:', email);
+            await sendEmailVerification(userCredential.user, actionCodeSettings);
             console.log('[AuthModal] ✅ Verification email sent successfully');
           } catch (emailError: any) {
             console.error('[AuthModal] ❌ Error sending verification email:', emailError);

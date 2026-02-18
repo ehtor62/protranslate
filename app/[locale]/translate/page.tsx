@@ -259,11 +259,15 @@ export default function Translate() {
     
     setResendingVerification(true);
     try {
-      console.log('[Translate] 📧 TEST: Sending verification email WITHOUT actionCodeSettings...');
+      const actionCodeSettings = {
+        url: `${window.location.origin}/translate`,
+        handleCodeInApp: false,
+      };
+      console.log('[Translate] 📧 Sending verification email...');
       console.log('[Translate] Email:', auth.currentUser.email);
-      await sendEmailVerification(auth.currentUser);
+      await sendEmailVerification(auth.currentUser, actionCodeSettings);
       console.log('[Translate] ✅ sendEmailVerification() completed successfully');
-      console.log('[Translate] ⚠️ Note: Email may take 1-2 minutes to arrive. Check spam folder!');
+      console.log('[Translate] ⚠️ Note: Emails via Firebase default service may be delayed. Check spam folder!');
       setLastResendTime(now);
       toast.success('Verification email sent! Please check your inbox (and spam folder).');
     } catch (error: any) {
