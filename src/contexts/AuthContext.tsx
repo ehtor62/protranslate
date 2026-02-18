@@ -211,29 +211,33 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const verified = auth.currentUser.emailVerified;
       console.log('[AuthContext] Verification status:', verified);
       
+      // Capture if this is a NEW verification (before state update)
+      const wasJustVerified = verified && !isEmailVerified;
+      
       // If just verified, force refresh the ID token
-      if (verified && !isEmailVerified) {
+      if (wasJustVerified) {
         console.log('[AuthContext] Email just verified! Force refreshing token...');
         await auth.currentUser.getIdToken(true); // Force refresh token
         console.log('[AuthContext] Token refreshed');
       }
       
+      // Update state
       setIsEmailVerified(verified);
       
-      // If just verified, dispatch event to trigger pending translation in the same tab
-      if (verified && !isEmailVerified && typeof window !== 'undefined') {
+      // If just verified, dispatch event and broadcast to all tabs
+      if (wasJustVerified && typeof window !== 'undefined') {
         console.log('[AuthContext] Dispatching verification-complete event in same tab');
         window.dispatchEvent(new CustomEvent('verification-complete'));
-      }
-      
-      // Broadcast verification to all tabs
-      if (verified && typeof window !== 'undefined' && 'BroadcastChannel' in window) {
-        try {
-          const bc = new BroadcastChannel('auth-verification');
-          bc.postMessage({ type: 'email-verified', verified: true });
-          bc.close();
-        } catch (error) {
-          console.warn('BroadcastChannel not available:', error);
+        
+        // Also broadcast to other tabs
+        if ('BroadcastChannel' in window) {
+          try {
+            const bc = new BroadcastChannel('auth-verification');
+            bc.postMessage({ type: 'email-verified', verified: true });
+            bc.close();
+          } catch (error) {
+            console.warn('BroadcastChannel not available:', error);
+          }
         }
       }
       
@@ -262,15 +266,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
+    console.log('[AuthContext] Setting up BroadcastChannel and storage listeners');
     let bc: BroadcastChannel | null = null;
     
     // Try BroadcastChannel (modern approach)
     if ('BroadcastChannel' in window) {
       try {
         bc = new BroadcastChannel('auth-verification');
+        console.log('[AuthContext] BroadcastChannel created successfully');
         bc.onmessage = async (event) => {
+          console.log('[AuthContext] BroadcastChannel message received:', event.data);
           if (event.data?.type === 'email-verified' && event.data?.verified) {
-            console.log('[AuthContext] Received verification from another tab');
+            console.log('[AuthContext] ✓ Received verification from another tab via BroadcastChannel');
             
             // Force refresh the token in this tab too
             if (auth.currentUser) {
@@ -282,42 +289,54 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             
             // Update state
             setIsEmailVerified(true);
+            console.log('[AuthContext] isEmailVerified state updated to true');
             
             // Notify the app about pending translation via custom event
             if (typeof window !== 'undefined') {
+              console.log('[AuthContext] Dispatching verification-complete event...');
               const pendingEvent = new CustomEvent('verification-complete');
               window.dispatchEvent(pendingEvent);
+              console.log('[AuthContext] ✓ verification-complete event dispatched');
             }
           }
         };
       } catch (error) {
-        console.warn('BroadcastChannel not available:', error);
+        console.warn('[AuthContext] BroadcastChannel not available:', error);
       }
+    } else {
+      console.warn('[AuthContext] BroadcastChannel not supported in this browser');
     }
     
     // Fallback: localStorage events for older browsers
     const handleStorageChange = async (e: StorageEvent) => {
+      console.log('[AuthContext] localStorage change detected:', e.key, e.newValue);
       if (e.key === 'email-verification-success' && e.newValue === 'true') {
-        console.log('[AuthContext] Received verification via localStorage');
+        console.log('[AuthContext] ✓ Received verification via localStorage');
         
         // Force refresh the token
         if (auth.currentUser) {
+          console.log('[AuthContext] Force refreshing token...');
           await auth.currentUser.reload();
           await auth.currentUser.getIdToken(true);
+          console.log('[AuthContext] Token refreshed');
         }
         
         setIsEmailVerified(true);
+        console.log('[AuthContext] isEmailVerified state updated to true');
         localStorage.removeItem('email-verification-success'); // Clean up
         
         // Notify the app about pending translation via custom event
         if (typeof window !== 'undefined') {
+          console.log('[AuthContext] Dispatching verification-complete event...');
           const pendingEvent = new CustomEvent('verification-complete');
           window.dispatchEvent(pendingEvent);
+          console.log('[AuthContext] ✓ verification-complete event dispatched');
         }
       }
     };
     
     window.addEventListener('storage', handleStorageChange);
+    console.log('[AuthContext] Storage event listener attached');
     
     return () => {
       bc?.close();
@@ -329,20 +348,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const handleVisibilityOrFocus = async () => {
-      // Only check if user is logged in and not yet verified
-      if (auth.currentUser && !isEmailVerified && document.visibilityState === 'visible') {
-        console.log('[AuthContext] Window/tab became visible, auto-checking verification status...');
+    const handleFocus = async () => {
+      // Check on focus event (when user switches back to this tab)
+      if (auth.currentUser && !isEmailVerified) {
+        console.log('[AuthContext] Window focused and user not verified, checking...');
         await checkEmailVerification(true); // Force check, bypass throttling
       }
     };
 
-    window.addEventListener('focus', handleVisibilityOrFocus);
-    document.addEventListener('visibilitychange', handleVisibilityOrFocus);
+    const handleVisibility = async () => {
+      // Check on visibility change (when tab becomes visible)
+      if (document.visibilityState === 'visible' && auth.currentUser && !isEmailVerified) {
+        console.log('[AuthContext] Tab became visible and user not verified, checking...');
+        await checkEmailVerification(true);
+      }
+    };
+
+    window.addEventListener('focus', handleFocus);
+    document.addEventListener('visibilitychange', handleVisibility);
     
     return () => {
-      window.removeEventListener('focus', handleVisibilityOrFocus);
-      document.removeEventListener('visibilitychange', handleVisibilityOrFocus);
+      window.removeEventListener('focus', handleFocus);
+      document.removeEventListener('visibilitychange', handleVisibility);
     };
   }, [isEmailVerified, checkEmailVerification]);
 

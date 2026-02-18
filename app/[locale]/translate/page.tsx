@@ -407,8 +407,10 @@ export default function Translate() {
   
   // Listen for verification events from other tabs (via BroadcastChannel)
   useEffect(() => {
+    console.log('[Translate] Setting up verification-complete event listener');
+    
     const handleVerificationComplete = () => {
-      console.log('[Translate] Verification complete event received');
+      console.log('[Translate] ✓ verification-complete event received!');
       // Check for pending translation and auto-execute
       const pendingData = localStorage.getItem('pendingTranslation');
       console.log('[Translate] Pending translation data:', pendingData);
@@ -420,10 +422,14 @@ export default function Translate() {
           console.log('[Translate] Restoring pending translation:', pending);
           
           // Clear any error message from the output
+          console.log('[Translate] Clearing translation output');
           setTranslation(null);
           
           // Restore the saved state
-          if (pending.selectedMessageId) setSelectedMessageId(pending.selectedMessageId);
+          if (pending.selectedMessageId) {
+            console.log('[Translate] Restoring selectedMessageId:', pending.selectedMessageId);
+            setSelectedMessageId(pending.selectedMessageId);
+          }
           if (pending.customTitle) setCustomTitle(pending.customTitle);
           if (pending.customDescription) setCustomDescription(pending.customDescription);
           if (pending.context) setContext(pending.context);
@@ -437,15 +443,20 @@ export default function Translate() {
           }, 500);
           toast.success('Email verified! Generating your translation...');
         } catch (err) {
-          console.error('Error parsing pending translation:', err);
+          console.error('[Translate] Error parsing pending translation:', err);
         }
       } else {
-        console.log('[Translate] No pending translation found');
+        console.log('[Translate] No pending translation found in localStorage');
       }
     };
     
     window.addEventListener('verification-complete', handleVerificationComplete);
-    return () => window.removeEventListener('verification-complete', handleVerificationComplete);
+    console.log('[Translate] Event listener attached for verification-complete');
+    
+    return () => {
+      console.log('[Translate] Removing verification-complete event listener');
+      window.removeEventListener('verification-complete', handleVerificationComplete);
+    };
   }, []);
   
   // Generate message when dialog closes with shouldGenerate flag
