@@ -218,7 +218,8 @@ export default function Translate() {
         try {
           const draft = JSON.parse(savedDraft);
           if (draft.context) setContext(draft.context);
-          if (draft.selectedMessageId) setSelectedMessageId(draft.selectedMessageId);
+          // Don't restore selectedMessageId - keep page neutral when not logged in
+          // if (draft.selectedMessageId) setSelectedMessageId(draft.selectedMessageId);
           if (draft.customTitle) setCustomTitle(draft.customTitle);
           if (draft.customDescription) setCustomDescription(draft.customDescription);
           if (draft.targetLanguage) setTargetLanguage(draft.targetLanguage);
