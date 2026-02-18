@@ -34,26 +34,14 @@ export default function AuthAction() {
             // Handle email verification
             await applyActionCode(auth, actionCode);
             setStatus('success');
-            setMessage('Email verified successfully! You can now use all features.');
-            
-            // Force reload auth state to ensure token is fresh
-            if (auth.currentUser) {
-              await auth.currentUser.reload();
-              await auth.currentUser.getIdToken(true); // Force token refresh
-            }
+            setMessage('Email verified successfully! Return to your original tab to continue.');
             
             // Notify all tabs instantly via BroadcastChannel
             if (typeof window !== 'undefined' && 'BroadcastChannel' in window) {
               try {
                 const bc = new BroadcastChannel('auth-verification');
-                bc.postMessage({ 
-                  type: 'email-verified', 
-                  verified: true, 
-                  timestamp: Date.now(),
-                  source: 'verification-page' // Mark the source
-                });
+                bc.postMessage({ type: 'email-verified', verified: true });
                 bc.close();
-                console.log('[AuthAction] ✅ Sent verification message via BroadcastChannel');
               } catch (error) {
                 console.warn('BroadcastChannel not available:', error);
               }
@@ -61,16 +49,14 @@ export default function AuthAction() {
             
             // Fallback: localStorage event for older browsers
             try {
-              localStorage.setItem('email-verification-success', Date.now().toString());
-              console.log('[AuthAction] Set verification flag in localStorage');
+              localStorage.setItem('email-verification-success', 'true');
+              // Clear it after a short delay
+              setTimeout(() => localStorage.removeItem('email-verification-success'), 1000);
             } catch (error) {
               console.warn('localStorage not available:', error);
             }
             
-            // Redirect to translate page after 2 seconds (reduced from 3)
-            setTimeout(() => {
-              router.push('/translate');
-            }, 2000);
+            // NO auto-redirect - let user manually close this tab
             break;
 
           case 'resetPassword':
@@ -159,15 +145,15 @@ export default function AuthAction() {
             {status === 'success' && (
               <>
                 <Button
-                  onClick={() => router.push('/translate')}
+                  onClick={() => window.close()}
                   variant="orange"
                   size="lg"
                   className="w-full"
                 >
-                  Go to Translate Page
+                  Close This Tab & Continue
                 </Button>
                 <p className="text-xs text-center text-muted-foreground">
-                  Redirecting automatically in 3 seconds...
+                  Click the button above to close this tab and return to your original page.
                 </p>
               </>
             )}

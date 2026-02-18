@@ -418,6 +418,10 @@ export default function Translate() {
           localStorage.removeItem('pendingTranslation');
           
           console.log('[Translate] Restoring pending translation:', pending);
+          
+          // Clear any error message from the output
+          setTranslation(null);
+          
           // Restore the saved state
           if (pending.selectedMessageId) setSelectedMessageId(pending.selectedMessageId);
           if (pending.customTitle) setCustomTitle(pending.customTitle);
