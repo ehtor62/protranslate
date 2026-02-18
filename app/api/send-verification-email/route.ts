@@ -1,15 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import sgMail from '@sendgrid/mail';
+import * as postmark from 'postmark';
 import { auth as adminAuth } from '@/lib/firebase-admin';
 
-// Initialize SendGrid with API key
-if (process.env.SENDGRID_API_KEY) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+// Initialize Postmark client
+let postmarkClient: postmark.ServerClient | null = null;
+if (process.env.POSTMARK_SERVER_TOKEN) {
+  postmarkClient = new postmark.ServerClient(process.env.POSTMARK_SERVER_TOKEN);
 }
 
 /**
- * Send verification email via SendGrid for instant delivery
- * Falls back to Firebase if SendGrid is not configured
+ * Send verification email via Postmark for instant delivery
+ * Falls back to Firebase if Postmark is not configured
  */
 export async function POST(request: NextRequest) {
   try {
@@ -34,18 +35,15 @@ export async function POST(request: NextRequest) {
       }
     );
 
-    // Check if SendGrid is configured
-    if (process.env.SENDGRID_API_KEY && process.env.SENDGRID_FROM_EMAIL) {
-      // Send via SendGrid for instant delivery
-      const msg = {
-        to: decodedToken.email,
-        from: {
-          email: process.env.SENDGRID_FROM_EMAIL,
-          name: process.env.SENDGRID_FROM_NAME || 'ProTranslate',
-        },
-        subject: 'Verify your email address',
-        text: `Please verify your email address by clicking this link: ${verificationLink}`,
-        html: `
+    // Check if Postmark is configured
+    if (postmarkClient && process.env.POSTMARK_FROM_EMAIL) {
+      // Send via Postmark for instant delivery
+      const emailResult = await postmarkClient.sendEmail({
+        From: process.env.POSTMARK_FROM_EMAIL,
+        To: decodedToken.email,
+        Subject: 'Verify your email address',
+        TextBody: `Please verify your email address by clicking this link: ${verificationLink}`,
+        HtmlBody: `
           <!DOCTYPE html>
           <html>
           <head>
@@ -144,37 +142,40 @@ export async function POST(request: NextRequest) {
           </body>
           </html>
         `,
-      };
+        MessageStream: 'outbound',
+      });
 
-      await sgMail.send(msg);
-      console.log('[SendGrid] ✅ Verification email sent instantly to:', decodedToken.email);
+      console.log('[Postmark] ✅ Verification email sent instantly to:', decodedToken.email);
+      console.log('[Postmark] Message ID:', emailResult.MessageID);
       
       return NextResponse.json({ 
         success: true,
         message: 'Verification email sent successfully',
-        provider: 'SendGrid',
-        deliveryTime: 'Instant (< 30 seconds)'
+        provider: 'Postmark',
+        deliveryTime: 'Instant (< 10 seconds)',
+        messageId: emailResult.MessageID
       });
     } else {
-      // Fallback: SendGrid not configured, log warning
-      console.warn('[Verification API] ⚠️ SendGrid not configured - email will be delayed');
-      console.log('[Verification API] Add SENDGRID_API_KEY and SENDGRID_FROM_EMAIL to .env.local');
-      console.log('[Verification API] See SENDGRID_SETUP.md for instructions');
+      // Fallback: Postmark not configured, log warning
+      console.warn('[Verification API] ⚠️ Postmark not configured - email will be delayed');
+      console.log('[Verification API] Add POSTMARK_SERVER_TOKEN and POSTMARK_FROM_EMAIL to .env.local');
+      console.log('[Verification API] See POSTMARK_SETUP.md for instructions');
       
       return NextResponse.json({ 
         success: true,
         message: 'Verification link generated',
-        provider: 'Firebase (SendGrid not configured)',
-        note: 'Configure SendGrid for instant delivery - see SENDGRID_SETUP.md'
+        provider: 'Firebase (Postmark not configured)',
+        note: 'Configure Postmark for instant delivery - see POSTMARK_SETUP.md'
       });
     }
 
   } catch (error: any) {
     console.error('[Verification API] ❌ Error:', error);
     
-    // SendGrid-specific error handling
-    if (error.response) {
-      console.error('[SendGrid] Response:', error.response.body);
+    // Postmark-specific error handling
+    if (error.code) {
+      console.error('[Postmark] Error code:', error.code);
+      console.error('[Postmark] Error message:', error.message);
     }
     
     // Handle specific Firebase errors
