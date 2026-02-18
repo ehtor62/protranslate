@@ -385,6 +385,19 @@ export default function Translate() {
     const generateTranslation = async () => {
       setIsLoading(true);
       try {
+        // Safety check: Ensure email is verified before making API call
+        // (This shouldn't be needed if all paths check properly, but just in case)
+        if (user && !user.isAnonymous && !isEmailVerified) {
+          console.warn('[Generate] Email not verified, aborting translation');
+          setTranslation({
+            wording: 'Email verification required. Please verify your email to use this feature.',
+            explanation: '',
+            reception: ''
+          });
+          setIsLoading(false);
+          return;
+        }
+
         let messageType, messageDescription;
 
         if (selectedMessageId === 'custom-input') {
@@ -827,8 +840,22 @@ export default function Translate() {
           isOpen={isAuthModalOpen} 
           onClose={() => setIsAuthModalOpen(false)}
           onSuccess={() => {
-            // After successful auth, directly trigger generation without opening context dialog
-            setShouldGenerate(true);
+            // After successful auth, check if email is verified before generating
+            // If not verified, save pending translation and show verification message
+            if (!isEmailVerified) {
+              console.log('[Translate] Email linked but not verified, saving pending translation');
+              localStorage.setItem('pendingTranslation', JSON.stringify({
+                selectedMessageId,
+                customTitle,
+                customDescription,
+                context,
+                targetLanguage
+              }));
+              toast.error('Please verify your email to generate translations. Check your inbox!');
+            } else {
+              // Email already verified (shouldn't happen but just in case)
+              setShouldGenerate(true);
+            }
           }}
         />
 
