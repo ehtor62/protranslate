@@ -605,20 +605,11 @@ export default function Translate() {
                   <span className="font-medium text-foreground">2.</span> Click the verification link
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  <span className="font-medium text-foreground">3.</span> Come back here and click "I've verified"
+                  <span className="font-medium text-foreground">3.</span> Come back here and receive your message
                 </p>
               </div>
               {/* Action Buttons */}
               <div className="space-y-3">
-                <Button
-                  onClick={handleCheckVerification}
-                  variant="orange"
-                  size="lg"
-                  disabled={checkingVerification}
-                  className="w-full"
-                >
-                  {checkingVerification ? 'Checking...' : "I've Verified My Email"}
-                </Button>
                 <Button
                   onClick={handleResendVerification}
                   variant="outline"
