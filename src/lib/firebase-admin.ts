@@ -28,6 +28,10 @@ initializeFirebaseAdmin();
 export const adminAuth = getAuth();
 export const adminDb = getFirestore();
 
+// Export aliases for compatibility
+export const auth = adminAuth;
+export const db = adminDb;
+
 /**
  * Verify Firebase ID token from request
  * @param token - The ID token from the Authorization header
