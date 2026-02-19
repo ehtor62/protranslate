@@ -99,9 +99,13 @@ export async function POST(request: NextRequest) {
         
         // Check if this purchase should trigger referral rewards
         // This awards the referrer when the referred user makes their first purchase
-        checkAndAwardReferralCredits(userId).catch(error => {
+        console.log(`[Webhook] Checking if user ${userId} should trigger referral rewards...`);
+        try {
+          await checkAndAwardReferralCredits(userId);
+          console.log(`[Webhook] Referral check completed for user ${userId}`);
+        } catch (error) {
           console.error('[Webhook] Error checking referral credits:', error);
-        });
+        }
       } else {
         console.warn('[Webhook] No credits to add. Check product metadata in Stripe Dashboard.');
       }

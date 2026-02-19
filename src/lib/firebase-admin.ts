@@ -198,34 +198,54 @@ export async function trackReferral(newUserId: string, referralCode: string): Pr
  */
 export async function checkAndAwardReferralCredits(userId: string): Promise<void> {
   try {
-    const userDoc = await adminDb.collection('users').doc(userId).get();
-    const userData = userDoc.data();
-
-    if (!userData?.referredBy) {
-      return; // User was not referred
-    }
-
-    // Check if this is their first paid generation (after using free credits)
+    console.log(`[Referral] Checking referral rewards for user: ${userId}`);
+    
+    // First, check for pending referrals in the referrals collection
+    // This is more reliable than checking the user document
     const referralsQuery = await adminDb.collection('referrals')
       .where('referredUserId', '==', userId)
       .where('creditsAwarded', '==', false)
       .get();
 
+    console.log(`[Referral] Found ${referralsQuery.size} pending referral(s) in referrals collection`);
+
     if (referralsQuery.empty) {
+      console.log('[Referral] No pending referral rewards found');
       return; // No pending referral rewards
     }
 
     const referralDoc = referralsQuery.docs[0];
     const referralData = referralDoc.data();
 
+    console.log(`[Referral] Processing referral for referrer: ${referralData.referrerId}`);
+
+    // Also update the user document with referredBy if it's missing
+    const userDoc = await adminDb.collection('users').doc(userId).get();
+    const userData = userDoc.data();
+    
+    if (userData && !userData.referredBy) {
+      console.log(`[Referral] User ${userId} missing referredBy field, adding it now`);
+      await adminDb.collection('users').doc(userId).update({
+        referredBy: referralData.referrerId,
+        referredByCode: referralData.referralCode
+      });
+    }
+
     // Award 10 credits to the referrer
     const referrerRef = adminDb.collection('users').doc(referralData.referrerId);
     const referrerDoc = await referrerRef.get();
     const referrerData = referrerDoc.data();
     
+    if (!referrerData) {
+      console.error(`[Referral] Referrer ${referralData.referrerId} not found!`);
+      return;
+    }
+    
     const currentCredits = referrerData?.credits || 0;
     const currentEarned = referrerData?.creditsEarnedFromReferrals || 0;
     const currentCount = referrerData?.referralCount || 0;
+    
+    console.log(`[Referral] Referrer ${referralData.referrerId} current credits: ${currentCredits}, will become: ${currentCredits + 10}`);
     
     await referrerRef.update({
       credits: currentCredits + 10,
@@ -243,5 +263,6 @@ export async function checkAndAwardReferralCredits(userId: string): Promise<void
     console.log(`[Referral] ✓ Awarded 10 credits to referrer ${referralData.referrerId} for referring ${userId}`);
   } catch (error) {
     console.error('[Referral] Error awarding referral credits:', error);
+    throw error; // Re-throw to see the error in webhook logs
   }
 }
