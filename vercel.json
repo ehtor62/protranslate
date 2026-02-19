@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/admin/cleanup-anonymous-users",
+      "schedule": "0 2 * * 0"
+    }
+  ]
+}
