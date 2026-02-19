@@ -507,24 +507,31 @@ export default function Translate() {
   
   // Fetch user credits when user logs in
   useEffect(() => {
+    console.log('[Credits] useEffect triggered, user:', user?.uid || 'null');
     const fetchCredits = async () => {
       if (!user) {
+        console.log('[Credits] No user, setting credits to null');
         setCredits(null);
         return;
       }
       try {
+        console.log('[Credits] Fetching credits for user:', user.uid);
         const idToken = await user.getIdToken();
         const response = await fetch('/api/credits', {
           headers: {
             'Authorization': `Bearer ${idToken}`
           }
         });
+        console.log('[Credits] API response status:', response.status);
         if (response.ok) {
           const data = await response.json();
+          console.log('[Credits] Credits fetched successfully:', data.credits);
           setCredits(data.credits);
+        } else {
+          console.error('[Credits] API error:', response.status, await response.text());
         }
       } catch (error) {
-        console.error('Error fetching credits:', error);
+        console.error('[Credits] Error fetching credits:', error);
       }
     };
     fetchCredits();
