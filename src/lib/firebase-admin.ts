@@ -162,11 +162,28 @@ export async function trackReferral(newUserId: string, referralCode: string): Pr
       creditsAwarded: false
     });
 
-    // Update new user with referrer info
-    await adminDb.collection('users').doc(newUserId).update({
-      referredBy: referrerId,
-      referredByCode: referralCode
-    });
+    // Update or create new user document with referrer info
+    const userRef = adminDb.collection('users').doc(newUserId);
+    const userDoc = await userRef.get();
+    
+    if (userDoc.exists()) {
+      // User exists, update it
+      await userRef.update({
+        referredBy: referrerId,
+        referredByCode: referralCode
+      });
+    } else {
+      // User doesn't exist yet, create it with referral info
+      await userRef.set({
+        credits: 5,
+        referredBy: referrerId,
+        referredByCode: referralCode,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      });
+    }
+
+    console.log(`[Referral] ✓ Tracked referral: ${newUserId} referred by ${referrerId} with code ${referralCode}`);
 
     return { success: true, referrerId };
   } catch (error) {
