@@ -182,22 +182,8 @@ export default function Translate() {
 
   const handleMessageSelect = (messageId: string) => {
     setSelectedMessageId(messageId);
-    // Reset cultural context subcategories back to parent region for new queries
-    if (
-      context.culturalContext === 'usa' ||
-      context.culturalContext === 'canada' ||
-      context.culturalContext === 'mexico'
-    ) {
-      updateContext('culturalContext', 'us' as ContextSettings['culturalContext']);
-    } else if (context.culturalContext.startsWith('europe-')) {
-      updateContext('culturalContext', 'uk' as ContextSettings['culturalContext']);
-    } else if (context.culturalContext.startsWith('asia-')) {
-      updateContext('culturalContext', 'germany' as ContextSettings['culturalContext']);
-    } else if (southAmericaSubregions.includes(context.culturalContext)) {
-      updateContext('culturalContext', 'south-america' as ContextSettings['culturalContext']);
-    } else if (africaSubregions.includes(context.culturalContext)) {
-      updateContext('culturalContext', 'africa' as ContextSettings['culturalContext']);
-    }
+    // Keep all context settings including specific country selections
+    // No reset needed - users expect settings to persist
     if (messageId === 'custom-input') {
       setIsCustomInputOpen(true);
     } else {
