@@ -77,7 +77,7 @@ export default function PricingPage() {
             {user ? (
               <stripe-pricing-table 
                 pricing-table-id="prctbl_1Sx3BECmaIZImua13XHmGnDT"
-                publishable-key={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
+                publishable-key={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ''}
                 customer-email={user.email || undefined}
                 client-reference-id={user.uid}
                 success-url={typeof window !== 'undefined' ? `${window.location.origin}/translate?payment=success` : undefined}
@@ -85,7 +85,7 @@ export default function PricingPage() {
             ) : (
               <stripe-pricing-table 
                 pricing-table-id="prctbl_1Sx3BECmaIZImua13XHmGnDT"
-                publishable-key={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
+                publishable-key={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ''}
                 success-url={typeof window !== 'undefined' ? `${window.location.origin}/pricing?payment=success` : undefined}
               />
             )}
