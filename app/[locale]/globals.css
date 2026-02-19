@@ -199,3 +199,12 @@ input[type="range"]::-moz-range-thumb {
 input[type="range"].range-with-label::-moz-range-thumb {
   @apply opacity-0;
 }
+
+/* Stripe Pricing Table - Smaller fonts */
+stripe-pricing-table {
+  font-size: 0.875rem;
+}
+
+stripe-pricing-table * {
+  font-size: inherit;
+}

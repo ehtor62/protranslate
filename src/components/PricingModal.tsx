@@ -64,10 +64,10 @@ export function PricingModal({ isOpen, onClose }: PricingModalProps) {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-[95vw] sm:max-w-[600px] md:max-w-[750px] lg:max-w-[900px] xl:max-w-[1000px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-center">
+          <DialogTitle className="text-base md:text-lg font-semibold text-center">
             {t('pricingModal.title') || 'This rewrite is ready to go.'}
           </DialogTitle>
-          <DialogDescription className="text-center text-sm pt-1">
+          <DialogDescription className="text-center text-xs pt-1">
             {t('pricingModal.subtitle') || 'Add credits to continue.'}
           </DialogDescription>
         </DialogHeader>
