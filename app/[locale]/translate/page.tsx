@@ -537,14 +537,39 @@ export default function Translate() {
     fetchCredits();
   }, [user]);
   
-  // Show success toast when returning from payment
+  // Show success toast when returning from payment and re-fetch credits
   useEffect(() => {
-    if (searchParams.get('payment') === 'success') {
-      toast.success(t('payment.success') || 'Payment successful! Your credits have been added.');
-      // Clean up URL
-      router.replace('/translate');
-    }
-  }, [searchParams, router, t]);
+    const handlePaymentSuccess = async () => {
+      if (searchParams.get('payment') === 'success') {
+        console.log('[Payment] Payment successful, re-fetching credits...');
+        toast.success(t('payment.success') || 'Payment successful! Your credits have been added.');
+        
+        // Re-fetch credits after successful payment
+        if (user) {
+          try {
+            const idToken = await user.getIdToken();
+            const response = await fetch('/api/credits', {
+              headers: {
+                'Authorization': `Bearer ${idToken}`
+              }
+            });
+            if (response.ok) {
+              const data = await response.json();
+              console.log('[Payment] Credits updated after payment:', data.credits);
+              setCredits(data.credits);
+            }
+          } catch (error) {
+            console.error('[Payment] Error re-fetching credits:', error);
+          }
+        }
+        
+        // Clean up URL
+        router.replace('/translate');
+      }
+    };
+    
+    handlePaymentSuccess();
+  }, [searchParams, router, t, user]);
   
   const selectedMessage = coreMessages.find(m => m.id === selectedMessageId);
   const selectedMessageKey = selectedMessage ? toCamelCase(selectedMessage.id) : '';
@@ -839,10 +864,18 @@ export default function Translate() {
         <AuthModal 
           isOpen={isAuthModalOpen} 
           onClose={() => setIsAuthModalOpen(false)}
-          onSuccess={() => {
+          onSuccess={async () => {
             // After successful auth, check if email is verified before generating
-            // If not verified, save pending translation and show verification message
-            if (!isEmailVerified) {
+            // Wait a moment for Firebase auth state to update
+            await new Promise(resolve => setTimeout(resolve, 100));
+            
+            // Check the actual Firebase user's emailVerified property
+            const currentUser = auth.currentUser;
+            const isVerified = currentUser?.emailVerified || false;
+            
+            console.log('[Translate] Auth success - User:', currentUser?.email, 'Email verified:', isVerified);
+            
+            if (!isVerified) {
               console.log('[Translate] Email linked but not verified, saving pending translation');
               localStorage.setItem('pendingTranslation', JSON.stringify({
                 selectedMessageId,
@@ -854,7 +887,8 @@ export default function Translate() {
               // Note: Don't show toast here - the full-screen verification overlay
               // will automatically appear with proper instructions
             } else {
-              // Email already verified (shouldn't happen but just in case)
+              // Email already verified - trigger generation immediately
+              console.log('[Translate] Email already verified, triggering generation');
               setShouldGenerate(true);
             }
           }}
