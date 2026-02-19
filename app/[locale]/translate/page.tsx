@@ -844,7 +844,8 @@ export default function Translate() {
                 context,
                 targetLanguage
               }));
-              toast.error('Please verify your email to generate translations. Check your inbox!');
+              // Note: Don't show toast here - the full-screen verification overlay
+              // will automatically appear with proper instructions
             } else {
               // Email already verified (shouldn't happen but just in case)
               setShouldGenerate(true);
@@ -912,7 +913,8 @@ export default function Translate() {
                           targetLanguage
                         }));
                         setIsDialogOpen(false);
-                        toast.error('Please verify your email to generate translations.');
+                        // Note: Don't show toast - the full-screen verification overlay
+                        // will automatically appear with clear instructions
                         return;
                       }
                       
