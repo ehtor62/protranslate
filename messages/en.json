@@ -128,6 +128,16 @@
     "resetEmailSent": "Password reset email sent! Check your inbox for instructions.",
     "backToSignIn": "Back to Sign In"
   },
+  "verification": {
+    "title": "Check Your Email",
+    "sentTo": "We've sent a verification link to",
+    "step1": "Open the email from us",
+    "step2": "Click the verification link",
+    "step3": "Come back here and receive your message",
+    "resend": "Resend Verification Email",
+    "sending": "Sending...",
+    "spamNote": "Can't find the email? Check your spam folder"
+  },
   "translatePage": {
     "title": "Professional Message Rewriting — Powered by AI",
     "description": "Select a message type and customize the context to generate culturally appropriate translations",

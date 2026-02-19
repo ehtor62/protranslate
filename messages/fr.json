@@ -125,6 +125,16 @@
     "resetEmailSent": "E-mail de réinitialisation du mot de passe envoyé ! Consultez votre boîte de réception pour les instructions.",
     "backToSignIn": "Retour à la connexion"
   },
+  "verification": {
+    "title": "Vérifiez votre e-mail",
+    "sentTo": "Nous avons envoyé un lien de vérification à",
+    "step1": "Ouvrez l'e-mail de notre part",
+    "step2": "Cliquez sur le lien de vérification",
+    "step3": "Revenez ici et recevez votre message",
+    "resend": "Renvoyer l'e-mail de vérification",
+    "sending": "Envoi...",
+    "spamNote": "Vous ne trouvez pas l'e-mail ? Vérifiez votre dossier spam"
+  },
   "translatePage": {
     "title": "Réécriture Professionnelle de Messages — Propulsé par IA",
     "description": "Sélectionnez un type de message et personnalisez le contexte pour générer des traductions culturellement appropriées",

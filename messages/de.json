@@ -124,6 +124,16 @@
     "resetEmailSent": "E-Mail zum Zurücksetzen des Passworts gesendet! Überprüfen Sie Ihren Posteingang für Anweisungen.",
     "backToSignIn": "Zurück zur Anmeldung"
   },
+  "verification": {
+    "title": "Überprüfen Sie Ihre E-Mail",
+    "sentTo": "Wir haben einen Bestätigungslink an",
+    "step1": "Öffnen Sie die E-Mail von uns",
+    "step2": "Klicken Sie auf den Bestätigungslink",
+    "step3": "Kommen Sie zurück und erhalten Sie Ihre Nachricht",
+    "resend": "Bestätigungs-E-Mail erneut senden",
+    "sending": "Senden...",
+    "spamNote": "E-Mail nicht gefunden? Überprüfen Sie Ihren Spam-Ordner"
+  },
   "translatePage": {
     "title": "Professionelles Umschreiben von Nachrichten — KI-gestützt",
     "description": "Wählen Sie einen Nachrichtentyp und passen Sie den Kontext an, um kulturell angemessene Übersetzungen zu generieren",

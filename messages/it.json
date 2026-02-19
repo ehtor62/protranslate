@@ -188,6 +188,16 @@
     "resetEmailSent": "Email di reimpostazione password inviata! Controlla la tua casella di posta per le istruzioni.",
     "backToSignIn": "Torna all'accesso"
   },
+  "verification": {
+    "title": "Controlla la tua email",
+    "sentTo": "Abbiamo inviato un link di verifica a",
+    "step1": "Apri l'email che ti abbiamo inviato",
+    "step2": "Fai clic sul link di verifica",
+    "step3": "Torna qui e ricevi il tuo messaggio",
+    "resend": "Invia di nuovo l'email di verifica",
+    "sending": "Invio...",
+    "spamNote": "Non trovi l'email? Controlla la cartella spam"
+  },
   "translatePage": {
     "title": "Riscrittura Messaggi Professionali — Alimentata da AI",
     "description": "Seleziona il tipo di messaggio e personalizza il contesto per generare traduzioni culturalmente appropriate",

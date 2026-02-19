@@ -624,22 +624,22 @@ export default function Translate() {
               {/* Title */}
               <div className="space-y-2">
                 <h2 className="text-2xl font-bold text-foreground">
-                  Check Your Email
+                  {t('verification.title')}
                 </h2>
                 <p className="text-sm text-muted-foreground">
-                  We've sent a verification link to <span className="font-medium text-foreground">{user.email}</span>
+                  {t('verification.sentTo')} <span className="font-medium text-foreground">{user.email}</span>
                 </p>
               </div>
               {/* Instructions */}
               <div className="p-4 rounded-lg bg-muted/50 text-left space-y-2">
                 <p className="text-xs text-muted-foreground">
-                  <span className="font-medium text-foreground">1.</span> Open the email from us
+                  <span className="font-medium text-foreground">1.</span> {t('verification.step1')}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  <span className="font-medium text-foreground">2.</span> Click the verification link
+                  <span className="font-medium text-foreground">2.</span> {t('verification.step2')}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  <span className="font-medium text-foreground">3.</span> Come back here and receive your message
+                  <span className="font-medium text-foreground">3.</span> {t('verification.step3')}
                 </p>
               </div>
               {/* Action Buttons */}
@@ -651,12 +651,12 @@ export default function Translate() {
                   disabled={resendingVerification}
                   className="w-full"
                 >
-                  {resendingVerification ? 'Sending...' : 'Resend Verification Email'}
+                  {resendingVerification ? t('verification.sending') : t('verification.resend')}
                 </Button>
               </div>
               {/* Footer */}
               <p className="text-xs text-muted-foreground">
-                Can't find the email? Check your spam folder
+                {t('verification.spamNote')}
               </p>
             </div>
           </div>

@@ -123,8 +123,16 @@
     "sendResetLink": "Enviar enlace de restablecimiento",
     "resetEmailSent": "¡Correo de restablecimiento de contraseña enviado! Revisa tu bandeja de entrada para obtener instrucciones.",
     "backToSignIn": "Volver a iniciar sesión"
-  },
-  "translatePage": {
+  },  "verification": {
+    "title": "Revisa tu correo electrónico",
+    "sentTo": "Hemos enviado un enlace de verificación a",
+    "step1": "Abre el correo de nuestra parte",
+    "step2": "Haz clic en el enlace de verificación",
+    "step3": "Regresa aquí y recibe tu mensaje",
+    "resend": "Reenviar correo de verificación",
+    "sending": "Enviando...",
+    "spamNote": "¿No encuentras el correo? Revisa tu carpeta de spam"
+  },  "translatePage": {
     "title": "Reescritura Profesional de Mensajes — Impulsado por IA",
     "description": "Seleccione un tipo de mensaje y personalice el contexto para generar traducciones culturalmente apropiadas",
     "step1": "Seleccionar mensaje principal",

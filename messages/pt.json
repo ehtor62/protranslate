@@ -195,6 +195,16 @@
     "resetEmailSent": "E-mail de redefinição de senha enviado! Verifique sua caixa de entrada para obter instruções.",
     "backToSignIn": "Voltar para entrar"
   },
+  "verification": {
+    "title": "Verifique seu e-mail",
+    "sentTo": "Enviamos um link de verificação para",
+    "step1": "Abra o e-mail que enviamos",
+    "step2": "Clique no link de verificação",
+    "step3": "Volte aqui e receba sua mensagem",
+    "resend": "Reenviar e-mail de verificação",
+    "sending": "Enviando...",
+    "spamNote": "Não consegue encontrar o e-mail? Verifique sua pasta de spam"
+  },
   "messages": {
     "termination": {
       "title": "Término de Emprego",
