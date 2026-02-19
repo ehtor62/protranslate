@@ -541,8 +541,13 @@ export default function Translate() {
   useEffect(() => {
     const handlePaymentSuccess = async () => {
       if (searchParams.get('payment') === 'success') {
-        console.log('[Payment] Payment successful, re-fetching credits...');
-        toast.success(t('payment.success') || 'Payment successful! Your credits have been added.');
+        // Check if toast was already shown in this session
+        const toastShown = sessionStorage.getItem('payment-toast-shown');
+        if (!toastShown) {
+          console.log('[Payment] Payment successful, re-fetching credits...');
+          toast.success(t('payment.success') || 'Payment successful! Your credits have been added.');
+          sessionStorage.setItem('payment-toast-shown', 'true');
+        }
         
         // Re-fetch credits after successful payment
         if (user) {
@@ -563,7 +568,8 @@ export default function Translate() {
           }
         }
         
-        // Clean up URL
+        // Clean up URL and session flag
+        sessionStorage.removeItem('payment-toast-shown');
         router.replace('/translate');
       }
     };

@@ -41,8 +41,14 @@ export default function PricingPage() {
   // Show success toast when returning from payment
   useEffect(() => {
     if (searchParams.get('payment') === 'success') {
-      toast.success(t('paymentSuccess') || 'Payment successful! Your credits have been added.');
-      // Clean up URL
+      // Check if toast was already shown in this session
+      const toastShown = sessionStorage.getItem('payment-toast-shown');
+      if (!toastShown) {
+        toast.success(t('paymentSuccess') || 'Payment successful! Your credits have been added.');
+        sessionStorage.setItem('payment-toast-shown', 'true');
+      }
+      // Clean up URL and session flag
+      sessionStorage.removeItem('payment-toast-shown');
       router.replace('/pricing');
     }
   }, [searchParams, router, t]);
