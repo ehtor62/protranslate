@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { headers } from 'next/headers';
-import { adminDb } from '@/lib/firebase-admin';
+import { adminDb, checkAndAwardReferralCredits } from '@/lib/firebase-admin';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -96,6 +96,12 @@ export async function POST(request: NextRequest) {
         });
 
         console.log(`[Webhook] ✓ Added ${creditsToAdd} credits to user ${userId}. New total: ${currentCredits + creditsToAdd}`);
+        
+        // Check if this purchase should trigger referral rewards
+        // This awards the referrer when the referred user makes their first purchase
+        checkAndAwardReferralCredits(userId).catch(error => {
+          console.error('[Webhook] Error checking referral credits:', error);
+        });
       } else {
         console.warn('[Webhook] No credits to add. Check product metadata in Stripe Dashboard.');
       }

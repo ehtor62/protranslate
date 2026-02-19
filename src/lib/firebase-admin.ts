@@ -203,10 +203,17 @@ export async function checkAndAwardReferralCredits(userId: string): Promise<void
 
     // Award 10 credits to the referrer
     const referrerRef = adminDb.collection('users').doc(referralData.referrerId);
+    const referrerDoc = await referrerRef.get();
+    const referrerData = referrerDoc.data();
+    
+    const currentCredits = referrerData?.credits || 0;
+    const currentEarned = referrerData?.creditsEarnedFromReferrals || 0;
+    const currentCount = referrerData?.referralCount || 0;
+    
     await referrerRef.update({
-      credits: (await referrerRef.get()).data()?.credits || 0 + 10,
-      creditsEarnedFromReferrals: ((await referrerRef.get()).data()?.creditsEarnedFromReferrals || 0) + 10,
-      referralCount: ((await referrerRef.get()).data()?.referralCount || 0) + 1
+      credits: currentCredits + 10,
+      creditsEarnedFromReferrals: currentEarned + 10,
+      referralCount: currentCount + 1
     });
 
     // Mark referral as completed
@@ -216,8 +223,8 @@ export async function checkAndAwardReferralCredits(userId: string): Promise<void
       completedAt: new Date().toISOString()
     });
 
-    console.log(`Awarded 10 credits to referrer ${referralData.referrerId} for referring ${userId}`);
+    console.log(`[Referral] ✓ Awarded 10 credits to referrer ${referralData.referrerId} for referring ${userId}`);
   } catch (error) {
-    console.error('Error awarding referral credits:', error);
+    console.error('[Referral] Error awarding referral credits:', error);
   }
 }
