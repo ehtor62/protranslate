@@ -135,6 +135,24 @@
     "sending": "Envoi...",
     "spamNote": "Vous ne trouvez pas l'e-mail ? Vérifiez votre dossier spam"
   },
+  "verificationAction": {
+    "verifying": "Vérification...",
+    "success": "Succès !",
+    "failed": "Échec de la vérification",
+    "emailVerified": "E-mail vérifié avec succès ! Retournez à votre onglet d'origine pour continuer.",
+    "closeTab": "Fermer cet onglet et continuer",
+    "closeTabNote": "Cliquez sur le bouton ci-dessus pour fermer cet onglet et retourner à votre page d'origine.",
+    "returnToApp": "Retour à l'application",
+    "tryAgain": "Réessayer",
+    "processing": "Traitement de votre demande...",
+    "needHelp": "Besoin d'aide ?",
+    "helpText": "Si vous continuez à rencontrer des problèmes, veuillez visiter la page de traduction et utiliser le bouton 'Renvoyer l'e-mail de vérification'.",
+    "invalidLink": "Lien de vérification invalide. Veuillez en demander un nouveau.",
+    "expiredLink": "Ce lien a expiré. Veuillez en demander un nouveau.",
+    "usedLink": "Ce lien est invalide ou a déjà été utilisé.",
+    "accountDisabled": "Ce compte a été désactivé. Veuillez contacter le support.",
+    "userNotFound": "Utilisateur introuvable. Veuillez essayer de vous inscrire à nouveau."
+  },
   "translatePage": {
     "title": "Réécriture Professionnelle de Messages — Propulsé par IA",
     "description": "Sélectionnez un type de message et personnalisez le contexte pour générer des traductions culturellement appropriées",

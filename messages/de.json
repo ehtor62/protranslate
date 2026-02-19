@@ -134,6 +134,24 @@
     "sending": "Senden...",
     "spamNote": "E-Mail nicht gefunden? Überprüfen Sie Ihren Spam-Ordner"
   },
+  "verificationAction": {
+    "verifying": "Überprüfe...",
+    "success": "Erfolg!",
+    "failed": "Überprüfung fehlgeschlagen",
+    "emailVerified": "E-Mail erfolgreich verifiziert! Kehren Sie zu Ihrem ursprünglichen Tab zurück, um fortzufahren.",
+    "closeTab": "Diesen Tab schließen & fortfahren",
+    "closeTabNote": "Klicken Sie auf die Schaltfläche oben, um diesen Tab zu schließen und zu Ihrer ursprünglichen Seite zurückzukehren.",
+    "returnToApp": "Zur App zurückkehren",
+    "tryAgain": "Erneut versuchen",
+    "processing": "Ihre Anfrage wird bearbeitet...",
+    "needHelp": "Benötigen Sie Hilfe?",
+    "helpText": "Wenn Sie weiterhin Probleme haben, besuchen Sie bitte die Übersetzungsseite und verwenden Sie die Schaltfläche 'Bestätigungs-E-Mail erneut senden'.",
+    "invalidLink": "Ungültiger Bestätigungslink. Bitte fordern Sie einen neuen an.",
+    "expiredLink": "Dieser Link ist abgelaufen. Bitte fordern Sie einen neuen an.",
+    "usedLink": "Dieser Link ist ungültig oder wurde bereits verwendet.",
+    "accountDisabled": "Dieses Konto wurde deaktiviert. Bitte kontaktieren Sie den Support.",
+    "userNotFound": "Benutzer nicht gefunden. Bitte versuchen Sie sich erneut anzumelden."
+  },
   "translatePage": {
     "title": "Professionelles Umschreiben von Nachrichten — KI-gestützt",
     "description": "Wählen Sie einen Nachrichtentyp und passen Sie den Kontext an, um kulturell angemessene Übersetzungen zu generieren",

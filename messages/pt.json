@@ -205,6 +205,24 @@
     "sending": "Enviando...",
     "spamNote": "Não consegue encontrar o e-mail? Verifique sua pasta de spam"
   },
+  "verificationAction": {
+    "verifying": "Verificando...",
+    "success": "Sucesso!",
+    "failed": "Verificação falhou",
+    "emailVerified": "E-mail verificado com sucesso! Volte à sua aba original para continuar.",
+    "closeTab": "Fechar esta aba e continuar",
+    "closeTabNote": "Clique no botão acima para fechar esta aba e retornar à sua página original.",
+    "returnToApp": "Voltar ao aplicativo",
+    "tryAgain": "Tentar novamente",
+    "processing": "Processando sua solicitação...",
+    "needHelp": "Precisa de ajuda?",
+    "helpText": "Se você continuar tendo problemas, visite a página de tradução e use o botão 'Reenviar e-mail de verificação'.",
+    "invalidLink": "Link de verificação inválido. Solicite um novo.",
+    "expiredLink": "Este link expirou. Solicite um novo.",
+    "usedLink": "Este link é inválido ou já foi usado.",
+    "accountDisabled": "Esta conta foi desabilitada. Entre em contato com o suporte.",
+    "userNotFound": "Usuário não encontrado. Tente se registrar novamente."
+  },
   "messages": {
     "termination": {
       "title": "Término de Emprego",

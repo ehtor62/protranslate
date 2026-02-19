@@ -138,6 +138,24 @@
     "sending": "Sending...",
     "spamNote": "Can't find the email? Check your spam folder"
   },
+  "verificationAction": {
+    "verifying": "Verifying...",
+    "success": "Success!",
+    "failed": "Verification Failed",
+    "emailVerified": "Email verified successfully! Return to your original tab to continue.",
+    "closeTab": "Close This Tab & Continue",
+    "closeTabNote": "Click the button above to close this tab and return to your original page.",
+    "returnToApp": "Return to App",
+    "tryAgain": "Try Again",
+    "processing": "Processing your request...",
+    "needHelp": "Need help?",
+    "helpText": "If you continue to experience issues, please visit the translate page and use the 'Resend Verification Email' button.",
+    "invalidLink": "Invalid verification link. Please request a new one.",
+    "expiredLink": "This link has expired. Please request a new one.",
+    "usedLink": "This link is invalid or has already been used.",
+    "accountDisabled": "This account has been disabled. Please contact support.",
+    "userNotFound": "User not found. Please try signing up again."
+  },
   "translatePage": {
     "title": "Professional Message Rewriting — Powered by AI",
     "description": "Select a message type and customize the context to generate culturally appropriate translations",

@@ -7,10 +7,12 @@ import { applyActionCode, verifyPasswordResetCode, confirmPasswordReset } from '
 import { auth } from '@/lib/firebase';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, XCircle, Loader2, Mail } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export default function AuthAction() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const t = useTranslations('verificationAction');
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
   const [message, setMessage] = useState('');
   const [mode, setMode] = useState<string>('');
@@ -22,7 +24,7 @@ export default function AuthAction() {
 
       if (!mode || !actionCode) {
         setStatus('error');
-        setMessage('Invalid verification link. Please request a new one.');
+        setMessage(t('invalidLink'));
         return;
       }
 
@@ -34,7 +36,7 @@ export default function AuthAction() {
             // Handle email verification
             await applyActionCode(auth, actionCode);
             setStatus('success');
-            setMessage('Email verified successfully! Return to your original tab to continue.');
+            setMessage(t('emailVerified'));
             
             // Notify all tabs instantly via BroadcastChannel
             if (typeof window !== 'undefined' && 'BroadcastChannel' in window) {
@@ -82,16 +84,16 @@ export default function AuthAction() {
         
         switch (error.code) {
           case 'auth/expired-action-code':
-            errorMessage += 'This link has expired. Please request a new one.';
+            errorMessage += t('expiredLink');
             break;
           case 'auth/invalid-action-code':
-            errorMessage += 'This link is invalid or has already been used.';
+            errorMessage += t('usedLink');
             break;
           case 'auth/user-disabled':
-            errorMessage += 'This account has been disabled. Please contact support.';
+            errorMessage += t('accountDisabled');
             break;
           case 'auth/user-not-found':
-            errorMessage += 'User not found. Please try signing up again.';
+            errorMessage += t('userNotFound');
             break;
           default:
             errorMessage += 'Please try again or contact support.';
@@ -130,14 +132,14 @@ export default function AuthAction() {
 
           {/* Title */}
           <h1 className="text-2xl font-bold text-center text-foreground mb-3">
-            {status === 'loading' && 'Verifying...'}
-            {status === 'success' && 'Success!'}
-            {status === 'error' && 'Verification Failed'}
+            {status === 'loading' && t('verifying')}
+            {status === 'success' && t('success')}
+            {status === 'error' && t('failed')}
           </h1>
 
           {/* Message */}
           <p className="text-center text-muted-foreground mb-6">
-            {message || 'Processing your request...'}
+            {message || t('processing')}
           </p>
 
           {/* Action Buttons */}
@@ -150,10 +152,10 @@ export default function AuthAction() {
                   size="lg"
                   className="w-full"
                 >
-                  Close This Tab & Continue
+                  {t('closeTab')}
                 </Button>
                 <p className="text-xs text-center text-muted-foreground">
-                  Click the button above to close this tab and return to your original page.
+                  {t('closeTabNote')}
                 </p>
               </>
             )}
@@ -166,7 +168,7 @@ export default function AuthAction() {
                   size="lg"
                   className="w-full"
                 >
-                  Return to App
+                  {t('returnToApp')}
                 </Button>
                 <Button
                   onClick={() => window.location.reload()}
@@ -174,7 +176,7 @@ export default function AuthAction() {
                   size="sm"
                   className="w-full"
                 >
-                  Try Again
+                  {t('tryAgain')}
                 </Button>
               </>
             )}
@@ -184,7 +186,7 @@ export default function AuthAction() {
           {status === 'error' && (
             <div className="mt-6 p-4 rounded-lg bg-muted/50">
               <p className="text-xs text-muted-foreground">
-                <strong>Need help?</strong> If you continue to experience issues, please visit the translate page and use the "Resend Verification Email" button.
+                <strong>{t('needHelp')}</strong> {t('helpText')}
               </p>
             </div>
           )}

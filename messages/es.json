@@ -132,7 +132,26 @@
     "resend": "Reenviar correo de verificación",
     "sending": "Enviando...",
     "spamNote": "¿No encuentras el correo? Revisa tu carpeta de spam"
-  },  "translatePage": {
+  },
+  "verificationAction": {
+    "verifying": "Verificando...",
+    "success": "¡Éxito!",
+    "failed": "Verificación fallida",
+    "emailVerified": "¡Correo verificado exitosamente! Regresa a tu pestaña original para continuar.",
+    "closeTab": "Cerrar esta pestaña y continuar",
+    "closeTabNote": "Haz clic en el botón de arriba para cerrar esta pestaña y regresar a tu página original.",
+    "returnToApp": "Volver a la aplicación",
+    "tryAgain": "Intentar de nuevo",
+    "processing": "Procesando tu solicitud...",
+    "needHelp": "¿Necesitas ayuda?",
+    "helpText": "Si continúas experimentando problemas, visita la página de traducción y usa el botón 'Reenviar correo de verificación'.",
+    "invalidLink": "Enlace de verificación inválido. Solicita uno nuevo.",
+    "expiredLink": "Este enlace ha expirado. Solicita uno nuevo.",
+    "usedLink": "Este enlace es inválido o ya fue usado.",
+    "accountDisabled": "Esta cuenta ha sido deshabilitada. Contacta al soporte.",
+    "userNotFound": "Usuario no encontrado. Intenta registrarte de nuevo."
+  },
+  "translatePage": {
     "title": "Reescritura Profesional de Mensajes — Impulsado por IA",
     "description": "Seleccione un tipo de mensaje y personalice el contexto para generar traducciones culturalmente apropiadas",
     "step1": "Seleccionar mensaje principal",

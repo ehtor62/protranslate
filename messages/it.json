@@ -198,6 +198,24 @@
     "sending": "Invio...",
     "spamNote": "Non trovi l'email? Controlla la cartella spam"
   },
+  "verificationAction": {
+    "verifying": "Verifica in corso...",
+    "success": "Successo!",
+    "failed": "Verifica fallita",
+    "emailVerified": "Email verificata con successo! Torna alla tua scheda originale per continuare.",
+    "closeTab": "Chiudi questa scheda e continua",
+    "closeTabNote": "Fai clic sul pulsante sopra per chiudere questa scheda e tornare alla tua pagina originale.",
+    "returnToApp": "Torna all'app",
+    "tryAgain": "Riprova",
+    "processing": "Elaborazione della tua richiesta...",
+    "needHelp": "Hai bisogno di aiuto?",
+    "helpText": "Se continui ad avere problemi, visita la pagina di traduzione e usa il pulsante 'Invia di nuovo l'email di verifica'.",
+    "invalidLink": "Link di verifica non valido. Richiedine uno nuovo.",
+    "expiredLink": "Questo link è scaduto. Richiedine uno nuovo.",
+    "usedLink": "Questo link non è valido o è già stato utilizzato.",
+    "accountDisabled": "Questo account è stato disabilitato. Contatta il supporto.",
+    "userNotFound": "Utente non trovato. Prova a registrarti di nuovo."
+  },
   "translatePage": {
     "title": "Riscrittura Messaggi Professionali — Alimentata da AI",
     "description": "Seleziona il tipo di messaggio e personalizza il contesto per generare traduzioni culturalmente appropriate",
