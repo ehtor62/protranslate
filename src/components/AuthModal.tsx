@@ -118,9 +118,11 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
           
           // Check for stored referral code and track it
           const referralCode = localStorage.getItem('referralCode');
+          console.log('[AuthModal] Checking for referral code:', referralCode ? 'Found' : 'Not found');
           if (referralCode) {
             try {
               const idToken = await userCredential.user.getIdToken();
+              console.log('[AuthModal] Tracking referral:', referralCode);
               const response = await fetch('/api/referral/track', {
                 method: 'POST',
                 headers: {
@@ -131,12 +133,17 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
               });
               
               if (response.ok) {
+                const result = await response.json();
+                console.log('[AuthModal] ✅ Referral tracked successfully:', result);
                 // Clear the referral code from storage
                 localStorage.removeItem('referralCode');
+              } else {
+                const error = await response.json();
+                console.error('[AuthModal] ❌ Referral tracking failed:', error);
               }
             } catch (trackError) {
               // Log error but don't block signup
-              console.error('Failed to track referral:', trackError);
+              console.error('[AuthModal] ❌ Referral tracking error:', trackError);
             }
           }
           
@@ -196,9 +203,11 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
       
       // Check for stored referral code and track it
       const referralCode = localStorage.getItem('referralCode');
+      console.log('[AuthModal] Checking for referral code:', referralCode ? 'Found' : 'Not found');
       if (referralCode) {
         try {
           const idToken = await userCredential.user.getIdToken();
+          console.log('[AuthModal] Tracking referral:', referralCode);
           const response = await fetch('/api/referral/track', {
             method: 'POST',
             headers: {
@@ -209,12 +218,17 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
           });
           
           if (response.ok) {
+            const result = await response.json();
+            console.log('[AuthModal] ✅ Referral tracked successfully:', result);
             // Clear the referral code from storage
             localStorage.removeItem('referralCode');
+          } else {
+            const error = await response.json();
+            console.error('[AuthModal] ❌ Referral tracking failed:', error);
           }
         } catch (trackError) {
           // Log error but don't block signup
-          console.error('Failed to track referral:', trackError);
+          console.error('[AuthModal] ❌ Referral tracking error:', trackError);
         }
       }
       

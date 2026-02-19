@@ -134,6 +134,8 @@ export async function decrementUserCredits(userId: string): Promise<number | nul
  */
 export async function trackReferral(newUserId: string, referralCode: string): Promise<{ success: boolean; error?: string; referrerId?: string }> {
   try {
+    console.log(`[Referral] Starting tracking for user ${newUserId} with code ${referralCode}`);
+    
     // Find the referrer by referral code
     const referrerQuery = await adminDb.collection('users')
       .where('referralCode', '==', referralCode.toUpperCase())
@@ -141,19 +143,21 @@ export async function trackReferral(newUserId: string, referralCode: string): Pr
       .get();
 
     if (referrerQuery.empty) {
-      console.warn('Referral code not found:', referralCode);
+      console.warn('[Referral] ❌ Code not found:', referralCode);
       return { success: false, error: 'Invalid referral code' };
     }
 
     const referrerId = referrerQuery.docs[0].id;
+    console.log(`[Referral] Found referrer: ${referrerId}`);
     
     // Don't allow self-referral
     if (referrerId === newUserId) {
+      console.warn('[Referral] ❌ Self-referral attempted');
       return { success: false, error: 'Cannot use your own referral code' };
     }
     
     // Create referral record
-    await adminDb.collection('referrals').add({
+    const referralDoc = await adminDb.collection('referrals').add({
       referrerId,
       referredUserId: newUserId,
       referralCode,
@@ -161,6 +165,7 @@ export async function trackReferral(newUserId: string, referralCode: string): Pr
       createdAt: new Date().toISOString(),
       creditsAwarded: false
     });
+    console.log(`[Referral] Created referral record: ${referralDoc.id}`);
 
     // Update or create new user document with referrer info
     const userRef = adminDb.collection('users').doc(newUserId);
@@ -172,6 +177,7 @@ export async function trackReferral(newUserId: string, referralCode: string): Pr
         referredBy: referrerId,
         referredByCode: referralCode
       });
+      console.log(`[Referral] Updated existing user document`);
     } else {
       // User doesn't exist yet, create it with referral info
       await userRef.set({
@@ -181,13 +187,14 @@ export async function trackReferral(newUserId: string, referralCode: string): Pr
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       });
+      console.log(`[Referral] Created new user document with referral info`);
     }
 
-    console.log(`[Referral] ✓ Tracked referral: ${newUserId} referred by ${referrerId} with code ${referralCode}`);
+    console.log(`[Referral] ✓ Successfully tracked referral: ${newUserId} referred by ${referrerId} with code ${referralCode}`);
 
     return { success: true, referrerId };
   } catch (error) {
-    console.error('Error tracking referral:', error);
+    console.error('[Referral] ❌ Error tracking referral:', error);
     return { success: false, error: 'Failed to track referral' };
   }
 }
