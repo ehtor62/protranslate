@@ -7,7 +7,8 @@
     "tagline": "A systematic translation system for professional messages.",
     "404": "404",
     "pageNotFound": "Page not found",
-    "returnHome": "Return home"
+    "returnHome": "Return home",
+    "signOut": "Sign out"
   },
   "credits": {
     "remaining": "You have {count, plural, =1 {# professional rewrite} other {# professional rewrites}} left",

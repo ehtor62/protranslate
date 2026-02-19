@@ -7,7 +7,8 @@
     "tagline": "Un sistema di traduzione sistematico per messaggi professionali.",
     "404": "404",
     "pageNotFound": "Pagina non trovata",
-    "returnHome": "Torna alla home"
+    "returnHome": "Torna alla home",
+    "signOut": "Disconnetti"
   },
   "credits": {
     "remaining": "Hai {count, plural, =1 {# riscrittura professionale rimanente} other {# riscritture professionali rimanenti}}",

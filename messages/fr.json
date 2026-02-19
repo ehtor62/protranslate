@@ -7,7 +7,8 @@
     "tagline": "Un système de traduction systématique pour les messages professionnels.",
     "404": "404",
     "pageNotFound": "Page non trouvée",
-    "returnHome": "Retour à l'accueil"
+    "returnHome": "Retour à l'accueil",
+    "signOut": "Se déconnecter"
   },
   "credits": {
     "remaining": "Il vous reste {count, plural, =1 {# réécriture professionnelle} other {# réécritures professionnelles}}",

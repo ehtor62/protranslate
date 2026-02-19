@@ -7,7 +7,8 @@
     "tagline": "Ein systematisches Übersetzungssystem für professionelle Nachrichten.",
     "404": "404",
     "pageNotFound": "Seite nicht gefunden",
-    "returnHome": "Zur Startseite"
+    "returnHome": "Zurück zur Startseite",
+    "signOut": "Abmelden"
   },
   "credits": {
     "remaining": "Sie haben noch {count, plural, one {# freie professionelle Umschreibung} other {# freie professionelle Umschreibungen}}",

@@ -7,7 +7,8 @@
     "tagline": "Um sistema de tradução sistemático para mensagens profissionais.",
     "404": "404",
     "pageNotFound": "Página não encontrada",
-    "returnHome": "Voltar ao início"
+    "returnHome": "Voltar ao início",
+    "signOut": "Sair"
   },
   "credits": {
     "remaining": "Você tem {count, plural, =1 {# reescrita profissional restante} other {# reescritas profissionais restantes}}",
