@@ -129,6 +129,37 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch (error) {
       console.error('Error updating user document after linking:', error);
     }
+
+    // Track referral if user signed up with a referral code
+    const referralCode = localStorage.getItem('referralCode');
+    console.log('[AuthContext] Checking for referral code:', referralCode ? 'Found' : 'Not found');
+    if (referralCode) {
+      try {
+        const idToken = await auth.currentUser!.getIdToken();
+        console.log('[AuthContext] Tracking referral:', referralCode);
+        const response = await fetch('/api/referral/track', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${idToken}`,
+          },
+          body: JSON.stringify({ referralCode }),
+        });
+        
+        if (response.ok) {
+          const result = await response.json();
+          console.log('[AuthContext] ✅ Referral tracked successfully:', result);
+          // Clear the referral code from storage
+          localStorage.removeItem('referralCode');
+        } else {
+          const error = await response.json();
+          console.error('[AuthContext] ❌ Referral tracking failed:', error);
+        }
+      } catch (trackError) {
+        // Log error but don't block signup
+        console.error('[AuthContext] ❌ Referral tracking error:', trackError);
+      }
+    }
     
     // Send verification email via SendGrid API (instant delivery!)
     if (auth.currentUser) {
