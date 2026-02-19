@@ -81,6 +81,7 @@ export default function Translate() {
   const [checkingVerification, setCheckingVerification] = useState(false);
   const [lastResendTime, setLastResendTime] = useState<number>(0);
   const outputRef = useRef<HTMLDivElement>(null);
+  const paymentToastShownRef = useRef(false);
   
   const southAmericaSubregions = [
     'central-america', 'colombia', 'peru', 'argentina', 'brasil'
@@ -540,14 +541,10 @@ export default function Translate() {
   // Show success toast when returning from payment and re-fetch credits
   useEffect(() => {
     const handlePaymentSuccess = async () => {
-      if (searchParams.get('payment') === 'success') {
-        // Check if toast was already shown in this session
-        const toastShown = sessionStorage.getItem('payment-toast-shown');
-        if (!toastShown) {
-          console.log('[Payment] Payment successful, re-fetching credits...');
-          toast.success(t('payment.success') || 'Payment successful! Your credits have been added.');
-          sessionStorage.setItem('payment-toast-shown', 'true');
-        }
+      if (searchParams.get('payment') === 'success' && !paymentToastShownRef.current) {
+        console.log('[Payment] Payment successful, re-fetching credits...');
+        toast.success(t('payment.success') || 'Payment successful! Your credits have been added.');
+        paymentToastShownRef.current = true;
         
         // Re-fetch credits after successful payment
         if (user) {
@@ -568,8 +565,7 @@ export default function Translate() {
           }
         }
         
-        // Clean up URL and session flag
-        sessionStorage.removeItem('payment-toast-shown');
+        // Clean up URL
         router.replace('/translate');
       }
     };

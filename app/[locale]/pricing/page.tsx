@@ -38,20 +38,13 @@ export default function PricingPage() {
     }
   }, []);
   
-  // Show success toast when returning from payment
+  // Clean up URL param if present (toast is shown on translate page)
   useEffect(() => {
     if (searchParams.get('payment') === 'success') {
-      // Check if toast was already shown in this session
-      const toastShown = sessionStorage.getItem('payment-toast-shown');
-      if (!toastShown) {
-        toast.success(t('paymentSuccess') || 'Payment successful! Your credits have been added.');
-        sessionStorage.setItem('payment-toast-shown', 'true');
-      }
-      // Clean up URL and session flag
-      sessionStorage.removeItem('payment-toast-shown');
+      // Just clean up URL without showing toast (handled by translate page)
       router.replace('/pricing');
     }
-  }, [searchParams, router, t]);
+  }, [searchParams, router]);
   
   const packs = [
     { name: 'starterPack', rewrites: 50, price: '€7.99', description: 'starterDesc' },
