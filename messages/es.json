@@ -315,6 +315,6 @@
     "genericError": "Ocurrió un error. Por favor, inténtalo de nuevo.",
     "characterLimitExceeded": "Límite de caracteres excedido. Máximo 1000 caracteres permitidos.",
     "titleLimitExceeded": "Límite de título excedido. Máximo 60 caracteres permitidos.",
-    "insufficientCredits": "Has usado todo tu saldo gratuito. Por favor compra más para continuar."
+    "insufficientCredits": "Has usado todos tus créditos. Por favor compra más para continuar."
   }
 }

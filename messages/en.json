@@ -326,6 +326,6 @@
     "genericError": "An error occurred. Please try again.",
     "characterLimitExceeded": "Character limit exceeded. Maximum 1000 characters allowed.",
     "titleLimitExceeded": "Title limit exceeded. Maximum 60 characters allowed.",
-    "insufficientCredits": "You've used all your free balance. Please purchase more to continue."
+    "insufficientCredits": "You've used all your credits. Please purchase more to continue."
   }
 }

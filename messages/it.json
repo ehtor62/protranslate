@@ -383,6 +383,6 @@
     "genericError": "Si è verificato un errore. Riprova.",
     "characterLimitExceeded": "Limite di caratteri superato. Puoi inserire fino a 1000 caratteri.",
     "titleLimitExceeded": "Limite del titolo superato. Puoi inserire fino a 60 caratteri.",
-    "insufficientCredits": "Hai esaurito il saldo gratuito. Acquista per continuare."
+    "insufficientCredits": "Hai esaurito i crediti. Acquista per continuare."
   }
 }
