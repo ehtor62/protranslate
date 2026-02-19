@@ -1,10 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { adminDb } from '@/lib/firebase-admin';
+import { adminDb, checkRateLimit } from '@/lib/firebase-admin';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { rating, comment, userId, userEmail, timestamp } = body;
+
+    // Rate limiting: 10 submissions per hour per user/IP
+    const identifier = userId || request.headers.get('x-forwarded-for') || 'anonymous';
+    if (!checkRateLimit(`feedback:${identifier}`, 10, 3600000)) {
+      return NextResponse.json(
+        { error: 'Rate limit exceeded. Please try again later.' },
+        { status: 429 }
+      );
+    }
 
     // Validate rating
     if (!rating || rating < 1 || rating > 5) {
@@ -14,10 +23,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate comment length
+    if (comment && typeof comment === 'string' && comment.length > 1000) {
+      return NextResponse.json(
+        { error: 'Comment too long. Maximum 1000 characters.' },
+        { status: 400 }
+      );
+    }
+
     // Create feedback document
     const feedbackData: any = {
       rating,
-      comment: comment || '',
+      comment: comment ? String(comment).trim() : '',
       timestamp: timestamp || new Date().toISOString(),
       createdAt: new Date(),
     };

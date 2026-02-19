@@ -1,13 +1,38 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { adminDb } from '@/lib/firebase-admin';
+import { adminDb, verifyAdminAuth, checkRateLimit } from '@/lib/firebase-admin';
 
 export async function POST(request: NextRequest) {
   try {
+    // Admin authentication check
+    const authResult = await verifyAdminAuth(request);
+    if (!authResult.success) {
+      return NextResponse.json(
+        { error: authResult.error },
+        { status: authResult.status }
+      );
+    }
+
+    // Rate limiting: 10 requests per hour
+    if (!checkRateLimit(`admin-manual-referral:${authResult.userId}`, 10, 3600000)) {
+      return NextResponse.json(
+        { error: 'Rate limit exceeded. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
     const { referrerId, referredUserId, referralCode } = await request.json();
 
     if (!referrerId || !referredUserId || !referralCode) {
       return NextResponse.json(
         { error: 'Missing required fields' },
+        { status: 400 }
+      );
+    }
+
+    // Validate referral code format
+    if (typeof referralCode !== 'string' || !/^[A-Z0-9]{6}$/.test(referralCode)) {
+      return NextResponse.json(
+        { error: 'Invalid referral code format (must be 6 uppercase alphanumeric characters)' },
         { status: 400 }
       );
     }

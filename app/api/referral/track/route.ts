@@ -27,6 +27,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate referral code format (6 uppercase alphanumeric characters)
+    if (!/^[A-Z0-9]{6}$/.test(referralCode)) {
+      return NextResponse.json(
+        { error: 'Invalid referral code format' },
+        { status: 400 }
+      );
+    }
+
     // Track the referral
     const result = await trackReferral(userId, referralCode);
     

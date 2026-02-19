@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { adminDb } from '@/lib/firebase-admin';
+import { adminDb, verifyAdminAuth, checkRateLimit } from '@/lib/firebase-admin';
 
 /**
  * Admin endpoint to check and fix pending referrals
@@ -7,6 +7,23 @@ import { adminDb } from '@/lib/firebase-admin';
  */
 export async function POST(request: NextRequest) {
   try {
+    // Admin authentication check
+    const authResult = await verifyAdminAuth(request);
+    if (!authResult.success) {
+      return NextResponse.json(
+        { error: authResult.error },
+        { status: authResult.status }
+      );
+    }
+
+    // Rate limiting: 10 requests per hour
+    if (!checkRateLimit(`admin-fix-referrals:${authResult.userId}`, 10, 3600000)) {
+      return NextResponse.json(
+        { error: 'Rate limit exceeded. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
     const { userId } = await request.json();
 
     if (!userId) {

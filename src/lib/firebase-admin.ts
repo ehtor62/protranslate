@@ -48,6 +48,81 @@ export async function verifyIdToken(token: string) {
 }
 
 /**
+ * Check if a user has admin privileges
+ * @param userId - The user ID to check
+ * @returns true if user is admin, false otherwise
+ */
+export async function isUserAdmin(userId: string): Promise<boolean> {
+  try {
+    const userDoc = await adminDb.collection('users').doc(userId).get();
+    const userData = userDoc.data();
+    return userData?.isAdmin === true;
+  } catch (error) {
+    console.error('Error checking admin status:', error);
+    return false;
+  }
+}
+
+/**
+ * Verify admin authentication from request
+ * @param request - The NextRequest object
+ * @returns Object with userId if valid admin, or error message
+ */
+export async function verifyAdminAuth(request: any): Promise<{ 
+  success: boolean; 
+  userId?: string; 
+  error?: string;
+  status?: number;
+}> {
+  try {
+    // Check for Bearer token
+    const authHeader = request.headers.get('authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      return {
+        success: false,
+        error: 'Unauthorized - Missing authentication token',
+        status: 401
+      };
+    }
+
+    // Verify token
+    const token = authHeader.substring(7);
+    const decodedToken = await verifyIdToken(token);
+    
+    if (!decodedToken) {
+      return {
+        success: false,
+        error: 'Unauthorized - Invalid authentication token',
+        status: 401
+      };
+    }
+
+    // Check admin status
+    const isAdmin = await isUserAdmin(decodedToken.uid);
+    
+    if (!isAdmin) {
+      return {
+        success: false,
+        error: 'Forbidden - Admin access required',
+        status: 403
+      };
+    }
+
+    return {
+      success: true,
+      userId: decodedToken.uid
+    };
+  } catch (error) {
+    console.error('Error verifying admin auth:', error);
+    return {
+      success: false,
+      error: 'Authentication failed',
+      status: 500
+    };
+  }
+}
+
+/**
  * Get user credits from Firestore
  * @param userId - The user ID
  * @returns The number of credits or 5 for new users
@@ -197,6 +272,55 @@ export async function trackReferral(newUserId: string, referralCode: string): Pr
     console.error('[Referral] ❌ Error tracking referral:', error);
     return { success: false, error: 'Failed to track referral' };
   }
+}
+
+// Rate limiting utilities
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+
+/**
+ * Rate limiting function
+ * @param identifier - Unique identifier (user ID, IP, etc.)
+ * @param maxRequests - Maximum requests allowed
+ * @param windowMs - Time window in milliseconds
+ * @returns true if request is allowed, false if rate limit exceeded
+ */
+export function checkRateLimit(
+  identifier: string,
+  maxRequests: number,
+  windowMs: number
+): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(identifier);
+
+  if (!record || now > record.resetTime) {
+    // First request or window expired
+    rateLimitMap.set(identifier, {
+      count: 1,
+      resetTime: now + windowMs
+    });
+    return true;
+  }
+
+  if (record.count >= maxRequests) {
+    // Rate limit exceeded
+    return false;
+  }
+
+  // Increment count
+  record.count++;
+  return true;
+}
+
+// Cleanup rate limit map periodically (every 10 minutes)
+if (typeof setInterval !== 'undefined') {
+  setInterval(() => {
+    const now = Date.now();
+    for (const [key, value] of rateLimitMap.entries()) {
+      if (now > value.resetTime) {
+        rateLimitMap.delete(key);
+      }
+    }
+  }, 600000); // 10 minutes
 }
 
 /**
