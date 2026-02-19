@@ -293,6 +293,21 @@
     "formalEmail": "Wir schätzen Ihre Beiträge. Wir müssen Sie jedoch darüber informieren, dass Ihr Arbeitsverhältnis am [Datum] endet. Wir werden Sie während dieser Übergangszeit unterstützen.",
     "directConversation": "Ich muss direkt mit Ihnen sein. Ihre Position wird gestrichen. Wir werden die nächsten Schritte besprechen und Ihr letzter Tag wird der [Datum] sein.",
     "sensitiveLetter": "Wir schätzen Ihren engagierten Dienst für unsere Organisation sehr. Nach sorgfältiger Überlegung bedauern wir, Ihnen mitteilen zu müssen, dass wir Ihr Arbeitsverhältnis mit Wirkung zum [Datum] beenden müssen. Wir verpflichten uns, Sie während dieser schwierigen Übergangszeit zu unterstützen."  },
+  "feedback": {
+    "buttonLabel": "Feedback",
+    "buttonText": "Feedback",
+    "title": "Teilen Sie Ihr Feedback",
+    "subtitle": "Helfen Sie uns, uns zu verbessern, indem Sie Ihre Gedanken teilen",
+    "ratingLabel": "Wie würden Sie Ihre Erfahrung bewerten?",
+    "commentLabel": "Kommentare (optional)",
+    "commentPlaceholder": "Sagen Sie uns, was Sie denken...",
+    "cancel": "Abbrechen",
+    "submit": "Feedback senden",
+    "submitting": "Wird gesendet...",
+    "pleaseRate": "Bitte geben Sie eine Bewertung ab",
+    "thankYou": "Vielen Dank für Ihr Feedback!",
+    "errorSubmitting": "Feedback konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
+  },
   "errors": {
     "rateLimitExceeded": "Sie haben zu viele Anfragen gestellt. Bitte warten Sie einen Moment und versuchen Sie es erneut.",
     "messageTooLong": "Ihre Nachricht ist zu lang. Bitte kürzen Sie sie und versuchen Sie es erneut.",

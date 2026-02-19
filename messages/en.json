@@ -302,6 +302,21 @@
     "directConversation": "I need to be direct with you. Your position is being eliminated. We'll discuss next steps and your final day will be [date].",
     "sensitiveLetter": "We deeply value your dedicated service to our organization. After careful consideration, we regret to inform you that we must conclude your employment, effective [date]. We are committed to supporting you through this difficult transition."
   },
+  "feedback": {
+    "buttonLabel": "Feedback",
+    "buttonText": "Feedback",
+    "title": "Share Your Feedback",
+    "subtitle": "Help us improve by sharing your thoughts",
+    "ratingLabel": "How would you rate your experience?",
+    "commentLabel": "Comments (optional)",
+    "commentPlaceholder": "Tell us what you think...",
+    "cancel": "Cancel",
+    "submit": "Submit Feedback",
+    "submitting": "Submitting...",
+    "pleaseRate": "Please provide a rating",
+    "thankYou": "Thank you for your feedback!",
+    "errorSubmitting": "Failed to submit feedback. Please try again."
+  },
   "errors": {
     "rateLimitExceeded": "You've made too many requests. Please wait a moment and try again.",
     "messageTooLong": "Your message is too long. Please shorten it and try again.",

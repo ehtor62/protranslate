@@ -359,6 +359,21 @@
     "directConversation": "Andiamo dritti al punto. La tua posizione viene eliminata. Discuteremo i prossimi passi e il tuo ultimo giorno sarà [data].",
     "sensitiveLetter": "Apprezzo profondamente il tuo servizio dedicato alla nostra organizzazione. Dopo un'attenta considerazione, è con sincero rammarico che devo informarti che il tuo impiego terminerà il [data]. Ci impegniamo a sostenerti durante questa difficile transizione."
   },
+  "feedback": {
+    "buttonLabel": "Feedback",
+    "buttonText": "Feedback",
+    "title": "Condividi il tuo feedback",
+    "subtitle": "Aiutaci a migliorare condividendo i tuoi pensieri",
+    "ratingLabel": "Come valuteresti la tua esperienza?",
+    "commentLabel": "Commenti (opzionale)",
+    "commentPlaceholder": "Dicci cosa ne pensi...",
+    "cancel": "Annulla",
+    "submit": "Invia feedback",
+    "submitting": "Invio in corso...",
+    "pleaseRate": "Fornisci una valutazione",
+    "thankYou": "Grazie per il tuo feedback!",
+    "errorSubmitting": "Impossibile inviare il feedback. Riprova."
+  },
   "errors": {
     "rateLimitExceeded": "Troppe richieste. Aspetta un momento e riprova.",
     "messageTooLong": "Il messaggio è troppo lungo. Accorcialo e riprova.",

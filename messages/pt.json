@@ -290,6 +290,21 @@
     "formalEmail": "Agradecemos suas contribuições. No entanto, devemos informá-lo de que sua relação de emprego será encerrada em [data]. Forneceremos suporte durante esta transição.",
     "directConversation": "Preciso ser direto com você. Sua posição foi eliminada. Discutiremos os próximos passos, e seu último dia será [data].",
     "sensitiveLetter": "Agradecemos profundamente seu serviço dedicado a esta organização. Após cuidadosa consideração, lamentamos informá-lo de que devemos encerrar sua relação de emprego, com efeito a partir de [data]. Comprometemo-nos a apoiá-lo durante esta difícil transição."  },
+  "feedback": {
+    "buttonLabel": "Feedback",
+    "buttonText": "Feedback",
+    "title": "Compartilhe seu feedback",
+    "subtitle": "Ajude-nos a melhorar compartilhando suas ideias",
+    "ratingLabel": "Como você avaliaria sua experiência?",
+    "commentLabel": "Comentários (opcional)",
+    "commentPlaceholder": "Conte-nos o que você pensa...",
+    "cancel": "Cancelar",
+    "submit": "Enviar feedback",
+    "submitting": "Enviando...",
+    "pleaseRate": "Por favor, forneça uma avaliação",
+    "thankYou": "Obrigado pelo seu feedback!",
+    "errorSubmitting": "Falha ao enviar feedback. Por favor, tente novamente."
+  },
   "errors": {
     "rateLimitExceeded": "Você fez muitas solicitações. Por favor, aguarde um momento e tente novamente.",
     "messageTooLong": "Sua mensagem é muito longa. Por favor, encurte-a e tente novamente.",

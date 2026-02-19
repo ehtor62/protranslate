@@ -293,6 +293,21 @@
     "formalEmail": "Nous apprécions vos contributions. Cependant, nous devons vous informer que votre emploi prendra fin le [date]. Nous fournirons un soutien pendant cette transition.",
     "directConversation": "Je dois être direct avec vous. Votre poste est supprimé. Nous discuterons des prochaines étapes et votre dernier jour sera le [date].",
     "sensitiveLetter": "Nous apprécions profondément votre service dévoué à notre organisation. Après mûre réflexion, nous regrettons de vous informer que nous devons mettre fin à votre emploi, à compter du [date]. Nous nous engageons à vous soutenir pendant cette transition difficile."  },
+  "feedback": {
+    "buttonLabel": "Commentaires",
+    "buttonText": "Commentaires",
+    "title": "Partagez vos commentaires",
+    "subtitle": "Aidez-nous à nous améliorer en partageant vos réflexions",
+    "ratingLabel": "Comment évalueriez-vous votre expérience ?",
+    "commentLabel": "Commentaires (optionnel)",
+    "commentPlaceholder": "Dites-nous ce que vous pensez...",
+    "cancel": "Annuler",
+    "submit": "Envoyer les commentaires",
+    "submitting": "Envoi en cours...",
+    "pleaseRate": "Veuillez fournir une évaluation",
+    "thankYou": "Merci pour vos commentaires !",
+    "errorSubmitting": "Échec de l'envoi des commentaires. Veuillez réessayer."
+  },
   "errors": {
     "rateLimitExceeded": "Vous avez fait trop de demandes. Veuillez patienter un instant et réessayer.",
     "messageTooLong": "Votre message est trop long. Veuillez le raccourcir et réessayer.",
