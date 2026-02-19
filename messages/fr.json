@@ -49,6 +49,9 @@
     "professionalNote": "La plupart des utilisateurs choisissent cela.",
     "powerNote": "Ne pensez plus jamais aux crédits."
   },
+  "payment": {
+    "success": "Paiement réussi ! Vos crédits ont été ajoutés."
+  },
   "pricingModal": {
     "title": "Cette réécriture est prête.",
     "subtitle": "Ajoutez du solde pour continuer.",

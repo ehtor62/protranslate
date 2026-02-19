@@ -47,7 +47,11 @@
     "starterNote": "Probablemente necesitarás más si escribes regularmente.",
     "professionalNote": "La mayoría de los usuarios eligen esto.",
     "powerNote": "Nunca más pienses en créditos."
-  },  "pricingModal": {
+  },
+  "payment": {
+    "success": "¡Pago exitoso! Tus créditos han sido añadidos."
+  },
+  "pricingModal": {
     "title": "Esta reescritura está lista.",
     "subtitle": "Añade saldo para continuar.",
     "popular": "Más Popular",

@@ -50,6 +50,9 @@
     "professionalNote": "La maggior parte degli utenti sceglie questo.",
     "powerNote": "Non pensare più ai crediti."
   },
+  "payment": {
+    "success": "Pagamento riuscito! I tuoi crediti sono stati aggiunti."
+  },
   "pricingModal": {
     "title": "Questa riscrittura è pronta.",
     "subtitle": "Aggiungi saldo per continuare.",

@@ -47,7 +47,11 @@
     "starterNote": "Sie werden wahrscheinlich mehr brauchen, wenn Sie regelmäßig schreiben.",
     "professionalNote": "Die meisten Benutzer wählen dies.",
     "powerNote": "Denken Sie nie wieder über Guthaben nach."
-  },  "pricingModal": {
+  },
+  "payment": {
+    "success": "Zahlung erfolgreich! Ihre Guthaben wurden hinzugefügt."
+  },
+  "pricingModal": {
     "title": "Diese Umschreibung ist bereit.",
     "subtitle": "Fügen Sie Guthaben hinzu, um fortzufahren.",
     "popular": "Am Beliebtesten",
