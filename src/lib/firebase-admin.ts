@@ -166,7 +166,7 @@ export async function trackReferral(newUserId: string, referralCode: string): Pr
     const userRef = adminDb.collection('users').doc(newUserId);
     const userDoc = await userRef.get();
     
-    if (userDoc.exists()) {
+    if (userDoc.exists) {
       // User exists, update it
       await userRef.update({
         referredBy: referrerId,
