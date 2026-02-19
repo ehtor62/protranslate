@@ -132,24 +132,33 @@ export function TranslationOutput({ variant, context, targetLanguage, className,
           <div className="text-primary font-medium">
             {t('credits.remaining', { count: credits })}
           </div>
-          <button 
-            onClick={() => setIsInviteModalOpen(true)}
-            className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
-          >
-            {t('credits.inviteEarnCredits') || 'Invite & earn credits'}
-          </button>
-          {credits === 0 && (
+          {credits > 0 ? (
+            <button 
+              onClick={() => setIsInviteModalOpen(true)}
+              className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+            >
+              {t('credits.inviteEarnCredits') || 'Invite & earn credits'}
+            </button>
+          ) : (
             <div className="space-y-4">
               <div className="text-muted-foreground">
                 {t('credits.nextRequiresCredits') || 'Next rewrite will require credits'}
                 <br />
                 {t('credits.earnCreditsNote') || 'Or earn free credits by inviting a colleague.'}
               </div>
-              <Link href={`/${locale}/pricing`}>
-                <button className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors">
-                  {t('credits.viewPlans') || 'View plans'}
+              <div className="flex gap-2 mt-4">
+                <Link href={`/${locale}/pricing`}>
+                  <button className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors">
+                    {t('credits.viewPlans') || 'View plans'}
+                  </button>
+                </Link>
+                <button 
+                  onClick={() => setIsInviteModalOpen(true)}
+                  className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                >
+                  {t('credits.inviteEarnCredits') || 'Invite & earn credits'}
                 </button>
-              </Link>
+              </div>
             </div>
           )}
         </div>
