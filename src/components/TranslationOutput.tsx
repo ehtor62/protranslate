@@ -132,6 +132,12 @@ export function TranslationOutput({ variant, context, targetLanguage, className,
           <div className="text-primary font-medium">
             {t('credits.remaining', { count: credits })}
           </div>
+          <button 
+            onClick={() => setIsInviteModalOpen(true)}
+            className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+          >
+            {t('credits.inviteEarnCredits') || 'Invite & earn credits'}
+          </button>
           {credits === 0 && (
             <div className="space-y-4">
               <div className="text-muted-foreground">
@@ -139,19 +145,11 @@ export function TranslationOutput({ variant, context, targetLanguage, className,
                 <br />
                 {t('credits.earnCreditsNote') || 'Or earn free credits by inviting a colleague.'}
               </div>
-              <div className="flex gap-2 mt-4">
-                <Link href={`/${locale}/pricing`}>
-                  <button className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors">
-                    {t('credits.viewPlans') || 'View plans'}
-                  </button>
-                </Link>
-                <button 
-                  onClick={() => setIsInviteModalOpen(true)}
-                  className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
-                >
-                  {t('credits.inviteEarnCredits') || 'Invite & earn credits'}
+              <Link href={`/${locale}/pricing`}>
+                <button className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors">
+                  {t('credits.viewPlans') || 'View plans'}
                 </button>
-              </div>
+              </Link>
             </div>
           )}
         </div>
