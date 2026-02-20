@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Header } from '@/components/Header';
 import { useAuth } from '@/contexts/AuthContext';
@@ -24,6 +24,7 @@ declare global {
 
 export default function PricingPage() {
   const t = useTranslations('pricing');
+  const locale = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
   const { user } = useAuth();
@@ -80,13 +81,13 @@ export default function PricingPage() {
                 publishable-key={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ''}
                 customer-email={user.email || undefined}
                 client-reference-id={user.uid}
-                success-url={typeof window !== 'undefined' ? `${window.location.origin}/translate?payment=success` : undefined}
+                success-url={`${process.env.NEXT_PUBLIC_APP_URL || 'https://sentenly.com'}/${locale}/translate?payment=success`}
               />
             ) : (
               <stripe-pricing-table 
                 pricing-table-id={process.env.NEXT_PUBLIC_STRIPE_PRICING_TABLE_ID || ''}
                 publishable-key={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ''}
-                success-url={typeof window !== 'undefined' ? `${window.location.origin}/pricing?payment=success` : undefined}
+                success-url={`${process.env.NEXT_PUBLIC_APP_URL || 'https://sentenly.com'}/${locale}/pricing?payment=success`}
               />
             )}
           </div>

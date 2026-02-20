@@ -33,6 +33,7 @@ declare global {
 
 export function PricingModal({ isOpen, onClose }: PricingModalProps) {
   const t = useTranslations();
+  const locale = useLocale();
   const { user } = useAuth();
 
   useEffect(() => {
@@ -79,7 +80,7 @@ export function PricingModal({ isOpen, onClose }: PricingModalProps) {
               publishable-key={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ''}
               customer-email={user.email || undefined}
               client-reference-id={user.uid}
-              success-url={typeof window !== 'undefined' ? `${window.location.origin}/translate?payment=success` : undefined}
+              success-url={`${process.env.NEXT_PUBLIC_APP_URL || 'https://sentenly.com'}/${locale}/translate?payment=success`}
             />
           ) : (
             <div className="text-center py-8 text-muted-foreground">
