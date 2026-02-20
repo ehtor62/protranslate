@@ -186,6 +186,7 @@ export async function decrementUserCredits(userId: string): Promise<number | nul
     const currentCredits = userDoc.data()?.credits ?? 0;
     
     if (currentCredits <= 0) {
+      console.log(`[Credits] User ${userId} has insufficient credits: ${currentCredits}`);
       return null; // Insufficient credits
     }
     
@@ -195,6 +196,7 @@ export async function decrementUserCredits(userId: string): Promise<number | nul
       lastUsed: new Date(),
     });
     
+    console.log(`[Credits] User ${userId} credits decremented: ${currentCredits} -> ${newCredits}`);
     return newCredits;
   } catch (error) {
     console.error('Error decrementing user credits:', error);

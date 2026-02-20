@@ -387,6 +387,14 @@ export default function Translate() {
           return;
         }
 
+        // Check if user has sufficient credits
+        if (credits <= 0) {
+          console.log('[Generate] Insufficient credits, opening pricing modal');
+          setIsLoading(false);
+          setIsPricingModalOpen(true);
+          return;
+        }
+
         let messageType, messageDescription;
 
         if (selectedMessageId === 'custom-input') {
@@ -431,8 +439,24 @@ export default function Translate() {
         console.log('[Generate] API response status:', response.status);
 
         if (!response.ok) {
-          const errorData = await response.json().catch(() => ({}));
-          console.error('[Generate] API error:', errorData);
+          let errorData: { error?: string } = {};
+          try {
+            errorData = await response.json();
+            console.error('[Generate] API error:', {
+              status: response.status,
+              statusText: response.statusText,
+              error: errorData
+            });
+          } catch (parseError) {
+            // If JSON parsing fails, try to get the text response
+            const textResponse = await response.text().catch(() => '');
+            console.error('[Generate] API error (non-JSON):', {
+              status: response.status,
+              statusText: response.statusText,
+              response: textResponse
+            });
+          }
+          
           let errorMessage = t('errors.genericError');
           
           // Map API errors to localized messages
@@ -875,9 +899,35 @@ export default function Translate() {
               // Note: Don't show toast here - the full-screen verification overlay
               // will automatically appear with proper instructions
             } else {
-              // Email already verified - trigger generation immediately
-              console.log('[Translate] Email already verified, triggering generation');
-              setShouldGenerate(true);
+              // Email already verified - check credits before triggering generation
+              console.log('[Translate] Email already verified, checking credits...');
+              try {
+                const idToken = await currentUser.getIdToken();
+                const response = await fetch('/api/credits', {
+                  headers: {
+                    'Authorization': `Bearer ${idToken}`
+                  }
+                });
+                if (response.ok) {
+                  const data = await response.json();
+                  console.log('[Translate] User has', data.credits, 'credits');
+                  setCredits(data.credits);
+                  
+                  if (data.credits <= 0) {
+                    console.log('[Translate] Insufficient credits, opening pricing modal');
+                    setIsPricingModalOpen(true);
+                  } else {
+                    console.log('[Translate] Credits available, triggering generation');
+                    setShouldGenerate(true);
+                  }
+                } else {
+                  console.error('[Translate] Failed to fetch credits, triggering generation anyway');
+                  setShouldGenerate(true);
+                }
+              } catch (error) {
+                console.error('[Translate] Error checking credits:', error);
+                setShouldGenerate(true); // Still try to generate, API will handle insufficient credits
+              }
             }
           }}
         />

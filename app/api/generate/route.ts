@@ -93,6 +93,7 @@ export async function POST(request: NextRequest) {
     const remainingCredits = await decrementUserCredits(identifier);
     
     if (remainingCredits === null) {
+      console.log(`[Generate] User ${identifier} has insufficient credits`);
       return NextResponse.json(
         { error: 'Insufficient credits. Please purchase more credits to continue.' },
         { status: 402 }
