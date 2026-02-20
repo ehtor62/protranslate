@@ -10,8 +10,7 @@
     "returnHome": "Retour à l'accueil",
     "signOut": "Se déconnecter",
     "privacy": "Politique de Confidentialité",
-    "terms": "Conditions d'Utilisation",
-    "allRightsReserved": "Tous droits réservés."
+    "terms": "Conditions d'Utilisation",    "contact": "Contact",    "allRightsReserved": "Tous droits réservés."
   },
   "credits": {
     "remaining": "Il vous reste {count, plural, =1 {# réécriture professionnelle} other {# réécritures professionnelles}}",
@@ -503,6 +502,55 @@
     "contact": {
       "title": "Informations de Contact",
       "content": "Pour des questions concernant ces Conditions, veuillez nous contacter :"
+    }
+  },
+  "contact": {
+    "title": "Contact et Support",
+    "subtitle": "Obtenez de l'aide ou contactez notre équipe",
+    "footer": "Tous droits réservés.",
+    "getInTouch": "Nous contacter",
+    "emailDescription": "Vous avez une question, des commentaires ou besoin d'aide? Nous sommes là pour vous aider.",
+    "emailButton": "Nous envoyer un e-mail",
+    "responseTime": "Nous répondons généralement sous 24-48 heures",
+    "faqTitle": "Questions Fréquemment Posées",
+    "stillNeedHelp": "Besoin d'aide supplémentaire?",
+    "stillNeedHelpDescription": "Vous ne trouvez pas la réponse que vous cherchez? Contactez notre équipe de support.",
+    "contactUs": "Nous contacter",
+    "faq": {
+      "account": {
+        "title": "Compte et Crédits",
+        "q1": "Comment commencer?",
+        "a1": "Inscrivez-vous simplement avec votre e-mail et vous recevrez 5 crédits gratuits pour essayer le service. Aucune carte de crédit requise.",
+        "q2": "Comment fonctionnent les crédits?",
+        "a2": "Chaque réécriture de message coûte 1 crédit. Vous pouvez acheter des packs de crédits selon vos besoins via notre page de tarification. Les crédits n'expirent jamais.",
+        "q3": "Que se passe-t-il lorsque je n'ai plus de crédits?",
+        "a3": "Vous pouvez acheter plus de crédits à tout moment depuis la page de tarification. Vous pouvez également gagner des crédits gratuits en invitant des collègues à utiliser le service."
+      },
+      "billing": {
+        "title": "Facturation et Paiements",
+        "q1": "Quels moyens de paiement acceptez-vous?",
+        "a1": "Nous acceptons toutes les principales cartes de crédit (Visa, Mastercard, American Express) via notre processeur de paiement sécurisé Stripe.",
+        "q2": "Les crédits sont-ils remboursables?",
+        "a2": "Les crédits ne sont pas remboursables sauf si la loi l'exige. Cependant, les crédits n'expirent jamais, vous pouvez donc les utiliser quand vous en avez besoin.",
+        "q3": "Les crédits expirent-ils?",
+        "a3": "Non, vos crédits n'expirent jamais. Achetez une fois et utilisez-les chaque fois que vous avez besoin de réécritures de messages professionnels."
+      },
+      "technical": {
+        "title": "Support Technique",
+        "q1": "Pourquoi ma traduction ne se génère-t-elle pas?",
+        "a1": "Assurez-vous d'avoir suffisamment de crédits et une connexion Internet stable. Si le problème persiste, essayez de rafraîchir la page ou contactez le support.",
+        "q2": "Quelles langues sont prises en charge?",
+        "a2": "Nous prenons en charge l'anglais, l'allemand, l'espagnol, le français, l'italien, le portugais et le néerlandais. D'autres langues arrivent bientôt.",
+        "q3": "Quelle est la limite de caractères?",
+        "a3": "La limite maximale de caractères est de 1000 caractères pour le contenu du message et 60 caractères pour les titres personnalisés."
+      },
+      "privacy": {
+        "title": "Confidentialité et Sécurité",
+        "q1": "Comment mes données sont-elles protégées?",
+        "a1": "Nous utilisons un chiffrement et des mesures de sécurité standard de l'industrie. Les données de votre compte sont stockées en toute sécurité, et le contenu des messages n'est traité que temporairement et n'est pas stocké de façon permanente.",
+        "q2": "Stockez-vous mes messages?",
+        "a2": "Non, nous ne stockons pas de façon permanente le contenu de vos messages. Le texte est traité par notre service IA et immédiatement supprimé après la traduction."
+      }
     }
   }
 }

@@ -11,6 +11,7 @@
     "signOut": "Sign out",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
+    "contact": "Contact",
     "allRightsReserved": "All rights reserved."
   },
   "credits": {
@@ -509,6 +510,55 @@
     "contact": {
       "title": "Contact Information",
       "content": "For questions about these Terms, please contact us:"
+    }
+  },
+  "contact": {
+    "title": "Contact & Support",
+    "subtitle": "Get help or reach out to our team",
+    "footer": "All rights reserved.",
+    "getInTouch": "Get in Touch",
+    "emailDescription": "Have a question, feedback, or need help? We're here to assist you.",
+    "emailButton": "Email Us",
+    "responseTime": "We typically respond within 24-48 hours",
+    "faqTitle": "Frequently Asked Questions",
+    "stillNeedHelp": "Still need help?",
+    "stillNeedHelpDescription": "Can't find the answer you're looking for? Reach out to our support team.",
+    "contactUs": "Contact Us",
+    "faq": {
+      "account": {
+        "title": "Account & Credits",
+        "q1": "How do I get started?",
+        "a1": "Simply sign up with your email, and you'll receive 5 free credits to try the service. No credit card required.",
+        "q2": "How do credits work?",
+        "a2": "Each message rewrite costs 1 credit. You can purchase credit packs as needed through our pricing page. Credits never expire.",
+        "q3": "What happens when I run out of credits?",
+        "a3": "You can purchase more credits anytime from the pricing page. You can also earn free credits by inviting colleagues to use the service."
+      },
+      "billing": {
+        "title": "Billing & Payments",
+        "q1": "What payment methods do you accept?",
+        "a1": "We accept all major credit cards (Visa, Mastercard, American Express) through our secure payment processor Stripe.",
+        "q2": "Are credits refundable?",
+        "a2": "Credits are non-refundable except as required by law. However, credits never expire, so you can use them whenever you need.",
+        "q3": "Do credits expire?",
+        "a3": "No, your credits never expire. Purchase once and use them whenever you need professional message rewrites."
+      },
+      "technical": {
+        "title": "Technical Support",
+        "q1": "Why isn't my translation generating?",
+        "a1": "Make sure you have sufficient credits and a stable internet connection. If the issue persists, try refreshing the page or contact support.",
+        "q2": "What languages are supported?",
+        "a2": "We support English, German, Spanish, French, Italian, Portuguese, and Dutch. More languages are coming soon.",
+        "q3": "What's the character limit?",
+        "a3": "The maximum character limit is 1000 characters for the message content and 60 characters for custom titles."
+      },
+      "privacy": {
+        "title": "Privacy & Security",
+        "q1": "How is my data protected?",
+        "a1": "We use industry-standard encryption and security measures. Your account data is stored securely, and message content is only processed temporarily and not permanently stored.",
+        "q2": "Do you store my messages?",
+        "a2": "No, we do not permanently store your message content. Text is processed by our AI service and immediately discarded after translation."
+      }
     }
   }
 }

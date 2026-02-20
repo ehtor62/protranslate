@@ -10,8 +10,7 @@
     "returnHome": "Torna alla home",
     "signOut": "Esci",
     "privacy": "Informativa sulla Privacy",
-    "terms": "Termini di Servizio",
-    "allRightsReserved": "Tutti i diritti riservati."
+    "terms": "Termini di Servizio",    "contact": "Contatto",    "allRightsReserved": "Tutti i diritti riservati."
   },
   "credits": {
     "remaining": "Hai {count, plural, =1 {# riscrittura professionale rimanente} other {# riscritture professionali rimanenti}}",
@@ -569,6 +568,55 @@
     "contact": {
       "title": "Informazioni di Contatto",
       "content": "Per domande su questi Termini, contattaci:"
+    }
+  },
+  "contact": {
+    "title": "Contatto e Supporto",
+    "subtitle": "Ottieni aiuto o contatta il nostro team",
+    "footer": "Tutti i diritti riservati.",
+    "getInTouch": "Mettiti in contatto",
+    "emailDescription": "Hai una domanda, feedback o hai bisogno di aiuto? Siamo qui per assisterti.",
+    "emailButton": "Inviaci un'email",
+    "responseTime": "Rispondiamo generalmente entro 24-48 ore",
+    "faqTitle": "Domande Frequenti",
+    "stillNeedHelp": "Hai ancora bisogno di aiuto?",
+    "stillNeedHelpDescription": "Non riesci a trovare la risposta che cerchi? Contatta il nostro team di supporto.",
+    "contactUs": "Contattaci",
+    "faq": {
+      "account": {
+        "title": "Account e Crediti",
+        "q1": "Come iniziare?",
+        "a1": "Registrati semplicemente con la tua email e riceverai 5 crediti gratuiti per provare il servizio. Non è richiesta la carta di credito.",
+        "q2": "Come funzionano i crediti?",
+        "a2": "Ogni riscrittura di messaggio costa 1 credito. Puoi acquistare pacchetti di crediti secondo necessità tramite la nostra pagina dei prezzi. I crediti non scadono mai.",
+        "q3": "Cosa succede quando finiscono i crediti?",
+        "a3": "Puoi acquistare più crediti in qualsiasi momento dalla pagina dei prezzi. Puoi anche guadagnare crediti gratuiti invitando colleghi a utilizzare il servizio."
+      },
+      "billing": {
+        "title": "Fatturazione e Pagamenti",
+        "q1": "Quali metodi di pagamento accettate?",
+        "a1": "Accettiamo tutte le principali carte di credito (Visa, Mastercard, American Express) tramite il nostro processore di pagamento sicuro Stripe.",
+        "q2": "I crediti sono rimborsabili?",
+        "a2": "I crediti non sono rimborsabili tranne quando richiesto dalla legge. Tuttavia, i crediti non scadono mai, quindi puoi usarli quando ne hai bisogno.",
+        "q3": "I crediti scadono?",
+        "a3": "No, i tuoi crediti non scadono mai. Acquista una volta e usali quando hai bisogno di riscritture di messaggi professionali."
+      },
+      "technical": {
+        "title": "Supporto Tecnico",
+        "q1": "Perché la mia traduzione non viene generata?",
+        "a1": "Assicurati di avere crediti sufficienti e una connessione Internet stabile. Se il problema persiste, prova ad aggiornare la pagina o contatta il supporto.",
+        "q2": "Quali lingue sono supportate?",
+        "a2": "Supportiamo inglese, tedesco, spagnolo, francese, italiano, portoghese e olandese. Altre lingue arriveranno presto.",
+        "q3": "Qual è il limite di caratteri?",
+        "a3": "Il limite massimo di caratteri è di 1000 caratteri per il contenuto del messaggio e 60 caratteri per i titoli personalizzati."
+      },
+      "privacy": {
+        "title": "Privacy e Sicurezza",
+        "q1": "Come vengono protetti i miei dati?",
+        "a1": "Utilizziamo crittografia e misure di sicurezza standard del settore. I dati del tuo account sono archiviati in modo sicuro e il contenuto dei messaggi viene elaborato solo temporaneamente e non viene archiviato permanentemente.",
+        "q2": "Archiviate i miei messaggi?",
+        "a2": "No, non archiviamo permanentemente il contenuto dei tuoi messaggi. Il testo viene elaborato dal nostro servizio IA e immediatamente scartato dopo la traduzione."
+      }
     }
   }
 }

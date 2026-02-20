@@ -11,6 +11,7 @@
     "signOut": "Abmelden",
     "privacy": "Datenschutzerklärung",
     "terms": "Nutzungsbedingungen",
+    "contact": "Kontakt",
     "allRightsReserved": "Alle Rechte vorbehalten."
   },
   "credits": {
@@ -504,6 +505,55 @@
     "contact": {
       "title": "Kontaktinformationen",
       "content": "Bei Fragen zu diesen Bedingungen kontaktieren Sie uns bitte:"
+    }
+  },
+  "contact": {
+    "title": "Kontakt & Support",
+    "subtitle": "Hilfe erhalten oder unser Team kontaktieren",
+    "footer": "Alle Rechte vorbehalten.",
+    "getInTouch": "Kontakt aufnehmen",
+    "emailDescription": "Haben Sie eine Frage, Feedback oder benötigen Hilfe? Wir sind hier, um Sie zu unterstützen.",
+    "emailButton": "E-Mail senden",
+    "responseTime": "Wir antworten normalerweise innerhalb von 24-48 Stunden",
+    "faqTitle": "Häufig gestellte Fragen",
+    "stillNeedHelp": "Benötigen Sie weitere Hilfe?",
+    "stillNeedHelpDescription": "Können Sie die gesuchte Antwort nicht finden? Wenden Sie sich an unser Support-Team.",
+    "contactUs": "Kontaktieren Sie uns",
+    "faq": {
+      "account": {
+        "title": "Konto & Credits",
+        "q1": "Wie fange ich an?",
+        "a1": "Melden Sie sich einfach mit Ihrer E-Mail an und Sie erhalten 5 kostenlose Credits zum Ausprobieren des Dienstes. Keine Kreditkarte erforderlich.",
+        "q2": "Wie funktionieren Credits?",
+        "a2": "Jede Nachrichtenumschreibung kostet 1 Credit. Sie können Credit-Pakete nach Bedarf über unsere Preisseite kaufen. Credits verfallen nie.",
+        "q3": "Was passiert, wenn mir die Credits ausgehen?",
+        "a3": "Sie können jederzeit weitere Credits auf der Preisseite kaufen. Sie können auch kostenlose Credits verdienen, indem Sie Kollegen einladen, den Dienst zu nutzen."
+      },
+      "billing": {
+        "title": "Abrechnung & Zahlungen",
+        "q1": "Welche Zahlungsmethoden akzeptieren Sie?",
+        "a1": "Wir akzeptieren alle gängigen Kreditkarten (Visa, Mastercard, American Express) über unseren sicheren Zahlungsanbieter Stripe.",
+        "q2": "Sind Credits erstattungsfähig?",
+        "a2": "Credits sind nicht erstattungsfähig, außer gesetzlich vorgeschrieben. Credits verfallen jedoch nie, sodass Sie sie jederzeit verwenden können.",
+        "q3": "Verfallen Credits?",
+        "a3": "Nein, Ihre Credits verfallen nie. Einmal kaufen und verwenden, wann immer Sie professionelle Nachrichtenumschreibungen benötigen."
+      },
+      "technical": {
+        "title": "Technischer Support",
+        "q1": "Warum wird meine Übersetzung nicht generiert?",
+        "a1": "Stellen Sie sicher, dass Sie über ausreichende Credits und eine stabile Internetverbindung verfügen. Wenn das Problem weiterhin besteht, versuchen Sie, die Seite zu aktualisieren oder kontaktieren Sie den Support.",
+        "q2": "Welche Sprachen werden unterstützt?",
+        "a2": "Wir unterstützen Englisch, Deutsch, Spanisch, Französisch, Italienisch, Portugiesisch und Niederländisch. Weitere Sprachen folgen bald.",
+        "q3": "Was ist das Zeichenlimit?",
+        "a3": "Das maximale Zeichenlimit beträgt 1000 Zeichen für den Nachrichteninhalt und 60 Zeichen für benutzerdefinierte Titel."
+      },
+      "privacy": {
+        "title": "Datenschutz & Sicherheit",
+        "q1": "Wie werden meine Daten geschützt?",
+        "a1": "Wir verwenden branchenübliche Verschlüsselung und Sicherheitsmaßnahmen. Ihre Kontodaten werden sicher gespeichert, und Nachrichteninhalte werden nur vorübergehend verarbeitet und nicht dauerhaft gespeichert.",
+        "q2": "Speichern Sie meine Nachrichten?",
+        "a2": "Nein, wir speichern Ihre Nachrichteninhalte nicht dauerhaft. Der Text wird von unserem KI-Dienst verarbeitet und nach der Übersetzung sofort verworfen."
+      }
     }
   }
 }

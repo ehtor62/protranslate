@@ -11,6 +11,7 @@
     "signOut": "Sair",
     "privacy": "Política de Privacidade",
     "terms": "Termos de Serviço",
+    "contact": "Contato",
     "allRightsReserved": "Todos os direitos reservados."
   },
   "credits": {
@@ -501,6 +502,55 @@
     "contact": {
       "title": "Informações de Contato",
       "content": "Para perguntas sobre estes Termos, entre em contato conosco:"
+    }
+  },
+  "contact": {
+    "title": "Contato e Suporte",
+    "subtitle": "Obtenha ajuda ou entre em contato com nossa equipe",
+    "footer": "Todos os direitos reservados.",
+    "getInTouch": "Entre em contato",
+    "emailDescription": "Tem alguma dúvida, feedback ou precisa de ajuda? Estamos aqui para ajudá-lo.",
+    "emailButton": "Envie-nos um e-mail",
+    "responseTime": "Normalmente respondemos dentro de 24-48 horas",
+    "faqTitle": "Perguntas Frequentes",
+    "stillNeedHelp": "Ainda precisa de ajuda?",
+    "stillNeedHelpDescription": "Não consegue encontrar a resposta que procura? Entre em contato com nossa equipe de suporte.",
+    "contactUs": "Entre em contato",
+    "faq": {
+      "account": {
+        "title": "Conta e Créditos",
+        "q1": "Como começar?",
+        "a1": "Simplesmente cadastre-se com seu e-mail e você receberá 5 créditos gratuitos para experimentar o serviço. Não é necessário cartão de crédito.",
+        "q2": "Como funcionam os créditos?",
+        "a2": "Cada reescrita de mensagem custa 1 crédito. Você pode comprar pacotes de créditos conforme necessário através de nossa página de preços. Os créditos nunca expiram.",
+        "q3": "O que acontece quando acabo os créditos?",
+        "a3": "Você pode comprar mais créditos a qualquer momento na página de preços. Você também pode ganhar créditos gratuitos convidando colegas para usar o serviço."
+      },
+      "billing": {
+        "title": "Faturamento e Pagamentos",
+        "q1": "Quais métodos de pagamento vocês aceitam?",
+        "a1": "Aceitamos todos os principais cartões de crédito (Visa, Mastercard, American Express) através de nosso processador de pagamento seguro Stripe.",
+        "q2": "Os créditos são reembolsáveis?",
+        "a2": "Os créditos não são reembolsáveis, exceto conforme exigido por lei. No entanto, os créditos nunca expiram, então você pode usá-los quando precisar.",
+        "q3": "Os créditos expiram?",
+        "a3": "Não, seus créditos nunca expiram. Compre uma vez e use-os sempre que precisar de reescritas de mensagens profissionais."
+      },
+      "technical": {
+        "title": "Suporte Técnico",
+        "q1": "Por que minha tradução não está sendo gerada?",
+        "a1": "Certifique-se de ter créditos suficientes e uma conexão à Internet estável. Se o problema persistir, tente atualizar a página ou entre em contato com o suporte.",
+        "q2": "Quais idiomas são suportados?",
+        "a2": "Suportamos inglês, alemão, espanhol, francês, italiano, português e holandês. Mais idiomas em breve.",
+        "q3": "Qual é o limite de caracteres?",
+        "a3": "O limite máximo de caracteres é de 1000 caracteres para o conteúdo da mensagem e 60 caracteres para títulos personalizados."
+      },
+      "privacy": {
+        "title": "Privacidade e Segurança",
+        "q1": "Como meus dados são protegidos?",
+        "a1": "Usamos criptografia e medidas de segurança padrão da indústria. Os dados da sua conta são armazenados com segurança e o conteúdo da mensagem é processado apenas temporariamente e não é armazenado permanentemente.",
+        "q2": "Vocês armazenam minhas mensagens?",
+        "a2": "Não, não armazenamos permanentemente o conteúdo de suas mensagens. O texto é processado por nosso serviço de IA e imediatamente descartado após a tradução."
+      }
     }
   }
 }

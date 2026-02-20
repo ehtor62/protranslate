@@ -193,6 +193,9 @@ export default function Home() {
               <Link href={`/${locale}/terms`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 {t('common.terms')}
               </Link>
+              <Link href={`/${locale}/contact`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                {t('common.contact')}
+              </Link>
             </div>
             <p className="text-sm text-muted-foreground">
               © 2026 {t('common.appName')}. {t('common.allRightsReserved')}
