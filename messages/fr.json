@@ -216,7 +216,7 @@
     "customInputDescription": "Entrez votre propre titre de message et description du sujet",
     "customInputTitleLabel": "Titre",
     "customInputTitlePlaceholder": "ex., Refuser une demande de réunion",
-    "customInputTopicLabel": "Description du Sujet",
+    "customInputTopicLabel": "Description du Sujet ou simplement Mots-clés",
     "customInputTopicPlaceholder": "ex., Refuser poliment une invitation à une réunion en raison de conflits d'horaire",
     "cancel": "Annuler",
     "continue": "Continuer",

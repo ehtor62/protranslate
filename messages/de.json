@@ -215,7 +215,7 @@
     "customInputDescription": "Geben Sie Ihren eigenen Nachrichtentitel und Themenbeschreibung ein",
     "customInputTitleLabel": "Titel",
     "customInputTitlePlaceholder": "z.B. Ablehnung einer Besprechungsanfrage",
-    "customInputTopicLabel": "Themenbeschreibung",
+    "customInputTopicLabel": "Themenbeschreibung oder nur Schlüsselwörter",
     "customInputTopicPlaceholder": "z.B. Höfliche Ablehnung einer Besprechungseinladung aufgrund von Terminüberschneidungen",
     "cancel": "Abbrechen",
     "continue": "Weiter",

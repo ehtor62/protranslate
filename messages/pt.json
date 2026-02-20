@@ -165,7 +165,7 @@
     "customInputDescription": "Digite seu próprio título e descrição do tópico da mensagem",
     "customInputTitleLabel": "Título",
     "customInputTitlePlaceholder": "Por exemplo, rejeitar solicitação de reunião",
-    "customInputTopicLabel": "Descrição do Tópico",
+    "customInputTopicLabel": "Descrição do Tópico ou apenas Palavras-chave",
     "customInputTopicPlaceholder": "Por exemplo, recusar educadamente um convite de reunião devido a conflitos de agenda",
     "cancel": "Cancelar",
     "continue": "Continuar",

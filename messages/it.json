@@ -279,7 +279,7 @@
     "customInputDescription": "Inserisci il tuo titolo del messaggio e la descrizione dell'argomento",
     "customInputTitleLabel": "Titolo",
     "customInputTitlePlaceholder": "Es.: Rifiutare una richiesta di riunione",
-    "customInputTopicLabel": "Descrizione dell'argomento",
+    "customInputTopicLabel": "Descrizione dell'argomento o solo Parole chiave",
     "customInputTopicPlaceholder": "Es.: Rifiutare educatamente un invito a una riunione a causa di conflitti di programmazione",
     "cancel": "Annulla",
     "continue": "Continua",

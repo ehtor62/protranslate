@@ -219,7 +219,7 @@
     "customInputDescription": "Enter your own message title and topic description",
     "customInputTitleLabel": "Title",
     "customInputTitlePlaceholder": "e.g., Declining a meeting request",
-    "customInputTopicLabel": "Topic Description",
+    "customInputTopicLabel": "Topic Description or just Keywords",
     "customInputTopicPlaceholder": "e.g., Politely declining a meeting invitation due to schedule conflicts",
     "cancel": "Cancel",
     "continue": "Continue",
