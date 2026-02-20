@@ -371,7 +371,7 @@
       "title": "Information We Collect",
       "account": {
         "title": "Account Information",
-        "content": "When you create an account, we collect your email address, name, and authentication details through Firebase Authentication."
+        "content": "When you create an account, we collect your email address and authentication details through Firebase Authentication."
       },
       "usage": {
         "title": "Usage Data",
@@ -462,7 +462,7 @@
     "payment": {
       "title": "Credits and Payment",
       "intro": "Our service operates on a credit-based system:",
-      "item1": "New users receive 3 free credits to try the service",
+      "item1": "New users receive 5 free credits to try the service",
       "item2": "Each translation consumes one credit",
       "item3": "Credits can be purchased through our pricing page",
       "item4": "All payments are processed securely through Stripe",
@@ -504,7 +504,7 @@
     },
     "governing": {
       "title": "Governing Law",
-      "content": "These Terms are governed by the laws of the European Union and Germany. Any disputes shall be resolved in the courts of Germany."
+      "content": "These Terms are governed by the laws of Switzerland. Any disputes shall be resolved in the courts of Switzerland."
     },
     "contact": {
       "title": "Contact Information",

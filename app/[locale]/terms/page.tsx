@@ -151,7 +151,7 @@ export default function TermsPage() {
                 {t('contact.content')}
               </p>
               <p className="text-foreground">
-                <strong>Email:</strong> legal@sentenly.com
+                <strong>Email:</strong> inbox@sentenly.com
               </p>
             </section>
           </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
@@ -174,7 +175,15 @@ export default function Home() {
         <div className="container">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              <Languages className="w-4 h-4 text-primary" />
+              <div className="relative w-4 h-4">
+                <Image
+                  src="/logo.svg"
+                  alt="Sentenly Logo"
+                  width={16}
+                  height={16}
+                  className="w-full h-full"
+                />
+              </div>
               <span className="text-sm text-muted-foreground">{t('common.appName')}</span>
             </div>
             <div className="flex items-center gap-6">

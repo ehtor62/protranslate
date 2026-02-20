@@ -141,7 +141,7 @@ export default function PrivacyPage() {
                 {t('contact.content')}
               </p>
               <p className="text-foreground">
-                <strong>Email:</strong> privacy@sentenly.com
+                <strong>Email:</strong> inbox@sentenly.com
               </p>
             </section>
           </div>

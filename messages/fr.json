@@ -365,7 +365,7 @@
       "title": "Informations que Nous Collectons",
       "account": {
         "title": "Informations de Compte",
-        "content": "Lorsque vous créez un compte, nous collectons votre adresse e-mail, votre nom et vos détails d'authentification via Firebase Authentication."
+        "content": "Lorsque vous créez un compte, nous collectons votre adresse e-mail et vos détails d'authentification via Firebase Authentication."
       },
       "usage": {
         "title": "Données d'Utilisation",
@@ -456,7 +456,7 @@
     "payment": {
       "title": "Crédits et Paiement",
       "intro": "Notre service fonctionne sur un système basé sur les crédits :",
-      "item1": "Les nouveaux utilisateurs reçoivent 3 crédits gratuits pour essayer le service",
+      "item1": "Les nouveaux utilisateurs reçoivent 5 crédits gratuits pour essayer le service",
       "item2": "Chaque traduction consomme un crédit",
       "item3": "Les crédits peuvent être achetés via notre page de tarification",
       "item4": "Tous les paiements sont traités en toute sécurité via Stripe",
@@ -498,7 +498,7 @@
     },
     "governing": {
       "title": "Loi Applicable",
-      "content": "Ces Conditions sont régies par les lois de l'Union européenne et de l'Allemagne. Tout litige sera résolu devant les tribunaux allemands."
+      "content": "Ces Conditions sont régies par les lois de la Suisse. Tout litige sera résolu devant les tribunaux suisses."
     },
     "contact": {
       "title": "Informations de Contact",
