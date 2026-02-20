@@ -8,7 +8,10 @@
     "404": "404",
     "pageNotFound": "Página não encontrada",
     "returnHome": "Voltar ao início",
-    "signOut": "Sair"
+    "signOut": "Sair",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Serviço",
+    "allRightsReserved": "Todos os direitos reservados."
   },
   "credits": {
     "remaining": "Você tem {count, plural, =1 {# reescrita profissional restante} other {# reescritas profissionais restantes}}",
@@ -347,5 +350,157 @@
     "characterLimitExceeded": "Limite de caracteres excedido. Máximo de 1000 caracteres permitidos.",
     "titleLimitExceeded": "Limite de título excedido. Máximo de 60 caracteres.",
     "insufficientCredits": "Você usou todos os seus créditos. Por favor, compre mais para continuar."
+  },
+  "privacy": {
+    "title": "Política de Privacidade",
+    "lastUpdated": "Última atualização",
+    "footer": "Todos os direitos reservados.",
+    "introduction": {
+      "title": "Introdução",
+      "content": "A Sentenly ('nós', 'nosso' ou 'nossa') está comprometida em proteger sua privacidade. Esta Política de Privacidade explica como coletamos, usamos, divulgamos e protegemos suas informações quando você usa nosso serviço profissional de reescrita de mensagens."
+    },
+    "infoCollect": {
+      "title": "Informações que Coletamos",
+      "account": {
+        "title": "Informações da Conta",
+        "content": "Quando você cria uma conta, coletamos seu endereço de e-mail, nome e detalhes de autenticação através do Firebase Authentication."
+      },
+      "usage": {
+        "title": "Dados de Uso",
+        "content": "Coletamos informações sobre como você usa nosso serviço, incluindo as mensagens que você traduz, configurações de contexto e uso de créditos."
+      },
+      "content": {
+        "title": "Dados de Conteúdo",
+        "content": "O conteúdo de texto que você envia para tradução é temporariamente processado por nosso serviço de IA (OpenAI) e não é armazenado permanentemente em nossos servidores."
+      }
+    },
+    "howWeUse": {
+      "title": "Como Usamos Suas Informações",
+      "item1": "Para fornecer e manter nosso serviço de tradução",
+      "item2": "Para processar suas traduções e aplicar ajustes contextuais",
+      "item3": "Para gerenciar sua conta e créditos",
+      "item4": "Para nos comunicar com você sobre atualizações do serviço e suporte",
+      "item5": "Para melhorar nosso serviço e desenvolver novos recursos"
+    },
+    "security": {
+      "title": "Armazenamento de Dados e Segurança",
+      "content": "Usamos medidas de segurança padrão da indústria para proteger seus dados. As informações de sua conta são armazenadas com segurança usando Firebase, e as informações de pagamento são processadas através da infraestrutura de pagamento segura do Stripe. Não armazenamos os detalhes do seu cartão de crédito."
+    },
+    "thirdParty": {
+      "title": "Serviços de Terceiros",
+      "intro": "Usamos os seguintes serviços de terceiros confiáveis:",
+      "firebase": "Serviços de autenticação e banco de dados",
+      "openai": "Processamento de tradução alimentado por IA",
+      "stripe": "Processamento de pagamento seguro"
+    },
+    "rights": {
+      "title": "Seus Direitos (Conformidade GDPR)",
+      "access": "Direito de acessar seus dados pessoais",
+      "rectification": "Direito de corrigir dados imprecisos",
+      "erasure": "Direito de excluir sua conta e dados",
+      "restriction": "Direito de restringir o processamento",
+      "portability": "Direito à portabilidade de dados",
+      "objection": "Direito de se opor ao processamento"
+    },
+    "cookies": {
+      "title": "Cookies e Rastreamento",
+      "content": "Usamos cookies essenciais para autenticação e funcionalidade do serviço. Não usamos cookies de publicidade ou rastreamento."
+    },
+    "retention": {
+      "title": "Retenção de Dados",
+      "content": "Retemos as informações de sua conta enquanto sua conta estiver ativa. O conteúdo de tradução não é armazenado permanentemente. Você pode solicitar a exclusão da conta a qualquer momento."
+    },
+    "transfers": {
+      "title": "Transferências Internacionais de Dados",
+      "content": "Seus dados podem ser transferidos e processados em países fora de sua residência. Garantimos que salvaguardas apropriadas estejam em vigor para transferências internacionais de dados."
+    },
+    "children": {
+      "title": "Privacidade de Crianças",
+      "content": "Nosso serviço não se destina a usuários menores de 16 anos. Não coletamos intencionalmente informações de crianças."
+    },
+    "changes": {
+      "title": "Mudanças nesta Política de Privacidade",
+      "content": "Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos você sobre mudanças significativas por e-mail ou através de nosso serviço."
+    },
+    "contact": {
+      "title": "Entre em Contato",
+      "content": "Se você tiver dúvidas sobre esta Política de Privacidade ou desejar exercer seus direitos, entre em contato conosco:"
+    }
+  },
+  "terms": {
+    "title": "Termos de Serviço",
+    "lastUpdated": "Última atualização",
+    "footer": "Todos os direitos reservados.",
+    "introduction": {
+      "title": "Introdução",
+      "content": "Estes Termos de Serviço ('Termos') regem seu acesso e uso do serviço profissional de reescrita de mensagens da Sentenly. Ao usar nosso serviço, você concorda com estes Termos."
+    },
+    "acceptance": {
+      "title": "Aceitação dos Termos",
+      "content": "Ao criar uma conta ou usar nosso serviço, você reconhece que leu, entendeu e concorda em estar vinculado a estes Termos e nossa Política de Privacidade."
+    },
+    "service": {
+      "title": "Descrição do Serviço",
+      "content": "A Sentenly fornece um serviço de reescrita de mensagens alimentado por IA que ajuda os usuários a criar comunicações profissionais culturalmente apropriadas e contextualizadas em vários idiomas."
+    },
+    "accounts": {
+      "title": "Contas de Usuário",
+      "intro": "Para usar nosso serviço, você deve:",
+      "item1": "Fornecer informações de registro precisas e completas",
+      "item2": "Manter a segurança das credenciais de sua conta",
+      "item3": "Ter pelo menos 16 anos de idade",
+      "item4": "Nos notificar imediatamente sobre qualquer acesso não autorizado"
+    },
+    "payment": {
+      "title": "Créditos e Pagamento",
+      "intro": "Nosso serviço opera em um sistema baseado em créditos:",
+      "item1": "Novos usuários recebem 3 créditos gratuitos para experimentar o serviço",
+      "item2": "Cada tradução consome um crédito",
+      "item3": "Créditos podem ser comprados através de nossa página de preços",
+      "item4": "Todos os pagamentos são processados com segurança através do Stripe",
+      "item5": "Créditos não são reembolsáveis, exceto conforme exigido por lei"
+    },
+    "acceptable": {
+      "title": "Política de Uso Aceitável",
+      "intro": "Você concorda em não usar nosso serviço para:",
+      "item1": "Gerar conteúdo ilegal, prejudicial ou abusivo",
+      "item2": "Violar quaisquer leis ou regulamentos aplicáveis",
+      "item3": "Infringir direitos de propriedade intelectual",
+      "item4": "Tentar fazer engenharia reversa ou comprometer nosso serviço",
+      "item5": "Criar scripts automatizados ou bots sem autorização",
+      "item6": "Compartilhar sua conta com outros"
+    },
+    "intellectual": {
+      "title": "Propriedade Intelectual",
+      "content": "Você mantém a propriedade do conteúdo que envia. A saída traduzida é fornecida a você para seu uso. A Sentenly mantém todos os direitos sobre o serviço em si, incluindo software, design e marca."
+    },
+    "disclaimer": {
+      "title": "Isenção de Garantias",
+      "content": "Nosso serviço é fornecido 'como está' sem garantias de qualquer tipo. Embora nos esforcemos pela precisão, as traduções geradas por IA podem conter erros. Você é responsável por revisar e verificar todo o conteúdo traduzido antes do uso."
+    },
+    "liability": {
+      "title": "Limitação de Responsabilidade",
+      "content": "Na máxima extensão permitida por lei, a Sentenly não será responsável por quaisquer danos indiretos, incidentais ou consequenciais decorrentes do uso de nosso serviço."
+    },
+    "indemnification": {
+      "title": "Indenização",
+      "content": "Você concorda em indenizar e isentar a Sentenly de quaisquer reclamações, danos ou despesas decorrentes do uso do serviço ou violação destes Termos."
+    },
+    "termination": {
+      "title": "Rescisão",
+      "content": "Reservamo-nos o direito de suspender ou encerrar sua conta por violações destes Termos. Você pode fechar sua conta a qualquer momento."
+    },
+    "changes": {
+      "title": "Mudanças nos Termos",
+      "content": "Podemos modificar estes Termos a qualquer momento. O uso contínuo do serviço após as mudanças constitui aceitação dos Termos atualizados."
+    },
+    "governing": {
+      "title": "Lei Aplicável",
+      "content": "Estes Termos são regidos pelas leis da União Europeia e da Alemanha. Quaisquer disputas serão resolvidas nos tribunais da Alemanha."
+    },
+    "contact": {
+      "title": "Informações de Contato",
+      "content": "Para perguntas sobre estes Termos, entre em contato conosco:"
+    }
   }
 }

@@ -8,7 +8,10 @@
     "404": "404",
     "pageNotFound": "Seite nicht gefunden",
     "returnHome": "Zurück zur Startseite",
-    "signOut": "Abmelden"
+    "signOut": "Abmelden",
+    "privacy": "Datenschutzerklärung",
+    "terms": "Nutzungsbedingungen",
+    "allRightsReserved": "Alle Rechte vorbehalten."
   },
   "credits": {
     "remaining": "Sie haben noch {count, plural, one {# freie professionelle Umschreibung} other {# freie professionelle Umschreibungen}}",
@@ -350,5 +353,157 @@
     "characterLimitExceeded": "Zeichenlimit überschritten. Maximal 1000 Zeichen erlaubt.",
     "titleLimitExceeded": "Titellimit überschritten. Maximal 60 Zeichen erlaubt.",
     "insufficientCredits": "Sie haben alle Credits verbraucht. Bitte kaufen Sie mehr, um fortzufahren."
+  },
+  "privacy": {
+    "title": "Datenschutzerklärung",
+    "lastUpdated": "Zuletzt aktualisiert",
+    "footer": "Alle Rechte vorbehalten.",
+    "introduction": {
+      "title": "Einführung",
+      "content": "Sentenly ('wir', 'uns' oder 'unser') verpflichtet sich, Ihre Privatsphäre zu schützen. Diese Datenschutzerklärung erläutert, wie wir Ihre Informationen sammeln, verwenden, offenlegen und schützen, wenn Sie unseren professionellen Nachrichtenübersetzungsdienst nutzen."
+    },
+    "infoCollect": {
+      "title": "Informationen, die wir sammeln",
+      "account": {
+        "title": "Kontoinformationen",
+        "content": "Wenn Sie ein Konto erstellen, sammeln wir Ihre E-Mail-Adresse, Ihren Namen und Authentifizierungsdetails über Firebase Authentication."
+      },
+      "usage": {
+        "title": "Nutzungsdaten",
+        "content": "Wir sammeln Informationen darüber, wie Sie unseren Dienst nutzen, einschließlich der Nachrichten, die Sie übersetzen, Kontexteinstellungen und Credit-Nutzung."
+      },
+      "content": {
+        "title": "Inhaltsdaten",
+        "content": "Der Textinhalt, den Sie zur Übersetzung einreichen, wird vorübergehend von unserem KI-Dienst (OpenAI) verarbeitet und nicht dauerhaft auf unseren Servern gespeichert."
+      }
+    },
+    "howWeUse": {
+      "title": "Wie wir Ihre Informationen verwenden",
+      "item1": "Um unseren Übersetzungsdienst bereitzustellen und zu warten",
+      "item2": "Um Ihre Übersetzungen zu verarbeiten und kontextbezogene Anpassungen vorzunehmen",
+      "item3": "Um Ihr Konto und Ihre Credits zu verwalten",
+      "item4": "Um mit Ihnen über Service-Updates und Support zu kommunizieren",
+      "item5": "Um unseren Service zu verbessern und neue Funktionen zu entwickeln"
+    },
+    "security": {
+      "title": "Datenspeicherung und Sicherheit",
+      "content": "Wir verwenden branchenübliche Sicherheitsmaßnahmen zum Schutz Ihrer Daten. Ihre Kontoinformationen werden sicher mit Firebase gespeichert, und Zahlungsinformationen werden über die sichere Zahlungsinfrastruktur von Stripe verarbeitet. Wir speichern keine Kreditkartendaten."
+    },
+    "thirdParty": {
+      "title": "Drittanbieterdienste",
+      "intro": "Wir nutzen folgende vertrauenswürdige Drittanbieterdienste:",
+      "firebase": "Authentifizierungs- und Datenbankdienste",
+      "openai": "KI-gestützte Übersetzungsverarbeitung",
+      "stripe": "Sichere Zahlungsabwicklung"
+    },
+    "rights": {
+      "title": "Ihre Rechte (DSGVO-Konformität)",
+      "access": "Recht auf Zugang zu Ihren personenbezogenen Daten",
+      "rectification": "Recht auf Berichtigung unrichtiger Daten",
+      "erasure": "Recht auf Löschung Ihres Kontos und Ihrer Daten",
+      "restriction": "Recht auf Einschränkung der Verarbeitung",
+      "portability": "Recht auf Datenübertragbarkeit",
+      "objection": "Recht auf Widerspruch gegen die Verarbeitung"
+    },
+    "cookies": {
+      "title": "Cookies und Tracking",
+      "content": "Wir verwenden essentielle Cookies für Authentifizierung und Service-Funktionalität. Wir verwenden keine Werbe- oder Tracking-Cookies."
+    },
+    "retention": {
+      "title": "Datenspeicherung",
+      "content": "Wir bewahren Ihre Kontoinformationen auf, solange Ihr Konto aktiv ist. Übersetzungsinhalte werden nicht dauerhaft gespeichert. Sie können jederzeit die Löschung Ihres Kontos beantragen."
+    },
+    "transfers": {
+      "title": "Internationale Datenübermittlungen",
+      "content": "Ihre Daten können in Länder außerhalb Ihres Wohnsitzes übertragen und dort verarbeitet werden. Wir stellen sicher, dass angemessene Schutzmaßnahmen für internationale Datenübermittlungen vorhanden sind."
+    },
+    "children": {
+      "title": "Datenschutz für Kinder",
+      "content": "Unser Service richtet sich nicht an Nutzer unter 16 Jahren. Wir sammeln wissentlich keine Informationen von Kindern."
+    },
+    "changes": {
+      "title": "Änderungen dieser Datenschutzerklärung",
+      "content": "Wir können diese Datenschutzerklärung regelmäßig aktualisieren. Wir werden Sie über wesentliche Änderungen per E-Mail oder über unseren Service benachrichtigen."
+    },
+    "contact": {
+      "title": "Kontaktieren Sie uns",
+      "content": "Wenn Sie Fragen zu dieser Datenschutzerklärung haben oder Ihre Rechte ausüben möchten, kontaktieren Sie uns bitte:"
+    }
+  },
+  "terms": {
+    "title": "Nutzungsbedingungen",
+    "lastUpdated": "Zuletzt aktualisiert",
+    "footer": "Alle Rechte vorbehalten.",
+    "introduction": {
+      "title": "Einführung",
+      "content": "Diese Nutzungsbedingungen ('Bedingungen') regeln Ihren Zugang zu und die Nutzung des professionellen Nachrichtenübersetzungsdienstes von Sentenly. Durch die Nutzung unseres Dienstes stimmen Sie diesen Bedingungen zu."
+    },
+    "acceptance": {
+      "title": "Annahme der Bedingungen",
+      "content": "Durch die Erstellung eines Kontos oder die Nutzung unseres Dienstes bestätigen Sie, dass Sie diese Bedingungen und unsere Datenschutzerklärung gelesen, verstanden haben und an diese gebunden sein möchten."
+    },
+    "service": {
+      "title": "Beschreibung des Dienstes",
+      "content": "Sentenly bietet einen KI-gestützten Nachrichtenumschreibungsdienst, der Nutzern hilft, kulturell angemessene, kontextbewusste professionelle Kommunikation in mehreren Sprachen zu erstellen."
+    },
+    "accounts": {
+      "title": "Benutzerkonten",
+      "intro": "Um unseren Service zu nutzen, müssen Sie:",
+      "item1": "Genaue und vollständige Registrierungsinformationen angeben",
+      "item2": "Die Sicherheit Ihrer Kontodaten wahren",
+      "item3": "Mindestens 16 Jahre alt sein",
+      "item4": "Uns unverzüglich über unbefugten Zugriff informieren"
+    },
+    "payment": {
+      "title": "Credits und Zahlung",
+      "intro": "Unser Service funktioniert auf Credit-Basis:",
+      "item1": "Neue Nutzer erhalten 3 kostenlose Credits zum Testen des Dienstes",
+      "item2": "Jede Übersetzung verbraucht ein Credit",
+      "item3": "Credits können über unsere Preisseite erworben werden",
+      "item4": "Alle Zahlungen werden sicher über Stripe verarbeitet",
+      "item5": "Credits sind nicht erstattungsfähig, außer gesetzlich vorgeschrieben"
+    },
+    "acceptable": {
+      "title": "Richtlinie zur akzeptablen Nutzung",
+      "intro": "Sie verpflichten sich, unseren Service nicht zu nutzen, um:",
+      "item1": "Illegale, schädliche oder missbräuchliche Inhalte zu generieren",
+      "item2": "Geltende Gesetze oder Vorschriften zu verletzen",
+      "item3": "Rechte an geistigem Eigentum zu verletzen",
+      "item4": "Zu versuchen, unseren Service rückzuentwickeln oder zu kompromittieren",
+      "item5": "Automatisierte Skripte oder Bots ohne Genehmigung zu erstellen",
+      "item6": "Ihr Konto mit anderen zu teilen"
+    },
+    "intellectual": {
+      "title": "Geistiges Eigentum",
+      "content": "Sie behalten das Eigentum an den Inhalten, die Sie einreichen. Die übersetzte Ausgabe wird Ihnen zur Nutzung zur Verfügung gestellt. Sentenly behält alle Rechte am Service selbst, einschließlich Software, Design und Branding."
+    },
+    "disclaimer": {
+      "title": "Haftungsausschluss für Garantien",
+      "content": "Unser Service wird 'wie besehen' ohne jegliche Garantien bereitgestellt. Obwohl wir uns um Genauigkeit bemühen, können KI-generierte Übersetzungen Fehler enthalten. Sie sind verantwortlich für die Überprüfung und Verifizierung aller übersetzten Inhalte vor der Verwendung."
+    },
+    "liability": {
+      "title": "Haftungsbeschränkung",
+      "content": "Im gesetzlich zulässigen Umfang haftet Sentenly nicht für indirekte, zufällige oder Folgeschäden, die aus Ihrer Nutzung unseres Dienstes entstehen."
+    },
+    "indemnification": {
+      "title": "Schadloshaltung",
+      "content": "Sie verpflichten sich, Sentenly von allen Ansprüchen, Schäden oder Kosten freizustellen, die sich aus Ihrer Nutzung des Dienstes oder Verletzung dieser Bedingungen ergeben."
+    },
+    "termination": {
+      "title": "Kündigung",
+      "content": "Wir behalten uns das Recht vor, Ihr Konto bei Verstößen gegen diese Bedingungen auszusetzen oder zu kündigen. Sie können Ihr Konto jederzeit schließen."
+    },
+    "changes": {
+      "title": "Änderungen der Bedingungen",
+      "content": "Wir können diese Bedingungen jederzeit ändern. Die fortgesetzte Nutzung des Dienstes nach Änderungen gilt als Annahme der aktualisierten Bedingungen."
+    },
+    "governing": {
+      "title": "Anwendbares Recht",
+      "content": "Diese Bedingungen unterliegen den Gesetzen der Europäischen Union und Deutschlands. Streitigkeiten werden vor den Gerichten Deutschlands beigelegt."
+    },
+    "contact": {
+      "title": "Kontaktinformationen",
+      "content": "Bei Fragen zu diesen Bedingungen kontaktieren Sie uns bitte:"
+    }
   }
 }

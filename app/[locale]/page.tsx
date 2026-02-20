@@ -177,8 +177,16 @@ export default function Home() {
               <Languages className="w-4 h-4 text-primary" />
               <span className="text-sm text-muted-foreground">{t('common.appName')}</span>
             </div>
-            <p className="text-sm text-tertiary">
-              {t('common.tagline')}
+            <div className="flex items-center gap-6">
+              <Link href={`/${locale}/privacy`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                {t('common.privacy')}
+              </Link>
+              <Link href={`/${locale}/terms`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                {t('common.terms')}
+              </Link>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              © 2026 {t('common.appName')}. {t('common.allRightsReserved')}
             </p>
           </div>
         </div>

@@ -8,7 +8,10 @@
     "404": "404",
     "pageNotFound": "Page not found",
     "returnHome": "Return home",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "allRightsReserved": "All rights reserved."
   },
   "credits": {
     "remaining": "You have {count, plural, =1 {# professional rewrite} other {# professional rewrites}} left",
@@ -355,5 +358,157 @@
     "characterLimitExceeded": "Character limit exceeded. Maximum 1000 characters allowed.",
     "titleLimitExceeded": "Title limit exceeded. Maximum 60 characters allowed.",
     "insufficientCredits": "You've used all your credits. Please purchase more to continue."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated",
+    "footer": "All rights reserved.",
+    "introduction": {
+      "title": "Introduction",
+      "content": "Sentenly ('we', 'us', or 'our') is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our professional message rewriting service."
+    },
+    "infoCollect": {
+      "title": "Information We Collect",
+      "account": {
+        "title": "Account Information",
+        "content": "When you create an account, we collect your email address, name, and authentication details through Firebase Authentication."
+      },
+      "usage": {
+        "title": "Usage Data",
+        "content": "We collect information about how you use our service, including the messages you translate, context settings, and credit usage."
+      },
+      "content": {
+        "title": "Content Data",
+        "content": "The text content you submit for translation is temporarily processed by our AI service (OpenAI) and is not stored permanently on our servers."
+      }
+    },
+    "howWeUse": {
+      "title": "How We Use Your Information",
+      "item1": "To provide and maintain our translation service",
+      "item2": "To process your translations and apply context-aware adjustments",
+      "item3": "To manage your account and credits",
+      "item4": "To communicate with you about service updates and support",
+      "item5": "To improve our service and develop new features"
+    },
+    "security": {
+      "title": "Data Storage and Security",
+      "content": "We use industry-standard security measures to protect your data. Your account information is stored securely using Firebase, and payment information is processed through Stripe's secure payment infrastructure. We do not store your credit card details."
+    },
+    "thirdParty": {
+      "title": "Third-Party Services",
+      "intro": "We use the following trusted third-party services:",
+      "firebase": "Authentication and database services",
+      "openai": "AI-powered translation processing",
+      "stripe": "Secure payment processing"
+    },
+    "rights": {
+      "title": "Your Rights (GDPR Compliance)",
+      "access": "Right to access your personal data",
+      "rectification": "Right to correct inaccurate data",
+      "erasure": "Right to delete your account and data",
+      "restriction": "Right to restrict processing",
+      "portability": "Right to data portability",
+      "objection": "Right to object to processing"
+    },
+    "cookies": {
+      "title": "Cookies and Tracking",
+      "content": "We use essential cookies for authentication and service functionality. We do not use advertising or tracking cookies."
+    },
+    "retention": {
+      "title": "Data Retention",
+      "content": "We retain your account information as long as your account is active. Translation content is not permanently stored. You can request account deletion at any time."
+    },
+    "transfers": {
+      "title": "International Data Transfers",
+      "content": "Your data may be transferred to and processed in countries outside your residence. We ensure appropriate safeguards are in place for international data transfers."
+    },
+    "children": {
+      "title": "Children's Privacy",
+      "content": "Our service is not intended for users under 16 years of age. We do not knowingly collect information from children."
+    },
+    "changes": {
+      "title": "Changes to This Privacy Policy",
+      "content": "We may update this Privacy Policy periodically. We will notify you of significant changes via email or through our service."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "content": "If you have questions about this Privacy Policy or wish to exercise your rights, please contact us:"
+    }
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated",
+    "footer": "All rights reserved.",
+    "introduction": {
+      "title": "Introduction",
+      "content": "These Terms of Service ('Terms') govern your access to and use of Sentenly's professional message rewriting service. By using our service, you agree to these Terms."
+    },
+    "acceptance": {
+      "title": "Acceptance of Terms",
+      "content": "By creating an account or using our service, you acknowledge that you have read, understood, and agree to be bound by these Terms and our Privacy Policy."
+    },
+    "service": {
+      "title": "Description of Service",
+      "content": "Sentenly provides an AI-powered message rewriting service that helps users create culturally appropriate, context-aware professional communications in multiple languages."
+    },
+    "accounts": {
+      "title": "User Accounts",
+      "intro": "To use our service, you must:",
+      "item1": "Provide accurate and complete registration information",
+      "item2": "Maintain the security of your account credentials",
+      "item3": "Be at least 16 years of age",
+      "item4": "Notify us immediately of any unauthorized access"
+    },
+    "payment": {
+      "title": "Credits and Payment",
+      "intro": "Our service operates on a credit-based system:",
+      "item1": "New users receive 3 free credits to try the service",
+      "item2": "Each translation consumes one credit",
+      "item3": "Credits can be purchased through our pricing page",
+      "item4": "All payments are processed securely through Stripe",
+      "item5": "Credits are non-refundable except as required by law"
+    },
+    "acceptable": {
+      "title": "Acceptable Use Policy",
+      "intro": "You agree not to use our service to:",
+      "item1": "Generate illegal, harmful, or abusive content",
+      "item2": "Violate any applicable laws or regulations",
+      "item3": "Infringe on intellectual property rights",
+      "item4": "Attempt to reverse engineer or compromise our service",
+      "item5": "Create automated scripts or bots without authorization",
+      "item6": "Share your account with others"
+    },
+    "intellectual": {
+      "title": "Intellectual Property",
+      "content": "You retain ownership of the content you submit. The translated output is provided to you for your use. Sentenly retains all rights to the service itself, including software, design, and branding."
+    },
+    "disclaimer": {
+      "title": "Disclaimer of Warranties",
+      "content": "Our service is provided 'as is' without warranties of any kind. While we strive for accuracy, AI-generated translations may contain errors. You are responsible for reviewing and verifying all translated content before use."
+    },
+    "liability": {
+      "title": "Limitation of Liability",
+      "content": "To the maximum extent permitted by law, Sentenly shall not be liable for any indirect, incidental, or consequential damages arising from your use of our service."
+    },
+    "indemnification": {
+      "title": "Indemnification",
+      "content": "You agree to indemnify and hold Sentenly harmless from any claims, damages, or expenses arising from your use of the service or violation of these Terms."
+    },
+    "termination": {
+      "title": "Termination",
+      "content": "We reserve the right to suspend or terminate your account for violations of these Terms. You may close your account at any time."
+    },
+    "changes": {
+      "title": "Changes to Terms",
+      "content": "We may modify these Terms at any time. Continued use of the service after changes constitutes acceptance of the updated Terms."
+    },
+    "governing": {
+      "title": "Governing Law",
+      "content": "These Terms are governed by the laws of the European Union and Germany. Any disputes shall be resolved in the courts of Germany."
+    },
+    "contact": {
+      "title": "Contact Information",
+      "content": "For questions about these Terms, please contact us:"
+    }
   }
 }
