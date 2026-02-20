@@ -212,7 +212,7 @@
     "explanation": "Erklärung",
     "reception": "Wahrscheinliche Aufnahme",
     "customInputTitle": "Benutzerdefinierte Eingabe",
-    "customInputDescription": "Geben Sie Ihren eigenen Nachrichtentitel und Themenbeschreibung ein",
+    "customInputDescription": "Geben Sie Ihren eigenen Nachrichtentitel und eine Themenbeschreibung ein",
     "customInputTitleLabel": "Titel",
     "customInputTitlePlaceholder": "z.B. Ablehnung einer Besprechungsanfrage",
     "customInputTopicLabel": "Themenbeschreibung oder nur Schlüsselwörter",
