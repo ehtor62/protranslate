@@ -76,7 +76,7 @@ export default function PricingPage() {
           <div className="bg-surface-elevated rounded-xl p-8 shadow-lg">
             {user ? (
               <stripe-pricing-table 
-                pricing-table-id="prctbl_1Sx3BECmaIZImua13XHmGnDT"
+                pricing-table-id={process.env.NEXT_PUBLIC_STRIPE_PRICING_TABLE_ID || ''}
                 publishable-key={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ''}
                 customer-email={user.email || undefined}
                 client-reference-id={user.uid}
@@ -84,7 +84,7 @@ export default function PricingPage() {
               />
             ) : (
               <stripe-pricing-table 
-                pricing-table-id="prctbl_1Sx3BECmaIZImua13XHmGnDT"
+                pricing-table-id={process.env.NEXT_PUBLIC_STRIPE_PRICING_TABLE_ID || ''}
                 publishable-key={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ''}
                 success-url={typeof window !== 'undefined' ? `${window.location.origin}/pricing?payment=success` : undefined}
               />

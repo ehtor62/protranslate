@@ -9,10 +9,21 @@ The app uses Stripe's Pricing Table for payment processing. When a user complete
 
 1. Go to [Stripe Dashboard](https://dashboard.stripe.com)
 2. Navigate to **Products** > **Pricing Tables**
-3. For each product, add metadata:
+3. Create 3 products with these details:
+   - **Starter Pack**: €7.99 (or your currency)
+   - **Professional Pack**: €19.99
+   - **Power Pack**: €49.99
+4. For each product, add this metadata:
    - Key: `credits`
    - Value: Number of credits (e.g., `50`, `150`, `500`)
-4. The pricing table ID is already in the code: `prctbl_1Sx3BECmaIZImua13XHmGnDT`
+5. Click **"Create pricing table"** and add all 3 products
+6. Save the pricing table and **copy the table ID** (starts with `prctbl_`)
+7. Add to `.env.local`:
+   ```
+   NEXT_PUBLIC_STRIPE_PRICING_TABLE_ID=prctbl_your_table_id_here
+   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_key_here
+   STRIPE_SECRET_KEY=sk_test_your_secret_key_here
+   ```
 
 ### 2. Set Up Webhook Endpoint
 
