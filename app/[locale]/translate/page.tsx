@@ -563,12 +563,15 @@ export default function Translate() {
     const handlePaymentSuccess = async () => {
       if (searchParams.get('payment') === 'success' && !paymentToastShownRef.current) {
         console.log('[Payment] Payment successful, re-fetching credits...');
-        toast.success(t('payment.success') || 'Payment successful! Your credits have been added.');
         paymentToastShownRef.current = true;
         
         // Re-fetch credits after successful payment
         if (user) {
           try {
+            // Add a delay to ensure webhook has processed
+            console.log('[Payment] Waiting for webhook to process...');
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
             const idToken = await user.getIdToken();
             const response = await fetch('/api/credits', {
               headers: {
@@ -582,46 +585,72 @@ export default function Translate() {
               
               // Check for pending translation and trigger it
               const pendingData = localStorage.getItem('pendingTranslation');
-              console.log('[Payment] Checking for pending translation:', pendingData);
+              console.log('[Payment] Pending translation data:', pendingData);
+              
               if (pendingData) {
                 try {
                   const pending = JSON.parse(pendingData);
+                  console.log('[Payment] Parsed pending translation:', pending);
                   localStorage.removeItem('pendingTranslation');
                   
-                  console.log('[Payment] Restoring pending translation:', pending);
+                  // Show success toast
+                  toast.success(t('payment.success') || 'Payment successful! Generating your translation...');
                   
                   // Clear any error message from the output
                   setTranslation(null);
                   
                   // Restore the saved state
+                  console.log('[Payment] Restoring state...');
                   if (pending.selectedMessageId) {
-                    console.log('[Payment] Restoring selectedMessageId:', pending.selectedMessageId);
+                    console.log('[Payment] Setting selectedMessageId:', pending.selectedMessageId);
                     setSelectedMessageId(pending.selectedMessageId);
                   }
-                  if (pending.customTitle) setCustomTitle(pending.customTitle);
-                  if (pending.customDescription) setCustomDescription(pending.customDescription);
-                  if (pending.context) setContext(pending.context);
-                  if (pending.targetLanguage) setTargetLanguage(pending.targetLanguage);
+                  if (pending.customTitle) {
+                    console.log('[Payment] Setting customTitle:', pending.customTitle);
+                    setCustomTitle(pending.customTitle);
+                  }
+                  if (pending.customDescription) {
+                    console.log('[Payment] Setting customDescription:', pending.customDescription);
+                    setCustomDescription(pending.customDescription);
+                  }
+                  if (pending.context) {
+                    console.log('[Payment] Setting context');
+                    setContext(pending.context);
+                  }
+                  if (pending.targetLanguage) {
+                    console.log('[Payment] Setting targetLanguage:', pending.targetLanguage);
+                    setTargetLanguage(pending.targetLanguage);
+                  }
                   
-                  // Trigger generation after a short delay to ensure state is updated
-                  console.log('[Payment] Triggering auto-generation after payment');
+                  // Trigger generation after state is set
+                  console.log('[Payment] Triggering auto-generation in 1 second...');
                   setTimeout(() => {
                     console.log('[Payment] Executing setShouldGenerate(true)');
                     setShouldGenerate(true);
-                  }, 500);
+                  }, 1000);
                 } catch (err) {
                   console.error('[Payment] Error parsing pending translation:', err);
+                  toast.success(t('payment.success') || 'Payment successful! Your credits have been added.');
                 }
               } else {
-                console.log('[Payment] No pending translation found');
+                console.log('[Payment] No pending translation found in localStorage');
+                toast.success(t('payment.success') || 'Payment successful! Your credits have been added.');
               }
+            } else {
+              console.error('[Payment] Failed to fetch credits after payment');
+              toast.success(t('payment.success') || 'Payment successful! Your credits have been added.');
             }
           } catch (error) {
             console.error('[Payment] Error re-fetching credits:', error);
+            toast.success(t('payment.success') || 'Payment successful! Your credits have been added.');
           }
+        } else {
+          console.log('[Payment] No user found after payment redirect');
+          toast.success(t('payment.success') || 'Payment successful! Your credits have been added.');
         }
         
         // Clean up URL
+        console.log('[Payment] Cleaning up URL...');
         router.replace(`/${locale}/translate`);
       }
     };
