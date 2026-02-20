@@ -10,7 +10,7 @@
     "returnHome": "Torna alla home",
     "signOut": "Esci",
     "privacy": "Informativa sulla Privacy",
-    "terms": "Termini di Servizio",    "contact": "Contatto",    "allRightsReserved": "Tutti i diritti riservati."
+    "terms": "Termini di Servizio",    "contact": "Contatto & FAQ",    "allRightsReserved": "Tutti i diritti riservati."
   },
   "credits": {
     "remaining": "Hai {count, plural, =1 {# riscrittura professionale rimanente} other {# riscritture professionali rimanenti}}",

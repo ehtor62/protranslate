@@ -10,7 +10,7 @@
     "returnHome": "Retour à l'accueil",
     "signOut": "Se déconnecter",
     "privacy": "Politique de Confidentialité",
-    "terms": "Conditions d'Utilisation",    "contact": "Contact",    "allRightsReserved": "Tous droits réservés."
+    "terms": "Conditions d'Utilisation",    "contact": "Contact & FAQ",    "allRightsReserved": "Tous droits réservés."
   },
   "credits": {
     "remaining": "Il vous reste {count, plural, =1 {# réécriture professionnelle} other {# réécritures professionnelles}}",
