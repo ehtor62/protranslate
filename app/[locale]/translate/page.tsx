@@ -389,7 +389,17 @@ export default function Translate() {
 
         // Check if user has sufficient credits
         if (credits === null || credits <= 0) {
-          console.log('[Generate] Insufficient credits, opening pricing modal');
+          console.log('[Generate] Insufficient credits, saving pending translation and opening pricing modal');
+          
+          // Save pending translation to localStorage so it can be triggered after payment
+          localStorage.setItem('pendingTranslation', JSON.stringify({
+            selectedMessageId,
+            customTitle,
+            customDescription,
+            context,
+            targetLanguage
+          }));
+          
           setIsLoading(false);
           setIsPricingModalOpen(true);
           return;
@@ -569,6 +579,42 @@ export default function Translate() {
               const data = await response.json();
               console.log('[Payment] Credits updated after payment:', data.credits);
               setCredits(data.credits);
+              
+              // Check for pending translation and trigger it
+              const pendingData = localStorage.getItem('pendingTranslation');
+              console.log('[Payment] Checking for pending translation:', pendingData);
+              if (pendingData) {
+                try {
+                  const pending = JSON.parse(pendingData);
+                  localStorage.removeItem('pendingTranslation');
+                  
+                  console.log('[Payment] Restoring pending translation:', pending);
+                  
+                  // Clear any error message from the output
+                  setTranslation(null);
+                  
+                  // Restore the saved state
+                  if (pending.selectedMessageId) {
+                    console.log('[Payment] Restoring selectedMessageId:', pending.selectedMessageId);
+                    setSelectedMessageId(pending.selectedMessageId);
+                  }
+                  if (pending.customTitle) setCustomTitle(pending.customTitle);
+                  if (pending.customDescription) setCustomDescription(pending.customDescription);
+                  if (pending.context) setContext(pending.context);
+                  if (pending.targetLanguage) setTargetLanguage(pending.targetLanguage);
+                  
+                  // Trigger generation after a short delay to ensure state is updated
+                  console.log('[Payment] Triggering auto-generation after payment');
+                  setTimeout(() => {
+                    console.log('[Payment] Executing setShouldGenerate(true)');
+                    setShouldGenerate(true);
+                  }, 500);
+                } catch (err) {
+                  console.error('[Payment] Error parsing pending translation:', err);
+                }
+              } else {
+                console.log('[Payment] No pending translation found');
+              }
             }
           } catch (error) {
             console.error('[Payment] Error re-fetching credits:', error);
@@ -576,12 +622,12 @@ export default function Translate() {
         }
         
         // Clean up URL
-        router.replace('/translate');
+        router.replace(`/${locale}/translate`);
       }
     };
     
     handlePaymentSuccess();
-  }, [searchParams, router, t, user]);
+  }, [searchParams, router, t, user, locale]);
   
   const selectedMessage = coreMessages.find(m => m.id === selectedMessageId);
   const selectedMessageKey = selectedMessage ? toCamelCase(selectedMessage.id) : '';
@@ -918,7 +964,17 @@ export default function Translate() {
                   setCredits(data.credits);
                   
                   if (data.credits <= 0) {
-                    console.log('[Translate] Insufficient credits, opening pricing modal');
+                    console.log('[Translate] Insufficient credits, saving pending translation and opening pricing modal');
+                    
+                    // Save pending translation so it can be triggered after payment
+                    localStorage.setItem('pendingTranslation', JSON.stringify({
+                      selectedMessageId,
+                      customTitle,
+                      customDescription,
+                      context,
+                      targetLanguage
+                    }));
+                    
                     setIsPricingModalOpen(true);
                   } else {
                     console.log('[Translate] Credits available, triggering generation');
@@ -1003,6 +1059,17 @@ export default function Translate() {
                       
                       // Check credits
                       if (credits === 0) {
+                        console.log('[Dialog] Insufficient credits, saving pending translation and opening pricing modal');
+                        
+                        // Save pending translation so it can be triggered after payment
+                        localStorage.setItem('pendingTranslation', JSON.stringify({
+                          selectedMessageId,
+                          customTitle,
+                          customDescription,
+                          context,
+                          targetLanguage
+                        }));
+                        
                         setIsDialogOpen(false);
                         setIsPricingModalOpen(true);
                         return;

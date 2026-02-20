@@ -56,6 +56,14 @@ export async function POST(request: NextRequest) {
       console.log('[Webhook] Processing checkout.session.completed');
       console.log('[Webhook] Session ID:', session.id);
       console.log('[Webhook] Client reference ID:', session.client_reference_id);
+      console.log('[Webhook] Payment status:', session.payment_status);
+      console.log('[Webhook] Mode:', session.mode);
+      
+      // Only process if payment was successful
+      if (session.payment_status !== 'paid') {
+        console.log('[Webhook] Payment not completed yet, status:', session.payment_status);
+        return NextResponse.json({ received: true, status: 'payment_pending' });
+      }
       
       // Get user ID from client_reference_id
       const userId = session.client_reference_id;
@@ -78,24 +86,46 @@ export async function POST(request: NextRequest) {
         const lineItem = fullSession.line_items.data[0];
         const product = lineItem.price?.product as Stripe.Product | undefined;
         
+        console.log('[Webhook] Line item:', JSON.stringify({
+          priceId: lineItem.price?.id,
+          productId: typeof product === 'object' ? product.id : product,
+          productName: typeof product === 'object' ? product.name : 'N/A',
+          metadata: typeof product === 'object' ? product.metadata : {}
+        }));
+        
         if (product && typeof product === 'object' && product.metadata?.credits) {
           creditsToAdd = parseInt(product.metadata.credits, 10);
           console.log('[Webhook] Credits from product metadata:', creditsToAdd);
+        } else {
+          console.warn('[Webhook] No credits metadata found on product');
         }
+      } else {
+        console.warn('[Webhook] No line items found in session');
       }
       
       if (creditsToAdd > 0) {
         // Add credits to user's account
         const userRef = adminDb.collection('users').doc(userId);
         const userDoc = await userRef.get();
-        const currentCredits = userDoc.data()?.credits || 0;
         
-        await userRef.update({
-          credits: currentCredits + creditsToAdd,
-          lastPurchase: new Date().toISOString(),
-        });
-
-        console.log(`[Webhook] ✓ Added ${creditsToAdd} credits to user ${userId}. New total: ${currentCredits + creditsToAdd}`);
+        if (!userDoc.exists) {
+          console.log('[Webhook] User document does not exist, creating it');
+          await userRef.set({
+            credits: creditsToAdd,
+            lastPurchase: new Date().toISOString(),
+            createdAt: new Date().toISOString(),
+          });
+          console.log(`[Webhook] ✓ Created user ${userId} with ${creditsToAdd} credits`);
+        } else {
+          const currentCredits = userDoc.data()?.credits || 0;
+          const newTotal = currentCredits + creditsToAdd;
+          
+          await userRef.update({
+            credits: newTotal,
+            lastPurchase: new Date().toISOString(),
+          });
+          console.log(`[Webhook] ✓ Updated user ${userId}: ${currentCredits} + ${creditsToAdd} = ${newTotal} credits`);
+        }
         
         // Check if this purchase should trigger referral rewards
         // This awards the referrer when the referred user makes their first purchase
@@ -107,7 +137,10 @@ export async function POST(request: NextRequest) {
           console.error('[Webhook] Error checking referral credits:', error);
         }
       } else {
-        console.warn('[Webhook] No credits to add. Check product metadata in Stripe Dashboard.');
+        console.error('[Webhook] ⚠️ NO CREDITS TO ADD! Product metadata missing.');
+        console.error('[Webhook] Please add "credits" metadata to your Stripe products.');
+        console.error('[Webhook] Example: In Stripe Dashboard > Products > [Your Product] > Metadata');
+        console.error('[Webhook] Add key: "credits" with value: "50" (or appropriate amount)');
       }
     }
 
