@@ -388,7 +388,7 @@ export default function Translate() {
         }
 
         // Check if user has sufficient credits
-        if (credits <= 0) {
+        if (credits === null || credits <= 0) {
           console.log('[Generate] Insufficient credits, opening pricing modal');
           setIsLoading(false);
           setIsPricingModalOpen(true);
@@ -901,6 +901,10 @@ export default function Translate() {
             } else {
               // Email already verified - check credits before triggering generation
               console.log('[Translate] Email already verified, checking credits...');
+              if (!currentUser) {
+                console.error('[Translate] No current user found');
+                return;
+              }
               try {
                 const idToken = await currentUser.getIdToken();
                 const response = await fetch('/api/credits', {
