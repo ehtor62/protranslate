@@ -1,6 +1,7 @@
 
 import { cn } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { useCallback, useRef, useState, useEffect } from 'react';
 
 interface ContextSliderProps {
   label: string;
@@ -25,6 +26,40 @@ export function ContextSlider({
   showLabelInHandle = false,
   className
 }: ContextSliderProps) {
+  const [isDragging, setIsDragging] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  
+  // Optimize the change handler with useCallback
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = parseInt(e.target.value, 10);
+    if (!isNaN(newValue)) {
+      onChange(newValue);
+    }
+  }, [onChange]);
+  
+  // Handle pointer events for smoother dragging
+  const handlePointerDown = useCallback(() => {
+    setIsDragging(true);
+  }, []);
+  
+  const handlePointerUp = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+  
+  useEffect(() => {
+    const input = inputRef.current;
+    if (!input) return;
+    
+    // Add passive event listeners for better performance
+    input.addEventListener('pointerdown', handlePointerDown, { passive: true });
+    document.addEventListener('pointerup', handlePointerUp, { passive: true });
+    
+    return () => {
+      input.removeEventListener('pointerdown', handlePointerDown);
+      document.removeEventListener('pointerup', handlePointerUp);
+    };
+  }, [handlePointerDown, handlePointerUp]);
+
   return (
     <div className={cn("space-y-3", className)}>
       <div className={cn(
@@ -43,10 +78,11 @@ export function ContextSlider({
         <div className={cn("relative", inline && !showLabelInHandle ? "flex-1" : "w-full", showLabelInHandle && "px-12")}>
           {showLabelInHandle && (
             <div 
-              className="absolute top-1/2 pointer-events-none z-10 transition-all duration-150"
+              className="absolute top-1/2 pointer-events-none z-10 will-change-transform"
               style={{ 
                 left: `${value}%`,
-                transform: `translate(-${value}%, -50%)`
+                transform: `translate(-${value}%, -50%)`,
+                transition: isDragging ? 'none' : 'transform 0.1s ease-out'
               }}
             >
               <div className="bg-primary text-primary-foreground px-3 py-1.5 rounded-md text-xs font-medium whitespace-nowrap shadow-md">
@@ -55,23 +91,25 @@ export function ContextSlider({
             </div>
           )}
           <input
+            ref={inputRef}
             type="range"
             min="0"
             max="100"
             value={value}
-            onChange={(e) => onChange(parseInt(e.target.value))}
+            onChange={handleChange}
             step="1"
             className={cn(
-              "w-full h-2 cursor-pointer touch-none",
-              "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
+              "w-full h-2 cursor-grab active:cursor-grabbing touch-none",
+              "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
               "[&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5",
               "[&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary",
-              "[&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-md",
-              "[&::-webkit-slider-thumb]:transition-all [&::-webkit-slider-thumb]:hover:scale-110",
-              "[&::-webkit-slider-thumb]:active:scale-125",
+              "[&::-webkit-slider-thumb]:cursor-grab [&::-webkit-slider-thumb]:shadow-md",
+              "[&::-webkit-slider-thumb]:transition-transform [&::-webkit-slider-thumb]:duration-100",
+              "[&::-webkit-slider-thumb]:hover:scale-110",
+              "[&::-webkit-slider-thumb]:active:cursor-grabbing [&::-webkit-slider-thumb]:active:scale-105",
               "[&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5",
               "[&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:border-0",
-              "[&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:shadow-md",
+              "[&::-moz-range-thumb]:cursor-grab [&::-moz-range-thumb]:shadow-md",
               "[&::-webkit-slider-runnable-track]:h-2 [&::-webkit-slider-runnable-track]:rounded-full",
               "[&::-webkit-slider-runnable-track]:bg-muted",
               "[&::-moz-range-track]:h-2 [&::-moz-range-track]:rounded-full [&::-moz-range-track]:bg-muted",

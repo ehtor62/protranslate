@@ -2,7 +2,7 @@
 "use client";
 
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Header } from '@/components/Header';
@@ -112,24 +112,36 @@ export default function Translate() {
     label: t(`powerRelationship.${value}`)
   }));
   
-  const updateContext = <K extends keyof ContextSettings>(
+  // Debounce localStorage writes to improve slider performance
+  const saveTimeoutRef = useRef<NodeJS.Timeout>();
+  
+  const debouncedSaveToLocalStorage = useCallback((data: any) => {
+    if (saveTimeoutRef.current) {
+      clearTimeout(saveTimeoutRef.current);
+    }
+    saveTimeoutRef.current = setTimeout(() => {
+      localStorage.setItem('draftSettings', JSON.stringify(data));
+    }, 300);
+  }, []);
+  
+  const updateContext = useCallback(<K extends keyof ContextSettings>(
     key: K,
     value: ContextSettings[K]
   ) => {
     const newContext = { ...context, [key]: value };
     setContext(newContext);
     
-    // Save draft settings to localStorage if user is not logged in
+    // Debounce draft settings save to localStorage for better slider performance
     if (!user) {
-      localStorage.setItem('draftSettings', JSON.stringify({
+      debouncedSaveToLocalStorage({
         context: newContext,
         selectedMessageId,
         customTitle,
         customDescription,
         targetLanguage
-      }));
+      });
     }
-  };
+  }, [context, user, selectedMessageId, customTitle, customDescription, targetLanguage, debouncedSaveToLocalStorage]);
 
   const handleCulturalContextChange = (value: string) => {
     if (value === 'us') {
@@ -218,18 +230,14 @@ export default function Translate() {
     }
   }, [user]);
   
-  // Save draft settings to localStorage when they change (for non-logged-in users)
+  // Cleanup timeout on unmount
   useEffect(() => {
-    if (!user) {
-      localStorage.setItem('draftSettings', JSON.stringify({
-        context,
-        selectedMessageId,
-        customTitle,
-        customDescription,
-        targetLanguage
-      }));
-    }
-  }, [context, selectedMessageId, customTitle, customDescription, targetLanguage, user]);
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+    };
+  }, []);
   
   // Resend verification email
   const handleResendVerification = async () => {
