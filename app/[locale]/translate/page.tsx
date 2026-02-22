@@ -1279,6 +1279,93 @@ export default function Translate() {
                 </div>
               </div>
             </div>
+            
+            {/* Bottom Action Buttons */}
+            <div className="flex justify-end gap-2 pt-4 border-t border-border">
+              <Button 
+                variant="orange"
+                size="sm"
+                onClick={async () => {
+                  // If no user, try to sign in anonymously first (Option C workflow)
+                  if (!user) {
+                    try {
+                      await signInAnonymouslyWithState();
+                      // After anonymous sign-in, show auth modal
+                      setIsDialogOpen(false);
+                      setIsAuthModalOpen(true);
+                    } catch (error: any) {
+                      console.error('Error signing in anonymously:', error);
+                      
+                      // If anonymous auth is not enabled, skip it and show auth modal directly
+                      if (error?.code === 'auth/admin-restricted-operation') {
+                        console.warn('Anonymous auth not enabled. Showing auth modal directly.');
+                        setIsDialogOpen(false);
+                        setIsAuthModalOpen(true);
+                      } else {
+                        toast.error('Failed to initialize session. Please try again.');
+                      }
+                    }
+                    return;
+                  }
+                  
+                  // If anonymous, show auth modal to link account
+                  if (user.isAnonymous) {
+                    setIsDialogOpen(false);
+                    setIsAuthModalOpen(true);
+                    return;
+                  }
+                  
+                  // If email not verified, save pending action and show verification gate
+                  if (!isEmailVerified) {
+                    // Save the full translation request for later execution
+                    localStorage.setItem('pendingTranslation', JSON.stringify({
+                      selectedMessageId,
+                      customTitle,
+                      customDescription,
+                      context,
+                      targetLanguage
+                    }));
+                    setIsDialogOpen(false);
+                    // Note: Don't show toast - the full-screen verification overlay
+                    // will automatically appear with clear instructions
+                    return;
+                  }
+                  
+                  // Check credits
+                  if (credits === 0) {
+                    console.log('[Dialog] Insufficient credits, saving pending translation and opening pricing modal');
+                    
+                    // Save pending translation so it can be triggered after payment
+                    localStorage.setItem('pendingTranslation', JSON.stringify({
+                      selectedMessageId,
+                      customTitle,
+                      customDescription,
+                      context,
+                      targetLanguage
+                    }));
+                    
+                    setIsDialogOpen(false);
+                    setIsPricingModalOpen(true);
+                    return;
+                  }
+                  
+                  // All checks passed, generate translation
+                  setShouldGenerate(true);
+                  setIsDialogOpen(false);
+                }}
+              >
+                {t('translatePage.createPhrase')}
+              </Button>
+              <Button 
+                variant="outline"
+                size="sm"
+                onClick={() => setIsDialogOpen(false)}
+                className="px-3"
+              >
+                <span className="hidden sm:inline">{t('translatePage.close')}</span>
+                <X className="w-4 h-4 sm:hidden" />
+              </Button>
+            </div>
           </DialogContent>
         </Dialog>
 
