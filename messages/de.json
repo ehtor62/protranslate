@@ -352,7 +352,7 @@
     "genericError": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
     "characterLimitExceeded": "Zeichenlimit überschritten. Maximal 1000 Zeichen erlaubt.",
     "titleLimitExceeded": "Titellimit überschritten. Maximal 60 Zeichen erlaubt.",
-    "insufficientCredits": "Sie haben alle Credits verbraucht. Bitte kaufen Sie mehr, um fortzufahren."
+    "insufficientCredits": "Sie haben Ihr gesamtes Guthaben verbraucht. Bitte kaufen Sie mehr, um fortzufahren."
   },
   "privacy": {
     "title": "Datenschutzerklärung",
@@ -370,7 +370,7 @@
       },
       "usage": {
         "title": "Nutzungsdaten",
-        "content": "Wir sammeln Informationen darüber, wie Sie unseren Dienst nutzen, einschließlich der Nachrichten, die Sie übersetzen, Kontexteinstellungen und Credit-Nutzung."
+        "content": "Wir sammeln Informationen darüber, wie Sie unseren Dienst nutzen, einschließlich der Nachrichten, die Sie übersetzen, Kontexteinstellungen und Guthaben-Nutzung."
       },
       "content": {
         "title": "Inhaltsdaten",
@@ -381,7 +381,7 @@
       "title": "Wie wir Ihre Informationen verwenden",
       "item1": "Um unseren Übersetzungsdienst bereitzustellen und zu warten",
       "item2": "Um Ihre Übersetzungen zu verarbeiten und kontextbezogene Anpassungen vorzunehmen",
-      "item3": "Um Ihr Konto und Ihre Credits zu verwalten",
+      "item3": "Um Ihr Konto und Ihr Guthaben zu verwalten",
       "item4": "Um mit Ihnen über Service-Updates und Support zu kommunizieren",
       "item5": "Um unseren Service zu verbessern und neue Funktionen zu entwickeln"
     },
@@ -455,13 +455,13 @@
       "item4": "Uns unverzüglich über unbefugten Zugriff informieren"
     },
     "payment": {
-      "title": "Credits und Zahlung",
-      "intro": "Unser Service funktioniert auf Credit-Basis:",
-      "item1": "Neue Nutzer erhalten 5 kostenlose Credits zum Testen des Dienstes",
-      "item2": "Jede Übersetzung verbraucht ein Credit",
-      "item3": "Credits können über unsere Preisseite erworben werden",
+      "title": "Guthaben und Zahlung",
+      "intro": "Unser Service funktioniert auf Guthaben-Basis:",
+      "item1": "Neue Nutzer erhalten 5 kostenloses Guthaben zum Testen des Dienstes",
+      "item2": "Jede Übersetzung verbraucht ein Guthaben",
+      "item3": "Guthaben kann über unsere Preisseite erworben werden",
       "item4": "Alle Zahlungen werden sicher über Stripe verarbeitet",
-      "item5": "Credits sind nicht erstattungsfähig, außer gesetzlich vorgeschrieben"
+      "item5": "Das Guthaben ist nicht erstattungsfähig, außer gesetzlich vorgeschrieben"
     },
     "acceptable": {
       "title": "Richtlinie zur akzeptablen Nutzung",
@@ -520,27 +520,27 @@
     "contactUs": "Kontaktieren Sie uns",
     "faq": {
       "account": {
-        "title": "Konto & Credits",
+        "title": "Konto & Guthaben",
         "q1": "Wie fange ich an?",
-        "a1": "Melden Sie sich einfach mit Ihrer E-Mail an und Sie erhalten 5 kostenlose Credits zum Ausprobieren des Dienstes. Keine Kreditkarte erforderlich.",
-        "q2": "Wie funktionieren Credits?",
-        "a2": "Jede Nachrichtenumschreibung kostet 1 Credit. Sie können Credit-Pakete nach Bedarf über unsere Preisseite kaufen. Credits verfallen nie.",
-        "q3": "Was passiert, wenn mir die Credits ausgehen?",
-        "a3": "Sie können jederzeit weitere Credits auf der Preisseite kaufen. Sie können auch kostenlose Credits verdienen, indem Sie Kollegen einladen, den Dienst zu nutzen."
+        "a1": "Melden Sie sich einfach mit Ihrer E-Mail an und Sie erhalten 5 kostenloses Guthaben zum Ausprobieren des Dienstes. Keine Kreditkarte erforderlich.",
+        "q2": "Wie funktioniert das Guthaben?",
+        "a2": "Jede Nachrichtenumschreibung kostet 1 Guthaben. Sie können Guthaben-Pakete nach Bedarf über unsere Preisseite kaufen. Das Guthaben verfällt nie.",
+        "q3": "Was passiert, wenn mir das Guthaben ausgeht?",
+        "a3": "Sie können jederzeit weiteres Guthaben auf der Preisseite kaufen. Sie können auch kostenloses Guthaben verdienen, indem Sie Kollegen einladen, den Dienst zu nutzen."
       },
       "billing": {
         "title": "Abrechnung & Zahlungen",
         "q1": "Welche Zahlungsmethoden akzeptieren Sie?",
         "a1": "Wir akzeptieren alle gängigen Kreditkarten (Visa, Mastercard, American Express) über unseren sicheren Zahlungsanbieter Stripe.",
-        "q2": "Sind Credits erstattungsfähig?",
-        "a2": "Credits sind nicht erstattungsfähig, außer gesetzlich vorgeschrieben. Credits verfallen jedoch nie, sodass Sie sie jederzeit verwenden können.",
-        "q3": "Verfallen Credits?",
-        "a3": "Nein, Ihre Credits verfallen nie. Einmal kaufen und verwenden, wann immer Sie professionelle Nachrichtenumschreibungen benötigen."
+        "q2": "Ist das Guthaben erstattungsfähig?",
+        "a2": "Das Guthaben ist nicht erstattungsfähig, außer gesetzlich vorgeschrieben. Das Guthaben verfällt jedoch nie, sodass Sie es jederzeit verwenden können.",
+        "q3": "Verfällt das Guthaben?",
+        "a3": "Nein, Ihr Guthaben verfällt nie. Einmal kaufen und verwenden, wann immer Sie professionelle Nachrichtenumschreibungen benötigen."
       },
       "technical": {
         "title": "Technischer Support",
         "q1": "Warum wird meine Übersetzung nicht generiert?",
-        "a1": "Stellen Sie sicher, dass Sie über ausreichende Credits und eine stabile Internetverbindung verfügen. Wenn das Problem weiterhin besteht, versuchen Sie, die Seite zu aktualisieren oder kontaktieren Sie den Support.",
+        "a1": "Stellen Sie sicher, dass Sie über ausreichendes Guthaben und eine stabile Internetverbindung verfügen. Wenn das Problem weiterhin besteht, versuchen Sie, die Seite zu aktualisieren oder kontaktieren Sie den Support.",
         "q2": "Welche Sprachen werden unterstützt?",
         "a2": "Wir unterstützen Englisch, Deutsch, Spanisch, Französisch, Italienisch, Portugiesisch und Niederländisch. Weitere Sprachen folgen bald.",
         "q3": "Was ist das Zeichenlimit?",
