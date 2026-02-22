@@ -32,7 +32,7 @@ import {
   mediumLabels,
   powerLabels 
 } from '@/data/messages';
-import { ArrowRight, Settings, Mail } from 'lucide-react';
+import { ArrowRight, Settings, Mail, X } from 'lucide-react';
 
 // Convert kebab-case to camelCase for translation keys
 const toCamelCase = (str: string) => {
@@ -1123,8 +1123,10 @@ export default function Translate() {
                     variant="outline"
                     size="sm"
                     onClick={() => setIsDialogOpen(false)}
+                    className="px-3"
                   >
-                    {t('translatePage.close')}
+                    <span className="hidden sm:inline">{t('translatePage.close')}</span>
+                    <X className="w-4 h-4 sm:hidden" />
                   </Button>
                 </div>
               </div>
