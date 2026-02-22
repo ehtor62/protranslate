@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
                 background-color: white;
               }
               .header {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
                 padding: 40px 20px;
                 text-align: center;
               }
@@ -114,7 +114,7 @@ export async function POST(request: NextRequest) {
           <body>
             <div class="container">
               <div class="header">
-                <h1>✨ ProTranslate</h1>
+                <h1>✨ Sentenly</h1>
               </div>
               <div class="content">
                 <h2 style="margin-top: 0;">Verify Your Email Address</h2>
@@ -133,7 +133,7 @@ export async function POST(request: NextRequest) {
                 <p><strong>⏱️ This link expires in 1 hour.</strong></p>
                 <p>If you didn't create an account, you can safely ignore this email.</p>
                 <p style="margin-top: 20px; font-size: 12px; color: #999;">
-                  © 2026 ProTranslate. All rights reserved.
+                  © 2026 Sentenly. All rights reserved.
                 </p>
               </div>
             </div>
