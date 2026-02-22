@@ -457,7 +457,7 @@
     "payment": {
       "title": "Guthaben und Zahlung",
       "intro": "Unser Service funktioniert auf Guthaben-Basis:",
-      "item1": "Neue Nutzer erhalten 5 kostenloses Guthaben zum Testen des Dienstes",
+      "item1": "Neue Nutzer erhalten 5 kostenlose Guthaben zum Testen des Dienstes",
       "item2": "Jede Übersetzung verbraucht ein Guthaben",
       "item3": "Guthaben kann über unsere Preisseite erworben werden",
       "item4": "Alle Zahlungen werden sicher über Stripe verarbeitet",
@@ -522,7 +522,7 @@
       "account": {
         "title": "Konto & Guthaben",
         "q1": "Wie fange ich an?",
-        "a1": "Melden Sie sich einfach mit Ihrer E-Mail an und Sie erhalten 5 kostenloses Guthaben zum Ausprobieren des Dienstes. Keine Kreditkarte erforderlich.",
+        "a1": "Melden Sie sich einfach mit Ihrer E-Mail an und Sie erhalten 5 kostenlose Guthaben zum Ausprobieren des Dienstes. Keine Kreditkarte erforderlich.",
         "q2": "Wie funktioniert das Guthaben?",
         "a2": "Jede Nachrichtenumschreibung kostet 1 Guthaben. Sie können Guthaben-Pakete nach Bedarf über unsere Preisseite kaufen. Das Guthaben verfällt nie.",
         "q3": "Was passiert, wenn mir das Guthaben ausgeht?",
