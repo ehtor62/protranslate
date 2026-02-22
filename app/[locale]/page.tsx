@@ -67,13 +67,13 @@ export default function Home() {
                 <span>{t('hero.badge')}</span>
               </div>
               
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight break-words">
                 <span className="text-foreground">{t('hero.headline1')}</span>
                 <br />
                 <span className="gradient-text">{t('hero.headline2')}</span>
               </h1>
               
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl"
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: t.raw('hero.description') }}
               />
               
