@@ -186,18 +186,18 @@ export default function Home() {
               </div>
               <span className="text-sm text-muted-foreground">{t('common.appName')}</span>
             </div>
-            <div className="flex items-center gap-6">
-              <Link href={`/${locale}/privacy`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6">
+              <Link href={`/${locale}/privacy`} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
                 {t('common.privacy')}
               </Link>
-              <Link href={`/${locale}/terms`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link href={`/${locale}/terms`} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
                 {t('common.terms')}
               </Link>
-              <Link href={`/${locale}/contact`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link href={`/${locale}/contact`} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
                 {t('common.contact')}
               </Link>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs sm:text-sm text-muted-foreground text-center">
               © 2026 {t('common.appName')}. {t('common.allRightsReserved')}
             </p>
           </div>
