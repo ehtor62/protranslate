@@ -137,11 +137,11 @@ export default function Translate() {
         context: newContext,
         selectedMessageId,
         customTitle,
-        customDescription,
-        targetLanguage
+        customDescription
+        // Don't save targetLanguage - always use current locale
       });
     }
-  }, [context, user, selectedMessageId, customTitle, customDescription, targetLanguage, debouncedSaveToLocalStorage]);
+  }, [context, user, selectedMessageId, customTitle, customDescription, debouncedSaveToLocalStorage]);
 
   const handleCulturalContextChange = (value: string) => {
     if (value === 'us') {
@@ -222,13 +222,36 @@ export default function Translate() {
           // if (draft.selectedMessageId) setSelectedMessageId(draft.selectedMessageId);
           if (draft.customTitle) setCustomTitle(draft.customTitle);
           if (draft.customDescription) setCustomDescription(draft.customDescription);
-          if (draft.targetLanguage) setTargetLanguage(draft.targetLanguage);
+          // Don't restore targetLanguage - always use current locale
+          // if (draft.targetLanguage) setTargetLanguage(draft.targetLanguage);
         } catch (error) {
           console.error('Error loading draft settings:', error);
         }
       }
     }
   }, [user]);
+
+  // Always sync targetLanguage with current locale
+  useEffect(() => {
+    setTargetLanguage(locale);
+  }, [locale]);
+  
+  // Clear targetLanguage from any old localStorage data
+  useEffect(() => {
+    const savedDraft = localStorage.getItem('draftSettings');
+    if (savedDraft) {
+      try {
+        const draft = JSON.parse(savedDraft);
+        if (draft.targetLanguage) {
+          // Remove targetLanguage from old saved data
+          delete draft.targetLanguage;
+          localStorage.setItem('draftSettings', JSON.stringify(draft));
+        }
+      } catch (error) {
+        console.error('Error cleaning draft settings:', error);
+      }
+    }
+  }, []);
   
   // Cleanup timeout on unmount
   useEffect(() => {
@@ -342,7 +365,8 @@ export default function Translate() {
           if (pending.customTitle) setCustomTitle(pending.customTitle);
           if (pending.customDescription) setCustomDescription(pending.customDescription);
           if (pending.context) setContext(pending.context);
-          if (pending.targetLanguage) setTargetLanguage(pending.targetLanguage);
+          // Don't restore targetLanguage from pending - always use current locale
+          // if (pending.targetLanguage) setTargetLanguage(pending.targetLanguage);
           
           // Trigger generation
           console.log('[Translate] Triggering auto-generation after verification');
@@ -1264,7 +1288,6 @@ export default function Translate() {
                       }`}
                       style={{ height: 'calc(100% - 1.75rem)' }}
                     >
-                      {!targetLanguage && 'Language'}
                       {targetLanguage === 'en' && t('translatePage.languageEnglish')}
                       {targetLanguage === 'es' && t('translatePage.languageSpanish')}
                       {targetLanguage === 'fr' && t('translatePage.languageFrench')}
@@ -1274,6 +1297,7 @@ export default function Translate() {
                       {targetLanguage === 'nl' && t('translatePage.languageDutch')}
                       {targetLanguage === 'ja' && t('translatePage.languageJapanese')}
                       {targetLanguage === 'zh' && t('translatePage.languageChinese')}
+                      {!targetLanguage && 'Language'}
                     </button>
                   </div>
                 </div>
