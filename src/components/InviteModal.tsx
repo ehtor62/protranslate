@@ -23,6 +23,11 @@ export function InviteModal({ isOpen, onClose }: InviteModalProps) {
   const [referralCode, setReferralCode] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (isOpen && !referralCode) {
@@ -63,7 +68,7 @@ export function InviteModal({ isOpen, onClose }: InviteModalProps) {
     }
   };
 
-  const referralLink = typeof window !== 'undefined' && referralCode
+  const referralLink = mounted && referralCode
     ? `${window.location.origin}?ref=${referralCode}`
     : 'Loading...';
 

@@ -51,7 +51,7 @@ export default function Home() {
       <Header />
       
       {/* Hero section */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-950/40 via-slate-900 to-background">
         {/* Gradient overlay */}
         <div 
           className="absolute inset-0 pointer-events-none"
@@ -105,7 +105,7 @@ export default function Home() {
       </section>
       
       {/* Message types */}
-      <section className="border-y border-border bg-muted/30">
+      <section className="border-y border-border bg-slate-900/50">
         <div className="container py-8">
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
             <span className="text-sm text-muted-foreground">{t('messageTypes.title')}</span>
@@ -122,7 +122,7 @@ export default function Home() {
       </section>
       
       {/* Features */}
-      <section id="how-it-works" className="py-24">
+      <section id="how-it-works" className="py-24 bg-slate-950">
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -151,7 +151,7 @@ export default function Home() {
       </section>
       
       {/* CTA */}
-      <section className="py-24 border-t border-border">
+      <section className="py-24 border-t border-border bg-gradient-to-br from-emerald-950/50 via-slate-900/80 to-slate-950">
         <div className="container">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -171,7 +171,7 @@ export default function Home() {
       </section>
       
       {/* Footer */}
-      <footer className="border-t border-border py-8">
+      <footer className="border-t border-border py-8 bg-slate-900">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
