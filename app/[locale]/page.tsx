@@ -62,12 +62,11 @@ export default function Home() {
           <div className="flex flex-col md:flex-row gap-12 lg:gap-16 items-start">
             {/* Left column - Text */}
             <div className="flex-1 space-y-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm">
-                <Languages className="w-4 h-4" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-primary/10 text-primary text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold">
                 <span>{t('hero.badge')}</span>
               </div>
               
-              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight break-words">
+              <h1 className="text-xs sm:text-sm md:text-2xl lg:text-2xl font-bold leading-tight break-words">
                 <span className="text-foreground">{t('hero.headline1')}</span>
                 <br />
                 <span className="gradient-text">{t('hero.headline2')}</span>
