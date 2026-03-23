@@ -329,7 +329,8 @@
   "demo": {
     "formalEmail": "Formal email to a colleague",
     "directConversation": "Direct conversation with a manager",
-    "sensitiveLetter": "Sensitive letter to a valued employee"
+    "sensitiveLetter": "Sensitive letter to a valued employee",
+    "professionallyWorded": "Professionally worded"
   },
   "samples": {
     "formalEmail": "We appreciate your contributions. However, we must inform you that your employment will conclude on [date]. We'll provide support during this transition.",

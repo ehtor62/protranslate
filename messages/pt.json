@@ -320,7 +320,8 @@
   "demo": {
     "formalEmail": "E-mail formal para colega",
     "directConversation": "Conversa direta com gerente",
-    "sensitiveLetter": "Carta sensível para funcionário importante"
+    "sensitiveLetter": "Carta sensível para funcionário importante",
+    "professionallyWorded": "Formulação profissional"
   },
   "samples": {
     "formalEmail": "Agradecemos suas contribuições. No entanto, devemos informá-lo de que sua relação de emprego será encerrada em [data]. Forneceremos suporte durante esta transição.",

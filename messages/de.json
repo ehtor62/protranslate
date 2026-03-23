@@ -323,7 +323,8 @@
   "demo": {
     "formalEmail": "Formelle E-Mail an einen Kollegen",
     "directConversation": "Direktes Gespräch mit einem Manager",
-    "sensitiveLetter": "Sensibler Brief an einen geschätzten Mitarbeiter"
+    "sensitiveLetter": "Sensibler Brief an einen geschätzten Mitarbeiter",
+    "professionallyWorded": "Professionell formuliert"
   },
   "samples": {
     "formalEmail": "Wir schätzen Ihre Beiträge. Wir müssen Sie jedoch darüber informieren, dass Ihr Arbeitsverhältnis am [Datum] endet. Wir werden Sie während dieser Übergangszeit unterstützen.",

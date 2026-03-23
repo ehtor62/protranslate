@@ -387,7 +387,8 @@
   "demo": {
     "formalEmail": "Email formale a un collega",
     "directConversation": "Conversazione diretta con il manager",
-    "sensitiveLetter": "Lettera sensibile a un dipendente stimato"
+    "sensitiveLetter": "Lettera sensibile a un dipendente stimato",
+    "professionallyWorded": "Formulazione professionale"
   },
   "samples": {
     "formalEmail": "Apprezzo il tuo contributo. Tuttavia, ti informo che il tuo impiego terminerà il [data]. Forniremo supporto durante questa transizione.",

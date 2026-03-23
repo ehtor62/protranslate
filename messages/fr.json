@@ -322,7 +322,8 @@
   "demo": {
     "formalEmail": "E-mail formel à un collègue",
     "directConversation": "Conversation directe avec un manager",
-    "sensitiveLetter": "Lettre délicate à un employé précieux"
+    "sensitiveLetter": "Lettre délicate à un employé précieux",
+    "professionallyWorded": "Formulation professionnelle"
   },
   "samples": {
     "formalEmail": "Nous apprécions vos contributions. Cependant, nous devons vous informer que votre emploi prendra fin le [date]. Nous fournirons un soutien pendant cette transition.",

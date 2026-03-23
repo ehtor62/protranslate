@@ -62,7 +62,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row gap-12 lg:gap-16 items-start">
             {/* Left column - Text */}
             <div className="flex-1 space-y-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg text-primary text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold">
+              <div className="inline-flex items-center gap-2 py-1 text-primary text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold">
                 <span>{t('hero.badge')}</span>
               </div>
               

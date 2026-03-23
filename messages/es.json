@@ -320,7 +320,8 @@
   "demo": {
     "formalEmail": "Correo formal a un colega",
     "directConversation": "Conversación directa con un gerente",
-    "sensitiveLetter": "Carta sensible a un empleado valioso"
+    "sensitiveLetter": "Carta sensible a un empleado valioso",
+    "professionallyWorded": "Formulación profesional"
   },
   "samples": {
     "formalEmail": "Apreciamos sus contribuciones. Sin embargo, debemos informarle que su empleo concluirá el [fecha]. Brindaremos apoyo durante esta transición.",
