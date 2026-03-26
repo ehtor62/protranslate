@@ -70,13 +70,86 @@
     "securePayment": "Secure payment powered by Stripe"
   },
   "hero": {
-    "badge": "Professional message wording tool",
+    "badge": "Rewrite any text for professional communication",
+    "badgePart1": "Rewrite any text for",
+    "badgePart2": "professional communication",
     "headline1": "A difficult message.",
     "headline2": "Professionally worded.",
-    "description": "Translate intent in a professional context. Shape tone, power dynamics, and cultural norms into a message you can communicate with confidence. Even in foreign languages.",
-    "ctaPrimary": "Translate your message",
+    "description": "Turn informal, unclear, or rough messages into clear, professional communication — adapted to your situation.",
+    "ctaPrimary": "Start translating your message",
     "ctaSecondary": "See how it works",
     "livePreview": "Live Preview"
+  },
+  "demo": {
+    "inputLabel": "Your example Input",
+    "inputPlaceholder": "Enter your text here",
+    "inputExample": "Send me the file asap. This is not acceptable.",
+    "scenarioLabel": "Start with a scenario (optional)",
+    "scenarioTalkToBoss": "Talk to boss",
+    "scenarioClientComplaint": "Client complaint",
+    "scenarioPoliteRequest": "Polite request",
+    "scenarioFollowUp": "Follow-up email",
+    "scenarioCustom": "Custom",
+    "advancedSettings": "Advanced tone settings",
+    "refineButton": "Refine message",
+    "processing": "Processing...",
+    "outputLabel": "Output",
+    "outputPlaceholder": "Your refined message will appear here",
+    "pillMessages": {
+      "talkToBoss": "Hi [Name], when you have a moment, could you please send over the file? I'd really appreciate it. Thanks!",
+      "clientComplaint": "Hi [Recipient's Name],\n\nI need to receive the file as soon as possible. This delay is concerning, and I would appreciate your prompt attention to this matter.\n\nThank you,\n[Your Name]",
+      "politeRequest": "Dear [Recipient's Name],\n\nI trust this message finds you well. I would like to kindly request the immediate provision of the required file as its timely delivery is crucial for our ongoing processes. I appreciate your prompt attention to this matter and your continued cooperation.\n\nThank you for your understanding and support.\n\nBest regards,\n\n[Your Name]",
+      "followUp": "Hi [Recipient's Name],\n\nI need the file as soon as possible. The delay is causing issues, and it's crucial that we resolve this swiftly. Please prioritize this task.\n\nThanks,\n[Your Name]",
+      "custom": "Your customized message will appear here based on your own input and customized tone and language settings."
+    }
+  },
+  "advancedModal": {
+    "title": "Advanced tone settings",
+    "description": "The tool lets you refine your message manually using the controls below",
+    "formality": "Formality",
+    "formalityLevels": {
+      "casual": "Casual",
+      "informal": "Informal",
+      "neutral": "Neutral",
+      "formal": "Formal",
+      "institutional": "Institutional"
+    },
+    "directness": "Directness",
+    "directnessLevels": {
+      "indirect": "Indirect",
+      "diplomatic": "Diplomatic",
+      "clear": "Clear",
+      "direct": "Direct",
+      "blunt": "Blunt"
+    },
+    "emotion": "Emotion",
+    "emotionLevels": {
+      "low": "Low",
+      "contained": "Contained",
+      "attentive": "Attentive",
+      "sensitive": "Sensitive",
+      "high": "High"
+    },
+    "power": "Power",
+    "powerLevels": {
+      "superior": "Superior",
+      "equal": "Equal",
+      "subordinate": "Subordinate"
+    },
+    "culture": "Culture",
+    "cultureLevels": {
+      "us": "US",
+      "uk": "UK",
+      "europe": "Europe",
+      "asia": "Asia"
+    },
+    "medium": "Medium",
+    "mediumLevels": {
+      "email": "Email",
+      "chat": "Chat",
+      "inPerson": "In Person",
+      "writtenNotice": "Written Notice"
+    }
   },
   "messageTypes": {
     "title": "Translate:",
@@ -325,12 +398,6 @@
     "more": "You have more power",
     "equal": "Equal standing",
     "less": "You have less power"
-  },
-  "demo": {
-    "formalEmail": "Formal email to a colleague",
-    "directConversation": "Direct conversation with a manager",
-    "sensitiveLetter": "Sensitive letter to a valued employee",
-    "professionallyWorded": "Professionally worded"
   },
   "samples": {
     "formalEmail": "We appreciate your contributions. However, we must inform you that your employment will conclude on [date]. We'll provide support during this transition.",

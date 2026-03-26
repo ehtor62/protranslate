@@ -64,13 +64,86 @@
     "buyNow": "Jetzt Kaufen",
     "securePayment": "Sichere Zahlung mit Stripe"
   },  "hero": {
-    "badge": "Tool für professionelle Nachrichtenformulierung",
+    "badge": "Schreiben Sie jeden Text um für professionelle Kommunikation",
+    "badgePart1": "Schreiben Sie jeden Text um für",
+    "badgePart2": "professionelle Kommunikation",
     "headline1": "Eine schwierige Nachricht.",
     "headline2": "Professionell formuliert.",
-    "description": "Übersetzen Sie die Absicht, im professionellen Kontext. Gestalten Sie Ton, Machtdynamiken und kulturelle Gepflogenheiten zu einer Nachricht, die Sie mit Zuversicht mitteilen können. Auch in Fremdsprachen.",
-    "ctaPrimary": "Übersetzen Sie Ihre Nachricht",
+    "description": "Verwandeln Sie informelle, unklare oder grobe Nachrichten in klare, professionelle Kommunikation — angepasst an Ihre Situation.",
+    "ctaPrimary": "Beginnen Sie mit der Übersetzung Ihrer Nachricht",
     "ctaSecondary": "So funktioniert's",
     "livePreview": "Live-Vorschau"
+  },
+  "demo": {
+    "inputLabel": "Deine Beispieleingabe",
+    "inputPlaceholder": "Geben Sie hier Ihren Text ein",
+    "inputExample": "Schick mir sofort die Datei. Das ist nicht akzeptabel.",
+    "scenarioLabel": "Beginne mit einem Szenario (optional)",
+    "scenarioTalkToBoss": "Mit Chef sprechen",
+    "scenarioClientComplaint": "Kundenbeschwerde",
+    "scenarioPoliteRequest": "Höfliche Anfrage",
+    "scenarioFollowUp": "Folge-E-Mail",
+    "scenarioCustom": "Benutzerdefiniert",
+    "advancedSettings": "Erweiterte Toneinstellungen",
+    "refineButton": "Nachricht verfeinern",
+    "processing": "Verarbeitung...",
+    "outputLabel": "Ausgabe",
+    "outputPlaceholder": "Ihre verfeinerte Nachricht wird hier angezeigt",
+    "pillMessages": {
+      "talkToBoss": "Hallo [Name], könnten Sie mir bitte die Datei schicken, wenn Sie einen Moment haben? Das wäre sehr hilfreich. Danke!",
+      "clientComplaint": "Hallo [Empfängername],\n\nIch benötige die Datei so schnell wie möglich. Diese Verzögerung ist besorgniserregend, und ich würde Ihre schnelle Aufmerksamkeit für diese Angelegenheit schätzen.\n\nVielen Dank,\n[Ihr Name]",
+      "politeRequest": "Sehr geehrte/r [Empfängername],\n\nIch hoffe, diese Nachricht erreicht Sie wohlbehalten. Ich möchte höflich um die sofortige Bereitstellung der erforderlichen Datei bitten, da deren rechtzeitige Lieferung für unsere laufenden Prozesse von entscheidender Bedeutung ist. Ich schätze Ihre prompte Aufmerksamkeit für diese Angelegenheit und Ihre fortgesetzte Zusammenarbeit.\n\nVielen Dank für Ihr Verständnis und Ihre Unterstützung.\n\nMit freundlichen Grüßen,\n\n[Ihr Name]",
+      "followUp": "Hallo [Empfängername],\n\nIch benötige die Datei so schnell wie möglich. Die Verzögerung verursacht Probleme, und es ist entscheidend, dass wir dies schnell lösen. Bitte priorisieren Sie diese Aufgabe.\n\nDanke,\n[Ihr Name]",
+      "custom": "Ihre angepasste Nachricht wird hier basierend auf Ihrer eigenen Eingabe und den angepassten Ton- und Spracheinstellungen angezeigt."
+    }
+  },
+  "advancedModal": {
+    "title": "Erweiterte Toneinstellungen",
+    "description": "Das Tool ermöglicht es Dir, Deine Nachricht manuell mit den folgenden Steuerungen zu verfeinern",
+    "formality": "Formalität",
+    "formalityLevels": {
+      "casual": "Lässig",
+      "informal": "Informell",
+      "neutral": "Neutral",
+      "formal": "Formell",
+      "institutional": "Institutionell"
+    },
+    "directness": "Direktheit",
+    "directnessLevels": {
+      "indirect": "Indirekt",
+      "diplomatic": "Diplomatisch",
+      "clear": "Klar",
+      "direct": "Direkt",
+      "blunt": "Unverblümt"
+    },
+    "emotion": "Emotion",
+    "emotionLevels": {
+      "low": "Niedrig",
+      "contained": "Zurückhaltend",
+      "attentive": "Aufmerksam",
+      "sensitive": "Sensibel",
+      "high": "Hoch"
+    },
+    "power": "Macht",
+    "powerLevels": {
+      "superior": "Übergeordnet",
+      "equal": "Gleichgestellt",
+      "subordinate": "Untergeordnet"
+    },
+    "culture": "Kultur",
+    "cultureLevels": {
+      "us": "USA",
+      "uk": "UK",
+      "europe": "Europa",
+      "asia": "Asien"
+    },
+    "medium": "Medium",
+    "mediumLevels": {
+      "email": "E-Mail",
+      "chat": "Chat",
+      "inPerson": "Persönlich",
+      "writtenNotice": "Schriftliche Mitteilung"
+    }
   },
   "messageTypes": {
     "title": "Übersetzen:",
@@ -319,12 +392,6 @@
     "more": "Sie haben mehr Macht",
     "equal": "Gleichgestellt",
     "less": "Sie haben weniger Macht"
-  },
-  "demo": {
-    "formalEmail": "Formelle E-Mail an einen Kollegen",
-    "directConversation": "Direktes Gespräch mit einem Manager",
-    "sensitiveLetter": "Sensibler Brief an einen geschätzten Mitarbeiter",
-    "professionallyWorded": "Professionell formuliert"
   },
   "samples": {
     "formalEmail": "Wir schätzen Ihre Beiträge. Wir müssen Sie jedoch darüber informieren, dass Ihr Arbeitsverhältnis am [Datum] endet. Wir werden Sie während dieser Übergangszeit unterstützen.",

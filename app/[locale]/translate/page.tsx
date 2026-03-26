@@ -941,8 +941,8 @@ export default function Translate() {
                       setCustomDescription(e.target.value);
                     }
                   }}
-                  rows={4}
-                  className={`w-full px-3 py-2 rounded-md border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-offset-2 resize-none ${
+                  rows={1}
+                  className={`w-full px-3 py-2 rounded-md border bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-offset-2 resize-none ${
                     customDescription.length > 1000
                       ? 'border-destructive focus:ring-destructive'
                       : 'border-input focus:ring-ring'

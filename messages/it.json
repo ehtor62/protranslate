@@ -67,13 +67,86 @@
     "securePayment": "Pagamento sicuro con Stripe"
   },
   "hero": {
-    "badge": "Strumento di formulazione professionale di messaggi",
+    "badge": "Riscrivi qualsiasi testo per la comunicazione professionale",
+    "badgePart1": "Riscrivi qualsiasi testo per",
+    "badgePart2": "la comunicazione professionale",
     "headline1": "Un messaggio difficile.",
     "headline2": "Formulato professionalmente.",
-    "description": "Traduci l'intento in un contesto professionale. Modella il tono, le dinamiche di potere e le norme culturali in un messaggio che puoi comunicare con sicurezza. Anche in lingue straniere.",
-    "ctaPrimary": "Traduci il tuo messaggio",
+    "description": "Trasforma messaggi informali, poco chiari o bruschi in comunicazione chiara e professionale — adattata alla tua situazione.",
+    "ctaPrimary": "Inizia a tradurre il tuo messaggio",
     "ctaSecondary": "Vedi come funziona",
     "livePreview": "Anteprima dal vivo"
+  },
+  "demo": {
+    "inputLabel": "Il tuo esempio di input",
+    "inputPlaceholder": "Inserisci il tuo testo qui",
+    "inputExample": "Mandami il file il prima possibile. Questo non è accettabile.",
+    "scenarioLabel": "Inizia con uno scenario (facoltativo)",
+    "scenarioTalkToBoss": "Parlare al capo",
+    "scenarioClientComplaint": "Reclamo del cliente",
+    "scenarioPoliteRequest": "Richiesta gentile",
+    "scenarioFollowUp": "Email di follow-up",
+    "scenarioCustom": "Personalizzato",
+    "advancedSettings": "Impostazioni avanzate del tono",
+    "refineButton": "Perfeziona messaggio",
+    "processing": "Elaborazione...",
+    "outputLabel": "Output",
+    "outputPlaceholder": "Il tuo messaggio perfezionato apparirà qui",
+    "pillMessages": {
+      "talkToBoss": "Ciao [Nome], quando hai un momento, potresti per favore inviarmi il file? Lo apprezzerei davvero. Grazie!",
+      "clientComplaint": "Ciao [Nome del destinatario],\n\nHo bisogno di ricevere il file il prima possibile. Questo ritardo è preoccupante e apprezzerei la tua pronta attenzione a questa questione.\n\nGrazie,\n[Il tuo nome]",
+      "politeRequest": "Gentile [Nome del destinatario],\n\nSpero che questo messaggio ti trovi bene. Vorrei gentilmente richiedere la fornitura immediata del file richiesto poiché la sua consegna tempestiva è cruciale per i nostri processi in corso. Apprezzo la tua pronta attenzione a questa questione e la tua continua cooperazione.\n\nGrazie per la tua comprensione e supporto.\n\nCordiali saluti,\n\n[Il tuo nome]",
+      "followUp": "Ciao [Nome del destinatario],\n\nHo bisogno del file il prima possibile. Il ritardo sta causando problemi ed è cruciale che risolviamo questo rapidamente. Per favore, dai priorità a questo compito.\n\nGrazie,\n[Il tuo nome]",
+      "custom": "Il tuo messaggio personalizzato apparirà qui in base al tuo input e alle impostazioni di tono e lingua personalizzate."
+    }
+  },
+  "advancedModal": {
+    "title": "Impostazioni avanzate del tono",
+    "description": "Lo strumento ti consente di perfezionare il tuo messaggio manualmente utilizzando i controlli qui sotto",
+    "formality": "Formalità",
+    "formalityLevels": {
+      "casual": "Casuale",
+      "informal": "Informale",
+      "neutral": "Neutrale",
+      "formal": "Formale",
+      "institutional": "Istituzionale"
+    },
+    "directness": "Franchezza",
+    "directnessLevels": {
+      "indirect": "Indiretto",
+      "diplomatic": "Diplomatico",
+      "clear": "Chiaro",
+      "direct": "Diretto",
+      "blunt": "Brusco"
+    },
+    "emotion": "Emozione",
+    "emotionLevels": {
+      "low": "Bassa",
+      "contained": "Contenuta",
+      "attentive": "Attento",
+      "sensitive": "Sensibile",
+      "high": "Alta"
+    },
+    "power": "Potere",
+    "powerLevels": {
+      "superior": "Superiore",
+      "equal": "Uguale",
+      "subordinate": "Subordinato"
+    },
+    "culture": "Cultura",
+    "cultureLevels": {
+      "us": "Stati Uniti",
+      "uk": "Regno Unito",
+      "europe": "Europa",
+      "asia": "Asia"
+    },
+    "medium": "Mezzo",
+    "mediumLevels": {
+      "email": "Email",
+      "chat": "Chat",
+      "inPerson": "Di persona",
+      "writtenNotice": "Avviso scritto"
+    }
   },
   "messageTypes": {
     "title": "Traduci:",
@@ -383,12 +456,6 @@
     "more": "Tu hai più potere",
     "equal": "Pari",
     "less": "Tu hai meno potere"
-  },
-  "demo": {
-    "formalEmail": "Email formale a un collega",
-    "directConversation": "Conversazione diretta con il manager",
-    "sensitiveLetter": "Lettera sensibile a un dipendente stimato",
-    "professionallyWorded": "Formulazione professionale"
   },
   "samples": {
     "formalEmail": "Apprezzo il tuo contributo. Tuttavia, ti informo che il tuo impiego terminerà il [data]. Forniremo supporto durante questa transizione.",

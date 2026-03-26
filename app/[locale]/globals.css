@@ -164,20 +164,22 @@ input[type="range"] {
 }
 
 input[type="range"]::-webkit-slider-track {
-  @apply h-1.5 rounded-full;
-  background: hsl(var(--muted));
+  @apply h-2 rounded-full;
+  background: hsl(220 14% 25%);
+  border: 1px solid hsl(220 14% 35%);
 }
 
 input[type="range"]::-webkit-slider-thumb {
-  @apply appearance-none w-4 h-4 rounded-full -mt-1;
+  @apply appearance-none w-5 h-5 rounded-full -mt-1.5;
   background: hsl(var(--primary));
-  box-shadow: 0 0 10px hsl(172 50% 45% / 0.5);
+  box-shadow: 0 0 15px hsl(172 50% 45% / 0.6);
   transition: all 0.15s ease;
+  border: 2px solid hsl(var(--background));
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-  @apply w-5 h-5 -mt-1.5;
-  box-shadow: 0 0 15px hsl(172 50% 45% / 0.7);
+  @apply w-6 h-6 -mt-2;
+  box-shadow: 0 0 20px hsl(172 50% 45% / 0.8);
 }
 
 /* Slider with label in handle - hide the thumb */
@@ -186,14 +188,16 @@ input[type="range"].range-with-label::-webkit-slider-thumb {
 }
 
 input[type="range"]::-moz-range-track {
-  @apply h-1.5 rounded-full;
-  background: hsl(var(--muted));
+  @apply h-2 rounded-full;
+  background: hsl(220 14% 25%);
+  border: 1px solid hsl(220 14% 35%);
 }
 
 input[type="range"]::-moz-range-thumb {
-  @apply appearance-none w-4 h-4 rounded-full border-0;
+  @apply appearance-none w-5 h-5 rounded-full border-2;
   background: hsl(var(--primary));
-  box-shadow: 0 0 10px hsl(172 50% 45% / 0.5);
+  border-color: hsl(var(--background));
+  box-shadow: 0 0 15px hsl(172 50% 45% / 0.6);
 }
 
 input[type="range"].range-with-label::-moz-range-thumb {

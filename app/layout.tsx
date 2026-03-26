@@ -7,7 +7,7 @@ const jetbrainsMono = JetBrains_Mono({ variable: '--font-jetbrains-mono', subset
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning>
       <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>
         {children}
       </body>

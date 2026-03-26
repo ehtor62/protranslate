@@ -6,13 +6,135 @@ import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/Header';
-import { HeroDemo } from '@/components/HeroDemo';
-import { ArrowRight, Languages, Sliders, Globe, FileText, Users, Shield } from 'lucide-react';
+import { ArrowRight, Languages, Sliders, Globe, FileText, Users, Loader2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 
 export default function Home() {
   const t = useTranslations();
   const params = useParams();
   const locale = params.locale as string;
+  const [selectedPill, setSelectedPill] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [outputText, setOutputText] = useState('');
+  const [isAdvancedModalOpen, setIsAdvancedModalOpen] = useState(false);
+  const [formality, setFormality] = useState(50);
+  const [directness, setDirectness] = useState(50);
+  const [emotion, setEmotion] = useState(50);
+  const [power, setPower] = useState('equal');
+  const [culture, setCulture] = useState('us');
+  const [medium, setMedium] = useState('email');
+  const [showPlaceholder, setShowPlaceholder] = useState(false);
+  const [buttonPulse, setButtonPulse] = useState(false);
+
+  // Alternate between placeholder and example text
+  useEffect(() => {
+    if (selectedPill) return; // Stop alternating when a pill is selected
+
+    const interval = setInterval(() => {
+      setShowPlaceholder(prev => !prev);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [selectedPill]);
+
+  const pillMessages: Record<string, string> = {
+    'talk-to-boss': t('demo.pillMessages.talkToBoss'),
+    'customer-complaint': t('demo.pillMessages.clientComplaint'),
+    'reject-politely': t('demo.pillMessages.politeRequest'),
+    'follow-up-email': t('demo.pillMessages.followUp'),
+    'custom': t('demo.pillMessages.custom')
+  };
+
+  const scenarioSettings: Record<string, { formality: number; directness: number; emotion: number; power: string; culture: string; medium: string }> = {
+    'talk-to-boss': {
+      formality: 25,  // Informal
+      directness: 75, // Direct
+      emotion: 50,    // Attentive
+      power: 'subordinate',
+      culture: 'us',
+      medium: 'in-person'
+    },
+    'customer-complaint': {
+      formality: 75,  // Formal
+      directness: 75, // Direct
+      emotion: 25,    // Contained
+      power: 'equal',
+      culture: 'europe',
+      medium: 'email'
+    },
+    'reject-politely': {
+      formality: 75,  // Formal
+      directness: 25, // Diplomatic
+      emotion: 50,    // Attentive
+      power: 'equal',
+      culture: 'uk',
+      medium: 'written-notice'
+    },
+    'follow-up-email': {
+      formality: 40,  // Informal-Neutral
+      directness: 70, // Direct
+      emotion: 75,    // Sensitive
+      power: 'superior',
+      culture: 'asia',
+      medium: 'email'
+    },
+    'custom': {
+      formality: 50,  // Neutral
+      directness: 50, // Clear
+      emotion: 50,    // Attentive
+      power: 'equal',
+      culture: 'us',
+      medium: 'email'
+    }
+  };
+
+  const handlePillClick = (pillId: string) => {
+    setSelectedPill(pillId);
+    setShowPlaceholder(pillId === 'custom'); // Show placeholder only for custom pill
+    setOutputText('');
+    
+    // Update settings based on scenario
+    const settings = scenarioSettings[pillId];
+    if (settings) {
+      setFormality(settings.formality);
+      setDirectness(settings.directness);
+      setEmotion(settings.emotion);
+      setPower(settings.power);
+      setCulture(settings.culture);
+      setMedium(settings.medium);
+    }
+    
+    // Trigger refinement after 1 second with animation
+    setTimeout(() => {
+      setButtonPulse(true);
+      setTimeout(() => setButtonPulse(false), 600);
+      
+      // Start loading and show result after 3 seconds
+      setIsLoading(true);
+      setTimeout(() => {
+        setOutputText(pillMessages[pillId]);
+        setIsLoading(false);
+      }, 3000);
+    }, 1000);
+  };
+
+  const handleRefineMessage = () => {
+    if (!selectedPill) return;
+    
+    setIsLoading(true);
+    setOutputText('');
+    
+    setTimeout(() => {
+      setOutputText(pillMessages[selectedPill]);
+      setIsLoading(false);
+    }, 3000);
+  };
   
   const features = [
     {
@@ -61,23 +183,17 @@ export default function Home() {
         <div className="container py-12 md:py-16 relative">
           <div className="flex flex-col md:flex-row gap-12 lg:gap-16 items-start">
             {/* Left column - Text */}
-            <div className="flex-1 space-y-8">
-              <div className="inline-flex items-center gap-2 py-1 text-primary text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold">
-                <span>{t('hero.badge')}</span>
+            <div className="flex-1 space-y-8 pt-12">
+              <div className="inline-flex items-center gap-2 py-1 text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold">
+                <span className="text-primary">{t('hero.badgePart1')} <span className="text-white">{t('hero.badgePart2')}</span></span>
               </div>
-              
-              <h1 className="text-sm sm:text-base md:text-3xl lg:text-3xl font-bold leading-tight break-words">
-                <span className="text-foreground">{t('hero.headline1')}</span>
-                <br />
-                <span className="gradient-text">{t('hero.headline2')}</span>
-              </h1>
               
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: t.raw('hero.description') }}
               />
               
-              <div className="flex flex-wrap gap-4">
-                <Button asChild variant="hero" size="xl">
+              <div className="flex flex-wrap gap-4 mt-12">
+                <Button asChild variant="orange" size="xl">
                   <Link href={`/${locale}/translate`}>
                     {t('hero.ctaPrimary')}
                     <ArrowRight className="w-5 h-5" />
@@ -89,14 +205,117 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Right column - Interactive demo */}
-            <div className="w-full md:w-[450px] lg:w-[500px] flex-shrink-0">
-              <div className="p-6 rounded-2xl bg-card/50 backdrop-blur border border-border/50">
-                <div className="flex items-center gap-2 mb-4">
-                  <Shield className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-foreground">{t('hero.livePreview')}</span>
+            {/* Right column - Input box */}
+            <div className="w-full md:w-[450px] lg:w-[500px] flex-shrink-0 space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">{t('demo.inputLabel')}</label>
+                
+                <div className="relative">
+                  <textarea
+                    className="w-full h-20 p-4 rounded-xl bg-slate-700 backdrop-blur border border-slate-600 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none transition-all text-lg"
+                    value={showPlaceholder ? '' : t('demo.inputExample')}
+                    placeholder={showPlaceholder ? t('demo.inputPlaceholder') : ""}
+                    readOnly
+                  />
                 </div>
-                <HeroDemo locale={locale} />
+                
+                {/* Tone pills */}
+                <div className="mt-4">
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    {t('demo.scenarioLabel')}
+                  </label>
+                  <div className="flex flex-wrap justify-between gap-1.5">
+                    <button
+                      onClick={() => handlePillClick('talk-to-boss')}
+                      className={`text-[11px] px-2.5 py-1 rounded-full font-medium transition-all cursor-pointer flex-shrink-0 ${
+                        selectedPill === 'talk-to-boss'
+                          ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
+                          : 'bg-primary/50 text-primary-foreground hover:bg-primary hover:scale-105'
+                      }`}
+                    >
+                      {t('demo.scenarioTalkToBoss')}
+                    </button>
+                    <button
+                      onClick={() => handlePillClick('customer-complaint')}
+                      className={`text-[11px] px-2.5 py-1 rounded-full font-medium transition-all cursor-pointer flex-shrink-0 ${
+                        selectedPill === 'customer-complaint'
+                          ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
+                          : 'bg-primary/50 text-primary-foreground hover:bg-primary hover:scale-105'
+                      }`}
+                    >
+                      {t('demo.scenarioClientComplaint')}
+                    </button>
+                    <button
+                      onClick={() => handlePillClick('reject-politely')}
+                      className={`text-[11px] px-2.5 py-1 rounded-full font-medium transition-all cursor-pointer flex-shrink-0 ${
+                        selectedPill === 'reject-politely'
+                          ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
+                          : 'bg-primary/50 text-primary-foreground hover:bg-primary hover:scale-105'
+                      }`}
+                    >
+                      {t('demo.scenarioPoliteRequest')}
+                    </button>
+                    <button
+                      onClick={() => handlePillClick('follow-up-email')}
+                      className={`text-[11px] px-2.5 py-1 rounded-full font-medium transition-all cursor-pointer flex-shrink-0 ${
+                        selectedPill === 'follow-up-email'
+                          ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
+                          : 'bg-primary/50 text-primary-foreground hover:bg-primary hover:scale-105'
+                      }`}
+                    >
+                      {t('demo.scenarioFollowUp')}
+                    </button>
+                    <button
+                      onClick={() => handlePillClick('custom')}
+                      className={`text-[11px] px-2.5 py-1 rounded-full font-medium transition-all cursor-pointer flex-shrink-0 ${
+                        selectedPill === 'custom'
+                          ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
+                          : 'bg-primary/50 text-primary-foreground hover:bg-primary hover:scale-105'
+                      }`}
+                    >
+                      {t('demo.scenarioCustom')}
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Advanced settings link */}
+                <button 
+                  onClick={() => setIsAdvancedModalOpen(true)}
+                  className="flex items-center gap-2 mt-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <span className="text-base">⚙️</span>
+                  <span>{t('demo.advancedSettings')}</span>
+                </button>
+              </div>
+              
+              <Button 
+                variant="hero" 
+                size="lg" 
+                className={`w-2/5 transition-all mt-8 ${buttonPulse ? 'scale-95 ring-4 ring-primary/50' : ''}`} 
+                onClick={handleRefineMessage} 
+                disabled={isLoading || !selectedPill}
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                    {t('demo.processing')}
+                  </>
+                ) : (
+                  t('demo.refineButton')
+                )}
+              </Button>
+              
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">{t('demo.outputLabel')}</label>
+                <div className="w-full min-h-[7rem] p-4 rounded-xl bg-slate-700 backdrop-blur border border-slate-600 text-white flex items-center justify-center">
+                  {isLoading ? (
+                    <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                  ) : outputText ? (
+                    <p className="text-white text-sm w-full whitespace-pre-line">{outputText}</p>
+                  ) : (
+                    <p className="text-muted-foreground/50 text-sm">{t('demo.outputPlaceholder')}</p>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -202,6 +421,133 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      
+      {/* Advanced Tone Settings Modal */}
+      <Dialog open={isAdvancedModalOpen} onOpenChange={setIsAdvancedModalOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>{t('advancedModal.title')}</DialogTitle>
+            <p className="text-sm text-muted-foreground pt-2">
+              {t('advancedModal.description')}
+            </p>
+          </DialogHeader>
+          
+          <div className="space-y-6 py-4">
+            {/* Formality Slider */}
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <label className="text-sm font-medium text-foreground">{t('advancedModal.formality')}</label>
+                <span className="text-xs text-muted-foreground">{formality}%</span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={formality}
+                onChange={(e) => setFormality(Number(e.target.value))}
+                className="w-full"
+              />
+              <div className="flex justify-between text-xs text-muted-foreground">
+                <span>{t('advancedModal.formalityLevels.casual')}</span>
+                <span>{t('advancedModal.formalityLevels.informal')}</span>
+                <span>{t('advancedModal.formalityLevels.neutral')}</span>
+                <span>{t('advancedModal.formalityLevels.formal')}</span>
+                <span>{t('advancedModal.formalityLevels.institutional')}</span>
+              </div>
+            </div>
+            
+            {/* Directness Slider */}
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <label className="text-sm font-medium text-foreground">{t('advancedModal.directness')}</label>
+                <span className="text-xs text-muted-foreground">{directness}%</span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={directness}
+                onChange={(e) => setDirectness(Number(e.target.value))}
+                className="w-full"
+              />
+              <div className="flex justify-between text-xs text-muted-foreground">
+                <span>{t('advancedModal.directnessLevels.indirect')}</span>
+                <span>{t('advancedModal.directnessLevels.diplomatic')}</span>
+                <span>{t('advancedModal.directnessLevels.clear')}</span>
+                <span>{t('advancedModal.directnessLevels.direct')}</span>
+                <span>{t('advancedModal.directnessLevels.blunt')}</span>
+              </div>
+            </div>
+            
+            {/* Emotion Slider */}
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <label className="text-sm font-medium text-foreground">{t('advancedModal.emotion')}</label>
+                <span className="text-xs text-muted-foreground">{emotion}%</span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={emotion}
+                onChange={(e) => setEmotion(Number(e.target.value))}
+                className="w-full"
+              />
+              <div className="flex justify-between text-xs text-muted-foreground">
+                <span>{t('advancedModal.emotionLevels.low')}</span>
+                <span>{t('advancedModal.emotionLevels.contained')}</span>
+                <span>{t('advancedModal.emotionLevels.attentive')}</span>
+                <span>{t('advancedModal.emotionLevels.sensitive')}</span>
+                <span>{t('advancedModal.emotionLevels.high')}</span>
+              </div>
+            </div>
+            
+            {/* Power Dropdown */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-foreground">{t('advancedModal.power')}</label>
+              <select
+                value={power}
+                onChange={(e) => setPower(e.target.value)}
+                className="w-full px-3 py-2 rounded-lg border border-border bg-secondary text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <option value="superior">{t('advancedModal.powerLevels.superior')}</option>
+                <option value="equal">{t('advancedModal.powerLevels.equal')}</option>
+                <option value="subordinate">{t('advancedModal.powerLevels.subordinate')}</option>
+              </select>
+            </div>
+            
+            {/* Culture Dropdown */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-foreground">{t('advancedModal.culture')}</label>
+              <select
+                value={culture}
+                onChange={(e) => setCulture(e.target.value)}
+                className="w-full px-3 py-2 rounded-lg border border-border bg-secondary text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <option value="us">{t('advancedModal.cultureLevels.us')}</option>
+                <option value="uk">{t('advancedModal.cultureLevels.uk')}</option>
+                <option value="europe">{t('advancedModal.cultureLevels.europe')}</option>
+                <option value="asia">{t('advancedModal.cultureLevels.asia')}</option>
+              </select>
+            </div>
+            
+            {/* Medium Dropdown */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-foreground">{t('advancedModal.medium')}</label>
+              <select
+                value={medium}
+                onChange={(e) => setMedium(e.target.value)}
+                className="w-full px-3 py-2 rounded-lg border border-border bg-secondary text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <option value="email">{t('advancedModal.mediumLevels.email')}</option>
+                <option value="chat">{t('advancedModal.mediumLevels.chat')}</option>
+                <option value="in-person">{t('advancedModal.mediumLevels.inPerson')}</option>
+                <option value="written-notice">{t('advancedModal.mediumLevels.writtenNotice')}</option>
+              </select>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
