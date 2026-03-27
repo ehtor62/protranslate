@@ -64,19 +64,19 @@
     "buyNow": "Jetzt Kaufen",
     "securePayment": "Sichere Zahlung mit Stripe"
   },  "hero": {
-    "badge": "Schreiben Sie jeden Text um für professionelle Kommunikation",
-    "badgePart1": "Schreiben Sie jeden Text um für",
+    "badge": "Schreibe jeden Text um für professionelle Kommunikation",
+    "badgePart1": "Schreibe jeden Text um für",
     "badgePart2": "professionelle Kommunikation",
     "headline1": "Eine schwierige Nachricht.",
     "headline2": "Professionell formuliert.",
-    "description": "Verwandeln Sie informelle, unklare oder grobe Nachrichten in klare, professionelle Kommunikation — angepasst an Ihre Situation.",
-    "ctaPrimary": "Beginnen Sie mit der Übersetzung Ihrer Nachricht",
+    "description": "Verwandel informelle, unklare oder grobe Nachrichten in klare, professionelle Kommunikation — angepasst an Deine Situation.",
+    "ctaPrimary": "Beginne mit der Übersetzung Deiner Nachricht",
     "ctaSecondary": "So funktioniert's",
     "livePreview": "Live-Vorschau"
   },
   "demo": {
     "inputLabel": "Deine Beispieleingabe",
-    "inputPlaceholder": "Geben Sie hier Ihren Text ein",
+    "inputPlaceholder": "Gib hier Deinen Text ein",
     "inputExample": "Schick mir sofort die Datei. Das ist nicht akzeptabel.",
     "scenarioLabel": "Beginne mit einem Szenario (optional)",
     "scenarioTalkToBoss": "Mit Chef sprechen",
@@ -88,13 +88,13 @@
     "refineButton": "Nachricht verfeinern",
     "processing": "Verarbeitung...",
     "outputLabel": "Ausgabe",
-    "outputPlaceholder": "Ihre verfeinerte Nachricht wird hier angezeigt",
+    "outputPlaceholder": "Deine verfeinerte Nachricht wird hier angezeigt",
     "pillMessages": {
       "talkToBoss": "Hallo [Name], könnten Sie mir bitte die Datei schicken, wenn Sie einen Moment haben? Das wäre sehr hilfreich. Danke!",
       "clientComplaint": "Hallo [Empfängername],\n\nIch benötige die Datei so schnell wie möglich. Diese Verzögerung ist besorgniserregend, und ich würde Ihre schnelle Aufmerksamkeit für diese Angelegenheit schätzen.\n\nVielen Dank,\n[Ihr Name]",
       "politeRequest": "Sehr geehrte/r [Empfängername],\n\nIch hoffe, diese Nachricht erreicht Sie wohlbehalten. Ich möchte höflich um die sofortige Bereitstellung der erforderlichen Datei bitten, da deren rechtzeitige Lieferung für unsere laufenden Prozesse von entscheidender Bedeutung ist. Ich schätze Ihre prompte Aufmerksamkeit für diese Angelegenheit und Ihre fortgesetzte Zusammenarbeit.\n\nVielen Dank für Ihr Verständnis und Ihre Unterstützung.\n\nMit freundlichen Grüßen,\n\n[Ihr Name]",
       "followUp": "Hallo [Empfängername],\n\nIch benötige die Datei so schnell wie möglich. Die Verzögerung verursacht Probleme, und es ist entscheidend, dass wir dies schnell lösen. Bitte priorisieren Sie diese Aufgabe.\n\nDanke,\n[Ihr Name]",
-      "custom": "Ihre angepasste Nachricht wird hier basierend auf Ihrer eigenen Eingabe und den angepassten Ton- und Spracheinstellungen angezeigt."
+      "custom": "Deine angepasste Nachricht wird hier basierend auf Deiner eigenen Eingabe und den angepassten Tonfall- und Spracheinstellungen angezeigt."
     }
   },
   "advancedModal": {
