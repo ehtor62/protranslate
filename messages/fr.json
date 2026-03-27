@@ -176,6 +176,77 @@
       "description": "Langage calibré que vous parliez vers le haut, latéralement ou vers le bas dans la hiérarchie."
     }
   },
+  "faq": {
+    "title": "FAQ",
+    "selectPrompt": "Sélectionnez une question pour voir la réponse",
+    "chooseQuestion": "Choisissez une question...",
+    "questions": {
+      "q1": {
+        "question": "Que fait réellement Sentenly ?",
+        "answer": "Sentenly vous aide à dire la même chose — d'une meilleure façon.\n\nVous écrivez votre message et Sentenly ajuste le ton pour qu'il corresponde à votre situation : plus professionnel, plus poli, plus direct ou plus diplomatique.\n\nIl ne change pas votre intention — il améliore la façon dont votre message est reçu."
+      },
+      "q2": {
+        "question": "En quoi est-ce différent de ChatGPT ?",
+        "answer": "ChatGPT génère du texte.\nSentenly se concentre spécifiquement sur le ton et le contexte.\n\nAu lieu d'écrire des prompts, vous :\n• collez votre message\n• choisissez une situation (optionnel)\n• ajustez le ton avec des contrôles simples\n\nSentenly est conçu pour un raffinement de communication rapide et prévisible, pas pour des tâches IA générales."
+      },
+      "q3": {
+        "question": "Pourquoi en aurais-je besoin ? Je peux écrire des e-mails moi-même.",
+        "answer": "La plupart des problèmes de communication ne concernent pas ce que vous dites — mais comment c'est perçu.\n\nSentenly vous aide à :\n• éviter de paraître trop dur\n• éviter d'être trop vague\n• adapter le ton à la hiérarchie et à la situation\n\nC'est particulièrement utile quand les enjeux sont élevés ou le ton est sensible."
+      },
+      "q4": {
+        "question": "Est-ce que cela rendra tout générique ou robotique ?",
+        "answer": "Non — l'objectif est l'inverse.\n\nSentenly garde votre message intact et ajuste le ton subtilement.\nVous pouvez également contrôler à quel point le résultat doit être formel, direct ou émotionnel.\n\nVous gardez le contrôle — l'outil ne fait que raffiner."
+      },
+      "q5": {
+        "question": "Puis-je faire confiance à cela dans des situations professionnelles ?",
+        "answer": "Oui — mais comme tout outil, il doit être utilisé avec discernement.\n\nSentenly est conçu pour :\n• les e-mails professionnels\n• la communication client\n• la messagerie interne\n\nVous devez toujours vérifier le résultat — mais il réduit considérablement les erreurs liées au ton."
+      },
+      "q6": {
+        "question": "Pour quel type de textes puis-je utiliser cela ?",
+        "answer": "Presque toute communication écrite :\n• e-mails\n• messages de chat\n• retours d'information\n• réclamations\n• suivis\n• conversations sensibles\n\nSi le ton compte, Sentenly aide."
+      },
+      "q7": {
+        "question": "Dois-je choisir un scénario ?",
+        "answer": "Non.\n\nLes scénarios ne sont que des raccourcis pour commencer rapidement.\nVous pouvez également écrire n'importe quel message et l'affiner manuellement à l'aide des contrôles."
+      },
+      "q8": {
+        "question": "Et si ma situation n'est pas répertoriée ?",
+        "answer": "C'est tout à fait bien.\n\nSentenly n'est pas limité aux scénarios prédéfinis.\nVous pouvez l'utiliser pour n'importe quelle situation et ajuster le ton librement.\n\nLes scénarios ne sont que des points de départ."
+      },
+      "q9": {
+        "question": "Est-ce que cela remplace le jugement humain ?",
+        "answer": "Non.\n\nSentenly soutient votre communication — il ne remplace pas votre réflexion.\n\nVous décidez :\n• ce que vous voulez dire\n• si le résultat correspond à votre intention\n\nPensez-y comme une seconde paire d'yeux pour le ton."
+      },
+      "q10": {
+        "question": "Mes données sont-elles privées ?",
+        "answer": "Oui. Votre saisie est traitée pour générer le message amélioré.\nNous n'utilisons pas votre texte pour l'entraînement ou à des fins non prévues.\n\nPour plus de détails, veuillez consulter notre Privacy Policy."
+      },
+      "q11": {
+        "question": "Cela peut-il aider avec les conversations difficiles ?",
+        "answer": "Oui — c'est l'un des principaux cas d'utilisation.\n\nSentenly vous aide à :\n• adoucir les messages forts\n• structurer les retours sensibles\n• éviter l'escalade\n\nC'est particulièrement utile lorsque le ton est critique."
+      },
+      "q12": {
+        "question": "Est-ce uniquement pour l'anglais ?",
+        "answer": "Non. Sentenly fonctionne dans plusieurs langues, notamment l'anglais, l'allemand, l'espagnol, le français, l'italien et le portugais.\n\nDe plus, vous pouvez utiliser le bouton \"Traduire vers\" pour traduire votre message affiné dans la langue de votre choix."
+      },
+      "q13": {
+        "question": "Cela va-t-il me ralentir ?",
+        "answer": "Non — c'est conçu pour être plus rapide que de réécrire manuellement.\n\nLa plupart des utilisateurs :\n• collent le texte\n• cliquent une fois\n• ajustent si nécessaire\n\nCela fait généralement gagner du temps, surtout dans des situations complexes."
+      },
+      "q14": {
+        "question": "Est-ce utile pour les équipes ou seulement pour les individus ?",
+        "answer": "Les deux.\n\nLes individus l'utilisent pour améliorer leur communication.\nLes équipes l'utilisent pour :\n• standardiser le ton\n• améliorer les réponses clients\n• réduire les malentendus"
+      },
+      "q15": {
+        "question": "Pourquoi devrais-je faire confiance à un nouvel outil comme celui-ci ?",
+        "answer": "C'est une question légitime.\n\nSentenly se concentre sur un problème très spécifique :\ncomment les messages sont perçus.\n\nAu lieu d'essayer de tout faire, il est conçu pour faire une chose bien :\nvous aider à communiquer plus efficacement.\n\nLa meilleure façon de l'évaluer est de l'essayer avec votre propre message."
+      },
+      "q16": {
+        "question": "Quand NE dois-je PAS utiliser Sentenly ?",
+        "answer": "• lorsqu'un langage juridique ou contractuel hautement spécialisé est requis\n• lorsque l'exactitude factuelle compte plus que le ton\n• lorsque les messages doivent rester exactement inchangés"
+      }
+    }
+  },
   "cta": {
     "title": "Prêt à réécrire ?",
     "description": "Choisissez votre message, ajustez le contexte et obtenez une formulation professionnellement calibrée pour toute situation.",

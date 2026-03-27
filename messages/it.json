@@ -178,6 +178,77 @@
       "description": "Linguaggio adattato a seconda che tu stia parlando verso l'alto, in orizzontale o verso il basso nella gerarchia."
     }
   },
+  "faq": {
+    "title": "FAQ",
+    "selectPrompt": "Seleziona una domanda per visualizzare la risposta",
+    "chooseQuestion": "Scegli una domanda...",
+    "questions": {
+      "q1": {
+        "question": "Cosa fa esattamente Sentenly?",
+        "answer": "Sentenly ti aiuta a dire la stessa cosa — in un modo migliore.\n\nScrivi il tuo messaggio e Sentenly regola il tono per adattarlo alla tua situazione: più professionale, più cortese, più diretto o più diplomatico.\n\nNon cambia la tua intenzione — migliora come viene ricevuto il tuo messaggio."
+      },
+      "q2": {
+        "question": "In cosa è diverso da ChatGPT?",
+        "answer": "ChatGPT genera testo.\nSentenly si concentra specificamente su tono e contesto.\n\nInvece di scrivere prompt, tu:\n• incolli il tuo messaggio\n• scegli una situazione (opzionale)\n• regoli il tono con controlli semplici\n\nSentenly è progettato per il perfezionamento comunicativo rapido e prevedibile, non per compiti generali di IA."
+      },
+      "q3": {
+        "question": "Perché ne avrei bisogno? Posso scrivere email da solo.",
+        "answer": "La maggior parte dei problemi di comunicazione non riguarda cosa dici — ma come viene percepito.\n\nSentenly ti aiuta a:\n• evitare di sembrare troppo duro\n• evitare di essere troppo vago\n• adattare il tono alla gerarchia e alla situazione\n\nÈ particolarmente utile quando la posta in gioco è alta o il tono è sensibile."
+      },
+      "q4": {
+        "question": "Questo renderà tutto generico o robotico?",
+        "answer": "No — l'obiettivo è l'opposto.\n\nSentenly mantiene intatto il tuo messaggio e regola il tono in modo sottile.\nPuoi anche controllare quanto formale, diretto o emotivo dovrebbe essere il risultato.\n\nMantieni il controllo — lo strumento si limita a rifinire."
+      },
+      "q5": {
+        "question": "Posso fidarmi di questo in situazioni professionali?",
+        "answer": "Sì — ma come ogni strumento, dovrebbe essere usato con giudizio.\n\nSentenly è progettato per:\n• email aziendali\n• comunicazione con i clienti\n• messaggistica interna\n\nDovresti sempre rivedere l'output — ma riduce significativamente gli errori legati al tono."
+      },
+      "q6": {
+        "question": "Per che tipo di testi posso usarlo?",
+        "answer": "Quasi ogni comunicazione scritta:\n• email\n• messaggi di chat\n• feedback\n• reclami\n• follow-up\n• conversazioni sensibili\n\nSe il tono conta, Sentenly aiuta."
+      },
+      "q7": {
+        "question": "Devo scegliere uno scenario?",
+        "answer": "No.\n\nGli scenari sono solo scorciatoie per iniziare rapidamente.\nPuoi anche scrivere qualsiasi messaggio e regolarlo manualmente usando i controlli."
+      },
+      "q8": {
+        "question": "E se la mia situazione non è elencata?",
+        "answer": "Va benissimo.\n\nSentenly non è limitato a scenari predefiniti.\nPuoi usarlo per qualsiasi situazione e regolare il tono liberamente.\n\nGli scenari sono solo punti di partenza."
+      },
+      "q9": {
+        "question": "Questo sostituisce il giudizio umano?",
+        "answer": "No.\n\nSentenly supporta la tua comunicazione — non sostituisce il tuo pensiero.\n\nDecidi tu:\n• cosa vuoi dire\n• se l'output si adatta alla tua intenzione\n\nPensalo come un secondo paio di occhi per il tono."
+      },
+      "q10": {
+        "question": "I miei dati sono privati?",
+        "answer": "Sì. Il tuo input viene elaborato per generare il messaggio migliorato.\nNon usiamo il tuo testo per addestramento o scopi non previsti.\n\nPer i dettagli completi, consulta la nostra Privacy Policy."
+      },
+      "q11": {
+        "question": "Può aiutare con conversazioni difficili?",
+        "answer": "Sì — questo è uno dei principali casi d'uso.\n\nSentenly ti aiuta a:\n• ammorbidire messaggi forti\n• strutturare feedback sensibili\n• evitare escalation\n\nÈ particolarmente utile quando il tono è critico."
+      },
+      "q12": {
+        "question": "È solo per l'inglese?",
+        "answer": "No. Sentenly funziona in più lingue tra cui inglese, tedesco, spagnolo, francese, italiano e portoghese.\n\nInoltre, puoi usare il pulsante \"Traduci in\" per tradurre il tuo messaggio raffinato in qualsiasi lingua di cui hai bisogno."
+      },
+      "q13": {
+        "question": "Questo mi rallenterà?",
+        "answer": "No — è progettato per essere più veloce della riscrittura manuale.\n\nLa maggior parte degli utenti:\n• incolla il testo\n• clicca una volta\n• regola se necessario\n\nDi solito fa risparmiare tempo, specialmente in situazioni complesse."
+      },
+      "q14": {
+        "question": "È utile per i team o solo per individui?",
+        "answer": "Entrambi.\n\nGli individui lo usano per migliorare la loro comunicazione.\nI team lo usano per:\n• standardizzare il tono\n• migliorare le risposte ai clienti\n• ridurre i malintesi"
+      },
+      "q15": {
+        "question": "Perché dovrei fidarmi di un nuovo strumento come questo?",
+        "answer": "È una domanda legittima.\n\nSentenly si concentra su un problema molto specifico:\ncome vengono percepiti i messaggi.\n\nInvece di cercare di fare tutto, è costruito per fare bene una cosa:\naiutarti a comunicare più efficacemente.\n\nIl modo migliore per valutarlo è provarlo con il tuo messaggio."
+      },
+      "q16": {
+        "question": "Quando NON devo usare Sentenly?",
+        "answer": "• quando è richiesto un linguaggio legale o contrattuale altamente specializzato\n• quando l'accuratezza fattuale conta più del tono\n• quando i messaggi devono rimanere esattamente invariati"
+      }
+    }
+  },
   "cta": {
     "title": "Pronto a riscrivere?",
     "description": "Scegli il tuo messaggio, regola il contesto e ottieni una formulazione professionale calibrata per ogni situazione.",

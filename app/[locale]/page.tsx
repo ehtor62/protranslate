@@ -31,6 +31,8 @@ export default function Home() {
   const [medium, setMedium] = useState('email');
   const [showPlaceholder, setShowPlaceholder] = useState(false);
   const [buttonPulse, setButtonPulse] = useState(false);
+  const [selectedFaqQuestion, setSelectedFaqQuestion] = useState<number | null>(null);
+  const [isFaqModalOpen, setIsFaqModalOpen] = useState(false);
 
   // Alternate between placeholder and example text
   useEffect(() => {
@@ -367,6 +369,75 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
+      {/* FAQ */}
+      <section className="py-24 border-t border-border bg-slate-900">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-center">
+              {t('faq.title')}
+            </h2>
+            <p className="text-muted-foreground text-center mb-8">
+              {t('faq.selectPrompt')}
+            </p>
+            
+            <div className="max-w-2xl mx-auto">
+              <select
+                className="w-full p-4 rounded-lg bg-card border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent cursor-pointer hover:border-muted-foreground transition-colors"
+                onChange={(e) => {
+                  const value = parseInt(e.target.value);
+                  if (value) {
+                    setSelectedFaqQuestion(value);
+                    setIsFaqModalOpen(true);
+                  }
+                }}
+                value=""
+              >
+                <option value="">{t('faq.chooseQuestion')}</option>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map((num) => (
+                  <option key={num} value={num}>
+                    Q{num}. {t(`faq.questions.q${num}.question`)}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Modal */}
+      <Dialog open={isFaqModalOpen} onOpenChange={setIsFaqModalOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-semibold flex items-start gap-3">
+              <span className="text-primary">Q{selectedFaqQuestion}.</span>
+              <span>{selectedFaqQuestion && t(`faq.questions.q${selectedFaqQuestion}.question`)}</span>
+            </DialogTitle>
+          </DialogHeader>
+          <div className="text-muted-foreground leading-relaxed whitespace-pre-line pt-4">
+            {selectedFaqQuestion === 10 ? (
+              <>
+                {t(`faq.questions.q${selectedFaqQuestion}.answer`).split('Privacy Policy').map((part, index, arr) => (
+                  <span key={index}>
+                    {part}
+                    {index < arr.length - 1 && (
+                      <Link 
+                        href={`/${locale}/privacy`}
+                        className="text-primary hover:underline font-medium"
+                        onClick={() => setIsFaqModalOpen(false)}
+                      >
+                        Privacy Policy
+                      </Link>
+                    )}
+                  </span>
+                ))}
+              </>
+            ) : (
+              selectedFaqQuestion && t(`faq.questions.q${selectedFaqQuestion}.answer`)
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
       
       {/* CTA */}
       <section className="py-24 border-t border-border bg-gradient-to-br from-emerald-950/50 via-slate-900/80 to-slate-950">

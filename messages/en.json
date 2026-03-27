@@ -181,6 +181,77 @@
       "description": "Calibrated language whether you're speaking up, across, or down the hierarchy."
     }
   },
+  "faq": {
+    "title": "FAQ",
+    "selectPrompt": "Select a question to view the answer",
+    "chooseQuestion": "Choose a question...",
+    "questions": {
+      "q1": {
+        "question": "What does Sentenly actually do?",
+        "answer": "Sentenly helps you say the same thing — in a better way.\n\nYou write your message, and Sentenly adjusts the tone so it fits your situation: more professional, more polite, more direct, or more diplomatic.\n\nIt doesn't change your intent — it improves how your message is received."
+      },
+      "q2": {
+        "question": "How is this different from ChatGPT?",
+        "answer": "ChatGPT generates text.\nSentenly focuses specifically on tone and context.\n\nInstead of writing prompts, you:\n• paste your message\n• choose a situation (optional)\n• adjust tone with simple controls\n\nSentenly is designed for fast, predictable communication refinement, not general AI tasks."
+      },
+      "q3": {
+        "question": "Why would I need this? I can write emails myself.",
+        "answer": "Most communication problems are not about what you say — but how it's perceived.\n\nSentenly helps you:\n• avoid sounding too harsh\n• avoid being too vague\n• match tone to hierarchy and situation\n\nIt's especially useful when the stakes are high or the tone is sensitive."
+      },
+      "q4": {
+        "question": "Will this make everything sound generic or robotic?",
+        "answer": "No — the goal is the opposite.\n\nSentenly keeps your message intact and adjusts tone subtly.\nYou can also control how formal, direct, or emotional the result should be.\n\nYou stay in control — the tool just refines."
+      },
+      "q5": {
+        "question": "Can I trust this in professional situations?",
+        "answer": "Yes — but like any tool, it should be used with judgment.\n\nSentenly is designed for:\n• business emails\n• customer communication\n• internal messaging\n\nYou should always review the output — but it significantly reduces tone-related mistakes."
+      },
+      "q6": {
+        "question": "What kind of texts can I use this for?",
+        "answer": "Almost any written communication:\n• emails\n• chat messages\n• feedback\n• complaints\n• follow-ups\n• sensitive conversations\n\nIf tone matters, Sentenly helps."
+      },
+      "q7": {
+        "question": "Do I have to choose a scenario?",
+        "answer": "No.\n\nScenarios are just shortcuts to get started quickly.\nYou can also write any message and fine-tune it manually using the controls."
+      },
+      "q8": {
+        "question": "What if my situation is not listed?",
+        "answer": "That's completely fine.\n\nSentenly is not limited to predefined scenarios.\nYou can use it for any situation and adjust tone freely.\n\nThe scenarios are just starting points."
+      },
+      "q9": {
+        "question": "Does this replace human judgment?",
+        "answer": "No.\n\nSentenly supports your communication — it doesn't replace your thinking.\n\nYou decide:\n• what you want to say\n• whether the output fits your intent\n\nThink of it as a second pair of eyes for tone."
+      },
+      "q10": {
+        "question": "Is my data private?",
+        "answer": "Yes. Your input is processed to generate the improved message.\nWe do not use your text for training or unintended purposes.\n\nFor complete details, please see our Privacy Policy."
+      },
+      "q11": {
+        "question": "Can this help with difficult conversations?",
+        "answer": "Yes — this is one of the main use cases.\n\nSentenly helps you:\n• soften strong messages\n• structure sensitive feedback\n• avoid escalation\n\nIt's particularly useful when tone is critical."
+      },
+      "q12": {
+        "question": "Is this only for English?",
+        "answer": "No. Sentenly works in multiple languages including English, German, Spanish, French, Italian, and Portuguese.\n\nAdditionally, you can use the \"Translate to\" button to translate your refined message into any language you need."
+      },
+      "q13": {
+        "question": "Will this slow me down?",
+        "answer": "No — it's designed to be faster than rewriting manually.\n\nMost users:\n• paste text\n• click once\n• adjust if needed\n\nIt typically saves time, especially in complex situations."
+      },
+      "q14": {
+        "question": "Is this useful for teams or just individuals?",
+        "answer": "Both.\n\nIndividuals use it to improve their communication.\nTeams use it to:\n• standardize tone\n• improve customer responses\n• reduce misunderstandings"
+      },
+      "q15": {
+        "question": "Why should I trust a new tool like this?",
+        "answer": "That's a fair question.\n\nSentenly focuses on a very specific problem:\nhow messages are perceived.\n\nInstead of trying to do everything, it's built to do one thing well —\nhelp you communicate more effectively.\n\nThe best way to evaluate it is to try it with your own message."
+      },
+      "q16": {
+        "question": "When should I NOT use Sentenly?",
+        "answer": "• when highly specialized legal or contractual language is required\n• when factual accuracy matters more than tone\n• when messages must remain exactly unchanged"
+      }
+    }
+  },
   "cta": {
     "title": "Ready to rewrite?",
     "description": "Choose your message, adjust the context, and get professionally calibrated wording for any situation.",

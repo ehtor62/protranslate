@@ -175,6 +175,77 @@
       "description": "Kalibrierte Sprache, egal ob Sie nach oben, auf gleicher Ebene oder nach unten in der Hierarchie sprechen."
     }
   },
+  "faq": {
+    "title": "FAQ",
+    "selectPrompt": "Wählen Sie eine Frage, um die Antwort anzuzeigen",
+    "chooseQuestion": "Wählen Sie eine Frage...",
+    "questions": {
+      "q1": {
+        "question": "Was macht Sentenly eigentlich?",
+        "answer": "Sentenly hilft Ihnen, dasselbe — nur besser auszudrücken.\n\nSie schreiben Ihre Nachricht und Sentenly passt den Ton an Ihre Situation an: professioneller, höflicher, direkter oder diplomatischer.\n\nEs ändert nicht Ihre Absicht — es verbessert, wie Ihre Nachricht aufgenommen wird."
+      },
+      "q2": {
+        "question": "Wie unterscheidet sich das von ChatGPT?",
+        "answer": "ChatGPT generiert Text.\nSentenly konzentriert sich speziell auf Ton und Kontext.\n\nStatt Prompts zu schreiben:\n• fügen Sie Ihre Nachricht ein\n• wählen Sie eine Situation (optional)\n• passen Sie den Ton mit einfachen Reglern an\n\nSentenly ist für schnelle, vorhersehbare Kommunikationsverfeinerung konzipiert, nicht für allgemeine KI-Aufgaben."
+      },
+      "q3": {
+        "question": "Warum sollte ich das brauchen? Ich kann selbst E-Mails schreiben.",
+        "answer": "Die meisten Kommunikationsprobleme betreffen nicht, was Sie sagen — sondern wie es wahrgenommen wird.\n\nSentenly hilft Ihnen:\n• zu harsch zu klingen zu vermeiden\n• zu vage zu sein zu vermeiden\n• den Ton an Hierarchie und Situation anzupassen\n\nEs ist besonders nützlich, wenn viel auf dem Spiel steht oder der Ton sensibel ist."
+      },
+      "q4": {
+        "question": "Klingt dadurch alles generisch oder roboterhaft?",
+        "answer": "Nein — das Gegenteil ist das Ziel.\n\nSentenly behält Ihre Nachricht bei und passt den Ton subtil an.\nSie können auch steuern, wie formal, direkt oder emotional das Ergebnis sein soll.\n\nSie behalten die Kontrolle — das Tool verfeinert nur."
+      },
+      "q5": {
+        "question": "Kann ich dem in beruflichen Situationen vertrauen?",
+        "answer": "Ja — aber wie bei jedem Werkzeug sollte es mit Urteilsvermögen verwendet werden.\n\nSentenly ist konzipiert für:\n• geschäftliche E-Mails\n• Kundenkommunikation\n• interne Nachrichten\n\nSie sollten die Ausgabe immer überprüfen — aber es reduziert tonbezogene Fehler erheblich."
+      },
+      "q6": {
+        "question": "Für welche Art von Texten kann ich das verwenden?",
+        "answer": "Fast jede schriftliche Kommunikation:\n• E-Mails\n• Chat-Nachrichten\n• Feedback\n• Beschwerden\n• Nachfassaktionen\n• sensible Gespräche\n\nWenn der Ton wichtig ist, hilft Sentenly."
+      },
+      "q7": {
+        "question": "Muss ich ein Szenario wählen?",
+        "answer": "Nein.\n\nSzenarien sind nur Abkürzungen, um schnell zu beginnen.\nSie können auch jede Nachricht schreiben und sie manuell mit den Reglern feinabstimmen."
+      },
+      "q8": {
+        "question": "Was ist, wenn meine Situation nicht aufgeführt ist?",
+        "answer": "Das ist völlig in Ordnung.\n\nSentenly ist nicht auf vordefinierte Szenarien beschränkt.\nSie können es für jede Situation verwenden und den Ton frei anpassen.\n\nDie Szenarien sind nur Ausgangspunkte."
+      },
+      "q9": {
+        "question": "Ersetzt das menschliches Urteilsvermögen?",
+        "answer": "Nein.\n\nSentenly unterstützt Ihre Kommunikation — es ersetzt nicht Ihr Denken.\n\nSie entscheiden:\n• was Sie sagen möchten\n• ob die Ausgabe Ihrer Absicht entspricht\n\nBetrachten Sie es als zweites Augenpaar für den Ton."
+      },
+      "q10": {
+        "question": "Sind meine Daten privat?",
+        "answer": "Ja. Ihre Eingabe wird verarbeitet, um die verbesserte Nachricht zu generieren.\nWir verwenden Ihren Text nicht für Training oder unbeabsichtigte Zwecke.\n\nVollständige Details finden Sie in unserer Privacy Policy."
+      },
+      "q11": {
+        "question": "Kann das bei schwierigen Gesprächen helfen?",
+        "answer": "Ja — das ist einer der Hauptanwendungsfälle.\n\nSentenly hilft Ihnen:\n• starke Nachrichten abzumildern\n• sensibles Feedback zu strukturieren\n• Eskalation zu vermeiden\n\nEs ist besonders nützlich, wenn der Ton kritisch ist."
+      },
+      "q12": {
+        "question": "Ist das nur für Englisch?",
+        "answer": "Nein. Sentenly funktioniert in mehreren Sprachen, darunter Englisch, Deutsch, Spanisch, Französisch, Italienisch und Portugiesisch.\n\nZusätzlich können Sie die Schaltfläche \"Übersetzen nach\" verwenden, um Ihre verfeinerte Nachricht in jede beliebige Sprache zu übersetzen."
+      },
+      "q13": {
+        "question": "Wird mich das verlangsamen?",
+        "answer": "Nein — es ist so konzipiert, dass es schneller ist als manuelles Umschreiben.\n\nDie meisten Benutzer:\n• fügen Text ein\n• klicken einmal\n• passen bei Bedarf an\n\nEs spart in der Regel Zeit, besonders in komplexen Situationen."
+      },
+      "q14": {
+        "question": "Ist das für Teams oder nur für Einzelpersonen nützlich?",
+        "answer": "Beides.\n\nEinzelpersonen nutzen es zur Verbesserung ihrer Kommunikation.\nTeams nutzen es um:\n• den Ton zu standardisieren\n• Kundenantworten zu verbessern\n• Missverständnisse zu reduzieren"
+      },
+      "q15": {
+        "question": "Warum sollte ich einem neuen Tool wie diesem vertrauen?",
+        "answer": "Das ist eine berechtigte Frage.\n\nSentenly konzentriert sich auf ein sehr spezifisches Problem:\nwie Nachrichten wahrgenommen werden.\n\nStatt zu versuchen, alles zu tun, ist es darauf ausgelegt, eine Sache gut zu tun —\nIhnen zu helfen, effektiver zu kommunizieren.\n\nDer beste Weg, es zu bewerten, ist es mit Ihrer eigenen Nachricht auszuprobieren."
+      },
+      "q16": {
+        "question": "Wann sollte ich Sentenly NICHT verwenden?",
+        "answer": "• wenn hochspezialisierte rechtliche oder vertragliche Sprache erforderlich ist\n• wenn sachliche Genauigkeit wichtiger ist als der Ton\n• wenn Nachrichten genau unverändert bleiben müssen"
+      }
+    }
+  },
   "cta": {
     "title": "Bereit zum Umschreiben?",
     "description": "Wählen Sie Ihre Nachricht, passen Sie den Kontext an und erhalten Sie professionell kalibrierte Formulierungen für jede Situation.",
