@@ -185,8 +185,8 @@ export default function Home() {
         <div className="container py-12 md:py-16 relative">
           <div className="flex flex-col md:flex-row gap-12 lg:gap-16 items-start">
             {/* Left column - Text */}
-            <div className="flex-1 space-y-8 pt-12">
-              <div className="inline-flex items-center gap-2 py-1 text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold">
+            <div className="flex-1 space-y-8 pt-4">
+              <div className="inline-flex items-center gap-2 py-1 text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold">
                 <span className="text-primary">{t('hero.badgePart1')} <span className="text-white">{t('hero.badgePart2')}</span></span>
               </div>
               
@@ -289,23 +289,6 @@ export default function Home() {
                   <span>{t('demo.advancedSettings')}</span>
                 </button>
               </div>
-              
-              <Button 
-                variant="hero" 
-                size="lg" 
-                className={`w-2/5 transition-all mt-8 ${buttonPulse ? 'scale-95 ring-4 ring-primary/50' : ''}`} 
-                onClick={handleRefineMessage} 
-                disabled={isLoading || !selectedPill}
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                    {t('demo.processing')}
-                  </>
-                ) : (
-                  t('demo.refineButton')
-                )}
-              </Button>
               
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">{t('demo.outputLabel')}</label>
