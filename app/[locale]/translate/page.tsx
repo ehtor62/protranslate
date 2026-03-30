@@ -694,7 +694,7 @@ export default function Translate() {
   const selectedMessageKey = selectedMessage ? toCamelCase(selectedMessage.id) : '';
   
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pt-16">
       <Header />
       
       {/* Email Verification Banner */}

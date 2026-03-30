@@ -54,7 +54,7 @@ export function Header() {
   };
   
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg">
+    <header className="fixed top-0 left-0 right-0 z-[100] border-b border-border bg-background/95 backdrop-blur-lg shadow-sm">
       <div className="container flex h-16 items-center justify-between">
         <Link href={`/${locale}`} className="flex items-center gap-2 group">
           <div className="relative w-8 h-8">
