@@ -306,7 +306,7 @@
     "userNotFound": "User not found. Please try signing up again."
   },
   "translatePage": {
-    "title": "Professional Message Rewriting — Powered by AI",
+    "title": "Professional Message Rewriting",
     "description": "Select a message type and customize the context to generate culturally appropriate translations",
     "step1": "Select a core message",
     "step2": "Adjust context",

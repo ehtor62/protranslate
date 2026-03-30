@@ -300,7 +300,7 @@
     "userNotFound": "Benutzer nicht gefunden. Bitte versuchen Sie sich erneut anzumelden."
   },
   "translatePage": {
-    "title": "Professionelles Umschreiben von Nachrichten — KI-gestützt",
+    "title": "Professionelles Umschreiben von Nachrichten",
     "description": "Wählen Sie einen Nachrichtentyp und passen Sie den Kontext an, um kulturell angemessene Übersetzungen zu generieren",
     "step1": "Hauptnachricht auswählen",
     "step2": "Kontext anpassen",

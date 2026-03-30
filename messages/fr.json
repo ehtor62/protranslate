@@ -301,7 +301,7 @@
     "userNotFound": "Utilisateur introuvable. Veuillez essayer de vous inscrire à nouveau."
   },
   "translatePage": {
-    "title": "Réécriture Professionnelle de Messages — Propulsé par IA",
+    "title": "Réécriture Professionnelle de Messages",
     "description": "Sélectionnez un type de message et personnalisez le contexte pour générer des traductions culturellement appropriées",
     "step1": "Sélectionner un message principal",
     "step2": "Ajuster le contexte",
