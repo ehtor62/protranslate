@@ -79,7 +79,7 @@
     "inputLabel": "Écrivez votre intention ou ce qui vous vient à l'esprit",
     "inputPlaceholder": "Entrez votre texte ici",
     "inputExample": "envoyer contrat pour signature au plus vite sinon je vais avoir des difficultés financières.",
-    "shortcutLabel": "Cliquez sur un raccourci ou<br />configurez manuellement dans la version en direct",
+    "shortcutLabel": "Cliquez sur un raccourci ou configurez avec les contrôles dans la version <a href='https://www.sentenly.com' target='_blank' rel='noopener noreferrer' class='text-emerald-400 hover:text-emerald-300 underline'>en direct</a>",
     "scenarioBlunt": "Franc",
     "scenarioDirect": "Direct",
     "scenarioDiplomatic": "Diplomatique",
@@ -124,11 +124,13 @@
     "mediumOptions": {
       "inPerson": "En personne",
       "email": "E-mail",
+      "chat": "Chat",
       "textMessage": "Message texte",
       "writtenNotice": "Avis écrit"
     },
     "cultureOptions": {
       "northAmerica": "Amérique du Nord",
+      "unitedKingdom": "Royaume-Uni",
       "europe": "Europe",
       "asia": "Asie",
       "neutral": "Neutre"
@@ -142,8 +144,7 @@
       "portuguese": "Portugais"
     },
     "outputLabel": "Sortie",
-    "outputPlaceholder": "Votre message affiné apparaîtra ici",
-    "pillMessages": {
+    "outputPlaceholder": "Votre message affiné apparaîtra ici",    "selectScenarioMessage": "Sélectionnez un scénario pour voir la version améliorée de votre message.",    "pillMessages": {
       "blunt": "J'ai besoin que le contrat soit signé aujourd'hui. Sans cela, je fais face à de sérieux problèmes financiers.",
       "direct": "Veuillez envoyer le contrat pour signature dès que possible. J'ai des difficultés financières sans cela.",
       "diplomatic": "J'apprécierais beaucoup si vous pouviez prioriser l'envoi du contrat pour signature. Le retard crée des défis financiers que je dois aborder rapidement.",
@@ -201,6 +202,48 @@
       "inPerson": "En personne",
       "writtenNotice": "Avis écrit"
     }
+  },
+  "rewriteEmail": {
+    "title": "Réécrire n'importe quel e-mail",
+    "subtitle": "Professionnellement — Instantanément",
+    "description1": "Transformez des messages informels, peu clairs ou brusques en communication claire et professionnelle.",
+    "description2": "Pas d'invitations. Pas de réécriture à partir de zéro. Juste quelques clics et améliorez.",
+    "emailTo": "E-mail à :",
+    "subject": "Objet :",
+    "bodyPlaceholder": "Écrivez votre intention ou collez votre message ici",
+    "improvedVersion": "Version améliorée",
+    "socialProof": "Utilisé pour les e-mails, les commentaires, les plaintes et les conversations difficiles",
+    "howItWorksTitle": "Voyez comment ça marche",
+    "before": "AVANT :",
+    "after": "APRÈS :",
+    "labelFormality": "Formalité",
+    "labelDirectness": "Franchise",
+    "labelEmotions": "Émotions",
+    "labelPowerRelation": "Relation de pouvoir",
+    "labelMedium": "Moyen",
+    "labelLanguage": "Langue",
+    "whyToneMattersTitle": "Pourquoi le ton compte",
+    "whyToneMattersDescription": "Le même message peut sembler :",
+    "toneMattersList1": "impoli",
+    "toneMattersList2": "méprisant",
+    "toneMattersList3": "ou respectueux",
+    "toneMattersEnding": "— en fonction uniquement du ton.",
+    "toneMattersConclusion": "vous aide à bien faire les choses.",
+    "ctaTitle": "Réécrivez votre message maintenant",
+    "ctaDescription": "Utilisé pour les e-mails quotidiens et les conversations importantes",
+    "ctaButton": "Commencer à écrire",
+    "seoFooterText": "Cet outil vous aide à réécrire des e-mails professionnellement, améliorer le ton et communiquer clairement dans toute situation. Que vous écriviez à un collègue, un client ou votre manager, vous pouvez ajuster votre message pour être plus poli, plus direct ou plus structuré.",
+    "labelCulturalContext": "Contexte culturel",
+    "example1Before": "C'est faux. Corrigez-le.",
+    "example1After": "Je pense qu'il pourrait y avoir un problème ici. Pourriez-vous y jeter un autre coup d'œil, s'il vous plaît?",
+    "example2Before": "Pourquoi n'avez-vous pas répondu?",
+    "example2After": "Je voulais juste faire un suivi sur mon message précédent.",
+    "example3Before": "Je ne peux pas faire ça.",
+    "example3After": "Malheureusement, je ne pourrai pas m'en charger pour le moment.",
+    "powerSpeakingToEqual": "Parler à un égal",
+    "culturalContextUS": "États-Unis",
+    "mediumEmail": "E-mail",
+    "languageEnglish": "Anglais"
   },
   "messageTypes": {
     "title": "Traduire :",

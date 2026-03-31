@@ -291,7 +291,7 @@ export default function Home() {
                 
                 <div className="relative">
                   <textarea
-                    className="w-full h-20 p-4 rounded-xl bg-slate-700 backdrop-blur border border-slate-600 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none transition-all text-lg"
+                    className="w-full h-20 p-4 rounded-xl bg-slate-700 backdrop-blur border border-slate-600 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none transition-all text-sm"
                     value={showPlaceholder ? '' : t('demo.inputExample')}
                     placeholder={showPlaceholder ? t('demo.inputPlaceholder') : ""}
                     readOnly

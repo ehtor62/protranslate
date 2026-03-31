@@ -19,91 +19,86 @@ export default function RewriteEmailProfessionallyPage() {
   const t = useTranslations();
   const params = useParams();
   const locale = params.locale as string;
-  const [selectedPill, setSelectedPill] = useState<string | null>('professional');
+  const [selectedPill, setSelectedPill] = useState<string | null>(null);
   const [isAdvancedModalOpen, setIsAdvancedModalOpen] = useState(false);
-  const [formality, setFormality] = useState(70);
+  const [formality, setFormality] = useState(50);
   const [directness, setDirectness] = useState(50);
-  const [emotion, setEmotion] = useState(30);
+  const [emotion, setEmotion] = useState(50);
   const [power, setPower] = useState('equal');
   const [culture, setCulture] = useState('us');
   const [medium, setMedium] = useState('email');
-  const [inputText, setInputText] = useState('send contract for signing asap otherwise I run into financial difficulties.');
+  const [email, setEmail] = useState('abc@company.com');
+  const [subject, setSubject] = useState('Contract - urgent');
+  const [inputText, setInputText] = useState(t('demo.inputExample'));
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Set mounted state after hydration
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Rotating text effect: show example for 10s, placeholder for 2s
   useEffect(() => {
-    if (selectedPill !== 'custom') {
-      let timeout1: NodeJS.Timeout;
-      let timeout2: NodeJS.Timeout;
+    if (!isMounted || !selectedPill || selectedPill === 'custom') return;
 
-      const runCycle = () => {
-        // Show example text for 10 seconds
-        setInputText('send contract for signing asap otherwise I run into financial difficulties.');
+    let timeout1: NodeJS.Timeout;
+    let timeout2: NodeJS.Timeout;
+
+    const runCycle = () => {
+      // Show example text for 10 seconds
+      setInputText(t('demo.inputExample'));
+      
+      timeout1 = setTimeout(() => {
+        // Switch to placeholder for 2 seconds
+        setInputText('');
         
-        timeout1 = setTimeout(() => {
-          // Switch to placeholder for 2 seconds
-          setInputText('');
-          
-          timeout2 = setTimeout(() => {
-            // Repeat the cycle
-            runCycle();
-          }, 2000);
-        }, 10000);
-      };
+        timeout2 = setTimeout(() => {
+          // Repeat the cycle
+          runCycle();
+        }, 2000);
+      }, 10000);
+    };
 
-      runCycle();
+    runCycle();
 
-      return () => {
-        clearTimeout(timeout1);
-        clearTimeout(timeout2);
-      };
-    }
+    return () => {
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+    };
+  }, [selectedPill, isMounted]);
+
+  // Reset to default after 20 seconds when a pill is clicked
+  useEffect(() => {
+    if (!selectedPill) return;
+
+    const resetTimeout = setTimeout(() => {
+      setSelectedPill(null);
+      setInputText(t('demo.inputExample'));
+      setFormality(50);
+      setDirectness(50);
+      setEmotion(50);
+      setPower('equal');
+      setCulture('us');
+      setMedium('email');
+    }, 20000);
+
+    return () => {
+      clearTimeout(resetTimeout);
+    };
   }, [selectedPill]);
 
   const scenarioOutputs: Record<string, string> = {
-    'custom': `Your customized message will appear here based on your own input and customized tone and language settings.`,
-    'professional': `Hi [Recipient's Name],
-
-Could you please send me the file at your earliest convenience? 
-The delay is causing some issues, and I would appreciate your prompt attention to this matter.
-
-Thank you,  
-[Your Name]`,
-    'talk-to-boss': `Hi [Manager's Name],
-
-I wanted to follow up on the file I requested. Could you please send it when you have a chance? 
-I'm encountering some blockers without it, and would appreciate your help moving this forward.
-
-Thank you for your time,  
-[Your Name]`,
-    'customer-complaint': `Dear [Client's Name],
-
-Thank you for your patience. I wanted to reach out regarding the file we discussed. 
-
-I understand there may have been some delays, and I sincerely apologize for any inconvenience this may have caused. Could you please send the file at your earliest convenience? This will help us resolve the matter promptly and ensure we meet your expectations.
-
-I truly appreciate your cooperation and understanding.
-
-Best regards,  
-[Your Name]`,
-    'reject-politely': `Hi [Recipient's Name],
-
-I hope this message finds you well. I wanted to reach out regarding the file request.
-
-I understand this may be taking longer than expected, and I truly appreciate your patience. Would it be possible to send the file when you have a moment? I would be very grateful for your assistance.
-
-Thank you so much for your understanding,  
-[Your Name]`,
-    'follow-up-email': `Hi [Recipient's Name],
-
-I hope you're doing well! I wanted to reach out about the file I requested earlier.
-
-I know things can get busy, but I'd really appreciate it if you could send it over when you get a chance. It would help me move forward with the project.
-
-Thanks so much!  
-[Your Name]`
+    'blunt': t('demo.pillMessages.blunt'),
+    'direct': t('demo.pillMessages.direct'),
+    'diplomatic': t('demo.pillMessages.diplomatic'),
+    'personal': t('demo.pillMessages.personal'),
+    'respectful': t('demo.pillMessages.respectful'),
+    'escalation': t('demo.pillMessages.escalation'),
+    'friendly': t('demo.pillMessages.friendly'),
+    'formal-notice': t('demo.pillMessages.formalNotice')
   };
 
-  const outputText = scenarioOutputs[selectedPill || 'professional'];
+  const outputText = selectedPill ? scenarioOutputs[selectedPill] : t('demo.selectScenarioMessage');
 
   const scenarioTitles: Record<string, string> = {
     'custom': 'Custom',
@@ -115,12 +110,14 @@ Thanks so much!
   };
 
   const scenarioSettings: Record<string, { formality: number; directness: number; emotion: number; power: string; culture: string; medium: string }> = {
-    'custom': { formality: 50, directness: 50, emotion: 50, power: 'equal', culture: 'us', medium: 'email' },
-    'professional': { formality: 70, directness: 50, emotion: 30, power: 'equal', culture: 'us', medium: 'email' },
-    'talk-to-boss': { formality: 70, directness: 60, emotion: 30, power: 'subordinate', culture: 'us', medium: 'email' },
-    'customer-complaint': { formality: 75, directness: 60, emotion: 25, power: 'equal', culture: 'europe', medium: 'email' },
-    'reject-politely': { formality: 75, directness: 25, emotion: 50, power: 'equal', culture: 'uk', medium: 'email' },
-    'follow-up-email': { formality: 60, directness: 50, emotion: 40, power: 'equal', culture: 'asia', medium: 'email' }
+    'blunt': { formality: 20, directness: 90, emotion: 10, power: 'equal', culture: 'us', medium: 'email' },
+    'direct': { formality: 50, directness: 80, emotion: 20, power: 'equal', culture: 'us', medium: 'email' },
+    'diplomatic': { formality: 80, directness: 40, emotion: 30, power: 'equal', culture: 'europe', medium: 'email' },
+    'personal': { formality: 40, directness: 60, emotion: 60, power: 'equal', culture: 'us', medium: 'email' },
+    'respectful': { formality: 85, directness: 45, emotion: 25, power: 'subordinate', culture: 'asia', medium: 'email' },
+    'escalation': { formality: 75, directness: 85, emotion: 20, power: 'superior', culture: 'us', medium: 'email' },
+    'friendly': { formality: 30, directness: 50, emotion: 70, power: 'equal', culture: 'us', medium: 'email' },
+    'formal-notice': { formality: 95, directness: 70, emotion: 10, power: 'equal', culture: 'uk', medium: 'email' }
   };
 
   const handlePillClick = (pillId: string) => {
@@ -138,48 +135,48 @@ Thanks so much!
     if (pillId === 'custom') {
       setInputText('');
     } else {
-      setInputText('send contract for signing asap otherwise I run into financial difficulties.');
+      setInputText(t('demo.inputExample'));
     }
   };
 
   const beforeAfterExamples = [
     {
-      before: "This is wrong. Fix it.",
-      after: "I believe there may be an issue here. Could you please take another look?",
+      before: t('rewriteEmail.example1Before'),
+      after: t('rewriteEmail.example1After'),
       settings: {
         formality: 75,
         directness: 45,
         emotion: 20,
-        power: "Speaking to equal",
-        culture: "United States",
-        medium: "Email",
-        language: "English"
+        power: t('rewriteEmail.powerSpeakingToEqual'),
+        culture: t('rewriteEmail.culturalContextUS'),
+        medium: t('rewriteEmail.mediumEmail'),
+        language: t('rewriteEmail.languageEnglish')
       }
     },
     {
-      before: "Why didn't you reply?",
-      after: "I just wanted to follow up on my previous message.",
+      before: t('rewriteEmail.example2Before'),
+      after: t('rewriteEmail.example2After'),
       settings: {
         formality: 60,
         directness: 40,
         emotion: 40,
-        power: "Speaking to equal",
-        culture: "United States",
-        medium: "Email",
-        language: "English"
+        power: t('rewriteEmail.powerSpeakingToEqual'),
+        culture: t('rewriteEmail.culturalContextUS'),
+        medium: t('rewriteEmail.mediumEmail'),
+        language: t('rewriteEmail.languageEnglish')
       }
     },
     {
-      before: "I can't do this.",
-      after: "Unfortunately, I won't be able to take this on at the moment.",
+      before: t('rewriteEmail.example3Before'),
+      after: t('rewriteEmail.example3After'),
       settings: {
         formality: 70,
         directness: 50,
         emotion: 30,
-        power: "Speaking to equal",
-        culture: "United States",
-        medium: "Email",
-        language: "English"
+        power: t('rewriteEmail.powerSpeakingToEqual'),
+        culture: t('rewriteEmail.culturalContextUS'),
+        medium: t('rewriteEmail.mediumEmail'),
+        language: t('rewriteEmail.languageEnglish')
       }
     }
   ];
@@ -194,137 +191,297 @@ Thanks so much!
         
         <div className="container py-16 md:py-24 relative max-w-4xl mx-auto">
           <div className="text-center space-y-6 mb-12">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
-              <span className="text-primary">Rewrite Any Email</span>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+              <span className="text-primary">{t('rewriteEmail.title')}</span>
               <br />
-              <span className="text-white">Professionally — Instantly</span>
+              <span className="text-white">{t('rewriteEmail.subtitle')}</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Turn informal, unclear, or rough messages into clear, professional communication.
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              {t('rewriteEmail.description1')}
             </p>
 
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              No prompts. No rewriting from scratch. Just paste and improve.
-            </p>
-
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Avoid sounding rude, unclear, or unprofessional — without overthinking your words.
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              {t('rewriteEmail.description2')}
             </p>
           </div>
 
           {/* Input/Output Demo */}
           <div className="space-y-6 max-w-2xl mx-auto">
-            {/* Input */}
-            <div>
-              <label className="block text-sm font-medium text-foreground mb-2">Your message</label>
-              <textarea
-                className="w-full h-24 p-4 rounded-xl bg-slate-700 backdrop-blur border border-slate-600 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none text-base"
-                value={inputText}
-                placeholder="Write your intent or paste your message here"
-                onChange={(e) => setInputText(e.target.value)}
-                readOnly={selectedPill !== 'custom'}
-              />
-            </div>
-
-            {/* CTA Button */}
-            <div className="text-center">
-              <Button variant="orange" size="xl" className="w-full sm:w-auto pointer-events-none">
-                Improve message instantly
-              </Button>
+            {/* Email Form */}
+            <div className="rounded-xl bg-slate-700 backdrop-blur border border-slate-600 overflow-hidden">
+              {/* Email To Line */}
+              <div className="px-4 py-2 text-slate-400 text-sm">
+                <span className="text-slate-400">{t('rewriteEmail.emailTo')}</span> {email}
+              </div>
+              
+              {/* Subject Input */}
+              <div className="px-4 py-2 flex items-center gap-2 border-t border-slate-600">
+                <span className="text-slate-400 text-sm">{t('rewriteEmail.subject')}</span>
+                <span className="text-slate-400 text-sm">{subject}</span>
+              </div>
+              
+              {/* Double Line Separator */}
+              <div className="border-t-2 border-double border-slate-600"></div>
+              
+              {/* Body */}
+              <div className="p-4">
+                <textarea
+                  className="w-full h-16 bg-transparent text-white placeholder:text-slate-400 focus:outline-none resize-none text-sm"
+                  value={inputText}
+                  placeholder={t('rewriteEmail.bodyPlaceholder')}
+                  onChange={(e) => setInputText(e.target.value)}
+                  readOnly={selectedPill !== 'custom'}
+                />
+              </div>
             </div>
 
             {/* Scenario Switcher */}
-            <div className="pt-6">
-              <label className="block text-sm font-medium text-foreground mb-2">
-                Start with shortcut or set manually
-              </label>
-              <p className="text-xs text-muted-foreground mb-3">
-                Use a scenario for a quick start — or fine-tune everything yourself below.
-              </p>
-              <div className="flex flex-col items-start gap-2">
+            <div>
+              <p className="text-xs text-muted-foreground mb-3" dangerouslySetInnerHTML={{ __html: t.raw('demo.shortcutLabel') }} />
+              <div className="flex flex-wrap gap-2">
                 <button
-                  onClick={() => handlePillClick('custom')}
-                  className={`text-sm px-4 py-2 rounded-full font-medium transition-all ${
-                    selectedPill === 'custom'
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-slate-700 text-slate-200 hover:bg-slate-600'
+                  onClick={() => handlePillClick('blunt')}
+                  className={`text-xs px-3 py-1 rounded-full font-medium transition-all ${
+                    selectedPill === 'blunt'
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  Custom
+                  {t('demo.scenarioBlunt')}
                 </button>
                 <button
-                  onClick={() => handlePillClick('professional')}
-                  className={`text-sm px-4 py-2 rounded-full font-medium transition-all ${
-                    selectedPill === 'professional'
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-slate-700 text-slate-200 hover:bg-slate-600'
+                  onClick={() => handlePillClick('direct')}
+                  className={`text-xs px-3 py-1 rounded-full font-medium transition-all ${
+                    selectedPill === 'direct'
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  Professional
+                  {t('demo.scenarioDirect')}
                 </button>
                 <button
-                  onClick={() => handlePillClick('talk-to-boss')}
-                  className={`text-sm px-4 py-2 rounded-full font-medium transition-all ${
-                    selectedPill === 'talk-to-boss'
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-slate-700 text-slate-200 hover:bg-slate-600'
+                  onClick={() => handlePillClick('diplomatic')}
+                  className={`text-xs px-3 py-1 rounded-full font-medium transition-all ${
+                    selectedPill === 'diplomatic'
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  Talk to boss
+                  {t('demo.scenarioDiplomatic')}
                 </button>
                 <button
-                  onClick={() => handlePillClick('customer-complaint')}
-                  className={`text-sm px-4 py-2 rounded-full font-medium transition-all ${
-                    selectedPill === 'customer-complaint'
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-slate-700 text-slate-200 hover:bg-slate-600'
+                  onClick={() => handlePillClick('personal')}
+                  className={`text-xs px-3 py-1 rounded-full font-medium transition-all ${
+                    selectedPill === 'personal'
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  Client complaint
+                  {t('demo.scenarioPersonal')}
                 </button>
                 <button
-                  onClick={() => handlePillClick('reject-politely')}
-                  className={`text-sm px-4 py-2 rounded-full font-medium transition-all ${
-                    selectedPill === 'reject-politely'
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-slate-700 text-slate-200 hover:bg-slate-600'
+                  onClick={() => handlePillClick('respectful')}
+                  className={`text-xs px-3 py-1 rounded-full font-medium transition-all ${
+                    selectedPill === 'respectful'
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  Polite request
+                  {t('demo.scenarioRespectful')}
                 </button>
                 <button
-                  onClick={() => handlePillClick('follow-up-email')}
-                  className={`text-sm px-4 py-2 rounded-full font-medium transition-all ${
-                    selectedPill === 'follow-up-email'
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-slate-700 text-slate-200 hover:bg-slate-600'
+                  onClick={() => handlePillClick('escalation')}
+                  className={`text-xs px-3 py-1 rounded-full font-medium transition-all ${
+                    selectedPill === 'escalation'
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  Follow-up
+                  {t('demo.scenarioEscalation')}
                 </button>
+                <button
+                  onClick={() => handlePillClick('friendly')}
+                  className={`text-xs px-3 py-1 rounded-full font-medium transition-all ${
+                    selectedPill === 'friendly'
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
+                  }`}
+                >
+                  {t('demo.scenarioFriendly')}
+                </button>
+                <button
+                  onClick={() => handlePillClick('formal-notice')}
+                  className={`text-xs px-3 py-1 rounded-full font-medium transition-all ${
+                    selectedPill === 'formal-notice'
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
+                  }`}
+                >
+                  {t('demo.scenarioFormalNotice')}
+                </button>
+              </div>
+            </div>
+
+            {/* Controls Panel */}
+            <div className="rounded-xl bg-black border border-slate-600 p-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Left Side - Sliders */}
+                <div className="space-y-3">
+                  {/* Formality */}
+                  <div>
+                    <div className="flex justify-between items-center mb-1">
+                      <label className="text-xs font-medium text-foreground">{t('demo.formality')}</label>
+                      <span className="text-xs text-muted-foreground">{formality}%</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={formality}
+                      onChange={(e) => setFormality(Number(e.target.value))}
+                      className="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer"
+                      style={{
+                        background: `linear-gradient(to right, #10b981 0%, #10b981 ${formality}%, #4b5563 ${formality}%, #4b5563 100%)`
+                      }}
+                    />
+                    <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                      <span>{t('demo.formalityLevels.casual')}</span>
+                      <span>{t('demo.formalityLevels.informal')}</span>
+                      <span>{t('demo.formalityLevels.neutral')}</span>
+                      <span>{t('demo.formalityLevels.formal')}</span>
+                      <span>{t('demo.formalityLevels.institutional')}</span>
+                    </div>
+                  </div>
+
+                  {/* Directness */}
+                  <div>
+                    <div className="flex justify-between items-center mb-1">
+                      <label className="text-xs font-medium text-foreground">{t('demo.directness')}</label>
+                      <span className="text-xs text-muted-foreground">{directness}%</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={directness}
+                      onChange={(e) => setDirectness(Number(e.target.value))}
+                      className="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer"
+                      style={{
+                        background: `linear-gradient(to right, #10b981 0%, #10b981 ${directness}%, #4b5563 ${directness}%, #4b5563 100%)`
+                      }}
+                    />
+                    <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                      <span>{t('demo.directnessLevels.indirect')}</span>
+                      <span>{t('demo.directnessLevels.diplomatic')}</span>
+                      <span>{t('demo.directnessLevels.clear')}</span>
+                      <span>{t('demo.directnessLevels.direct')}</span>
+                      <span>{t('demo.directnessLevels.blunt')}</span>
+                    </div>
+                  </div>
+
+                  {/* Emotions */}
+                  <div>
+                    <div className="flex justify-between items-center mb-1">
+                      <label className="text-xs font-medium text-foreground">{t('demo.emotions')}</label>
+                      <span className="text-xs text-muted-foreground">{emotion}%</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={emotion}
+                      onChange={(e) => setEmotion(Number(e.target.value))}
+                      className="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer"
+                      style={{
+                        background: `linear-gradient(to right, #10b981 0%, #10b981 ${emotion}%, #4b5563 ${emotion}%, #4b5563 100%)`
+                      }}
+                    />
+                    <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                      <span>{t('demo.emotionLevels.low')}</span>
+                      <span>{t('demo.emotionLevels.contained')}</span>
+                      <span>{t('demo.emotionLevels.attentive')}</span>
+                      <span>{t('demo.emotionLevels.sensitive')}</span>
+                      <span>{t('demo.emotionLevels.high')}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Side - Dropdowns */}
+                <div className="space-y-3">
+                  {/* Power Relation */}
+                  <div>
+                    <label className="block text-xs font-medium text-foreground mb-1">{t('demo.powerRelation')}</label>
+                    <select
+                      value={power}
+                      onChange={(e) => setPower(e.target.value)}
+                      className="w-full px-3 py-1.5 text-xs rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    >
+                      <option value="superior">{t('demo.powerOptions.superior')}</option>
+                      <option value="equal">{t('demo.powerOptions.equal')}</option>
+                      <option value="subordinate">{t('demo.powerOptions.inferior')}</option>
+                    </select>
+                  </div>
+
+                  {/* Medium */}
+                  <div>
+                    <label className="block text-xs font-medium text-foreground mb-1">{t('demo.medium')}</label>
+                    <select
+                      value={medium}
+                      onChange={(e) => setMedium(e.target.value)}
+                      className="w-full px-3 py-1.5 text-xs rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    >
+                      <option value="email">{t('demo.mediumOptions.email')}</option>
+                      <option value="chat">{t('demo.mediumOptions.chat')}</option>
+                      <option value="in-person">{t('demo.mediumOptions.inPerson')}</option>
+                      <option value="written-notice">{t('demo.mediumOptions.writtenNotice')}</option>
+                    </select>
+                  </div>
+
+                  {/* Cultural Context */}
+                  <div>
+                    <label className="block text-xs font-medium text-foreground mb-1">{t('demo.culturalContext')}</label>
+                    <select
+                      value={culture}
+                      onChange={(e) => setCulture(e.target.value)}
+                      className="w-full px-3 py-1.5 text-xs rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    >
+                      <option value="us">{t('demo.cultureOptions.northAmerica')}</option>
+                      <option value="uk">{t('demo.cultureOptions.unitedKingdom')}</option>
+                      <option value="europe">{t('demo.cultureOptions.europe')}</option>
+                      <option value="asia">{t('demo.cultureOptions.asia')}</option>
+                    </select>
+                  </div>
+
+                  {/* Translate to */}
+                  <div>
+                    <label className="block text-xs font-medium text-foreground mb-1">{t('demo.translateTo')}</label>
+                    <select
+                      value={locale}
+                      onChange={(e) => {
+                        // Navigate to the new locale
+                        window.location.href = `/${e.target.value}/rewrite-email-professionally`;
+                      }}
+                      className="w-full px-3 py-1.5 text-xs rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    >
+                      <option value="en">{t('demo.languageOptions.english')}</option>
+                      <option value="es">{t('demo.languageOptions.spanish')}</option>
+                      <option value="fr">{t('demo.languageOptions.french')}</option>
+                      <option value="de">{t('demo.languageOptions.german')}</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Output - shown immediately */}
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                Improved version
+                {t('rewriteEmail.improvedVersion')}
               </label>
               <div className="w-full p-4 rounded-xl bg-slate-700 backdrop-blur border border-slate-600 text-white">
-                <p className="text-white text-base whitespace-pre-line leading-relaxed">{outputText}</p>
+                <p className="text-white text-sm whitespace-pre-line leading-relaxed">{outputText}</p>
               </div>
-            </div>
-
-            {/* Advanced Controls (modal trigger) */}
-            <div className="pt-4">
-              <button
-                onClick={() => setIsAdvancedModalOpen(true)}
-                className="flex items-center gap-2 text-sm text-orange-500 hover:text-orange-400 transition-colors mx-auto"
-              >
-                <span className="text-base filter brightness-125 saturate-150">⚙️</span>
-                <span>Fine-tune your message</span>
-              </button>
             </div>
           </div>
         </div>
@@ -334,7 +491,7 @@ Thanks so much!
       <section className="border-y border-border bg-slate-900/50">
         <div className="container py-6">
           <p className="text-center text-muted-foreground text-sm">
-            Used for emails, feedback, complaints, and difficult conversations
+            {t('rewriteEmail.socialProof')}
           </p>
         </div>
       </section>
@@ -343,7 +500,7 @@ Thanks so much!
       <section className="py-20 bg-slate-950">
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center">
-            See how it works
+            {t('rewriteEmail.howItWorksTitle')}
           </h2>
           
           <div className="space-y-8">
@@ -353,53 +510,53 @@ Thanks so much!
                 className="bg-slate-900/50 backdrop-blur border border-slate-800 rounded-xl p-6 space-y-4"
               >
                 <div>
-                  <div className="text-xs font-semibold text-red-400 mb-2">BEFORE:</div>
+                  <div className="text-xs font-semibold text-red-400 mb-2">{t('rewriteEmail.before')}</div>
                   <p className="text-slate-300">{example.before}</p>
                 </div>
                 <div className="border-t border-slate-800"></div>
                 <div>
-                  <div className="text-xs font-semibold text-emerald-400 mb-2">AFTER:</div>
+                  <div className="text-xs font-semibold text-emerald-400 mb-2">{t('rewriteEmail.after')}</div>
                   <p className="text-white mb-4">{example.after}</p>
                   <div className="flex flex-wrap gap-3">
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        Formality
+                        {t('rewriteEmail.labelFormality')}
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.formality}%</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        Directness
+                        {t('rewriteEmail.labelDirectness')}
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.directness}%</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        Emotions
+                        {t('rewriteEmail.labelEmotions')}
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.emotion}%</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        Power Relation
+                        {t('rewriteEmail.labelPowerRelation')}
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.power}</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        Cultural Context
+                        {t('rewriteEmail.labelCulturalContext')}
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.culture}</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        Medium
+                        {t('rewriteEmail.labelMedium')}
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.medium}</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        Language
+                        {t('rewriteEmail.labelLanguage')}
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.language}</span>
                     </div>
@@ -415,37 +572,37 @@ Thanks so much!
       <section className="py-20 border-t border-border bg-slate-900">
         <div className="container max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            Why tone matters
+            {t('rewriteEmail.whyToneMattersTitle')}
           </h2>
           
           <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-            The same message can sound:
+            {t('rewriteEmail.whyToneMattersDescription')}
           </p>
 
           <div className="space-y-2 text-left max-w-xl mx-auto mb-6">
             <div className="flex items-start gap-3">
               <span className="text-muted-foreground">•</span>
-              <p className="text-muted-foreground">rude</p>
+              <p className="text-muted-foreground">{t('rewriteEmail.toneMattersList1')}</p>
             </div>
             <div className="flex items-start gap-3">
               <span className="text-muted-foreground">•</span>
-              <p className="text-muted-foreground">ignored</p>
+              <p className="text-muted-foreground">{t('rewriteEmail.toneMattersList2')}</p>
             </div>
             <div className="flex items-start gap-3">
               <span className="text-muted-foreground">•</span>
-              <p className="text-muted-foreground">or respected</p>
+              <p className="text-muted-foreground">{t('rewriteEmail.toneMattersList3')}</p>
             </div>
           </div>
 
           <p className="text-lg text-muted-foreground mb-6">
-            — depending only on tone.
+            {t('rewriteEmail.toneMattersEnding')}
           </p>
 
           <p className="text-lg text-white font-medium">
             <Link href={`/${locale}/translate`} className="text-primary hover:underline">
-              Sentenly
+              {t('common.appName')}
             </Link>{' '}
-            helps you get it right.
+            {t('rewriteEmail.toneMattersConclusion')}
           </p>
         </div>
       </section>
@@ -454,14 +611,14 @@ Thanks so much!
       <section className="py-20 border-t border-border bg-gradient-to-br from-emerald-950/50 via-slate-900/80 to-slate-950">
         <div className="container max-w-2xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            Rewrite your message now
+            {t('rewriteEmail.ctaTitle')}
           </h2>
           <p className="text-lg text-muted-foreground mb-6">
-            Used for everyday emails and high-stakes conversations alike
+            {t('rewriteEmail.ctaDescription')}
           </p>
           <Button asChild variant="hero" size="xl">
             <Link href={`/${locale}/translate`}>
-              Start writing
+              {t('rewriteEmail.ctaButton')}
               <ArrowRight className="w-5 h-5" />
             </Link>
           </Button>
@@ -472,9 +629,7 @@ Thanks so much!
       <section className="py-12 border-t border-border bg-slate-950">
         <div className="container max-w-4xl mx-auto">
           <p className="text-sm text-muted-foreground leading-relaxed text-center">
-            This tool helps you rewrite emails professionally, improve tone, and communicate clearly in any situation. 
-            Whether you're writing to a colleague, a client, or your manager, you can adjust your message to be more polite, 
-            more direct, or more structured.
+            {t('rewriteEmail.seoFooterText')}
           </p>
         </div>
       </section>
