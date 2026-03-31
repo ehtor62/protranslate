@@ -84,7 +84,7 @@
     "inputLabel": "Write your intent or what comes to your mind",
     "inputPlaceholder": "Enter your text here",
     "inputExample": "send contract for signing asap otherwise I run into financial difficulties.",
-    "shortcutLabel": "Click a shortcut or<br />set manually in live version",
+    "shortcutLabel": "Click a shortcut below or<br />fine-tune in live version",
     "scenarioBlunt": "Blunt",
     "scenarioDirect": "Direct",
     "scenarioDiplomatic": "Diplomatic",
