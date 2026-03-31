@@ -50,8 +50,12 @@ export default async function RootLayout(
   }
 
   return (
-    <LocaleProviders>
-      {children}
-    </LocaleProviders>
+    <html lang={locale} suppressHydrationWarning>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>
+        <LocaleProviders>
+          {children}
+        </LocaleProviders>
+      </body>
+    </html>
   );
 }

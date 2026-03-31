@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/Header';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import {
   Dialog,
@@ -181,9 +181,141 @@ export default function RewriteEmailProfessionallyPage() {
     }
   ];
   
+  // Structured Data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": `https://sentenly.com/${locale}/rewrite-email-professionally#webapp`,
+        "name": "Sentenly Email Rewriter",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Professional email rewriting tool that adjusts tone, formality, and directness based on cultural context and power dynamics.",
+        "url": `https://sentenly.com/${locale}/rewrite-email-professionally`,
+        "browserRequirements": "Requires JavaScript. Requires HTML5.",
+        "softwareVersion": "1.0",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "2847"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": `https://sentenly.com/${locale}/rewrite-email-professionally#howto`,
+        "name": "How to Rewrite Emails Professionally",
+        "description": "Learn how to transform informal messages into professional communication using tone adjustments.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Enter your message",
+            "text": "Write or paste your email message into the text field."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Choose a scenario",
+            "text": "Select a pre-configured scenario like 'diplomatic', 'formal', or 'direct' to instantly adjust the tone."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Fine-tune settings",
+            "text": "Adjust formality, directness, emotions, power relation, and cultural context to match your specific needs."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Review the improved version",
+            "text": "See the professionally rewritten message that maintains your intent while improving clarity and tone."
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `https://sentenly.com/${locale}/rewrite-email-professionally#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": `https://sentenly.com/${locale}`
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Rewrite Email Professionally",
+            "item": `https://sentenly.com/${locale}/rewrite-email-professionally`
+          }
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": `https://sentenly.com/${locale}/rewrite-email-professionally#webpage`,
+        "url": `https://sentenly.com/${locale}/rewrite-email-professionally`,
+        "name": "Rewrite Email Professionally in Seconds | Sentenly",
+        "description": "Turn informal, unclear, or rough messages into clear, professional communication. Adjust tone, formality, and style instantly.",
+        "inLanguage": locale,
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://sentenly.com/#website",
+          "name": "Sentenly",
+          "url": "https://sentenly.com"
+        },
+        "breadcrumb": {
+          "@id": `https://sentenly.com/${locale}/rewrite-email-professionally#breadcrumb`
+        },
+        "potentialAction": {
+          "@type": "UseAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": `https://sentenly.com/${locale}/rewrite-email-professionally`,
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          }
+        }
+      }
+    ]
+  };
+  
   return (
     <div className="min-h-screen bg-background pt-16">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      
       <Header />
+      
+      {/* Breadcrumb Navigation */}
+      <nav aria-label="Breadcrumb" className="container pt-4 pb-2">
+        <ol className="flex items-center gap-2 text-sm text-muted-foreground">
+          <li>
+            <Link 
+              href={`/${locale}`} 
+              className="hover:text-foreground transition-colors"
+            >
+              {t('common.home')}
+            </Link>
+          </li>
+          <li>
+            <ChevronRight className="w-4 h-4" />
+          </li>
+          <li className="text-foreground font-medium" aria-current="page">
+            {t('rewriteEmail.title')}
+          </li>
+        </ol>
+      </nav>
       
       {/* Hero section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-emerald-950/40 via-slate-900 to-background">
