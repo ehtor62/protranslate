@@ -75,26 +75,82 @@
     "livePreview": "Live-Vorschau"
   },
   "demo": {
-    "inputLabel": "Deine Beispieleingabe",
-    "inputPlaceholder": "Gib hier Deinen Text ein",
-    "inputExample": "Schick mir sofort die Datei. Das ist nicht akzeptabel.",
-    "scenarioLabel": "Beginne mit einem Szenario (optional)",
-    "scenarioTalkToBoss": "Mit Chef sprechen",
-    "scenarioClientComplaint": "Kundenbeschwerde",
-    "scenarioPoliteRequest": "Höfliche Anfrage",
-    "scenarioFollowUp": "Folge-E-Mail",
-    "scenarioCustom": "Benutzerdefiniert",
-    "advancedSettings": "Erweiterte Toneinstellungen",
-    "refineButton": "Nachricht verfeinern",
-    "processing": "Verarbeitung...",
+    "inputLabel": "Schreibe deine Absicht oder was dir in den Sinn kommt",
+    "inputPlaceholder": "Gib hier deinen Text ein",
+    "inputExample": "Vertrag zum Unterschreiben asap schicken sonst bekomme ich finanzielle Schwierigkeiten.",
+    "shortcutLabel": "Klicke auf eine Vorgabe oder<br />adjustiere manuell in der Live-Version",
+    "scenarioBlunt": "Unverblümt",
+    "scenarioDirect": "Direkt",
+    "scenarioDiplomatic": "Diplomatisch",
+    "scenarioPersonal": "Persönlich",
+    "scenarioRespectful": "Respektvoll",
+    "scenarioEscalation": "Eskalation",
+    "scenarioFriendly": "Freundlich",
+    "scenarioFormalNotice": "Förmliche Mitteilung",
+    "formality": "Formalität",
+    "directness": "Direktheit",
+    "emotions": "Emotionen",
+    "powerRelation": "Machtverhältnis",
+    "medium": "Medium",
+    "culturalContext": "Kultureller Kontext",
+    "translateTo": "Übersetzen nach",
+    "formalityLevels": {
+      "casual": "Lässig",
+      "informal": "Informell",
+      "neutral": "Neutral",
+      "formal": "Formell",
+      "institutional": "Institutionell"
+    },
+    "directnessLevels": {
+      "indirect": "Indirekt",
+      "diplomatic": "Diplomatisch",
+      "clear": "Klar",
+      "direct": "Direkt",
+      "blunt": "Unverblümt"
+    },
+    "emotionLevels": {
+      "low": "Niedrig",
+      "contained": "Zurückhaltend",
+      "attentive": "Aufmerksam",
+      "sensitive": "Sensibel",
+      "high": "Hoch"
+    },
+    "powerOptions": {
+      "superior": "Du hast mehr Macht",
+      "equal": "Gleichrangig",
+      "inferior": "Du hast weniger Macht"
+    },
+    "mediumOptions": {
+      "inPerson": "Persönlich",
+      "email": "E-Mail",
+      "textMessage": "Textnachricht",
+      "writtenNotice": "Schriftliche Mitteilung"
+    },
+    "cultureOptions": {
+      "northAmerica": "Nordamerika",
+      "europe": "Europa",
+      "asia": "Asien",
+      "neutral": "Neutral"
+    },
+    "languageOptions": {
+      "english": "Englisch",
+      "spanish": "Spanisch",
+      "french": "Französisch",
+      "german": "Deutsch",
+      "italian": "Italienisch",
+      "portuguese": "Portugiesisch"
+    },
     "outputLabel": "Ausgabe",
     "outputPlaceholder": "Deine verfeinerte Nachricht wird hier angezeigt",
     "pillMessages": {
-      "talkToBoss": "Hallo [Name], könnten Sie mir bitte die Datei schicken, wenn Sie einen Moment haben? Das wäre sehr hilfreich. Danke!",
-      "clientComplaint": "Hallo [Empfängername],\n\nIch benötige die Datei so schnell wie möglich. Diese Verzögerung ist besorgniserregend, und ich würde Ihre schnelle Aufmerksamkeit für diese Angelegenheit schätzen.\n\nVielen Dank,\n[Ihr Name]",
-      "politeRequest": "Sehr geehrte/r [Empfängername],\n\nIch hoffe, diese Nachricht erreicht Sie wohlbehalten. Ich möchte höflich um die sofortige Bereitstellung der erforderlichen Datei bitten, da deren rechtzeitige Lieferung für unsere laufenden Prozesse von entscheidender Bedeutung ist. Ich schätze Ihre prompte Aufmerksamkeit für diese Angelegenheit und Ihre fortgesetzte Zusammenarbeit.\n\nVielen Dank für Ihr Verständnis und Ihre Unterstützung.\n\nMit freundlichen Grüßen,\n\n[Ihr Name]",
-      "followUp": "Hallo [Empfängername],\n\nIch benötige die Datei so schnell wie möglich. Die Verzögerung verursacht Probleme, und es ist entscheidend, dass wir dies schnell lösen. Bitte priorisieren Sie diese Aufgabe.\n\nDanke,\n[Ihr Name]",
-      "custom": "Deine angepasste Nachricht wird hier basierend auf Deiner eigenen Eingabe und den angepassten Tonfall- und Spracheinstellungen angezeigt."
+      "blunt": "Ich brauche den Vertrag heute unterschrieben. Ohne ihn stehe ich vor ernsthaften finanziellen Problemen.",
+      "direct": "Bitte schicken Sie den Vertrag so schnell wie möglich zum Unterschreiben. Ohne ihn gerate ich in finanzielle Schwierigkeiten.",
+      "diplomatic": "Ich würde es sehr schätzen, wenn Sie dem Versand des Vertrags zur Unterschrift Priorität einräumen könnten. Die Verzögerung schafft einige finanzielle Herausforderungen, die ich zeitnah angehen muss.",
+      "personal": "Ich hoffe, es geht Ihnen gut. Ich wollte mich melden, weil ich den Vertrag wirklich bald unterschrieben brauche. Ich stecke finanziell in einer schwierigen Lage, und eine Lösung würde mir enorm helfen.",
+      "respectful": "Ich hoffe, diese Nachricht findet Sie wohlauf. Ich wäre sehr dankbar, wenn Sie den Vertrag zum Unterschreiben so bald wie möglich schicken könnten. Ich habe einige finanzielle Schwierigkeiten, deren Lösung von dieser Angelegenheit abhängt.",
+      "escalation": "Dies ist bereits das dritte Mal, dass ich den Vertrag anfordere. Ich brauche ihn sofort unterschrieben. Meine finanzielle Situation wird aufgrund dieser Verzögerung kritisch, und ich muss auf dringendes Handeln bestehen.",
+      "friendly": "Hey! Hoffe, bei dir ist alles gut. Ich möchte nicht nerven, aber ich brauche den Vertrag wirklich so schnell wie möglich unterschrieben. Bei mir wird's finanziell eng, und es wäre eine riesige Hilfe!",
+      "formalNotice": "Sehr geehrte/r [Empfänger],\n\nHiermit teile ich Ihnen förmlich mit, dass der Vertrag Ihre Unterschrift ohne weitere Verzögerung erfordert. Das Fehlen Ihrer Unterschrift verursacht erhebliche finanzielle Beeinträchtigungen meiner Geschäftstätigkeit. Ich bitte um Ihre unverzügliche Aufmerksamkeit in dieser Angelegenheit.\n\nMit freundlichen Grüßen,\n[Ihr Name]"
     }
   },
   "advancedModal": {

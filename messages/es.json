@@ -75,26 +75,82 @@
     "livePreview": "Vista previa en vivo"
   },
   "demo": {
-    "inputLabel": "Tu entrada de ejemplo",
+    "inputLabel": "Escribe tu intención o lo que se te ocurra",
     "inputPlaceholder": "Ingresa tu texto aquí",
-    "inputExample": "Envíame el archivo lo antes posible. Esto no es aceptable.",
-    "scenarioLabel": "Comienza con un escenario (opcional)",
-    "scenarioTalkToBoss": "Hablar con el jefe",
-    "scenarioClientComplaint": "Queja del cliente",
-    "scenarioPoliteRequest": "Solicitud educada",
-    "scenarioFollowUp": "Correo de seguimiento",
-    "scenarioCustom": "Personalizado",
-    "advancedSettings": "Configuración avanzada de tono",
-    "refineButton": "Refinar mensaje",
-    "processing": "Procesando...",
+    "inputExample": "enviar contrato para firmar lo antes posible si no tendré dificultades financieras.",
+    "shortcutLabel": "Haz clic en un atajo o<br />configura manualmente en la versión en vivo",
+    "scenarioBlunt": "Directo",
+    "scenarioDirect": "Franco",
+    "scenarioDiplomatic": "Diplomático",
+    "scenarioPersonal": "Personal",
+    "scenarioRespectful": "Respetuoso",
+    "scenarioEscalation": "Escalamiento",
+    "scenarioFriendly": "Amigable",
+    "scenarioFormalNotice": "Aviso Formal",
+    "formality": "Formalidad",
+    "directness": "Franqueza",
+    "emotions": "Emociones",
+    "powerRelation": "Relación de Poder",
+    "medium": "Medio",
+    "culturalContext": "Contexto Cultural",
+    "translateTo": "Traducir a",
+    "formalityLevels": {
+      "casual": "Casual",
+      "informal": "Informal",
+      "neutral": "Neutral",
+      "formal": "Formal",
+      "institutional": "Institucional"
+    },
+    "directnessLevels": {
+      "indirect": "Indirecto",
+      "diplomatic": "Diplomático",
+      "clear": "Claro",
+      "direct": "Directo",
+      "blunt": "Franco"
+    },
+    "emotionLevels": {
+      "low": "Bajo",
+      "contained": "Contenido",
+      "attentive": "Atento",
+      "sensitive": "Sensible",
+      "high": "Alto"
+    },
+    "powerOptions": {
+      "superior": "Tienes más poder",
+      "equal": "Igualdad de posición",
+      "inferior": "Tienes menos poder"
+    },
+    "mediumOptions": {
+      "inPerson": "En persona",
+      "email": "Correo electrónico",
+      "textMessage": "Mensaje de texto",
+      "writtenNotice": "Aviso escrito"
+    },
+    "cultureOptions": {
+      "northAmerica": "América del Norte",
+      "europe": "Europa",
+      "asia": "Asia",
+      "neutral": "Neutral"
+    },
+    "languageOptions": {
+      "english": "Inglés",
+      "spanish": "Español",
+      "french": "Francés",
+      "german": "Alemán",
+      "italian": "Italiano",
+      "portuguese": "Portugués"
+    },
     "outputLabel": "Salida",
     "outputPlaceholder": "Tu mensaje refinado aparecerá aquí",
     "pillMessages": {
-      "talkToBoss": "Hola [Nombre], cuando tengas un momento, ¿podrías enviarme el archivo? Te lo agradecería mucho. ¡Gracias!",
-      "clientComplaint": "Hola [Nombre del destinatario],\n\nNecesito recibir el archivo lo antes posible. Este retraso es preocupante y agradecería tu pronta atención a este asunto.\n\nGracias,\n[Tu nombre]",
-      "politeRequest": "Estimado/a [Nombre del destinatario],\n\nEspero que este mensaje te encuentre bien. Me gustaría solicitar amablemente la provisión inmediata del archivo requerido, ya que su entrega oportuna es crucial para nuestros procesos en curso. Aprecio tu pronta atención a este asunto y tu continua cooperación.\n\nGracias por tu comprensión y apoyo.\n\nCordialmente,\n\n[Tu nombre]",
-      "followUp": "Hola [Nombre del destinatario],\n\nNecesito el archivo lo antes posible. El retraso está causando problemas y es crucial que resolvamos esto rápidamente. Por favor, prioriza esta tarea.\n\nGracias,\n[Tu nombre]",
-      "custom": "Tu mensaje personalizado aparecerá aquí según tu propia entrada y configuración de tono e idioma personalizados."
+      "blunt": "Necesito el contrato firmado hoy. Sin él, enfrento serios problemas financieros.",
+      "direct": "Por favor envía el contrato para firmar lo antes posible. Estoy teniendo dificultades financieras sin él.",
+      "diplomatic": "Agradecería mucho si pudieras priorizar el envío del contrato para firmar. El retraso está creando algunos desafíos financieros que necesito abordar con prontitud.",
+      "personal": "Espero que estés bien. Me comunico porque realmente necesito que el contrato se firme pronto. Estoy en una situación financiera difícil, y resolver esto me ayudaría enormemente.",
+      "respectful": "Espero que este mensaje te encuentre bien. Estaría muy agradecido si pudieras enviar el contrato para firmar a tu primera oportunidad. Estoy experimentando algunas dificultades financieras que dependen de que este asunto se resuelva.",
+      "escalation": "Esta es la tercera vez que solicito el contrato. Lo necesito firmado inmediatamente. Mi situación financiera se está volviendo crítica debido a este retraso, y debo insistir en una acción urgente.",
+      "friendly": "¡Hola! Espero que todo esté bien contigo. Odio ser una molestia, pero realmente necesito ese contrato firmado lo antes posible. El dinero se está poniendo difícil de mi lado, ¡y sería de gran ayuda!",
+      "formalNotice": "Estimado/a [Destinatario],\n\nEsto es para notificarle formalmente que el contrato requiere su firma sin más demora. La ausencia de su firma está causando impedimentos financieros significativos a mis operaciones. Solicito su atención inmediata a este asunto.\n\nRespetuosamente,\n[Su Nombre]"
     }
   },
   "advancedModal": {

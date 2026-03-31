@@ -106,7 +106,7 @@ function buildPrompt(messageType: string, messageDescription: string, context: C
 - Formality: ${formalityLabel} (${context.formality}%)
 - Directness: ${directnessLabel} (${context.directness}%)
 - Emotions: ${sensitivityLabel} (${context.emotionalSensitivity}%)
-- Power Relationship: ${powerRelationshipMap[context.powerRelationship]}
+- Power Relation: ${powerRelationshipMap[context.powerRelationship]}
 - Cultural Context: ${culturalMap[context.culturalContext]}
 - Medium: ${mediumMap[context.medium]}
 

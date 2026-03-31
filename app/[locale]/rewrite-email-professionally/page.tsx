@@ -7,7 +7,7 @@ import { useParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/Header';
 import { ArrowRight } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -27,7 +27,37 @@ export default function RewriteEmailProfessionallyPage() {
   const [power, setPower] = useState('equal');
   const [culture, setCulture] = useState('us');
   const [medium, setMedium] = useState('email');
-  const [inputText, setInputText] = useState('Send me the file asap. This is not acceptable.');
+  const [inputText, setInputText] = useState('send contract for signing asap otherwise I run into financial difficulties.');
+
+  // Rotating text effect: show example for 10s, placeholder for 2s
+  useEffect(() => {
+    if (selectedPill !== 'custom') {
+      let timeout1: NodeJS.Timeout;
+      let timeout2: NodeJS.Timeout;
+
+      const runCycle = () => {
+        // Show example text for 10 seconds
+        setInputText('send contract for signing asap otherwise I run into financial difficulties.');
+        
+        timeout1 = setTimeout(() => {
+          // Switch to placeholder for 2 seconds
+          setInputText('');
+          
+          timeout2 = setTimeout(() => {
+            // Repeat the cycle
+            runCycle();
+          }, 2000);
+        }, 10000);
+      };
+
+      runCycle();
+
+      return () => {
+        clearTimeout(timeout1);
+        clearTimeout(timeout2);
+      };
+    }
+  }, [selectedPill]);
 
   const scenarioOutputs: Record<string, string> = {
     'custom': `Your customized message will appear here based on your own input and customized tone and language settings.`,
@@ -108,7 +138,7 @@ Thanks so much!
     if (pillId === 'custom') {
       setInputText('');
     } else {
-      setInputText('Send me the file asap. This is not acceptable.');
+      setInputText('send contract for signing asap otherwise I run into financial difficulties.');
     }
   };
 
@@ -206,13 +236,13 @@ Thanks so much!
 
             {/* Scenario Switcher */}
             <div className="pt-6">
-              <label className="block text-sm font-medium text-foreground mb-2 text-center">
-                Start with a scenario (optional)
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Start with shortcut or set manually
               </label>
-              <p className="text-xs text-muted-foreground text-center mb-3">
+              <p className="text-xs text-muted-foreground mb-3">
                 Use a scenario for a quick start — or fine-tune everything yourself below.
               </p>
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="flex flex-col items-start gap-2">
                 <button
                   onClick={() => handlePillClick('custom')}
                   className={`text-sm px-4 py-2 rounded-full font-medium transition-all ${
@@ -351,7 +381,7 @@ Thanks so much!
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        Power Relationship
+                        Power Relation
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.power}</span>
                     </div>
@@ -542,9 +572,9 @@ Thanks so much!
               />
             </div>
 
-            {/* Power relationship */}
+            {/* Power relation */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-foreground">Power relationship</label>
+              <label className="text-sm font-medium text-foreground">Power relation</label>
               <select
                 value={power}
                 onChange={(e) => setPower(e.target.value)}

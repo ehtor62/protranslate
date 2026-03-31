@@ -81,26 +81,82 @@
     "livePreview": "Live Preview"
   },
   "demo": {
-    "inputLabel": "Your example Input",
+    "inputLabel": "Write your intent or what comes to your mind",
     "inputPlaceholder": "Enter your text here",
-    "inputExample": "Send me the file asap. This is not acceptable.",
-    "scenarioLabel": "Start with a scenario (optional)",
-    "scenarioTalkToBoss": "Talk to boss",
-    "scenarioClientComplaint": "Client complaint",
-    "scenarioPoliteRequest": "Polite request",
-    "scenarioFollowUp": "Follow-up email",
-    "scenarioCustom": "Custom",
-    "advancedSettings": "Advanced tone settings",
-    "refineButton": "Refine message",
-    "processing": "Processing...",
+    "inputExample": "send contract for signing asap otherwise I run into financial difficulties.",
+    "shortcutLabel": "Click a shortcut or<br />set manually in live version",
+    "scenarioBlunt": "Blunt",
+    "scenarioDirect": "Direct",
+    "scenarioDiplomatic": "Diplomatic",
+    "scenarioPersonal": "Personal",
+    "scenarioRespectful": "Respectful",
+    "scenarioEscalation": "Escalation",
+    "scenarioFriendly": "Friendly",
+    "scenarioFormalNotice": "Formal Notice",
+    "formality": "Formality",
+    "directness": "Directness",
+    "emotions": "Emotions",
+    "powerRelation": "Power Relation",
+    "medium": "Medium",
+    "culturalContext": "Cultural Context",
+    "translateTo": "Translate to",
+    "formalityLevels": {
+      "casual": "Casual",
+      "informal": "Informal",
+      "neutral": "Neutral",
+      "formal": "Formal",
+      "institutional": "Institutional"
+    },
+    "directnessLevels": {
+      "indirect": "Indirect",
+      "diplomatic": "Diplomatic",
+      "clear": "Clear",
+      "direct": "Direct",
+      "blunt": "Blunt"
+    },
+    "emotionLevels": {
+      "low": "Low",
+      "contained": "Contained",
+      "attentive": "Attentive",
+      "sensitive": "Sensitive",
+      "high": "High"
+    },
+    "powerOptions": {
+      "superior": "You have more power",
+      "equal": "Equal standing",
+      "inferior": "You have less power"
+    },
+    "mediumOptions": {
+      "inPerson": "In-person",
+      "email": "Email",
+      "textMessage": "Text message",
+      "writtenNotice": "Written notice"
+    },
+    "cultureOptions": {
+      "northAmerica": "North America",
+      "europe": "Europe",
+      "asia": "Asia",
+      "neutral": "Neutral"
+    },
+    "languageOptions": {
+      "english": "English",
+      "spanish": "Spanish",
+      "french": "French",
+      "german": "German",
+      "italian": "Italian",
+      "portuguese": "Portuguese"
+    },
     "outputLabel": "Output",
     "outputPlaceholder": "Your refined message will appear here",
     "pillMessages": {
-      "talkToBoss": "Hi [Name], when you have a moment, could you please send over the file? I'd really appreciate it. Thanks!",
-      "clientComplaint": "Hi [Recipient's Name],\n\nI need to receive the file as soon as possible. This delay is concerning, and I would appreciate your prompt attention to this matter.\n\nThank you,\n[Your Name]",
-      "politeRequest": "Dear [Recipient's Name],\n\nI trust this message finds you well. I would like to kindly request the immediate provision of the required file as its timely delivery is crucial for our ongoing processes. I appreciate your prompt attention to this matter and your continued cooperation.\n\nThank you for your understanding and support.\n\nBest regards,\n\n[Your Name]",
-      "followUp": "Hi [Recipient's Name],\n\nI need the file as soon as possible. The delay is causing issues, and it's crucial that we resolve this swiftly. Please prioritize this task.\n\nThanks,\n[Your Name]",
-      "custom": "Your customized message will appear here based on your own input and customized tone and language settings."
+      "blunt": "I need the contract signed today. Without it, I'm facing serious financial problems.",
+      "direct": "Please send the contract for signing as soon as possible. I'm running into financial difficulties without it.",
+      "diplomatic": "I would greatly appreciate it if you could prioritize sending the contract for signing. The delay is creating some financial challenges that I need to address promptly.",
+      "personal": "I hope you're doing well. I wanted to reach out because I really need the contract signed soon. I'm in a bit of a tight spot financially, and getting this resolved would help tremendously.",
+      "respectful": "I hope this message finds you well. I would be very grateful if you could send the contract for signing at your earliest convenience. I'm experiencing some financial difficulties that depend on this matter being resolved.",
+      "escalation": "This is the third time I'm requesting the contract. I need it signed immediately. My financial situation is becoming critical due to this delay, and I must insist on urgent action.",
+      "friendly": "Hey! Hope all is good with you. I hate to be a bother, but I really need that contract signed ASAP. Money's getting tight on my end, and it would be a huge help!",
+      "formalNotice": "Dear [Recipient],\n\nThis is to formally notify you that the contract requires your signature without further delay. The absence of your signature is causing significant financial impediments to my operations. I request your immediate attention to this matter.\n\nRespectfully,\n[Your Name]"
     }
   },
   "advancedModal": {
@@ -348,7 +404,7 @@
     "emotionalSensitivityAttentiveTooltip": "Recognizes emotional impact while staying task-focused.",
     "emotionalSensitivitySensitiveTooltip": "Actively validates feelings alongside the message.",
     "emotionalSensitivityHighTooltip": "Emotion is central and carefully addressed throughout.",
-    "powerRelationship": "Power Relationship",
+    "powerRelationship": "Power Relation",
     "culturalContext": "Cultural Context",
     "medium": "Medium",
     "translateTo": "Translate to",

@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/Header';
-import { ArrowRight, Languages, Sliders, Globe, FileText, Users, Loader2 } from 'lucide-react';
+import { ArrowRight, Languages, Sliders, Globe, FileText, Users, Loader2, ChevronDown } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import {
   Dialog,
@@ -14,6 +14,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 export default function Home() {
   const t = useTranslations();
@@ -29,70 +35,141 @@ export default function Home() {
   const [power, setPower] = useState('equal');
   const [culture, setCulture] = useState('us');
   const [medium, setMedium] = useState('email');
+  const [targetLanguage, setTargetLanguage] = useState('en');
   const [showPlaceholder, setShowPlaceholder] = useState(false);
   const [buttonPulse, setButtonPulse] = useState(false);
   const [selectedFaqQuestion, setSelectedFaqQuestion] = useState<number | null>(null);
   const [isFaqModalOpen, setIsFaqModalOpen] = useState(false);
 
-  // Alternate between placeholder and example text
+  // Alternate between placeholder and example text: 7s for example, 2s for placeholder
   useEffect(() => {
     if (selectedPill) return; // Stop alternating when a pill is selected
 
-    const interval = setInterval(() => {
-      setShowPlaceholder(prev => !prev);
-    }, 3000);
+    let timeout1: NodeJS.Timeout;
+    let timeout2: NodeJS.Timeout;
 
-    return () => clearInterval(interval);
+    const runCycle = () => {
+      // Show example text for 7 seconds
+      setShowPlaceholder(false);
+      
+      timeout1 = setTimeout(() => {
+        // Switch to placeholder for 2 seconds
+        setShowPlaceholder(true);
+        
+        timeout2 = setTimeout(() => {
+          // Repeat the cycle
+          runCycle();
+        }, 2000);
+      }, 7000);
+    };
+
+    runCycle();
+
+    return () => {
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+    };
+  }, [selectedPill]);
+
+  // Reset to default after 20 seconds when a pill is clicked
+  useEffect(() => {
+    if (!selectedPill) return; // Only set timeout when a pill is selected
+
+    const resetTimeout = setTimeout(() => {
+      // Reset all states to default
+      setSelectedPill(null);
+      setOutputText('');
+      setIsLoading(false);
+      setFormality(50);
+      setDirectness(50);
+      setEmotion(50);
+      setPower('equal');
+      setCulture('us');
+      setMedium('email');
+      setTargetLanguage('en');
+      setShowPlaceholder(false);
+    }, 20000);
+
+    return () => {
+      clearTimeout(resetTimeout);
+    };
   }, [selectedPill]);
 
   const pillMessages: Record<string, string> = {
-    'talk-to-boss': t('demo.pillMessages.talkToBoss'),
-    'customer-complaint': t('demo.pillMessages.clientComplaint'),
-    'reject-politely': t('demo.pillMessages.politeRequest'),
-    'follow-up-email': t('demo.pillMessages.followUp'),
-    'custom': t('demo.pillMessages.custom')
+    'blunt': t('demo.pillMessages.blunt'),
+    'direct': t('demo.pillMessages.direct'),
+    'diplomatic': t('demo.pillMessages.diplomatic'),
+    'personal': t('demo.pillMessages.personal'),
+    'respectful': t('demo.pillMessages.respectful'),
+    'escalation': t('demo.pillMessages.escalation'),
+    'friendly': t('demo.pillMessages.friendly'),
+    'formal-notice': t('demo.pillMessages.formalNotice')
   };
 
   const scenarioSettings: Record<string, { formality: number; directness: number; emotion: number; power: string; culture: string; medium: string }> = {
-    'talk-to-boss': {
-      formality: 25,  // Informal
-      directness: 75, // Direct
-      emotion: 50,    // Attentive
-      power: 'subordinate',
-      culture: 'us',
-      medium: 'in-person'
-    },
-    'customer-complaint': {
-      formality: 75,  // Formal
-      directness: 75, // Direct
-      emotion: 25,    // Contained
+    'blunt': {
+      formality: 10,  // Very informal
+      directness: 95, // Very direct
+      emotion: 20,    // Contained
       power: 'equal',
-      culture: 'europe',
+      culture: 'us',
+      medium: 'text-message'
+    },
+    'direct': {
+      formality: 40,  // Informal-Neutral
+      directness: 80, // Direct
+      emotion: 40,    // Attentive
+      power: 'equal',
+      culture: 'us',
       medium: 'email'
     },
-    'reject-politely': {
-      formality: 75,  // Formal
-      directness: 25, // Diplomatic
+    'diplomatic': {
+      formality: 70,  // Formal
+      directness: 30, // Diplomatic
       emotion: 50,    // Attentive
       power: 'equal',
       culture: 'uk',
-      medium: 'written-notice'
+      medium: 'email'
     },
-    'follow-up-email': {
-      formality: 40,  // Informal-Neutral
-      directness: 70, // Direct
+    'personal': {
+      formality: 30,  // Informal
+      directness: 60, // Clear
       emotion: 75,    // Sensitive
-      power: 'superior',
+      power: 'equal',
+      culture: 'us',
+      medium: 'text-message'
+    },
+    'respectful': {
+      formality: 75,  // Formal
+      directness: 40, // Diplomatic-Clear
+      emotion: 60,    // Attentive
+      power: 'subordinate',
       culture: 'asia',
       medium: 'email'
     },
-    'custom': {
-      formality: 50,  // Neutral
-      directness: 50, // Clear
-      emotion: 50,    // Attentive
-      power: 'equal',
+    'escalation': {
+      formality: 60,  // Neutral-Formal
+      directness: 90, // Very Direct
+      emotion: 30,    // Contained
+      power: 'superior',
       culture: 'us',
       medium: 'email'
+    },
+    'friendly': {
+      formality: 20,  // Informal
+      directness: 70, // Direct
+      emotion: 80,    // Sensitive
+      power: 'equal',
+      culture: 'us',
+      medium: 'text-message'
+    },
+    'formal-notice': {
+      formality: 90,  // Very Formal
+      directness: 50, // Clear
+      emotion: 20,    // Contained
+      power: 'equal',
+      culture: 'us',
+      medium: 'written-notice'
     }
   };
 
@@ -207,7 +284,7 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Right column - Input box */}
+            {/* Right column - Input box and Settings */}
             <div className="w-full md:w-[450px] lg:w-[500px] flex-shrink-0 space-y-6">
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">{t('demo.inputLabel')}</label>
@@ -221,89 +298,348 @@ export default function Home() {
                   />
                 </div>
                 
-                {/* Tone pills */}
-                <div className="mt-4">
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    {t('demo.scenarioLabel')}
-                  </label>
-                  <div className="flex flex-wrap justify-between gap-1.5">
+                {/* Tone pills and Settings side by side */}
+                <div className="mt-4 flex gap-4 items-end">
+                  {/* Tone pills section */}
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium text-foreground mb-2 leading-snug" dangerouslySetInnerHTML={{ __html: t('demo.shortcutLabel') }} />
+                    <div className="flex flex-col items-start justify-between" style={{ gap: '0.625rem' }}>
                     <button
-                      onClick={() => handlePillClick('talk-to-boss')}
+                      onClick={() => handlePillClick('blunt')}
                       className={`text-[11px] px-2.5 py-1 rounded-full font-medium transition-all cursor-pointer flex-shrink-0 ${
-                        selectedPill === 'talk-to-boss'
+                        selectedPill === 'blunt'
                           ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
                           : 'bg-primary/50 text-primary-foreground hover:bg-primary hover:scale-105'
                       }`}
                     >
-                      {t('demo.scenarioTalkToBoss')}
+                      {t('demo.scenarioBlunt')}
                     </button>
                     <button
-                      onClick={() => handlePillClick('customer-complaint')}
+                      onClick={() => handlePillClick('direct')}
                       className={`text-[11px] px-2.5 py-1 rounded-full font-medium transition-all cursor-pointer flex-shrink-0 ${
-                        selectedPill === 'customer-complaint'
+                        selectedPill === 'direct'
                           ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
                           : 'bg-primary/50 text-primary-foreground hover:bg-primary hover:scale-105'
                       }`}
                     >
-                      {t('demo.scenarioClientComplaint')}
+                      {t('demo.scenarioDirect')}
                     </button>
                     <button
-                      onClick={() => handlePillClick('reject-politely')}
+                      onClick={() => handlePillClick('diplomatic')}
                       className={`text-[11px] px-2.5 py-1 rounded-full font-medium transition-all cursor-pointer flex-shrink-0 ${
-                        selectedPill === 'reject-politely'
+                        selectedPill === 'diplomatic'
                           ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
                           : 'bg-primary/50 text-primary-foreground hover:bg-primary hover:scale-105'
                       }`}
                     >
-                      {t('demo.scenarioPoliteRequest')}
+                      {t('demo.scenarioDiplomatic')}
                     </button>
                     <button
-                      onClick={() => handlePillClick('follow-up-email')}
+                      onClick={() => handlePillClick('personal')}
                       className={`text-[11px] px-2.5 py-1 rounded-full font-medium transition-all cursor-pointer flex-shrink-0 ${
-                        selectedPill === 'follow-up-email'
+                        selectedPill === 'personal'
                           ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
                           : 'bg-primary/50 text-primary-foreground hover:bg-primary hover:scale-105'
                       }`}
                     >
-                      {t('demo.scenarioFollowUp')}
+                      {t('demo.scenarioPersonal')}
                     </button>
                     <button
-                      onClick={() => handlePillClick('custom')}
+                      onClick={() => handlePillClick('respectful')}
                       className={`text-[11px] px-2.5 py-1 rounded-full font-medium transition-all cursor-pointer flex-shrink-0 ${
-                        selectedPill === 'custom'
+                        selectedPill === 'respectful'
                           ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
                           : 'bg-primary/50 text-primary-foreground hover:bg-primary hover:scale-105'
                       }`}
                     >
-                      {t('demo.scenarioCustom')}
+                      {t('demo.scenarioRespectful')}
+                    </button>
+                    <button
+                      onClick={() => handlePillClick('escalation')}
+                      className={`text-[11px] px-2.5 py-1 rounded-full font-medium transition-all cursor-pointer flex-shrink-0 ${
+                        selectedPill === 'escalation'
+                          ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
+                          : 'bg-primary/50 text-primary-foreground hover:bg-primary hover:scale-105'
+                      }`}
+                    >
+                      {t('demo.scenarioEscalation')}
+                    </button>
+                    <button
+                      onClick={() => handlePillClick('friendly')}
+                      className={`text-[11px] px-2.5 py-1 rounded-full font-medium transition-all cursor-pointer flex-shrink-0 ${
+                        selectedPill === 'friendly'
+                          ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
+                          : 'bg-primary/50 text-primary-foreground hover:bg-primary hover:scale-105'
+                      }`}
+                    >
+                      {t('demo.scenarioFriendly')}
+                    </button>
+                    <button
+                      onClick={() => handlePillClick('formal-notice')}
+                      className={`text-[11px] px-2.5 py-1 rounded-full font-medium transition-all cursor-pointer flex-shrink-0 ${
+                        selectedPill === 'formal-notice'
+                          ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background'
+                          : 'bg-primary/50 text-primary-foreground hover:bg-primary hover:scale-105'
+                      }`}
+                    >
+                      {t('demo.scenarioFormalNotice')}
                     </button>
                   </div>
                 </div>
                 
-                {/* Advanced settings link */}
-                <button 
-                  onClick={() => setIsAdvancedModalOpen(true)}
-                  className="flex items-center gap-2 mt-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <span className="text-base">⚙️</span>
-                  <span>{t('demo.advancedSettings')}</span>
-                </button>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">{t('demo.outputLabel')}</label>
-                <div className="w-full min-h-[7rem] p-4 rounded-xl bg-slate-700 backdrop-blur border border-slate-600 text-white flex items-center justify-center">
-                  {isLoading ? (
-                    <Loader2 className="w-8 h-8 animate-spin text-primary" />
-                  ) : outputText ? (
-                    <p className="text-white text-sm w-full whitespace-pre-line">{outputText}</p>
-                  ) : (
-                    <p className="text-muted-foreground/50 text-sm">{t('demo.outputPlaceholder')}</p>
-                  )}
+                {/* Mini Settings Display */}
+                <div className="hidden lg:block w-[240px] flex-shrink-0">
+                  <div className="bg-slate-800/50 backdrop-blur border border-slate-600 rounded-xl p-3 space-y-2.5">
+                  {/* Formality */}
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-xs font-medium text-foreground">{t('demo.formality')}</span>
+                      <span className="text-xs text-primary">{formality}%</span>
+                  </div>
+                  <div className="relative h-1.5 bg-slate-700 rounded-full cursor-pointer">
+                    <div 
+                      className="absolute h-full bg-primary transition-all duration-300 rounded-full pointer-events-none"
+                      style={{ width: `${formality}%` }}
+                    />
+                    <div 
+                      className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-primary rounded-full border-2 border-slate-900 shadow-lg transition-all duration-300 pointer-events-none"
+                      style={{ left: `calc(${formality}% - 6px)` }}
+                    />
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={formality}
+                      onChange={(e) => setFormality(Number(e.target.value))}
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                    />
+                  </div>
+                  <div className="flex justify-between mt-1">
+                    <span className="text-[9px] text-muted-foreground">{t('demo.formalityLevels.casual')}</span>
+                    <span className="text-[9px] text-muted-foreground">{t('demo.formalityLevels.informal')}</span>
+                    <span className="text-[9px] text-muted-foreground">{t('demo.formalityLevels.neutral')}</span>
+                    <span className="text-[9px] text-muted-foreground">{t('demo.formalityLevels.formal')}</span>
+                    <span className="text-[9px] text-muted-foreground">{t('demo.formalityLevels.institutional')}</span>
+                  </div>
+                </div>
+
+                {/* Directness */}
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-xs font-medium text-foreground">{t('demo.directness')}</span>
+                    <span className="text-xs text-primary">{directness}%</span>
+                  </div>
+                  <div className="relative h-1.5 bg-slate-700 rounded-full cursor-pointer">
+                    <div 
+                      className="absolute h-full bg-primary transition-all duration-300 rounded-full pointer-events-none"
+                      style={{ width: `${directness}%` }}
+                    />
+                    <div 
+                      className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-primary rounded-full border-2 border-slate-900 shadow-lg transition-all duration-300 pointer-events-none"
+                      style={{ left: `calc(${directness}% - 6px)` }}
+                    />
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={directness}
+                      onChange={(e) => setDirectness(Number(e.target.value))}
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                    />
+                  </div>
+                  <div className="flex justify-between mt-1">
+                    <span className="text-[9px] text-muted-foreground">{t('demo.directnessLevels.indirect')}</span>
+                    <span className="text-[9px] text-muted-foreground">{t('demo.directnessLevels.diplomatic')}</span>
+                    <span className="text-[9px] text-muted-foreground">{t('demo.directnessLevels.clear')}</span>
+                    <span className="text-[9px] text-muted-foreground">{t('demo.directnessLevels.direct')}</span>
+                    <span className="text-[9px] text-muted-foreground">{t('demo.directnessLevels.blunt')}</span>
+                  </div>
+                </div>
+
+                {/* Emotions */}
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-xs font-medium text-foreground">{t('demo.emotions')}</span>
+                    <span className="text-xs text-primary">{emotion}%</span>
+                  </div>
+                  <div className="relative h-1.5 bg-slate-700 rounded-full cursor-pointer">
+                    <div 
+                      className="absolute h-full bg-primary transition-all duration-300 rounded-full pointer-events-none"
+                      style={{ width: `${emotion}%` }}
+                    />
+                    <div 
+                      className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-primary rounded-full border-2 border-slate-900 shadow-lg transition-all duration-300 pointer-events-none"
+                      style={{ left: `calc(${emotion}% - 6px)` }}
+                    />
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={emotion}
+                      onChange={(e) => setEmotion(Number(e.target.value))}
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                    />
+                  </div>
+                  <div className="flex justify-between mt-1">
+                    <span className="text-[9px] text-muted-foreground">{t('demo.emotionLevels.low')}</span>
+                    <span className="text-[9px] text-muted-foreground">{t('demo.emotionLevels.contained')}</span>
+                    <span className="text-[9px] text-muted-foreground">{t('demo.emotionLevels.attentive')}</span>
+                    <span className="text-[9px] text-muted-foreground">{t('demo.emotionLevels.sensitive')}</span>
+                    <span className="text-[9px] text-muted-foreground">{t('demo.emotionLevels.high')}</span>
+                  </div>
+                </div>
+
+                {/* Power Relation and Medium in one row */}
+                <div className="flex gap-3">
+                  <div className="flex-1">
+                    <span className="text-xs font-medium text-foreground block mb-1.5">{t('demo.powerRelation')}</span>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <button className="w-full text-[10px] px-2 py-1.5 bg-slate-700 rounded text-muted-foreground hover:bg-slate-600 transition-colors flex items-center justify-between">
+                          <span>
+                            {power === 'superior' ? t('demo.powerOptions.superior') : 
+                             power === 'equal' ? t('demo.powerOptions.equal') : 
+                             t('demo.powerOptions.inferior')}
+                          </span>
+                          <ChevronDown className="w-3 h-3 ml-1" />
+                        </button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[140px]">
+                        <DropdownMenuItem onClick={() => setPower('superior')} className="text-xs">
+                          {t('demo.powerOptions.superior')}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setPower('equal')} className="text-xs">
+                          {t('demo.powerOptions.equal')}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setPower('inferior')} className="text-xs">
+                          {t('demo.powerOptions.inferior')}
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                  <div className="flex-1">
+                    <span className="text-xs font-medium text-foreground block mb-1.5">{t('demo.medium')}</span>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <button className="w-full text-[10px] px-2 py-1.5 bg-slate-700 rounded text-muted-foreground hover:bg-slate-600 transition-colors flex items-center justify-between">
+                          <span>
+                            {medium === 'in-person' ? t('demo.mediumOptions.inPerson') :
+                             medium === 'email' ? t('demo.mediumOptions.email') :
+                             medium === 'text-message' ? t('demo.mediumOptions.textMessage') :
+                             t('demo.mediumOptions.writtenNotice')}
+                          </span>
+                          <ChevronDown className="w-3 h-3 ml-1" />
+                        </button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[140px]">
+                        <DropdownMenuItem onClick={() => setMedium('in-person')} className="text-xs">
+                          {t('demo.mediumOptions.inPerson')}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setMedium('email')} className="text-xs">
+                          {t('demo.mediumOptions.email')}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setMedium('text-message')} className="text-xs">
+                          {t('demo.mediumOptions.textMessage')}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setMedium('written-notice')} className="text-xs">
+                          {t('demo.mediumOptions.writtenNotice')}
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                </div>
+
+                {/* Cultural Context and Translate to in one row */}
+                <div className="flex gap-3">
+                  <div className="flex-1">
+                    <span className="text-xs font-medium text-foreground block mb-1.5">{t('demo.culturalContext')}</span>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <button className="w-full text-[10px] px-2 py-1.5 bg-slate-700 rounded text-muted-foreground hover:bg-slate-600 transition-colors flex items-center justify-between">
+                          <span>
+                            {culture === 'us' ? t('demo.cultureOptions.northAmerica') :
+                             culture === 'europe' ? t('demo.cultureOptions.europe') :
+                             culture === 'asia' ? t('demo.cultureOptions.asia') :
+                             culture === 'uk' ? t('demo.cultureOptions.europe') :
+                             t('demo.cultureOptions.neutral')}
+                          </span>
+                          <ChevronDown className="w-3 h-3 ml-1" />
+                        </button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[140px]">
+                        <DropdownMenuItem onClick={() => setCulture('us')} className="text-xs">
+                          {t('demo.cultureOptions.northAmerica')}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setCulture('europe')} className="text-xs">
+                          {t('demo.cultureOptions.europe')}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setCulture('asia')} className="text-xs">
+                          {t('demo.cultureOptions.asia')}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setCulture('neutral')} className="text-xs">
+                          {t('demo.cultureOptions.neutral')}
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                  <div className="flex-1">
+                    <span className="text-xs font-medium text-foreground block mb-1.5">{t('demo.translateTo')}</span>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <button className="w-full text-[10px] px-2 py-1.5 bg-slate-700 rounded text-muted-foreground hover:bg-slate-600 transition-colors flex items-center justify-between">
+                          <span>
+                            {targetLanguage === 'en' ? t('demo.languageOptions.english') :
+                             targetLanguage === 'es' ? t('demo.languageOptions.spanish') :
+                             targetLanguage === 'fr' ? t('demo.languageOptions.french') :
+                             targetLanguage === 'de' ? t('demo.languageOptions.german') :
+                             targetLanguage === 'it' ? t('demo.languageOptions.italian') :
+                             t('demo.languageOptions.portuguese')}
+                          </span>
+                          <ChevronDown className="w-3 h-3 ml-1" />
+                        </button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[140px]">
+                        <DropdownMenuItem onClick={() => setTargetLanguage('en')} className="text-xs">
+                          {t('demo.languageOptions.english')}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setTargetLanguage('es')} className="text-xs">
+                          {t('demo.languageOptions.spanish')}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setTargetLanguage('fr')} className="text-xs">
+                          {t('demo.languageOptions.french')}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setTargetLanguage('de')} className="text-xs">
+                          {t('demo.languageOptions.german')}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setTargetLanguage('it')} className="text-xs">
+                          {t('demo.languageOptions.italian')}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setTargetLanguage('pt')} className="text-xs">
+                          {t('demo.languageOptions.portuguese')}
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+              
+        <div>
+          <label className="block text-sm font-medium text-foreground mb-2">{t('demo.outputLabel')}</label>
+            <div className="w-full min-h-[7rem] p-4 rounded-xl bg-slate-700 backdrop-blur border border-slate-600 text-white flex items-center justify-center">
+              {isLoading ? (
+                <Loader2 className="w-8 h-8 animate-spin text-primary" />
+              ) : outputText ? (
+                <p className="text-white text-sm w-full whitespace-pre-line">{outputText}</p>
+              ) : (
+                <p className="text-muted-foreground/50 text-sm">{t('demo.outputPlaceholder')}</p>
+              )}
+            </div>
+          </div>
+        </div>
+        </div>
         </div>
       </section>
       
