@@ -364,7 +364,7 @@
   "translatePage": {
     "title": "Professional Message Rewriting",
     "description": "Select a message type and customize the context to generate culturally appropriate translations",
-    "step1": "Select a core message",
+    "step1": "Write your intent or<br />select a core message",
     "step2": "Adjust context",
     "step3": "Get translation",
     "createPhrase": "Create Phrase",

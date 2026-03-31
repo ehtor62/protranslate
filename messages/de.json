@@ -358,7 +358,7 @@
   "translatePage": {
     "title": "Professionelles Umschreiben von Nachrichten",
     "description": "Wählen Sie einen Nachrichtentyp und passen Sie den Kontext an, um kulturell angemessene Übersetzungen zu generieren",
-    "step1": "Hauptnachricht auswählen",
+    "step1": "Schreibe deine Absicht oder<br />wähle eine Hauptnachricht",
     "step2": "Kontext anpassen",
     "step3": "Übersetzung erhalten",
     "createPhrase": "Phrase erstellen",

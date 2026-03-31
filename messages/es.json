@@ -357,7 +357,7 @@
   "translatePage": {
     "title": "Reescritura Profesional de Mensajes",
     "description": "Seleccione un tipo de mensaje y personalice el contexto para generar traducciones culturalmente apropiadas",
-    "step1": "Seleccionar mensaje principal",
+    "step1": "Escribe tu intención o<br />selecciona un mensaje principal",
     "step2": "Ajustar contexto",
     "step3": "Obtener traducción",
     "createPhrase": "Crear frase",

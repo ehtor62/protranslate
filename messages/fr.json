@@ -359,7 +359,7 @@
   "translatePage": {
     "title": "Réécriture Professionnelle de Messages",
     "description": "Sélectionnez un type de message et personnalisez le contexte pour générer des traductions culturellement appropriées",
-    "step1": "Sélectionner un message principal",
+    "step1": "Écrivez votre intention ou<br />sélectionnez un message principal",
     "step2": "Ajuster le contexte",
     "step3": "Obtenir la traduction",
     "createPhrase": "Créer une phrase",

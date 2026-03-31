@@ -312,7 +312,7 @@
   "translatePage": {
     "title": "Ferramenta de Tradução",
     "description": "Ajuste os parâmetros de contexto.",
-    "step1": "Escolha a mensagem central",
+    "step1": "Escreva sua intenção ou<br />escolha a mensagem central",
     "step2": "Ajuste o contexto",
     "step3": "Obtenha a tradução",    "createPhrase": "Criar frase",    "close": "Fechar",    "formality": "Formalidade",
     "formalityCasual": "Casual",

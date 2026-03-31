@@ -313,7 +313,7 @@
   "translatePage": {
     "title": "Strumento di Traduzione",
     "description": "Regola i parametri di contesto.",
-    "step1": "Seleziona il messaggio principale",
+    "step1": "Scrivi la tua intenzione o<br />seleziona il messaggio principale",
     "step2": "Regola il contesto",
     "step3": "Ottieni la traduzione",
     "createPhrase": "Crea frase",
