@@ -302,7 +302,7 @@ export default function Home() {
                 <div className="mt-4 flex gap-4 items-end">
                   {/* Tone pills section */}
                   <div className="flex-1">
-                    <label className="block text-sm font-medium text-foreground mb-2 leading-snug" dangerouslySetInnerHTML={{ __html: t('demo.shortcutLabel') }} />
+                    <label className="block text-sm font-medium text-foreground mb-2 leading-snug" dangerouslySetInnerHTML={{ __html: t('demo.shortcutLabelNoLink') }} />
                     <div className="flex flex-col items-start justify-between" style={{ gap: '0.625rem' }}>
                     <button
                       onClick={() => handlePillClick('blunt')}
@@ -388,7 +388,7 @@ export default function Home() {
                 </div>
                 
                 {/* Mini Settings Display */}
-                <div className="hidden lg:block w-[240px] flex-shrink-0">
+                <div className="w-[240px] flex-shrink-0">
                   <div className="bg-slate-800/50 backdrop-blur border border-slate-600 rounded-xl p-3 space-y-2.5">
                   {/* Formality */}
                   <div>
