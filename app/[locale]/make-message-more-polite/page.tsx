@@ -8,28 +8,19 @@ import { Button } from '@/components/ui/button';
 import { Header } from '@/components/Header';
 import { ArrowRight, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
 
-export default function RewriteEmailProfessionallyPage() {
+export default function MakeMessageMorePolitePage() {
   const t = useTranslations();
   const params = useParams();
   const locale = params.locale as string;
   const [selectedPill, setSelectedPill] = useState<string | null>(null);
-  const [isAdvancedModalOpen, setIsAdvancedModalOpen] = useState(false);
   const [formality, setFormality] = useState(50);
   const [directness, setDirectness] = useState(50);
   const [emotion, setEmotion] = useState(50);
   const [power, setPower] = useState('equal');
   const [culture, setCulture] = useState('us');
   const [medium, setMedium] = useState('email');
-  const [email, setEmail] = useState('abc@company.com');
-  const [subject, setSubject] = useState('Contract - urgent');
-  const [inputText, setInputText] = useState(t('demo.inputExample'));
+  const [inputText, setInputText] = useState('We need this done by tomorrow. No exceptions.');
   const [isMounted, setIsMounted] = useState(false);
 
   // Set mounted state after hydration
@@ -46,7 +37,7 @@ export default function RewriteEmailProfessionallyPage() {
 
     const runCycle = () => {
       // Show example text for 10 seconds
-      setInputText(t('demo.inputExample'));
+      setInputText(getInputExample(selectedPill));
       
       timeout1 = setTimeout(() => {
         // Switch to placeholder for 2 seconds
@@ -73,7 +64,7 @@ export default function RewriteEmailProfessionallyPage() {
 
     const resetTimeout = setTimeout(() => {
       setSelectedPill(null);
-      setInputText(t('demo.inputExample'));
+      setInputText('We need this done by tomorrow. No exceptions.');
       setFormality(50);
       setDirectness(50);
       setEmotion(50);
@@ -87,37 +78,36 @@ export default function RewriteEmailProfessionallyPage() {
     };
   }, [selectedPill]);
 
+  const getInputExample = (scenario: string): string => {
+    const examples: Record<string, string> = {
+      'urgent-request': 'I need the report now.',
+      'rejection': "No, we can't do that.",
+      'complaint': 'This is unacceptable and needs to be fixed immediately.',
+      'disagreement': "I don't agree with your approach at all.",
+      'deadline': "You're late again. This has to stop.",
+      'feedback': 'This work is not good enough.'
+    };
+    return examples[scenario] || 'We need this done by tomorrow. No exceptions.';
+  };
+
   const scenarioOutputs: Record<string, string> = {
-    'blunt': t('demo.pillMessages.blunt'),
-    'direct': t('demo.pillMessages.direct'),
-    'diplomatic': t('demo.pillMessages.diplomatic'),
-    'personal': t('demo.pillMessages.personal'),
-    'respectful': t('demo.pillMessages.respectful'),
-    'escalation': t('demo.pillMessages.escalation'),
-    'friendly': t('demo.pillMessages.friendly'),
-    'formal-notice': t('demo.pillMessages.formalNotice')
+    'urgent-request': 'I would greatly appreciate it if you could prioritize the report and share it at your earliest convenience. Thank you for your understanding.',
+    'rejection': 'Thank you for the suggestion. After careful consideration, we believe this approach may not align with our current objectives. Perhaps we could explore alternative solutions together?',
+    'complaint': 'I wanted to bring to your attention some concerns regarding the current situation. Would it be possible to discuss potential improvements at your earliest convenience?',
+    'disagreement': "I appreciate your perspective on this. I'd like to share an alternative viewpoint that might complement the discussion. Could we explore both approaches together?",
+    'deadline': "I noticed the timeline hasn't been met as expected. I understand things come up, and I'd appreciate if we could discuss how to stay on track moving forward.",
+    'feedback': 'Thank you for your effort on this. I believe there are some areas where we could enhance the quality together. Would you be open to discussing some suggestions?'
   };
 
-  const outputText = selectedPill ? scenarioOutputs[selectedPill] : t('demo.selectScenarioMessage');
-
-  const scenarioTitles: Record<string, string> = {
-    'custom': 'Custom',
-    'professional': 'Professional',
-    'talk-to-boss': 'Talk to boss',
-    'customer-complaint': 'Client complaint',
-    'reject-politely': 'Polite request',
-    'follow-up-email': 'Follow-up'
-  };
+  const outputText = selectedPill ? scenarioOutputs[selectedPill] : "I hope this message finds you well. I wanted to reach out regarding the timeline for this project. If possible, I would greatly appreciate your assistance in completing this by tomorrow. I understand this may be a tight deadline, and I'm happy to discuss if you need any support or clarification. Thank you so much for your understanding and cooperation.";
 
   const scenarioSettings: Record<string, { formality: number; directness: number; emotion: number; power: string; culture: string; medium: string }> = {
-    'blunt': { formality: 20, directness: 90, emotion: 10, power: 'equal', culture: 'us', medium: 'email' },
-    'direct': { formality: 50, directness: 80, emotion: 20, power: 'equal', culture: 'us', medium: 'email' },
-    'diplomatic': { formality: 80, directness: 40, emotion: 30, power: 'equal', culture: 'europe', medium: 'email' },
-    'personal': { formality: 40, directness: 60, emotion: 60, power: 'equal', culture: 'us', medium: 'email' },
-    'respectful': { formality: 85, directness: 45, emotion: 25, power: 'subordinate', culture: 'asia', medium: 'email' },
-    'escalation': { formality: 75, directness: 85, emotion: 20, power: 'superior', culture: 'us', medium: 'email' },
-    'friendly': { formality: 30, directness: 50, emotion: 70, power: 'equal', culture: 'us', medium: 'email' },
-    'formal-notice': { formality: 95, directness: 70, emotion: 10, power: 'equal', culture: 'uk', medium: 'email' }
+    'urgent-request': { formality: 75, directness: 50, emotion: 30, power: 'equal', culture: 'us', medium: 'email' },
+    'rejection': { formality: 80, directness: 35, emotion: 40, power: 'equal', culture: 'us', medium: 'email' },
+'complaint': { formality: 85, directness: 40, emotion: 35, power: 'subordinate', culture: 'us', medium: 'email' },
+    'disagreement': { formality: 75, directness: 45, emotion: 45, power: 'equal', culture: 'us', medium: 'email' },
+    'deadline': { formality: 70, directness: 50, emotion: 40, power: 'superior', culture: 'us', medium: 'email' },
+    'feedback': { formality: 70, directness: 45, emotion: 50, power: 'superior', culture: 'us', medium: 'email' }
   };
 
   const handlePillClick = (pillId: string) => {
@@ -135,48 +125,48 @@ export default function RewriteEmailProfessionallyPage() {
     if (pillId === 'custom') {
       setInputText('');
     } else {
-      setInputText(t('demo.inputExample'));
+      setInputText(getInputExample(pillId));
     }
   };
 
   const beforeAfterExamples = [
     {
-      before: t('rewriteEmail.example1Before'),
-      after: t('rewriteEmail.example1After'),
+      before: "\"No, that won't work.\"",
+      after: '"Thank you for the suggestion. After reviewing this carefully, I believe we may need to explore alternative approaches. Would you be open to discussing other options?"',
       settings: {
         formality: 75,
-        directness: 45,
-        emotion: 20,
-        power: t('rewriteEmail.powerSpeakingToEqual'),
-        culture: t('rewriteEmail.culturalContextUS'),
-        medium: t('rewriteEmail.mediumEmail'),
-        language: t('rewriteEmail.languageEnglish')
-      }
-    },
-    {
-      before: t('rewriteEmail.example2Before'),
-      after: t('rewriteEmail.example2After'),
-      settings: {
-        formality: 60,
         directness: 40,
-        emotion: 40,
-        power: t('rewriteEmail.powerSpeakingToEqual'),
-        culture: t('rewriteEmail.culturalContextUS'),
-        medium: t('rewriteEmail.mediumEmail'),
-        language: t('rewriteEmail.languageEnglish')
+        emotion: 35,
+        power: 'Speaking to equal',
+        culture: 'US',
+        medium: 'Email',
+        language: 'English'
       }
     },
     {
-      before: t('rewriteEmail.example3Before'),
-      after: t('rewriteEmail.example3After'),
+      before: '"You need to fix this ASAP."',
+      after: '"I wanted to bring to your attention an issue that requires our attention. Would it be possible to prioritize resolving this when you have a moment? I appreciate your help with this."',
       settings: {
         formality: 70,
-        directness: 50,
-        emotion: 30,
-        power: t('rewriteEmail.powerSpeakingToEqual'),
-        culture: t('rewriteEmail.culturalContextUS'),
-        medium: t('rewriteEmail.mediumEmail'),
-        language: t('rewriteEmail.languageEnglish')
+        directness: 45,
+        emotion: 40,
+        power: 'Speaking to equal',
+        culture: 'US',
+        medium: 'Email',
+        language: 'English'
+      }
+    },
+    {
+      before: '"This is wrong."',
+      after: '"I noticed something that might need review. Could we take another look at this together to ensure everything aligns with our objectives?"',
+      settings: {
+        formality: 65,
+        directness: 35,
+        emotion: 45,
+        power: 'Speaking to equal',
+        culture: 'US',
+        medium: 'Email',
+        language: 'English'
       }
     }
   ];
@@ -187,8 +177,8 @@ export default function RewriteEmailProfessionallyPage() {
     "@graph": [
       {
         "@type": "WebApplication",
-        "@id": `https://sentenly.com/${locale}/rewrite-email-professionally#webapp`,
-        "name": "Sentenly Email Rewriter",
+        "@id": `https://sentenly.com/${locale}/make-message-more-polite#webapp`,
+        "name": "Sentenly Polite Message Rewriter",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web Browser",
         "offers": {
@@ -196,8 +186,8 @@ export default function RewriteEmailProfessionallyPage() {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "description": "Professional email rewriting tool that adjusts tone, formality, and directness based on cultural context and power dynamics.",
-        "url": `https://sentenly.com/${locale}/rewrite-email-professionally`,
+        "description": "Transform direct or blunt messages into polite, professional communication with adjustable tone and formality settings.",
+        "url": `https://sentenly.com/${locale}/make-message-more-polite`,
         "browserRequirements": "Requires JavaScript. Requires HTML5.",
         "softwareVersion": "1.0",
         "aggregateRating": {
@@ -208,39 +198,39 @@ export default function RewriteEmailProfessionallyPage() {
       },
       {
         "@type": "HowTo",
-        "@id": `https://sentenly.com/${locale}/rewrite-email-professionally#howto`,
-        "name": "How to Rewrite Emails Professionally",
-        "description": "Learn how to transform informal messages into professional communication using tone adjustments.",
+        "@id": `https://sentenly.com/${locale}/make-message-more-polite#howto`,
+        "name": "How to Make Messages More Polite",
+        "description": "Learn how to transform direct or blunt messages into polite, professional communication.",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
             "name": "Enter your message",
-            "text": "Write or paste your email message into the text field."
+            "text": "Type or paste the message you want to make more polite."
           },
           {
             "@type": "HowToStep",
             "position": 2,
             "name": "Choose a scenario",
-            "text": "Select a pre-configured scenario like 'diplomatic', 'formal', or 'direct' to instantly adjust the tone."
+            "text": "Select a pre-configured scenario like 'urgent request', 'rejection', or 'disagreement' to adjust the politeness level."
           },
           {
             "@type": "HowToStep",
             "position": 3,
             "name": "Fine-tune settings",
-            "text": "Adjust formality, directness, emotions, power relation, and cultural context to match your specific needs."
+            "text": "Adjust formality, directness, and emotions to achieve the perfect level of politeness for your context."
           },
           {
             "@type": "HowToStep",
             "position": 4,
-            "name": "Review the improved version",
-            "text": "See the professionally rewritten message that maintains your intent while improving clarity and tone."
+            "name": "Review the polite version",
+            "text": "See your message transformed into a more polite version that maintains your core intent while improving tone."
           }
         ]
       },
       {
         "@type": "BreadcrumbList",
-        "@id": `https://sentenly.com/${locale}/rewrite-email-professionally#breadcrumb`,
+        "@id": `https://sentenly.com/${locale}/make-message-more-polite#breadcrumb`,
         "itemListElement": [
           {
             "@type": "ListItem",
@@ -251,17 +241,17 @@ export default function RewriteEmailProfessionallyPage() {
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Rewrite Email Professionally",
-            "item": `https://sentenly.com/${locale}/rewrite-email-professionally`
+            "name": "Make Message More Polite",
+            "item": `https://sentenly.com/${locale}/make-message-more-polite`
           }
         ]
       },
       {
         "@type": "WebPage",
-        "@id": `https://sentenly.com/${locale}/rewrite-email-professionally#webpage`,
-        "url": `https://sentenly.com/${locale}/rewrite-email-professionally`,
-        "name": "Rewrite Email Professionally in Seconds | Sentenly",
-        "description": "Turn informal, unclear, or rough messages into clear, professional communication. Adjust tone, formality, and style instantly.",
+        "@id": `https://sentenly.com/${locale}/make-message-more-polite#webpage`,
+        "url": `https://sentenly.com/${locale}/make-message-more-polite`,
+        "name": "Make Message More Polite - Professional Tone Adjustment | Sentenly",
+        "description": "Transform direct or blunt messages into polite, professional communication instantly.",
         "inLanguage": locale,
         "isPartOf": {
           "@type": "WebSite",
@@ -270,13 +260,13 @@ export default function RewriteEmailProfessionallyPage() {
           "url": "https://sentenly.com"
         },
         "breadcrumb": {
-          "@id": `https://sentenly.com/${locale}/rewrite-email-professionally#breadcrumb`
+          "@id": `https://sentenly.com/${locale}/make-message-more-polite#breadcrumb`
         },
         "potentialAction": {
           "@type": "UseAction",
           "target": {
             "@type": "EntryPoint",
-            "urlTemplate": `https://sentenly.com/${locale}/rewrite-email-professionally`,
+            "urlTemplate": `https://sentenly.com/${locale}/make-message-more-polite`,
             "actionPlatform": [
               "http://schema.org/DesktopWebPlatform",
               "http://schema.org/MobileWebPlatform"
@@ -305,14 +295,14 @@ export default function RewriteEmailProfessionallyPage() {
               href={`/${locale}`} 
               className="hover:text-foreground transition-colors"
             >
-              {t('common.home')}
+              Home
             </Link>
           </li>
           <li>
             <ChevronRight className="w-4 h-4" />
           </li>
           <li className="text-foreground font-medium" aria-current="page">
-            {t('rewriteEmail.title')}
+            Make Message More Polite
           </li>
         </ol>
       </nav>
@@ -324,133 +314,105 @@ export default function RewriteEmailProfessionallyPage() {
         <div className="container py-16 md:py-24 relative max-w-4xl mx-auto">
           <div className="text-center space-y-6 mb-12">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
-              <span className="text-primary">{t('rewriteEmail.title')}</span>
+              <span className="text-primary">Make Your Message</span>
               <br />
-              <span className="text-white inline-block mt-3">{t('rewriteEmail.subtitle')}</span>
+              <span className="text-white">More Polite & Professional</span>
             </h1>
             
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              {t('rewriteEmail.description1')}
+              Sometimes you need to deliver tough messages without sounding harsh. Transform direct or blunt communication into polite, professional language that maintains your intent while improving tone.
             </p>
 
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              {t('rewriteEmail.description2')}
+              Whether you're rejecting a proposal, delivering feedback, or making an urgent request, get the right balance of politeness and clarity.
             </p>
           </div>
 
           {/* Input/Output Demo */}
           <div className="space-y-6 max-w-2xl mx-auto">
-            {/* Email Form */}
-            <div className="rounded-xl bg-slate-700 backdrop-blur border border-slate-600 overflow-hidden">
-              {/* Email To Line */}
-              <div className="px-4 py-2 text-slate-400 text-sm">
-                <span className="text-slate-400">{t('rewriteEmail.emailTo')}</span> {email}
-              </div>
-              
-              {/* Subject Input */}
-              <div className="px-4 py-2 flex items-center gap-2 border-t border-slate-600">
-                <span className="text-slate-400 text-sm">{t('rewriteEmail.subject')}</span>
-                <span className="text-slate-400 text-sm">{subject}</span>
-              </div>
-              
-              {/* Double Line Separator */}
-              <div className="border-t-2 border-double border-slate-600"></div>
-              
-              {/* Body */}
-              <div className="p-4">
-                <textarea
-                  className="w-full h-16 bg-transparent text-white placeholder:text-slate-400 focus:outline-none resize-none text-sm"
-                  value={inputText}
-                  placeholder={t('rewriteEmail.bodyPlaceholder')}
-                  onChange={(e) => setInputText(e.target.value)}
-                  readOnly={selectedPill !== 'custom'}
-                />
+            {/* Input */}
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-2">
+                Your Direct Message
+              </label>
+              <div className="rounded-xl bg-slate-700 backdrop-blur border border-slate-600 overflow-hidden">
+                <div className="p-4">
+                  <textarea
+                    className="w-full h-20 bg-transparent text-white placeholder:text-slate-400 focus:outline-none resize-none text-sm"
+                    value={inputText}
+                    placeholder="Enter your direct message here..."
+                    onChange={(e) => setInputText(e.target.value)}
+                    readOnly={selectedPill !== 'custom' && selectedPill !== null}
+                  />
+                </div>
               </div>
             </div>
 
             {/* Scenario Switcher */}
             <div>
-              <p className="text-xs text-muted-foreground mb-3" dangerouslySetInnerHTML={{ __html: t.raw('demo.shortcutLabel') }} />
+              <p className="text-xs text-muted-foreground mb-3">
+                Click a shortcut below or fine-tune with controls in <Link href={`/${locale}`} className="text-primary hover:underline">live version</Link>
+              </p>
               <div className="flex flex-wrap gap-2">
                 <button
-                  onClick={() => handlePillClick('blunt')}
+                  onClick={() => handlePillClick('urgent-request')}
                   className={`text-xs px-3 py-1 rounded-full font-medium transition-all ${
-                    selectedPill === 'blunt'
+                    selectedPill === 'urgent-request'
                       ? 'bg-emerald-600 text-white'
                       : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  {t('demo.scenarioBlunt')}
+                  Urgent Request
                 </button>
                 <button
-                  onClick={() => handlePillClick('direct')}
+                  onClick={() => handlePillClick('rejection')}
                   className={`text-xs px-3 py-1 rounded-full font-medium transition-all ${
-                    selectedPill === 'direct'
+                    selectedPill === 'rejection'
                       ? 'bg-emerald-600 text-white'
                       : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  {t('demo.scenarioDirect')}
+                  Polite Rejection
                 </button>
                 <button
-                  onClick={() => handlePillClick('diplomatic')}
+                  onClick={() => handlePillClick('complaint')}
                   className={`text-xs px-3 py-1 rounded-full font-medium transition-all ${
-                    selectedPill === 'diplomatic'
+                    selectedPill === 'complaint'
                       ? 'bg-emerald-600 text-white'
                       : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  {t('demo.scenarioDiplomatic')}
+                  Complaint
                 </button>
                 <button
-                  onClick={() => handlePillClick('personal')}
+                  onClick={() => handlePillClick('disagreement')}
                   className={`text-xs px-3 py-1 rounded-full font-medium transition-all ${
-                    selectedPill === 'personal'
+                    selectedPill === 'disagreement'
                       ? 'bg-emerald-600 text-white'
                       : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  {t('demo.scenarioPersonal')}
+                  Disagreement
                 </button>
                 <button
-                  onClick={() => handlePillClick('respectful')}
+                  onClick={() => handlePillClick('deadline')}
                   className={`text-xs px-3 py-1 rounded-full font-medium transition-all ${
-                    selectedPill === 'respectful'
+                    selectedPill === 'deadline'
                       ? 'bg-emerald-600 text-white'
                       : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  {t('demo.scenarioRespectful')}
+                  Deadline Reminder
                 </button>
                 <button
-                  onClick={() => handlePillClick('escalation')}
+                  onClick={() => handlePillClick('feedback')}
                   className={`text-xs px-3 py-1 rounded-full font-medium transition-all ${
-                    selectedPill === 'escalation'
+                    selectedPill === 'feedback'
                       ? 'bg-emerald-600 text-white'
                       : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  {t('demo.scenarioEscalation')}
-                </button>
-                <button
-                  onClick={() => handlePillClick('friendly')}
-                  className={`text-xs px-3 py-1 rounded-full font-medium transition-all ${
-                    selectedPill === 'friendly'
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
-                  }`}
-                >
-                  {t('demo.scenarioFriendly')}
-                </button>
-                <button
-                  onClick={() => handlePillClick('formal-notice')}
-                  className={`text-xs px-3 py-1 rounded-full font-medium transition-all ${
-                    selectedPill === 'formal-notice'
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
-                  }`}
-                >
-                  {t('demo.scenarioFormalNotice')}
+                  Critical Feedback
                 </button>
               </div>
             </div>
@@ -458,12 +420,10 @@ export default function RewriteEmailProfessionallyPage() {
             {/* Controls Panel */}
             <div className="rounded-xl bg-black border border-slate-600 p-3">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Left Side - Sliders */}
                 <div className="space-y-3">
-                  {/* Formality */}
                   <div>
                     <div className="flex justify-between items-center mb-1">
-                      <label className="text-xs font-medium text-foreground">{t('demo.formality')}</label>
+                      <label className="text-xs font-medium text-foreground">Formality</label>
                       <span className="text-xs text-muted-foreground">{formality}%</span>
                     </div>
                     <input
@@ -478,18 +438,17 @@ export default function RewriteEmailProfessionallyPage() {
                       }}
                     />
                     <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                      <span>{t('demo.formalityLevels.casual')}</span>
-                      <span>{t('demo.formalityLevels.informal')}</span>
-                      <span>{t('demo.formalityLevels.neutral')}</span>
-                      <span>{t('demo.formalityLevels.formal')}</span>
-                      <span>{t('demo.formalityLevels.institutional')}</span>
+                      <span>Casual</span>
+                      <span>Informal</span>
+                      <span>Neutral</span>
+                      <span>Formal</span>
+                      <span>Institutional</span>
                     </div>
                   </div>
 
-                  {/* Directness */}
                   <div>
                     <div className="flex justify-between items-center mb-1">
-                      <label className="text-xs font-medium text-foreground">{t('demo.directness')}</label>
+                      <label className="text-xs font-medium text-foreground">Directness</label>
                       <span className="text-xs text-muted-foreground">{directness}%</span>
                     </div>
                     <input
@@ -504,18 +463,17 @@ export default function RewriteEmailProfessionallyPage() {
                       }}
                     />
                     <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                      <span>{t('demo.directnessLevels.indirect')}</span>
-                      <span>{t('demo.directnessLevels.diplomatic')}</span>
-                      <span>{t('demo.directnessLevels.clear')}</span>
-                      <span>{t('demo.directnessLevels.direct')}</span>
-                      <span>{t('demo.directnessLevels.blunt')}</span>
+                      <span>Indirect</span>
+                      <span>Diplomatic</span>
+                      <span>Clear</span>
+                      <span>Direct</span>
+                      <span>Blunt</span>
                     </div>
                   </div>
 
-                  {/* Emotions */}
                   <div>
                     <div className="flex justify-between items-center mb-1">
-                      <label className="text-xs font-medium text-foreground">{t('demo.emotions')}</label>
+                      <label className="text-xs font-medium text-foreground">Emotions</label>
                       <span className="text-xs text-muted-foreground">{emotion}%</span>
                     </div>
                     <input
@@ -530,76 +488,70 @@ export default function RewriteEmailProfessionallyPage() {
                       }}
                     />
                     <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                      <span>{t('demo.emotionLevels.low')}</span>
-                      <span>{t('demo.emotionLevels.contained')}</span>
-                      <span>{t('demo.emotionLevels.attentive')}</span>
-                      <span>{t('demo.emotionLevels.sensitive')}</span>
-                      <span>{t('demo.emotionLevels.high')}</span>
+                      <span>Low</span>
+                      <span>Contained</span>
+                      <span>Attentive</span>
+                      <span>Sensitive</span>
+                      <span>High</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Right Side - Dropdowns */}
                 <div className="space-y-3">
-                  {/* Power Relation */}
                   <div>
-                    <label className="block text-xs font-medium text-foreground mb-1">{t('demo.powerRelation')}</label>
+                    <label className="block text-xs font-medium text-foreground mb-1">Power Relation</label>
                     <select
                       value={power}
                       onChange={(e) => setPower(e.target.value)}
                       className="w-full px-3 py-1.5 text-xs rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     >
-                      <option value="superior">{t('demo.powerOptions.superior')}</option>
-                      <option value="equal">{t('demo.powerOptions.equal')}</option>
-                      <option value="subordinate">{t('demo.powerOptions.inferior')}</option>
+                      <option value="superior">Speaking to subordinate</option>
+                      <option value="equal">Speaking to equal</option>
+                      <option value="subordinate">Speaking to superior</option>
                     </select>
                   </div>
 
-                  {/* Medium */}
                   <div>
-                    <label className="block text-xs font-medium text-foreground mb-1">{t('demo.medium')}</label>
+                    <label className="block text-xs font-medium text-foreground mb-1">Medium</label>
                     <select
                       value={medium}
                       onChange={(e) => setMedium(e.target.value)}
                       className="w-full px-3 py-1.5 text-xs rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     >
-                      <option value="email">{t('demo.mediumOptions.email')}</option>
-                      <option value="chat">{t('demo.mediumOptions.chat')}</option>
-                      <option value="in-person">{t('demo.mediumOptions.inPerson')}</option>
-                      <option value="written-notice">{t('demo.mediumOptions.writtenNotice')}</option>
+                      <option value="email">Email</option>
+                      <option value="chat">Chat</option>
+                      <option value="in-person">In-person</option>
+                      <option value="written-notice">Written notice</option>
                     </select>
                   </div>
 
-                  {/* Cultural Context */}
                   <div>
-                    <label className="block text-xs font-medium text-foreground mb-1">{t('demo.culturalContext')}</label>
+                    <label className="block text-xs font-medium text-foreground mb-1">Cultural Context</label>
                     <select
                       value={culture}
                       onChange={(e) => setCulture(e.target.value)}
                       className="w-full px-3 py-1.5 text-xs rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     >
-                      <option value="us">{t('demo.cultureOptions.northAmerica')}</option>
-                      <option value="uk">{t('demo.cultureOptions.unitedKingdom')}</option>
-                      <option value="europe">{t('demo.cultureOptions.europe')}</option>
-                      <option value="asia">{t('demo.cultureOptions.asia')}</option>
+                      <option value="us">North America</option>
+                      <option value="uk">United Kingdom</option>
+                      <option value="europe">Europe</option>
+                      <option value="asia">Asia</option>
                     </select>
                   </div>
 
-                  {/* Translate to */}
                   <div>
-                    <label className="block text-xs font-medium text-foreground mb-1">{t('demo.translateTo')}</label>
+                    <label className="block text-xs font-medium text-foreground mb-1">Language</label>
                     <select
                       value={locale}
                       onChange={(e) => {
-                        // Navigate to the new locale
-                        window.location.href = `/${e.target.value}/rewrite-email-professionally`;
+                        window.location.href = `/${e.target.value}/make-message-more-polite`;
                       }}
                       className="w-full px-3 py-1.5 text-xs rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     >
-                      <option value="en">{t('demo.languageOptions.english')}</option>
-                      <option value="es">{t('demo.languageOptions.spanish')}</option>
-                      <option value="fr">{t('demo.languageOptions.french')}</option>
-                      <option value="de">{t('demo.languageOptions.german')}</option>
+                      <option value="en">English</option>
+                      <option value="es">Spanish</option>
+                      <option value="fr">French</option>
+                      <option value="de">German</option>
                     </select>
                   </div>
                 </div>
@@ -609,7 +561,7 @@ export default function RewriteEmailProfessionallyPage() {
             {/* Output - shown immediately */}
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                {t('rewriteEmail.improvedVersion')}
+                Polite Version
               </label>
               <div className="w-full p-4 rounded-xl bg-slate-700 backdrop-blur border border-slate-600 text-white">
                 <p className="text-white text-sm whitespace-pre-line leading-relaxed">{outputText}</p>
@@ -623,7 +575,7 @@ export default function RewriteEmailProfessionallyPage() {
       <section className="border-y border-border bg-slate-900/50">
         <div className="container py-6">
           <p className="text-center text-muted-foreground text-sm">
-            {t('rewriteEmail.socialProof')}
+            Trusted by thousands of professionals to communicate with grace and clarity
           </p>
         </div>
       </section>
@@ -632,7 +584,7 @@ export default function RewriteEmailProfessionallyPage() {
       <section className="py-20 bg-slate-950">
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center">
-            {t('rewriteEmail.howItWorksTitle')}
+            Real Examples
           </h2>
           
           <div className="space-y-8">
@@ -642,53 +594,53 @@ export default function RewriteEmailProfessionallyPage() {
                 className="bg-slate-900/50 backdrop-blur border border-slate-800 rounded-xl p-6 space-y-4"
               >
                 <div>
-                  <div className="text-xs font-semibold text-red-400 mb-2">{t('rewriteEmail.before')}</div>
+                  <div className="text-xs font-semibold text-red-400 mb-2">Direct Message</div>
                   <p className="text-slate-300">{example.before}</p>
                 </div>
                 <div className="border-t border-slate-800"></div>
                 <div>
-                  <div className="text-xs font-semibold text-emerald-400 mb-2">{t('rewriteEmail.after')}</div>
+                  <div className="text-xs font-semibold text-emerald-400 mb-2">Polite Version</div>
                   <p className="text-white mb-4">{example.after}</p>
                   <div className="flex flex-wrap gap-3">
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        {t('rewriteEmail.labelFormality')}
+                        Formality
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.formality}%</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        {t('rewriteEmail.labelDirectness')}
+                        Directness
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.directness}%</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        {t('rewriteEmail.labelEmotions')}
+                        Emotions
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.emotion}%</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        {t('rewriteEmail.labelPowerRelation')}
+                        Power Relation
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.power}</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        {t('rewriteEmail.labelCulturalContext')}
+                        Cultural Context
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.culture}</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        {t('rewriteEmail.labelMedium')}
+                        Medium
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.medium}</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        {t('rewriteEmail.labelLanguage')}
+                        Language
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.language}</span>
                     </div>
@@ -700,41 +652,37 @@ export default function RewriteEmailProfessionallyPage() {
         </div>
       </section>
 
-      {/* Why Tone Matters */}
+      {/* Why Politeness Matters */}
       <section className="py-20 border-t border-border bg-slate-900">
         <div className="container max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            {t('rewriteEmail.whyToneMattersTitle')}
+            Why Politeness Matters in Professional Communication
           </h2>
           
           <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-            {t('rewriteEmail.whyToneMattersDescription')}
+            In business, how you say something can be just as important as what you say. The right tone builds trust, preserves relationships, and gets better results.
           </p>
 
           <div className="space-y-2 text-left max-w-xl mx-auto mb-6">
             <div className="flex items-start gap-3">
               <span className="text-muted-foreground">•</span>
-              <p className="text-muted-foreground">{t('rewriteEmail.toneMattersList1')}</p>
+              <p className="text-muted-foreground">Direct messages can come across as aggressive or dismissive, even when that's not the intent</p>
             </div>
             <div className="flex items-start gap-3">
               <span className="text-muted-foreground">•</span>
-              <p className="text-muted-foreground">{t('rewriteEmail.toneMattersList2')}</p>
+              <p className="text-muted-foreground">Polite phrasing shows respect and professionalism while still being clear and effective</p>
             </div>
             <div className="flex items-start gap-3">
               <span className="text-muted-foreground">•</span>
-              <p className="text-muted-foreground">{t('rewriteEmail.toneMattersList3')}</p>
+              <p className="text-muted-foreground">The right balance of politeness and directness varies by culture, context, and relationship</p>
             </div>
           </div>
 
           <p className="text-lg text-muted-foreground mb-6">
-            {t('rewriteEmail.toneMattersEnding')}
-          </p>
-
-          <p className="text-lg text-white font-medium">
-            <Link href={`/${locale}/translate`} className="text-primary hover:underline">
-              {t('common.appName')}
+            <Link href={`/${locale}`} className="text-primary hover:underline">
+              Sentenly
             </Link>{' '}
-            {t('rewriteEmail.toneMattersConclusion')}
+            helps you find that balance, ensuring your message is heard without causing unnecessary friction.
           </p>
         </div>
       </section>
@@ -743,14 +691,14 @@ export default function RewriteEmailProfessionallyPage() {
       <section className="py-20 border-t border-border bg-gradient-to-br from-emerald-950/50 via-slate-900/80 to-slate-950">
         <div className="container max-w-2xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            {t('rewriteEmail.ctaTitle')}
+            Start Writing More Polite Messages
           </h2>
           <p className="text-lg text-muted-foreground mb-6">
-            {t('rewriteEmail.ctaDescription')}
+            Transform your communication with our full suite of tone adjustment tools
           </p>
           <Button asChild variant="hero" size="xl">
             <Link href={`/${locale}/translate`}>
-              {t('rewriteEmail.ctaButton')}
+              Try Sentenly Free
               <ArrowRight className="w-5 h-5" />
             </Link>
           </Button>
@@ -761,7 +709,7 @@ export default function RewriteEmailProfessionallyPage() {
       <section className="py-12 border-t border-border bg-slate-950">
         <div className="container max-w-4xl mx-auto">
           <p className="text-sm text-muted-foreground leading-relaxed text-center">
-            {t('rewriteEmail.seoFooterText')}
+            Make your messages more polite with Sentenly's professional tone adjustment tool. Whether you need to soften a rejection, deliver critical feedback diplomatically, or make an urgent request without sounding demanding, our AI-powered message rewriter helps you strike the perfect balance between clarity and courtesy. Adjust formality, directness, and warmth to match your cultural context and relationship dynamics. Perfect for business emails, client communications, team feedback, and any situation where professional politeness matters.
           </p>
         </div>
       </section>
@@ -780,131 +728,25 @@ export default function RewriteEmailProfessionallyPage() {
                   className="w-full h-full"
                 />
               </div>
-              <span className="text-sm text-muted-foreground">{t('common.appName')}</span>
+              <span className="text-sm text-muted-foreground">Sentenly</span>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6">
               <Link href={`/${locale}/privacy`} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
-                {t('common.privacy')}
+                Privacy
               </Link>
               <Link href={`/${locale}/terms`} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
-                {t('common.terms')}
+                Terms
               </Link>
               <Link href={`/${locale}/contact`} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
-                {t('common.contact')}
+                Contact
               </Link>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground text-center">
-              © 2026 {t('common.appName')}. {t('common.allRightsReserved')}
+              © 2026 Sentenly. All rights reserved.
             </p>
           </div>
         </div>
       </footer>
-
-      {/* Advanced Settings Modal */}
-      <Dialog open={isAdvancedModalOpen} onOpenChange={setIsAdvancedModalOpen}>
-        <DialogContent className="sm:max-w-[500px]">
-          <DialogHeader>
-            <DialogTitle>Fine-tune your message</DialogTitle>
-            <p className="text-sm text-muted-foreground pt-2">
-              Adjust these settings to customize the tone and style of your message.
-            </p>
-          </DialogHeader>
-          
-          <div className="space-y-6 py-4">
-            {/* Formality */}
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <label className="text-sm font-medium text-foreground">Formality</label>
-                <span className="text-xs text-muted-foreground">{formality}%</span>
-              </div>
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={formality}
-                onChange={(e) => setFormality(Number(e.target.value))}
-                className="w-full"
-              />
-            </div>
-
-            {/* Directness */}
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <label className="text-sm font-medium text-foreground">Directness</label>
-                <span className="text-xs text-muted-foreground">{directness}%</span>
-              </div>
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={directness}
-                onChange={(e) => setDirectness(Number(e.target.value))}
-                className="w-full"
-              />
-            </div>
-
-            {/* Emotion */}
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <label className="text-sm font-medium text-foreground">Emotion</label>
-                <span className="text-xs text-muted-foreground">{emotion}%</span>
-              </div>
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={emotion}
-                onChange={(e) => setEmotion(Number(e.target.value))}
-                className="w-full"
-              />
-            </div>
-
-            {/* Power relation */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-foreground">Power relation</label>
-              <select
-                value={power}
-                onChange={(e) => setPower(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg border border-border bg-secondary text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                <option value="superior">Speaking to subordinate</option>
-                <option value="equal">Speaking to equal</option>
-                <option value="subordinate">Speaking to superior</option>
-              </select>
-            </div>
-
-            {/* Cultural Context */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-foreground">Cultural Context</label>
-              <select
-                value={culture}
-                onChange={(e) => setCulture(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg border border-border bg-secondary text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                <option value="us">United States</option>
-                <option value="uk">United Kingdom</option>
-                <option value="europe">Europe</option>
-                <option value="asia">Asia</option>
-              </select>
-            </div>
-
-            {/* Communication type */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-foreground">Communication type</label>
-              <select
-                value={medium}
-                onChange={(e) => setMedium(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg border border-border bg-secondary text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                <option value="email">Email</option>
-                <option value="chat">Chat</option>
-                <option value="in-person">In-person</option>
-                <option value="written-notice">Written notice</option>
-              </select>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
