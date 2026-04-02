@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/Header';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function MakeMessageMorePolitePage() {
@@ -20,7 +20,7 @@ export default function MakeMessageMorePolitePage() {
   const [power, setPower] = useState('equal');
   const [culture, setCulture] = useState('us');
   const [medium, setMedium] = useState('email');
-  const [inputText, setInputText] = useState('We need this done by tomorrow. No exceptions.');
+  const [inputText, setInputText] = useState(t('makePolite.defaultInput'));
   const [isMounted, setIsMounted] = useState(false);
 
   // Set mounted state after hydration
@@ -64,7 +64,7 @@ export default function MakeMessageMorePolitePage() {
 
     const resetTimeout = setTimeout(() => {
       setSelectedPill(null);
-      setInputText('We need this done by tomorrow. No exceptions.');
+      setInputText(t('makePolite.defaultInput'));
       setFormality(50);
       setDirectness(50);
       setEmotion(50);
@@ -79,27 +79,27 @@ export default function MakeMessageMorePolitePage() {
   }, [selectedPill]);
 
   const getInputExample = (scenario: string): string => {
-    const examples: Record<string, string> = {
-      'urgent-request': 'I need the report now.',
-      'rejection': "No, we can't do that.",
-      'complaint': 'This is unacceptable and needs to be fixed immediately.',
-      'disagreement': "I don't agree with your approach at all.",
-      'deadline': "You're late again. This has to stop.",
-      'feedback': 'This work is not good enough.'
+    const inputMap: Record<string, string> = {
+      'urgent-request': t('makePolite.inputs.urgentRequest'),
+      'rejection': t('makePolite.inputs.rejection'),
+      'complaint': t('makePolite.inputs.complaint'),
+      'disagreement': t('makePolite.inputs.disagreement'),
+      'deadline': t('makePolite.inputs.deadline'),
+      'feedback': t('makePolite.inputs.feedback')
     };
-    return examples[scenario] || 'We need this done by tomorrow. No exceptions.';
+    return inputMap[scenario] || t('makePolite.defaultInput');
   };
 
   const scenarioOutputs: Record<string, string> = {
-    'urgent-request': 'I would greatly appreciate it if you could prioritize the report and share it at your earliest convenience. Thank you for your understanding.',
-    'rejection': 'Thank you for the suggestion. After careful consideration, we believe this approach may not align with our current objectives. Perhaps we could explore alternative solutions together?',
-    'complaint': 'I wanted to bring to your attention some concerns regarding the current situation. Would it be possible to discuss potential improvements at your earliest convenience?',
-    'disagreement': "I appreciate your perspective on this. I'd like to share an alternative viewpoint that might complement the discussion. Could we explore both approaches together?",
-    'deadline': "I noticed the timeline hasn't been met as expected. I understand things come up, and I'd appreciate if we could discuss how to stay on track moving forward.",
-    'feedback': 'Thank you for your effort on this. I believe there are some areas where we could enhance the quality together. Would you be open to discussing some suggestions?'
+    'urgent-request': t('makePolite.outputs.urgentRequest'),
+    'rejection': t('makePolite.outputs.rejection'),
+    'complaint': t('makePolite.outputs.complaint'),
+    'disagreement': t('makePolite.outputs.disagreement'),
+    'deadline': t('makePolite.outputs.deadline'),
+    'feedback': t('makePolite.outputs.feedback')
   };
 
-  const outputText = selectedPill ? scenarioOutputs[selectedPill] : "I hope this message finds you well. I wanted to reach out regarding the timeline for this project. If possible, I would greatly appreciate your assistance in completing this by tomorrow. I understand this may be a tight deadline, and I'm happy to discuss if you need any support or clarification. Thank you so much for your understanding and cooperation.";
+  const outputText = selectedPill ? scenarioOutputs[selectedPill] : t('makePolite.outputs.default');
 
   const scenarioSettings: Record<string, { formality: number; directness: number; emotion: number; power: string; culture: string; medium: string }> = {
     'urgent-request': { formality: 75, directness: 50, emotion: 30, power: 'equal', culture: 'us', medium: 'email' },
@@ -131,42 +131,42 @@ export default function MakeMessageMorePolitePage() {
 
   const beforeAfterExamples = [
     {
-      before: "\"No, that won't work.\"",
-      after: '"Thank you for the suggestion. After reviewing this carefully, I believe we may need to explore alternative approaches. Would you be open to discussing other options?"',
+      before: t('makePolite.examples.before1'),
+      after: t('makePolite.examples.after1'),
       settings: {
         formality: 75,
         directness: 40,
         emotion: 35,
-        power: 'Speaking to equal',
-        culture: 'US',
-        medium: 'Email',
-        language: 'English'
+        power: t('makePolite.powerOptions.equal'),
+        culture: t('makePolite.culturalOptions.us'),
+        medium: t('demo.mediumOptions.email'),
+        language: t('demo.languageOptions.english')
       }
     },
     {
-      before: '"You need to fix this ASAP."',
-      after: '"I wanted to bring to your attention an issue that requires our attention. Would it be possible to prioritize resolving this when you have a moment? I appreciate your help with this."',
+      before: t('makePolite.examples.before2'),
+      after: t('makePolite.examples.after2'),
       settings: {
         formality: 70,
         directness: 45,
         emotion: 40,
-        power: 'Speaking to equal',
-        culture: 'US',
-        medium: 'Email',
-        language: 'English'
+        power: t('makePolite.powerOptions.equal'),
+        culture: t('makePolite.culturalOptions.us'),
+        medium: t('demo.mediumOptions.email'),
+        language: t('demo.languageOptions.english')
       }
     },
     {
-      before: '"This is wrong."',
-      after: '"I noticed something that might need review. Could we take another look at this together to ensure everything aligns with our objectives?"',
+      before: t('makePolite.examples.before3'),
+      after: t('makePolite.examples.after3'),
       settings: {
         formality: 65,
         directness: 35,
         emotion: 45,
-        power: 'Speaking to equal',
-        culture: 'US',
-        medium: 'Email',
-        language: 'English'
+        power: t('makePolite.powerOptions.equal'),
+        culture: t('makePolite.culturalOptions.us'),
+        medium: t('demo.mediumOptions.email'),
+        language: t('demo.languageOptions.english')
       }
     }
   ];
@@ -229,24 +229,6 @@ export default function MakeMessageMorePolitePage() {
         ]
       },
       {
-        "@type": "BreadcrumbList",
-        "@id": `https://sentenly.com/${locale}/make-message-more-polite#breadcrumb`,
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": `https://sentenly.com/${locale}`
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Make Message More Polite",
-            "item": `https://sentenly.com/${locale}/make-message-more-polite`
-          }
-        ]
-      },
-      {
         "@type": "WebPage",
         "@id": `https://sentenly.com/${locale}/make-message-more-polite#webpage`,
         "url": `https://sentenly.com/${locale}/make-message-more-polite`,
@@ -258,9 +240,6 @@ export default function MakeMessageMorePolitePage() {
           "@id": "https://sentenly.com/#website",
           "name": "Sentenly",
           "url": "https://sentenly.com"
-        },
-        "breadcrumb": {
-          "@id": `https://sentenly.com/${locale}/make-message-more-polite#breadcrumb`
         },
         "potentialAction": {
           "@type": "UseAction",
@@ -287,44 +266,23 @@ export default function MakeMessageMorePolitePage() {
       
       <Header />
       
-      {/* Breadcrumb Navigation */}
-      <nav aria-label="Breadcrumb" className="container pt-4 pb-2">
-        <ol className="flex items-center gap-2 text-sm text-muted-foreground">
-          <li>
-            <Link 
-              href={`/${locale}`} 
-              className="hover:text-foreground transition-colors"
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <ChevronRight className="w-4 h-4" />
-          </li>
-          <li className="text-foreground font-medium" aria-current="page">
-            Make Message More Polite
-          </li>
-        </ol>
-      </nav>
-      
       {/* Hero section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-emerald-950/40 via-slate-900 to-background">
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--gradient-hero)' }} />
         
         <div className="container py-16 md:py-24 relative max-w-4xl mx-auto">
           <div className="text-center space-y-6 mb-12">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
-              <span className="text-primary">Make Your Message</span>
-              <br />
-              <span className="text-white">More Polite & Professional</span>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+              <span className="text-primary block">{t('makePolite.title')}</span>
+              <span className="text-white block mt-2">{t('makePolite.subtitle')}</span>
             </h1>
             
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Sometimes you need to deliver tough messages without sounding harsh. Transform direct or blunt communication into polite, professional language that maintains your intent while improving tone.
+              {t('makePolite.description1')}
             </p>
 
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Whether you're rejecting a proposal, delivering feedback, or making an urgent request, get the right balance of politeness and clarity.
+              {t('makePolite.description2')}
             </p>
           </div>
 
@@ -333,14 +291,14 @@ export default function MakeMessageMorePolitePage() {
             {/* Input */}
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                Your Direct Message
+                {t('makePolite.inputLabel')}
               </label>
               <div className="rounded-xl bg-slate-700 backdrop-blur border border-slate-600 overflow-hidden">
                 <div className="p-4">
                   <textarea
                     className="w-full h-20 bg-transparent text-white placeholder:text-slate-400 focus:outline-none resize-none text-sm"
                     value={inputText}
-                    placeholder="Enter your direct message here..."
+                    placeholder={t('makePolite.inputPlaceholder')}
                     onChange={(e) => setInputText(e.target.value)}
                     readOnly={selectedPill !== 'custom' && selectedPill !== null}
                   />
@@ -351,7 +309,7 @@ export default function MakeMessageMorePolitePage() {
             {/* Scenario Switcher */}
             <div>
               <p className="text-xs text-muted-foreground mb-3">
-                Click a shortcut below or fine-tune with controls in <Link href={`/${locale}`} className="text-primary hover:underline">live version</Link>
+                {t('makePolite.shortcutHelper')} <Link href={`/${locale}`} className="text-primary hover:underline">{t('makePolite.liveVersion')}</Link>
               </p>
               <div className="flex flex-wrap gap-2">
                 <button
@@ -362,7 +320,7 @@ export default function MakeMessageMorePolitePage() {
                       : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  Urgent Request
+                  {t('makePolite.scenarios.urgentRequest')}
                 </button>
                 <button
                   onClick={() => handlePillClick('rejection')}
@@ -372,7 +330,7 @@ export default function MakeMessageMorePolitePage() {
                       : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  Polite Rejection
+                  {t('makePolite.scenarios.rejection')}
                 </button>
                 <button
                   onClick={() => handlePillClick('complaint')}
@@ -382,7 +340,7 @@ export default function MakeMessageMorePolitePage() {
                       : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  Complaint
+                  {t('makePolite.scenarios.complaint')}
                 </button>
                 <button
                   onClick={() => handlePillClick('disagreement')}
@@ -392,7 +350,7 @@ export default function MakeMessageMorePolitePage() {
                       : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  Disagreement
+                  {t('makePolite.scenarios.disagreement')}
                 </button>
                 <button
                   onClick={() => handlePillClick('deadline')}
@@ -402,7 +360,7 @@ export default function MakeMessageMorePolitePage() {
                       : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  Deadline Reminder
+                  {t('makePolite.scenarios.deadline')}
                 </button>
                 <button
                   onClick={() => handlePillClick('feedback')}
@@ -412,7 +370,7 @@ export default function MakeMessageMorePolitePage() {
                       : 'bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600/30'
                   }`}
                 >
-                  Critical Feedback
+                  {t('makePolite.scenarios.feedback')}
                 </button>
               </div>
             </div>
@@ -423,7 +381,7 @@ export default function MakeMessageMorePolitePage() {
                 <div className="space-y-3">
                   <div>
                     <div className="flex justify-between items-center mb-1">
-                      <label className="text-xs font-medium text-foreground">Formality</label>
+                      <label className="text-xs font-medium text-foreground">{t('makePolite.controls.formality')}</label>
                       <span className="text-xs text-muted-foreground">{formality}%</span>
                     </div>
                     <input
@@ -438,17 +396,17 @@ export default function MakeMessageMorePolitePage() {
                       }}
                     />
                     <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                      <span>Casual</span>
-                      <span>Informal</span>
-                      <span>Neutral</span>
-                      <span>Formal</span>
-                      <span>Institutional</span>
+                      <span>{t('demo.formalityLevels.casual')}</span>
+                      <span>{t('demo.formalityLevels.informal')}</span>
+                      <span>{t('demo.formalityLevels.neutral')}</span>
+                      <span>{t('demo.formalityLevels.formal')}</span>
+                      <span>{t('demo.formalityLevels.institutional')}</span>
                     </div>
                   </div>
 
                   <div>
                     <div className="flex justify-between items-center mb-1">
-                      <label className="text-xs font-medium text-foreground">Directness</label>
+                      <label className="text-xs font-medium text-foreground">{t('makePolite.controls.directness')}</label>
                       <span className="text-xs text-muted-foreground">{directness}%</span>
                     </div>
                     <input
@@ -463,17 +421,17 @@ export default function MakeMessageMorePolitePage() {
                       }}
                     />
                     <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                      <span>Indirect</span>
-                      <span>Diplomatic</span>
-                      <span>Clear</span>
-                      <span>Direct</span>
-                      <span>Blunt</span>
+                      <span>{t('demo.directnessLevels.indirect')}</span>
+                      <span>{t('demo.directnessLevels.diplomatic')}</span>
+                      <span>{t('demo.directnessLevels.clear')}</span>
+                      <span>{t('demo.directnessLevels.direct')}</span>
+                      <span>{t('demo.directnessLevels.blunt')}</span>
                     </div>
                   </div>
 
                   <div>
                     <div className="flex justify-between items-center mb-1">
-                      <label className="text-xs font-medium text-foreground">Emotions</label>
+                      <label className="text-xs font-medium text-foreground">{t('makePolite.controls.emotions')}</label>
                       <span className="text-xs text-muted-foreground">{emotion}%</span>
                     </div>
                     <input
@@ -488,59 +446,59 @@ export default function MakeMessageMorePolitePage() {
                       }}
                     />
                     <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                      <span>Low</span>
-                      <span>Contained</span>
-                      <span>Attentive</span>
-                      <span>Sensitive</span>
-                      <span>High</span>
+                      <span>{t('demo.emotionLevels.low')}</span>
+                      <span>{t('demo.emotionLevels.contained')}</span>
+                      <span>{t('demo.emotionLevels.attentive')}</span>
+                      <span>{t('demo.emotionLevels.sensitive')}</span>
+                      <span>{t('demo.emotionLevels.high')}</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="space-y-3">
                   <div>
-                    <label className="block text-xs font-medium text-foreground mb-1">Power Relation</label>
+                    <label className="block text-xs font-medium text-foreground mb-1">{t('makePolite.controls.powerRelation')}</label>
                     <select
                       value={power}
                       onChange={(e) => setPower(e.target.value)}
                       className="w-full px-3 py-1.5 text-xs rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     >
-                      <option value="superior">Speaking to subordinate</option>
-                      <option value="equal">Speaking to equal</option>
-                      <option value="subordinate">Speaking to superior</option>
+                      <option value="superior">{t('makePolite.powerOptions.superior')}</option>
+                      <option value="equal">{t('makePolite.powerOptions.equal')}</option>
+                      <option value="subordinate">{t('makePolite.powerOptions.subordinate')}</option>
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-foreground mb-1">Medium</label>
+                    <label className="block text-xs font-medium text-foreground mb-1">{t('makePolite.controls.medium')}</label>
                     <select
                       value={medium}
                       onChange={(e) => setMedium(e.target.value)}
                       className="w-full px-3 py-1.5 text-xs rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     >
-                      <option value="email">Email</option>
-                      <option value="chat">Chat</option>
-                      <option value="in-person">In-person</option>
-                      <option value="written-notice">Written notice</option>
+                      <option value="email">{t('demo.mediumOptions.email')}</option>
+                      <option value="chat">{t('demo.mediumOptions.chat')}</option>
+                      <option value="in-person">{t('demo.mediumOptions.inPerson')}</option>
+                      <option value="written-notice">{t('demo.mediumOptions.writtenNotice')}</option>
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-foreground mb-1">Cultural Context</label>
+                    <label className="block text-xs font-medium text-foreground mb-1">{t('makePolite.controls.culturalContext')}</label>
                     <select
                       value={culture}
                       onChange={(e) => setCulture(e.target.value)}
                       className="w-full px-3 py-1.5 text-xs rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     >
-                      <option value="us">North America</option>
-                      <option value="uk">United Kingdom</option>
-                      <option value="europe">Europe</option>
-                      <option value="asia">Asia</option>
+                      <option value="us">{t('makePolite.culturalOptions.us')}</option>
+                      <option value="uk">{t('makePolite.culturalOptions.uk')}</option>
+                      <option value="europe">{t('makePolite.culturalOptions.europe')}</option>
+                      <option value="asia">{t('makePolite.culturalOptions.asia')}</option>
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-foreground mb-1">Language</label>
+                    <label className="block text-xs font-medium text-foreground mb-1">{t('makePolite.controls.language')}</label>
                     <select
                       value={locale}
                       onChange={(e) => {
@@ -548,10 +506,12 @@ export default function MakeMessageMorePolitePage() {
                       }}
                       className="w-full px-3 py-1.5 text-xs rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     >
-                      <option value="en">English</option>
-                      <option value="es">Spanish</option>
-                      <option value="fr">French</option>
-                      <option value="de">German</option>
+                      <option value="en">{t('demo.languageOptions.english')}</option>
+                      <option value="es">{t('demo.languageOptions.spanish')}</option>
+                      <option value="fr">{t('demo.languageOptions.french')}</option>
+                      <option value="de">{t('demo.languageOptions.german')}</option>
+                      <option value="it">{t('demo.languageOptions.italian')}</option>
+                      <option value="pt">{t('demo.languageOptions.portuguese')}</option>
                     </select>
                   </div>
                 </div>
@@ -561,7 +521,7 @@ export default function MakeMessageMorePolitePage() {
             {/* Output - shown immediately */}
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                Polite Version
+                {t('makePolite.outputLabel')}
               </label>
               <div className="w-full p-4 rounded-xl bg-slate-700 backdrop-blur border border-slate-600 text-white">
                 <p className="text-white text-sm whitespace-pre-line leading-relaxed">{outputText}</p>
@@ -575,7 +535,7 @@ export default function MakeMessageMorePolitePage() {
       <section className="border-y border-border bg-slate-900/50">
         <div className="container py-6">
           <p className="text-center text-muted-foreground text-sm">
-            Trusted by thousands of professionals to communicate with grace and clarity
+            {t('makePolite.socialProof')}
           </p>
         </div>
       </section>
@@ -584,7 +544,7 @@ export default function MakeMessageMorePolitePage() {
       <section className="py-20 bg-slate-950">
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center">
-            Real Examples
+            {t('makePolite.examplesTitle')}
           </h2>
           
           <div className="space-y-8">
@@ -594,53 +554,53 @@ export default function MakeMessageMorePolitePage() {
                 className="bg-slate-900/50 backdrop-blur border border-slate-800 rounded-xl p-6 space-y-4"
               >
                 <div>
-                  <div className="text-xs font-semibold text-red-400 mb-2">Direct Message</div>
+                  <div className="text-xs font-semibold text-red-400 mb-2">{t('makePolite.exampleLabels.directMessage')}</div>
                   <p className="text-slate-300">{example.before}</p>
                 </div>
                 <div className="border-t border-slate-800"></div>
                 <div>
-                  <div className="text-xs font-semibold text-emerald-400 mb-2">Polite Version</div>
+                  <div className="text-xs font-semibold text-emerald-400 mb-2">{t('makePolite.exampleLabels.politeVersion')}</div>
                   <p className="text-white mb-4">{example.after}</p>
                   <div className="flex flex-wrap gap-3">
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        Formality
+                        {t('makePolite.controls.formality')}
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.formality}%</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        Directness
+                        {t('makePolite.controls.directness')}
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.directness}%</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        Emotions
+                        {t('makePolite.controls.emotions')}
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.emotion}%</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        Power Relation
+                        {t('makePolite.controls.powerRelation')}
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.power}</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        Cultural Context
+                        {t('makePolite.controls.culturalContext')}
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.culture}</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        Medium
+                        {t('makePolite.controls.medium')}
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.medium}</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-xs px-3 py-1 rounded-full bg-emerald-900/30 text-emerald-300 border border-emerald-700/50">
-                        Language
+                        {t('makePolite.controls.language')}
                       </span>
                       <span className="text-xs text-slate-400">{example.settings.language}</span>
                     </div>
@@ -656,33 +616,33 @@ export default function MakeMessageMorePolitePage() {
       <section className="py-20 border-t border-border bg-slate-900">
         <div className="container max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            Why Politeness Matters in Professional Communication
+            {t('makePolite.whyTitle')}
           </h2>
           
           <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-            In business, how you say something can be just as important as what you say. The right tone builds trust, preserves relationships, and gets better results.
+            {t('makePolite.whyDescription')}
           </p>
 
           <div className="space-y-2 text-left max-w-xl mx-auto mb-6">
             <div className="flex items-start gap-3">
               <span className="text-muted-foreground">•</span>
-              <p className="text-muted-foreground">Direct messages can come across as aggressive or dismissive, even when that's not the intent</p>
+              <p className="text-muted-foreground">{t('makePolite.whyPoints.point1')}</p>
             </div>
             <div className="flex items-start gap-3">
               <span className="text-muted-foreground">•</span>
-              <p className="text-muted-foreground">Polite phrasing shows respect and professionalism while still being clear and effective</p>
+              <p className="text-muted-foreground">{t('makePolite.whyPoints.point2')}</p>
             </div>
             <div className="flex items-start gap-3">
               <span className="text-muted-foreground">•</span>
-              <p className="text-muted-foreground">The right balance of politeness and directness varies by culture, context, and relationship</p>
+              <p className="text-muted-foreground">{t('makePolite.whyPoints.point3')}</p>
             </div>
           </div>
 
           <p className="text-lg text-muted-foreground mb-6">
             <Link href={`/${locale}`} className="text-primary hover:underline">
-              Sentenly
+              {t('common.appName')}
             </Link>{' '}
-            helps you find that balance, ensuring your message is heard without causing unnecessary friction.
+            {t('makePolite.whyConclusion')}
           </p>
         </div>
       </section>
@@ -691,14 +651,14 @@ export default function MakeMessageMorePolitePage() {
       <section className="py-20 border-t border-border bg-gradient-to-br from-emerald-950/50 via-slate-900/80 to-slate-950">
         <div className="container max-w-2xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            Start Writing More Polite Messages
+            {t('makePolite.ctaTitle')}
           </h2>
           <p className="text-lg text-muted-foreground mb-6">
-            Transform your communication with our full suite of tone adjustment tools
+            {t('makePolite.ctaDescription')}
           </p>
           <Button asChild variant="hero" size="xl">
             <Link href={`/${locale}/translate`}>
-              Try Sentenly Free
+              {t('makePolite.ctaButton')}
               <ArrowRight className="w-5 h-5" />
             </Link>
           </Button>
@@ -709,7 +669,7 @@ export default function MakeMessageMorePolitePage() {
       <section className="py-12 border-t border-border bg-slate-950">
         <div className="container max-w-4xl mx-auto">
           <p className="text-sm text-muted-foreground leading-relaxed text-center">
-            Make your messages more polite with Sentenly's professional tone adjustment tool. Whether you need to soften a rejection, deliver critical feedback diplomatically, or make an urgent request without sounding demanding, our AI-powered message rewriter helps you strike the perfect balance between clarity and courtesy. Adjust formality, directness, and warmth to match your cultural context and relationship dynamics. Perfect for business emails, client communications, team feedback, and any situation where professional politeness matters.
+            {t('makePolite.seoDescription')}
           </p>
         </div>
       </section>
@@ -728,21 +688,21 @@ export default function MakeMessageMorePolitePage() {
                   className="w-full h-full"
                 />
               </div>
-              <span className="text-sm text-muted-foreground">Sentenly</span>
+              <span className="text-sm text-muted-foreground">{t('common.appName')}</span>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6">
               <Link href={`/${locale}/privacy`} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
-                Privacy
+                {t('makePolite.footer.privacy')}
               </Link>
               <Link href={`/${locale}/terms`} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
-                Terms
+                {t('makePolite.footer.terms')}
               </Link>
               <Link href={`/${locale}/contact`} className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
-                Contact
+                {t('makePolite.footer.contact')}
               </Link>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground text-center">
-              © 2026 Sentenly. All rights reserved.
+              {t('makePolite.footer.copyright')}
             </p>
           </div>
         </div>

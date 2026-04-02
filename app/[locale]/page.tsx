@@ -778,6 +778,40 @@ export default function Home() {
         </div>
       </section>
       
+      {/* You might also need */}
+      <section className="py-16 border-t border-border bg-slate-900/50">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-xl font-semibold text-foreground mb-6">
+              {t('relatedPages.title')}
+            </h3>
+            <div className="flex flex-col gap-3">
+              <Link 
+                href={`/${locale}/make-message-more-polite`}
+                className="text-base text-primary hover:text-primary/80 transition-colors flex items-center gap-2 group"
+              >
+                <span className="text-primary">•</span>
+                <span className="group-hover:underline">{t('relatedPages.makePolite')}</span>
+              </Link>
+              <Link 
+                href={`/${locale}/rewrite-email-professionally`}
+                className="text-base text-primary hover:text-primary/80 transition-colors flex items-center gap-2 group"
+              >
+                <span className="text-primary">•</span>
+                <span className="group-hover:underline">{t('relatedPages.rewriteProfessionally')}</span>
+              </Link>
+              <Link 
+                href={`/${locale}/follow-up-email-no-response`}
+                className="text-base text-primary hover:text-primary/80 transition-colors flex items-center gap-2 group"
+              >
+                <span className="text-primary">•</span>
+                <span className="group-hover:underline">{t('relatedPages.followUpEmail')}</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       {/* Footer */}
       <footer className="border-t border-border py-8 bg-slate-900">
         <div className="container">

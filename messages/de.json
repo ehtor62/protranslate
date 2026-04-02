@@ -353,6 +353,12 @@
     "description": "Wählen Sie Ihre Nachricht, passen Sie den Kontext an und erhalten Sie professionell kalibrierte Formulierungen für jede Situation.",
     "button": "Jetzt übersetzen"
   },
+  "relatedPages": {
+    "title": "Das könnte dich auch interessieren:",
+    "makePolite": "Nachricht höflicher formulieren",
+    "rewriteProfessionally": "E-Mail professionell umschreiben",
+    "followUpEmail": "Erinnerungs-E-Mail (keine Antwort)"
+  },
   "auth": {
     "signIn": "Anmelden",
     "signUp": "Registrieren",
@@ -794,6 +800,95 @@
         "q2": "Speichern Sie meine Nachrichten?",
         "a2": "Nein, wir speichern Ihre Nachrichteninhalte nicht dauerhaft. Der Text wird von unserem KI-Dienst verarbeitet und nach der Übersetzung sofort verworfen."
       }
+    }
+  },
+  "makePolite": {
+    "title": "Formulieren Sie Ihre Nachricht",
+    "subtitle": "Höflicher & Professioneller",
+    "description1": "Manchmal müssen Sie schwierige Nachrichten überbringen, ohne harsch zu klingen. Verwandeln Sie direkte oder barsche Kommunikation in höfliche, professionelle Sprache, die Ihre Absicht beibehält und gleichzeitig den Ton verbessert.",
+    "description2": "Ob Sie einen Vorschlag ablehnen, Feedback geben oder eine dringende Anfrage stellen – finden Sie die richtige Balance zwischen Höflichkeit und Klarheit.",
+    "inputLabel": "Ihre direkte Nachricht",
+    "inputPlaceholder": "Geben Sie hier Ihre direkte Nachricht ein...",
+    "defaultInput": "Wir brauchen das bis morgen. Keine Ausnahmen.",
+    "outputLabel": "Höfliche Version",
+    "shortcutHelper": "Klicke auf eine Vorgabe oder adjustiere mit den Reglern in der",
+    "liveVersion": "Live-Version",
+    "scenarios": {
+      "urgentRequest": "Dringende Anfrage",
+      "rejection": "Höfliche Ablehnung",
+      "complaint": "Beschwerde",
+      "disagreement": "Meinungsverschiedenheit",
+      "deadline": "Erinnerung an Frist",
+      "feedback": "Kritisches Feedback"
+    },
+    "inputs": {
+      "urgentRequest": "Ich brauche den Bericht jetzt.",
+      "rejection": "Nein, das können wir nicht machen.",
+      "complaint": "Das ist inakzeptabel und muss sofort behoben werden.",
+      "disagreement": "Ich stimme Ihrem Ansatz überhaupt nicht zu.",
+      "deadline": "Sie sind wieder zu spät. Das muss aufhören.",
+      "feedback": "Diese Arbeit ist nicht gut genug."
+    },
+    "outputs": {
+      "urgentRequest": "Ich würde es sehr schätzen, wenn Sie den Bericht priorisieren und bei nächster Gelegenheit teilen könnten. Vielen Dank für Ihr Verständnis.",
+      "rejection": "Vielen Dank für den Vorschlag. Nach sorgfältiger Überlegung glauben wir, dass dieser Ansatz möglicherweise nicht mit unseren aktuellen Zielen übereinstimmt. Vielleicht könnten wir gemeinsam alternative Lösungen erkunden?",
+      "complaint": "Ich wollte Sie auf einige Bedenken hinsichtlich der aktuellen Situation aufmerksam machen. Wäre es möglich, bei nächster Gelegenheit über mögliche Verbesserungen zu sprechen?",
+      "disagreement": "Ich schätze Ihre Perspektive zu diesem Thema. Ich möchte gerne eine alternative Sichtweise teilen, die die Diskussion ergänzen könnte. Könnten wir beide Ansätze gemeinsam untersuchen?",
+      "deadline": "Mir ist aufgefallen, dass der Zeitplan nicht wie erwartet eingehalten wurde. Ich verstehe, dass Dinge auftauchen, und ich würde es schätzen, wenn wir besprechen könnten, wie wir künftig auf Kurs bleiben.",
+      "feedback": "Vielen Dank für Ihre Bemühungen hierzu. Ich glaube, es gibt einige Bereiche, in denen wir die Qualität gemeinsam verbessern könnten. Wären Sie offen dafür, einige Vorschläge zu besprechen?",
+      "default": "Ich hoffe, diese Nachricht erreicht Sie wohlbehalten. Ich wollte mich bezüglich des Zeitplans für dieses Projekt melden. Falls möglich, würde ich Ihre Unterstützung bei der Fertigstellung bis morgen sehr schätzen. Ich verstehe, dass dies eine knappe Frist sein könnte, und ich bin gerne bereit zu besprechen, ob Sie Unterstützung oder Klärung benötigen. Vielen Dank für Ihr Verständnis und Ihre Zusammenarbeit."
+    },
+    "controls": {
+      "formality": "Formalität",
+      "directness": "Direktheit",
+      "emotions": "Emotionen",
+      "powerRelation": "Machtverhältnis",
+      "medium": "Medium",
+      "culturalContext": "Kultureller Kontext",
+      "language": "Sprache"
+    },
+    "powerOptions": {
+      "superior": "Sprechen mit Untergebenem",
+      "equal": "Sprechen mit Gleichgestelltem",
+      "subordinate": "Sprechen mit Vorgesetztem"
+    },
+    "culturalOptions": {
+      "us": "Nordamerika",
+      "uk": "Vereinigtes Königreich",
+      "europe": "Europa",
+      "asia": "Asien"
+    },
+    "socialProof": "Vertraut von Tausenden von Fachleuten, um mit Anmut und Klarheit zu kommunizieren",
+    "examplesTitle": "Echte Beispiele",
+    "exampleLabels": {
+      "directMessage": "Direkte Nachricht",
+      "politeVersion": "Höfliche Version"
+    },
+    "examples": {
+      "before1": "\"Nein, das funktioniert nicht.\"",
+      "after1": "\"Vielen Dank für den Vorschlag. Nach sorgfältiger Prüfung glaube ich, dass wir möglicherweise alternative Ansätze erkunden müssen. Wären Sie offen dafür, andere Optionen zu besprechen?\"",
+      "before2": "\"Sie müssen das sofort beheben.\"",
+      "after2": "\"Ich wollte Sie auf ein Problem aufmerksam machen, das unsere Aufmerksamkeit erfordert. Wäre es möglich, dies bei Gelegenheit zu priorisieren? Ich schätze Ihre Hilfe hierbei.\"",
+      "before3": "\"Das ist falsch.\"",
+      "after3": "\"Mir ist etwas aufgefallen, das möglicherweise überprüft werden muss. Könnten wir uns das noch einmal gemeinsam ansehen, um sicherzustellen, dass alles mit unseren Zielen übereinstimmt?\""
+    },
+    "whyTitle": "Warum Höflichkeit in der professionellen Kommunikation wichtig ist",
+    "whyDescription": "Im Geschäftsleben kann es genauso wichtig sein, wie Sie etwas sagen, wie was Sie sagen. Der richtige Ton schafft Vertrauen, erhält Beziehungen und erzielt bessere Ergebnisse.",
+    "whyPoints": {
+      "point1": "Direkte Nachrichten können aggressiv oder abweisend wirken, auch wenn das nicht die Absicht ist",
+      "point2": "Höfliche Formulierungen zeigen Respekt und Professionalität bei gleichzeitiger Klarheit und Wirksamkeit",
+      "point3": "Die richtige Balance zwischen Höflichkeit und Direktheit variiert je nach Kultur, Kontext und Beziehung"
+    },
+    "whyConclusion": "hilft Ihnen, diese Balance zu finden und sicherzustellen, dass Ihre Nachricht gehört wird, ohne unnötige Reibungen zu verursachen.",
+    "ctaTitle": "Beginnen Sie, höflichere Nachrichten zu schreiben",
+    "ctaDescription": "Transformieren Sie Ihre Kommunikation mit unserer vollständigen Suite von Ton-Anpassungswerkzeugen",
+    "ctaButton": "Probieren Sie Sentenly kostenlos",
+    "seoDescription": "Machen Sie Ihre Nachrichten höflicher mit Sentelys professionellem Ton-Anpassungstool. Ob Sie eine Ablehnung abschwächen, kritisches Feedback diplomatisch überbringen oder eine dringende Anfrage stellen müssen, ohne fordernd zu klingen – unser KI-gestützter Nachrichtenumschreiber hilft Ihnen, die perfekte Balance zwischen Klarheit und Höflichkeit zu finden. Passen Sie Formalität, Direktheit und Wärme an Ihren kulturellen Kontext und Ihre Beziehungsdynamik an. Perfekt für geschäftliche E-Mails, Kundenkommunikation, Team-Feedback und jede Situation, in der professionelle Höflichkeit wichtig ist.",
+    "footer": {
+      "privacy": "Datenschutz",
+      "terms": "Bedingungen",
+      "contact": "Kontakt",
+      "copyright": "© 2026 Sentenly. Alle Rechte vorbehalten."
     }
   }
 }

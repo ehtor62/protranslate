@@ -356,6 +356,12 @@
     "description": "Scegli il tuo messaggio, regola il contesto e ottieni una formulazione professionale calibrata per ogni situazione.",
     "button": "Inizia a riscrivere"
   },
+  "relatedPages": {
+    "title": "Potresti aver bisogno anche di:",
+    "makePolite": "Rendere il messaggio più gentile",
+    "rewriteProfessionally": "Riscrivere l'email professionalmente",
+    "followUpEmail": "Email di follow-up (nessuna risposta)"
+  },
   "translatePage": {
     "title": "Strumento di Traduzione",
     "description": "Regola i parametri di contesto.",
@@ -859,6 +865,95 @@
         "q2": "Archiviate i miei messaggi?",
         "a2": "No, non archiviamo permanentemente il contenuto dei tuoi messaggi. Il testo viene elaborato dal nostro servizio IA e immediatamente scartato dopo la traduzione."
       }
+    }
+  },
+  "makePolite": {
+    "title": "Rendi Il Tuo Messaggio",
+    "subtitle": "Più Gentile & Professionale",
+    "description1": "A volte devi trasmettere messaggi difficili senza sembrare duro. Trasforma la comunicazione diretta o brusca in un linguaggio gentile e professionale che mantiene la tua intenzione migliorando il tono.",
+    "description2": "Che tu stia rifiutando una proposta, fornendo feedback o facendo una richiesta urgente, trova il giusto equilibrio tra gentilezza e chiarezza.",
+    "inputLabel": "Il Tuo Messaggio Diretto",
+    "inputPlaceholder": "Inserisci qui il tuo messaggio diretto...",
+    "defaultInput": "Abbiamo bisogno che questo sia fatto entro domani. Nessuna eccezione.",
+    "outputLabel": "Versione Gentile",
+    "shortcutHelper": "Fai clic su una scorciatoia qui sotto o regola i controlli nella",
+    "liveVersion": "versione live",
+    "scenarios": {
+      "urgentRequest": "Richiesta Urgente",
+      "rejection": "Rifiuto Gentile",
+      "complaint": "Lamentela",
+      "disagreement": "Disaccordo",
+      "deadline": "Promemoria Scadenza",
+      "feedback": "Feedback Critico"
+    },
+    "inputs": {
+      "urgentRequest": "Ho bisogno del rapporto adesso.",
+      "rejection": "No, non possiamo farlo.",
+      "complaint": "Questo è inaccettabile e deve essere risolto immediatamente.",
+      "disagreement": "Non sono affatto d'accordo con il tuo approccio.",
+      "deadline": "Sei di nuovo in ritardo. Questo deve finire.",
+      "feedback": "Questo lavoro non è abbastanza buono."
+    },
+    "outputs": {
+      "urgentRequest": "Apprezzerei molto se potessi dare priorità al rapporto e condividerlo appena possibile. Grazie per la tua comprensione.",
+      "rejection": "Grazie per il suggerimento. Dopo un'attenta considerazione, riteniamo che questo approccio potrebbe non allinearsi con i nostri obiettivi attuali. Forse potremmo esplorare insieme soluzioni alternative?",
+      "complaint": "Volevo portare alla tua attenzione alcune preoccupazioni riguardo alla situazione attuale. Sarebbe possibile discutere potenziali miglioramenti appena possibile?",
+      "disagreement": "Apprezzo la tua prospettiva su questo. Vorrei condividere un punto di vista alternativo che potrebbe completare la discussione. Potremmo esplorare entrambi gli approcci insieme?",
+      "deadline": "Ho notato che la tempistica non è stata rispettata come previsto. Capisco che possano sorgere imprevisti, e apprezzerei se potessimo discutere come rimanere in linea in futuro.",
+      "feedback": "Grazie per il tuo impegno su questo. Credo che ci siano alcune aree in cui potremmo migliorare la qualità insieme. Saresti aperto a discutere alcuni suggerimenti?",
+      "default": "Spero che questo messaggio ti trovi bene. Volevo contattarti riguardo alla tempistica di questo progetto. Se possibile, apprezzerei molto il tuo aiuto per completare questo entro domani. Capisco che questa potrebbe essere una scadenza stretta, e sono felice di discutere se hai bisogno di supporto o chiarimenti. Grazie mille per la tua comprensione e collaborazione."
+    },
+    "controls": {
+      "formality": "Formalità",
+      "directness": "Franchezza",
+      "emotions": "Emozioni",
+      "powerRelation": "Relazione di Potere",
+      "medium": "Mezzo",
+      "culturalContext": "Contesto Culturale",
+      "language": "Lingua"
+    },
+    "powerOptions": {
+      "superior": "Parlare a un subordinato",
+      "equal": "Parlare a un pari",
+      "subordinate": "Parlare a un superiore"
+    },
+    "culturalOptions": {
+      "us": "Nord America",
+      "uk": "Regno Unito",
+      "europe": "Europa",
+      "asia": "Asia"
+    },
+    "socialProof": "Fidato da migliaia di professionisti per comunicare con grazia e chiarezza",
+    "examplesTitle": "Esempi Reali",
+    "exampleLabels": {
+      "directMessage": "Messaggio Diretto",
+      "politeVersion": "Versione Gentile"
+    },
+    "examples": {
+      "before1": "\"No, questo non funzionerà.\"",
+      "after1": "\"Grazie per il suggerimento. Dopo aver esaminato attentamente questo, credo che potremmo dover esplorare approcci alternativi. Saresti aperto a discutere altre opzioni?\"",
+      "before2": "\"Devi sistemare questo ASAP.\"",
+      "after2": "\"Volevo portare alla tua attenzione un problema che richiede la nostra attenzione. Sarebbe possibile dare priorità alla risoluzione di questo quando hai un momento? Apprezzo il tuo aiuto su questo.\"",
+      "before3": "\"Questo è sbagliato.\"",
+      "after3": "\"Ho notato qualcosa che potrebbe richiedere una revisione. Potremmo dare un'altra occhiata insieme per assicurarci che tutto sia allineato con i nostri obiettivi?\""
+    },
+    "whyTitle": "Perché la Gentilezza Conta nella Comunicazione Professionale",
+    "whyDescription": "Negli affari, come dici qualcosa può essere importante quanto ciò che dici. Il tono giusto costruisce fiducia, preserva le relazioni e ottiene risultati migliori.",
+    "whyPoints": {
+      "point1": "I messaggi diretti possono sembrare aggressivi o sprezzanti, anche quando non è l'intenzione",
+      "point2": "La formulazione gentile mostra rispetto e professionalità rimanendo chiara ed efficace",
+      "point3": "Il giusto equilibrio tra gentilezza e franchezza varia a seconda della cultura, del contesto e della relazione"
+    },
+    "whyConclusion": "ti aiuta a trovare quell'equilibrio, assicurando che il tuo messaggio sia ascoltato senza causare attriti inutili.",
+    "ctaTitle": "Inizia a Scrivere Messaggi Più Gentili",
+    "ctaDescription": "Trasforma la tua comunicazione con la nostra suite completa di strumenti di regolazione del tono",
+    "ctaButton": "Prova Sentenly Gratis",
+    "seoDescription": "Rendi i tuoi messaggi più gentili con lo strumento professionale di regolazione del tono di Sentenly. Che tu debba ammorbidire un rifiuto, fornire feedback critico diplomaticamente o fare una richiesta urgente senza sembrare esigente, il nostro riscrittore di messaggi alimentato da IA ti aiuta a trovare il perfetto equilibrio tra chiarezza e cortesia. Regola formalità, franchezza e calore per adattarti al tuo conte sto culturale e alle dinamiche relazionali. Perfetto per email aziendali, comunicazioni con i clienti, feedback di squadra e qualsiasi situazione in cui la gentilezza professionale conta.",
+    "footer": {
+      "privacy": "Privacy",
+      "terms": "Termini",
+      "contact": "Contatto",
+      "copyright": "© 2026 Sentenly. Tutti i diritti riservati."
     }
   }
 }

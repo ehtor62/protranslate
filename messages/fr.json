@@ -352,6 +352,12 @@
     "description": "Choisissez votre message, ajustez le contexte et obtenez une formulation professionnellement calibrée pour toute situation.",
     "button": "Commencer à traduire"
   },
+  "relatedPages": {
+    "title": "Vous pourriez également avoir besoin de :",
+    "makePolite": "Rendre le message plus poli",
+    "rewriteProfessionally": "Réécrire l'e-mail professionnellement",
+    "followUpEmail": "E-mail de relance (sans réponse)"
+  },
   "auth": {
     "signIn": "Se connecter",
     "signUp": "S'inscrire",
@@ -791,6 +797,95 @@
         "q2": "Stockez-vous mes messages?",
         "a2": "Non, nous ne stockons pas de façon permanente le contenu de vos messages. Le texte est traité par notre service IA et immédiatement supprimé après la traduction."
       }
+    }
+  },
+  "makePolite": {
+    "title": "Rendez Votre Message",
+    "subtitle": "Plus Poli & Professionnel",
+    "description1": "Parfois, vous devez transmettre des messages difficiles sans paraître dur. Transformez une communication directe ou brusque en langage poli et professionnel qui maintient votre intention tout en améliorant le ton.",
+    "description2": "Que vous rejetiez une proposition, donniez des commentaires ou fassiez une demande urgente, trouvez le juste équilibre entre politesse et clarté.",
+    "inputLabel": "Votre Message Direct",
+    "inputPlaceholder": "Entrez votre message direct ici...",
+    "defaultInput": "Nous avons besoin de cela pour demain. Sans exception.",
+    "outputLabel": "Version Polie",
+    "shortcutHelper": "Cliquez sur un raccourci ci-dessous ou ajustez les paramètres dans la",
+    "liveVersion": "version en direct",
+    "scenarios": {
+      "urgentRequest": "Demande Urgente",
+      "rejection": "Refus Poli",
+      "complaint": "Plainte",
+      "disagreement": "Désaccord",
+      "deadline": "Rappel de Délai",
+      "feedback": "Commentaires Critiques"
+    },
+    "inputs": {
+      "urgentRequest": "J'ai besoin du rapport maintenant.",
+      "rejection": "Non, nous ne pouvons pas faire ça.",
+      "complaint": "C'est inacceptable et doit être corrigé immédiatement.",
+      "disagreement": "Je ne suis pas du tout d'accord avec votre approche.",
+      "deadline": "Vous êtes encore en retard. Cela doit cesser.",
+      "feedback": "Ce travail n'est pas assez bon."
+    },
+    "outputs": {
+      "urgentRequest": "J'apprécierais beaucoup si vous pouviez prioriser le rapport et le partager dès que possible. Merci de votre compréhension.",
+      "rejection": "Merci pour la suggestion. Après mûr examen, nous pensons que cette approche pourrait ne pas s'aligner avec nos objectifs actuels. Peut-être pourrions-nous explorer ensemble des solutions alternatives?",
+      "complaint": "Je souhaitais attirer votre attention sur certaines préoccupations concernant la situation actuelle. Serait-il possible de discuter des améliorations possibles dès que possible?",
+      "disagreement": "J'apprécie votre point de vue sur ce sujet. J'aimerais partager un point de vue alternatif qui pourrait compléter la discussion. Pourrions-nous explorer les deux approches ensemble?",
+      "deadline": "J'ai remarqué que le calendrier n'a pas été respecté comme prévu. Je comprends que des imprévus surviennent, et j'apprécierais si nous pouvions discuter de la façon de rester sur la bonne voie à l'avenir.",
+      "feedback": "Merci pour vos efforts sur ce sujet. Je crois qu'il y a certains domaines où nous pourrions améliorer la qualité ensemble. Seriez-vous ouvert à discuter de quelques suggestions?",
+      "default": "J'espère que ce message vous trouve en bonne santé. Je souhaitais vous contacter concernant le calendrier de ce projet. Si possible, j'apprécierais beaucoup votre aide pour finaliser cela d'ici demain. Je comprends que ce délai peut être serré, et je suis heureux de discuter si vous avez besoin de soutien ou de clarifications. Merci beaucoup pour votre compréhension et votre coopération."
+    },
+    "controls": {
+      "formality": "Formalité",
+      "directness": "Franchise",
+      "emotions": "Émotions",
+      "powerRelation": "Relation de Pouvoir",
+      "medium": "Médium",
+      "culturalContext": "Contexte Culturel",
+      "language": "Langue"
+    },
+    "powerOptions": {
+      "superior": "Parler à un subordonné",
+      "equal": "Parler à un égal",
+      "subordinate": "Parler à un supérieur"
+    },
+    "culturalOptions": {
+      "us": "Amérique du Nord",
+      "uk": "Royaume-Uni",
+      "europe": "Europa",
+      "asia": "Asie"
+    },
+    "socialProof": "Fait confiance par des milliers de professionnels pour communiquer avec grâce et clarté",
+    "examplesTitle": "Exemples Réels",
+    "exampleLabels": {
+      "directMessage": "Message Direct",
+      "politeVersion": "Version Polie"
+    },
+    "examples": {
+      "before1": "\"Non, ça ne fonctionnera pas.\"",
+      "after1": "\"Merci pour la suggestion. Après avoir examiné cela attentivement, je crois que nous devrons peut-être explorer des approches alternatives. Seriez-vous ouvert à discuter d'autres options?\"",
+      "before2": "\"Vous devez corriger cela ASAP.\"",
+      "after2": "\"Je voulais attirer votre attention sur un problème qui nécessite notre attention. Serait-il possible de prioriser la résolution de ce problème quand vous aurez un moment? J'apprécie votre aide à ce sujet.\"",
+      "before3": "\"C'est faux.\"",
+      "after3": "\"J'ai remarqué quelque chose qui pourrait nécessiter un examen. Pourrions-nous examiner cela ensemble pour nous assurer que tout s'aligne avec nos objectifs?\""
+    },
+    "whyTitle": "Pourquoi la Politesse Compte dans la Communication Professionnelle",
+    "whyDescription": "Dans les affaires, la façon dont vous dites quelque chose peut être tout aussi importante que ce que vous dites. Le bon ton crée la confiance, préserve les relations et obtient de meilleurs résultats.",
+    "whyPoints": {
+      "point1": "Les messages directs peuvent paraître agressifs ou dédaigneux, même si ce n'est pas l'intention",
+      "point2": "La formulation polie montre le respect et le professionnalisme tout en restant claire et efficace",
+      "point3": "Le bon équilibre entre politesse et franchise varie selon la culture, le contexte et la relation"
+    },
+    "whyConclusion": "vous aide à trouver cet équilibre, en veillant à ce que votre message soit entendu sans causer de frictions inutiles.",
+    "ctaTitle": "Commencez à Écrire des Messages Plus Polis",
+    "ctaDescription": "Transformez votre communication avec notre suite complète d'outils d'ajustement de ton",
+    "ctaButton": "Essayez Sentenly Gratuitement",
+    "seoDescription": "Rendez vos messages plus polis avec l'outil professionnel d'ajustement de ton de Sentenly. Que vous ayez besoin d'adéoucir un refus, de donner des commentaires critiques diplomatiquement ou de faire une demande urgente sans paraître exigeant, notre réécriveur de messages alimenté par IA vous aide à trouver l'équilibre parfait entre clarté et courtoisie. Ajustez la formalité, la franchise et la chaleur pour correspondre à votre contexte culturel et vos dynamiques relationnelles. Parfait pour les e-mails professionnels, les communications clients, les commentaires d'équipe et toute situation où la politesse professionnelle compte.",
+    "footer": {
+      "privacy": "Confidentialité",
+      "terms": "Conditions",
+      "contact": "Contact",
+      "copyright": "© 2026 Sentenly. Tous droits réservés."
     }
   }
 }

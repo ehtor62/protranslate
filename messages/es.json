@@ -352,8 +352,12 @@
     "title": "¿Listo para reescribir?",
     "description": "Elige tu mensaje, ajusta el contexto y obtén una redacción profesionalmente calibrada para cualquier situación.",
     "button": "Comenzar a traducir"
-  },
-  "auth": {
+  },  "relatedPages": {
+    "title": "También podrías necesitar:",
+    "makePolite": "Hacer el mensaje más cortés",
+    "rewriteProfessionally": "Reescribir correo profesionalmente",
+    "followUpEmail": "Correo de seguimiento (sin respuesta)"
+  },  "auth": {
     "signIn": "Iniciar sesión",
     "signUp": "Registrarse",
     "signInDescription": "La versión profesional está lista.\nInicia sesión o crea una cuenta GRATUITA para desbloquearla. Sin suscripción requerida",
@@ -791,6 +795,93 @@
         "q2": "¿Almacenan mis mensajes?",
         "a2": "No, no almacenamos permanentemente el contenido de sus mensajes. El texto es procesado por nuestro servicio de IA y descartado inmediatamente después de la traducción."
       }
-    }
-  }
+    }  },
+  "makePolite": {
+    "title": "Haz Tu Mensaje",
+    "subtitle": "Más Cortés y Profesional",
+    "description1": "A veces necesitas entregar mensajes difíciles sin sonar duro. Transforma la comunicación directa o brusca en lenguaje cortés y profesional que mantenga tu intención mientras mejora el tono.",
+    "description2": "Ya sea que estés rechazando una propuesta, dando retroalimentación o haciendo una solicitud urgente, encuentra el equilibrio perfecto entre cortesía y claridad.",
+    "inputLabel": "Tu Mensaje Directo",
+    "inputPlaceholder": "Ingresa tu mensaje directo aquí...",
+    "defaultInput": "Necesitamos esto para mañana. Sin excepciones.",
+    "outputLabel": "Versión Cortés",
+    "shortcutHelper": "Haz clic en un atajo a continuación o ajusta los controles en la",
+    "liveVersion": "versión en vivo",
+    "scenarios": {
+      "urgentRequest": "Solicitud Urgente",
+      "rejection": "Rechazo Cortés",
+      "complaint": "Queja",
+      "disagreement": "Desacuerdo",
+      "deadline": "Recordatorio de Fecha Límite",
+      "feedback": "Retroalimentación Crítica"
+    },
+    "inputs": {
+      "urgentRequest": "Necesito el informe ahora.",
+      "rejection": "No, no podemos hacer eso.",
+      "complaint": "Esto es inaceptable y debe solucionarse inmediatamente.",
+      "disagreement": "No estoy de acuerdo con tu enfoque en absoluto.",
+      "deadline": "Llegas tarde otra vez. Esto tiene que parar.",
+      "feedback": "Este trabajo no es lo suficientemente bueno."
+    },
+    "outputs": {
+      "urgentRequest": "Agradecería mucho si pudieras priorizar el informe y compartirlo cuando tengas oportunidad. Gracias por tu comprensión.",
+      "rejection": "Gracias por la sugerencia. Después de una cuidadosa consideración, creemos que este enfoque puede no alinearse con nuestros objetivos actuales. ¿Tal vez podríamos explorar juntos soluciones alternativas?",
+      "complaint": "Quería llamar tu atención sobre algunas preocupaciones respecto a la situación actual. ¿Sería posible discutir posibles mejoras cuando tengas oportunidad?",
+      "disagreement": "Aprecio tu perspectiva sobre esto. Me gustaría compartir un punto de vista alternativo que podría complementar la discusión. ¿Podríamos explorar ambos enfoques juntos?",
+      "deadline": "Noté que el cronograma no se ha cumplido como se esperaba. Entiendo que surgen cosas, y agradecería si pudiéramos discutir cómo mantenernos en el camino de ahora en adelante.",
+      "feedback": "Gracias por tu esfuerzo en esto. Creo que hay algunas áreas donde podríamos mejorar la calidad juntos. ¿Estarías abierto a discutir algunas sugerencias?",
+      "default": "Espero que este mensaje te encuentre bien. Quería comunicarme respecto al cronograma de este proyecto. Si es posible, agradecería mucho tu ayuda para completar esto mañana. Entiendo que este puede ser un plazo ajustado, y estoy feliz de discutir si necesitas apoyo o aclaraciones. Muchas gracias por tu comprensión y cooperación."
+    },
+    "controls": {
+      "formality": "Formalidad",
+      "directness": "Directividad",
+      "emotions": "Emociones",
+      "powerRelation": "Relación de Poder",
+      "medium": "Medio",
+      "culturalContext": "Contexto Cultural",
+      "language": "Idioma"
+    },
+    "powerOptions": {
+      "superior": "Hablando con subordinado",
+      "equal": "Hablando con igual",
+      "subordinate": "Hablando con superior"
+    },
+    "culturalOptions": {
+      "us": "Norteamérica",
+      "uk": "Reino Unido",
+      "europe": "Europa",
+      "asia": "Asia"
+    },
+    "socialProof": "Confiado por miles de profesionales para comunicarse con gracia y claridad",
+    "examplesTitle": "Ejemplos Reales",
+    "exampleLabels": {
+      "directMessage": "Mensaje Directo",
+      "politeVersion": "Versión Cortés"
+    },
+    "examples": {
+      "before1": "\"No, eso no funcionará.\"",
+      "after1": "\"Gracias por la sugerencia. Después de revisar esto cuidadosamente, creo que podríamos necesitar explorar enfoques alternativos. ¿Estarías abierto a discutir otras opciones?\"",
+      "before2": "\"Necesitas arreglar esto ASAP.\"",
+      "after2": "\"Quería llamar tu atención sobre un problema que requiere nuestra atención. ¿Sería posible priorizar la resolución de esto cuando tengas un momento? Agradezco tu ayuda con esto.\"",
+      "before3": "\"Esto está mal.\"",
+      "after3": "\"Noté algo que podría necesitar revisión. ¿Podríamos echarle un vistazo juntos para asegurarnos de que todo se alinee con nuestros objetivos?\""
+    },
+    "whyTitle": "Por Qué Importa la Cortesía en la Comunicación Profesional",
+    "whyDescription": "En los negocios, cómo dices algo puede ser tan importante como lo que dices. El tono correcto genera confianza, preserva relaciones y obtiene mejores resultados.",
+    "whyPoints": {
+      "point1": "Los mensajes directos pueden sonar agresivos o desdeñosos, incluso cuando esa no es la intención",
+      "point2": "La formulación cortés muestra respeto y profesionalismo mientras sigue siendo clara y efectiva",
+      "point3": "El equilibrio correcto entre cortesía y directividad varía según la cultura, el contexto y la relación"
+    },
+    "whyConclusion": "te ayuda a encontrar ese equilibrio, asegurando que tu mensaje sea escuchado sin causar fricciones innecesarias.",
+    "ctaTitle": "Comienza a Escribir Mensajes Más Corteses",
+    "ctaDescription": "Transforma tu comunicación con nuestra suite completa de herramientas de ajuste de tono",
+    "ctaButton": "Prueba Sentenly Gratis",
+    "seoDescription": "Haz tus mensajes más corteses con la herramienta profesional de ajuste de tono de Sentenly. Ya sea que necesites suavizar un rechazo, dar retroalimentación crítica diplomáticamente o hacer una solicitud urgente sin sonar exigente, nuestro reescritor de mensajes impulsado por IA te ayuda a encontrar el equilibrio perfecto entre claridad y cortesía. Ajusta la formalidad, directividad y calidez para coincidir con tu contexto cultural y dinámica de relaciones. Perfecto para correos electrónicos empresariales, comunicaciones con clientes, retroalimentación de equipo y cualquier situación donde la cortesía profesional importa.",
+    "footer": {
+      "privacy": "Privacidad",
+      "terms": "Términos",
+      "contact": "Contacto",
+      "copyright": "© 2026 Sentenly. Todos los derechos reservados."
+    }  }
 }

@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/Header';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import {
   Dialog,
@@ -239,24 +239,6 @@ export default function RewriteEmailProfessionallyPage() {
         ]
       },
       {
-        "@type": "BreadcrumbList",
-        "@id": `https://sentenly.com/${locale}/rewrite-email-professionally#breadcrumb`,
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": `https://sentenly.com/${locale}`
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Rewrite Email Professionally",
-            "item": `https://sentenly.com/${locale}/rewrite-email-professionally`
-          }
-        ]
-      },
-      {
         "@type": "WebPage",
         "@id": `https://sentenly.com/${locale}/rewrite-email-professionally#webpage`,
         "url": `https://sentenly.com/${locale}/rewrite-email-professionally`,
@@ -268,9 +250,6 @@ export default function RewriteEmailProfessionallyPage() {
           "@id": "https://sentenly.com/#website",
           "name": "Sentenly",
           "url": "https://sentenly.com"
-        },
-        "breadcrumb": {
-          "@id": `https://sentenly.com/${locale}/rewrite-email-professionally#breadcrumb`
         },
         "potentialAction": {
           "@type": "UseAction",
@@ -296,26 +275,6 @@ export default function RewriteEmailProfessionallyPage() {
       />
       
       <Header />
-      
-      {/* Breadcrumb Navigation */}
-      <nav aria-label="Breadcrumb" className="container pt-4 pb-2">
-        <ol className="flex items-center gap-2 text-sm text-muted-foreground">
-          <li>
-            <Link 
-              href={`/${locale}`} 
-              className="hover:text-foreground transition-colors"
-            >
-              {t('common.home')}
-            </Link>
-          </li>
-          <li>
-            <ChevronRight className="w-4 h-4" />
-          </li>
-          <li className="text-foreground font-medium" aria-current="page">
-            {t('rewriteEmail.title')}
-          </li>
-        </ol>
-      </nav>
       
       {/* Hero section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-emerald-950/40 via-slate-900 to-background">

@@ -359,6 +359,12 @@
     "description": "Choose your message, adjust the context, and get professionally calibrated wording for any situation.",
     "button": "Start translating"
   },
+  "relatedPages": {
+    "title": "You might also need:",
+    "makePolite": "Make message more polite",
+    "rewriteProfessionally": "Rewrite email professionally",
+    "followUpEmail": "Follow-up email (no response)"
+  },
   "auth": {
     "signIn": "Sign In",
     "signUp": "Sign Up",
@@ -801,6 +807,95 @@
         "q2": "Do you store my messages?",
         "a2": "No, we do not permanently store your message content. Text is processed by our AI service and immediately discarded after translation."
       }
+    }
+  },
+  "makePolite": {
+    "title": "Make Your Message",
+    "subtitle": "More Polite & Professional",
+    "description1": "Sometimes you need to deliver tough messages without sounding harsh. Transform direct or blunt communication into polite, professional language that maintains your intent while improving tone.",
+    "description2": "Whether you're rejecting a proposal, delivering feedback, or making an urgent request, get the right balance of politeness and clarity.",
+    "inputLabel": "Your Direct Message",
+    "inputPlaceholder": "Enter your direct message here...",
+    "defaultInput": "We need this done by tomorrow. No exceptions.",
+    "outputLabel": "Polite Version",
+    "shortcutHelper": "Click a shortcut below or fine-tune with controls in",
+    "liveVersion": "live version",
+    "scenarios": {
+      "urgentRequest": "Urgent Request",
+      "rejection": "Polite Rejection",
+      "complaint": "Complaint",
+      "disagreement": "Disagreement",
+      "deadline": "Deadline Reminder",
+      "feedback": "Critical Feedback"
+    },
+    "inputs": {
+      "urgentRequest": "I need the report now.",
+      "rejection": "No, we can't do that.",
+      "complaint": "This is unacceptable and needs to be fixed immediately.",
+      "disagreement": "I don't agree with your approach at all.",
+      "deadline": "You're late again. This has to stop.",
+      "feedback": "This work is not good enough."
+    },
+    "outputs": {
+      "urgentRequest": "I would greatly appreciate it if you could prioritize the report and share it at your earliest convenience. Thank you for your understanding.",
+      "rejection": "Thank you for the suggestion. After careful consideration, we believe this approach may not align with our current objectives. Perhaps we could explore alternative solutions together?",
+      "complaint": "I wanted to bring to your attention some concerns regarding the current situation. Would it be possible to discuss potential improvements at your earliest convenience?",
+      "disagreement": "I appreciate your perspective on this. I'd like to share an alternative viewpoint that might complement the discussion. Could we explore both approaches together?",
+      "deadline": "I noticed the timeline hasn't been met as expected. I understand things come up, and I'd appreciate if we could discuss how to stay on track moving forward.",
+      "feedback": "Thank you for your effort on this. I believe there are some areas where we could enhance the quality together. Would you be open to discussing some suggestions?",
+      "default": "I hope this message finds you well. I wanted to reach out regarding the timeline for this project. If possible, I would greatly appreciate your assistance in completing this by tomorrow. I understand this may be a tight deadline, and I'm happy to discuss if you need any support or clarification. Thank you so much for your understanding and cooperation."
+    },
+    "controls": {
+      "formality": "Formality",
+      "directness": "Directness",
+      "emotions": "Emotions",
+      "powerRelation": "Power Relation",
+      "medium": "Medium",
+      "culturalContext": "Cultural Context",
+      "language": "Language"
+    },
+    "powerOptions": {
+      "superior": "Speaking to subordinate",
+      "equal": "Speaking to equal",
+      "subordinate": "Speaking to superior"
+    },
+    "culturalOptions": {
+      "us": "North America",
+      "uk": "United Kingdom",
+      "europe": "Europe",
+      "asia": "Asia"
+    },
+    "socialProof": "Trusted by thousands of professionals to communicate with grace and clarity",
+    "examplesTitle": "Real Examples",
+    "exampleLabels": {
+      "directMessage": "Direct Message",
+      "politeVersion": "Polite Version"
+    },
+    "examples": {
+      "before1": "\"No, that won't work.\"",
+      "after1": "\"Thank you for the suggestion. After reviewing this carefully, I believe we may need to explore alternative approaches. Would you be open to discussing other options?\"",
+      "before2": "\"You need to fix this ASAP.\"",
+      "after2": "\"I wanted to bring to your attention an issue that requires our attention. Would it be possible to prioritize resolving this when you have a moment? I appreciate your help with this.\"",
+      "before3": "\"This is wrong.\"",
+      "after3": "\"I noticed something that might need review. Could we take another look at this together to ensure everything aligns with our objectives?\""
+    },
+    "whyTitle": "Why Politeness Matters in Professional Communication",
+    "whyDescription": "In business, how you say something can be just as important as what you say. The right tone builds trust, preserves relationships, and gets better results.",
+    "whyPoints": {
+      "point1": "Direct messages can come across as aggressive or dismissive, even when that's not the intent",
+      "point2": "Polite phrasing shows respect and professionalism while still being clear and effective",
+      "point3": "The right balance of politeness and directness varies by culture, context, and relationship"
+    },
+    "whyConclusion": "helps you find that balance, ensuring your message is heard without causing unnecessary friction.",
+    "ctaTitle": "Start Writing More Polite Messages",
+    "ctaDescription": "Transform your communication with our full suite of tone adjustment tools",
+    "ctaButton": "Try Sentenly Free",
+    "seoDescription": "Make your messages more polite with Sentenly's professional tone adjustment tool. Whether you need to soften a rejection, deliver critical feedback diplomatically, or make an urgent request without sounding demanding, our AI-powered message rewriter helps you strike the perfect balance between clarity and courtesy. Adjust formality, directness, and warmth to match your cultural context and relationship dynamics. Perfect for business emails, client communications, team feedback, and any situation where professional politeness matters.",
+    "footer": {
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "contact": "Contact",
+      "copyright": "© 2026 Sentenly. All rights reserved."
     }
   }
 }

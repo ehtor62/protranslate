@@ -354,8 +354,12 @@
     "title": "Pronto para reescrever?",
     "description": "Escolha sua mensagem, ajuste o contexto e obtenha formulação profissional calibrada para qualquer situação.",
     "button": "Começar a traduzir"
-  },
-  "translatePage": {
+  },  "relatedPages": {
+    "title": "Você também pode precisar de:",
+    "makePolite": "Tornar mensagem mais educada",
+    "rewriteProfessionally": "Reescrever e-mail profissionalmente",
+    "followUpEmail": "E-mail de acompanhamento (sem resposta)"
+  },  "translatePage": {
     "title": "Ferramenta de Tradução",
     "description": "Ajuste os parâmetros de contexto.",
     "step1": "Escreva sua intenção ou<br />escolha a mensagem central",
@@ -791,6 +795,95 @@
         "q2": "Vocês armazenam minhas mensagens?",
         "a2": "Não, não armazenamos permanentemente o conteúdo de suas mensagens. O texto é processado por nosso serviço de IA e imediatamente descartado após a tradução."
       }
+    }
+  },
+  "makePolite": {
+    "title": "Torne Sua Mensagem",
+    "subtitle": "Mais Educada & Profissional",
+    "description1": "Às vezes você precisa transmitir mensagens difíceis sem parecer áspero. Transforme comunicação direta ou brusca em linguagem educada e profissional que mantém sua intenção enquanto melhora o tom.",
+    "description2": "Seja rejeitando uma proposta, dando feedback ou fazendo um pedido urgente, encontre o equilíbrio certo entre educação e clareza.",
+    "inputLabel": "Sua Mensagem Direta",
+    "inputPlaceholder": "Digite sua mensagem direta aqui...",
+    "defaultInput": "Precisamos disso até amanhã. Sem exceções.",
+    "outputLabel": "Versão Educada",
+    "shortcutHelper": "Clique em um atalho abaixo ou ajuste os controles na",
+    "liveVersion": "versão ao vivo",
+    "scenarios": {
+      "urgentRequest": "Pedido Urgente",
+      "rejection": "Rejeição Educada",
+      "complaint": "Reclamação",
+      "disagreement": "Discordância",
+      "deadline": "Lembrete de Prazo",
+      "feedback": "Feedback Crítico"
+    },
+    "inputs": {
+      "urgentRequest": "Preciso do relatório agora.",
+      "rejection": "Não, não podemos fazer isso.",
+      "complaint": "Isso é inaceitável e precisa ser corrigido imediatamente.",
+      "disagreement": "Não concordo com sua abordagem de forma alguma.",
+      "deadline": "Você está atrasado novamente. Isso precisa parar.",
+      "feedback": "Este trabalho não é bom o suficiente."
+    },
+    "outputs": {
+      "urgentRequest": "Agradeceria muito se você pudesse priorizar o relatório e compartilhá-lo o mais breve possível. Obrigado pela sua compreensão.",
+      "rejection": "Obrigado pela sugestão. Após cuidadosa consideração, acreditamos que esta abordagem pode não se alinhar com nossos objetivos atuais. Talvez pudéssemos explorar soluções alternativas juntos?",
+      "complaint": "Gostaria de trazer à sua atenção algumas preocupações sobre a situação atual. Seria possível discutir possíveis melhorias o mais breve possível?",
+      "disagreement": "Aprecio sua perspectiva sobre isso. Gostaria de compartilhar um ponto de vista alternativo que poderia complementar a discussão. Poderíamos explorar ambas as abordagens juntos?",
+      "deadline": "Percebi que o cronograma não foi cumprido como esperado. Entendo que imprevistos acontecem, e agradeceria se pudéssemos discutir como manter o curso daqui para frente.",
+      "feedback": "Obrigado pelo seu esforço nisso. Acredito que há algumas áreas onde poderíamos melhorar a qualidade juntos. Você estaria aberto a discutir algumas sugestões?",
+      "default": "Espero que esta mensagem o encontre bem. Gostaria de entrar em contato sobre o cronograma deste projeto. Se possível, agradeceria muito sua ajuda para completar isso até amanhã. Entendo que este pode ser um prazo apertado, e estou feliz em discutir se você precisar de apoio ou esclarecimentos. Muito obrigado pela sua compreensão e cooperação."
+    },
+    "controls": {
+      "formality": "Formalidade",
+      "directness": "Franqueza",
+      "emotions": "Emoções",
+      "powerRelation": "Relação de Poder",
+      "medium": "Meio",
+      "culturalContext": "Contexto Cultural",
+      "language": "Idioma"
+    },
+    "powerOptions": {
+      "superior": "Falando com subordinado",
+      "equal": "Falando com igual",
+      "subordinate": "Falando com superior"
+    },
+    "culturalOptions": {
+      "us": "América do Norte",
+      "uk": "Reino Unido",
+      "europe": "Europa",
+      "asia": "Ásia"
+    },
+    "socialProof": "Confiável por milhares de profissionais para comunicar com graça e clareza",
+    "examplesTitle": "Exemplos Reais",
+    "exampleLabels": {
+      "directMessage": "Mensagem Direta",
+      "politeVersion": "Versão Educada"
+    },
+    "examples": {
+      "before1": "\"Não, isso não vai funcionar.\"",
+      "after1": "\"Obrigado pela sugestão. Depois de revisar isso cuidadosamente, acredito que possamos precisar explorar abord agens alternativas. Você estaria aberto a discutir outras opções?\"",
+      "before2": "\"Você precisa consertar isso ASAP.\"",
+      "after2": "\"Gostaria de trazer à sua atenção um problema que requer nossa atenção. Seria possível priorizar a resolução disso quando tiver um momento? Agradeço sua ajuda nisso.\"",
+      "before3": "\"Isso está errado.\"",
+      "after3": "\"Percebi algo que pode precisar de revisão. Poderíamos dar uma olhada juntos para garantir que tudo esteja alinhado com nossos objetivos?\""
+    },
+    "whyTitle": "Por Que a Educação Importa na Comunicação Profissional",
+    "whyDescription": "Nos negócios, como você diz algo pode ser tão importante quanto o que você diz. O tom certo constrói confiança, preserva relacionamentos e obtém melhores resultados.",
+    "whyPoints": {
+      "point1": "Mensagens diretas podem soar agressivas ou desdenhosas, mesmo quando essa não é a intenção",
+      "point2": "A formulação educada mostra respeito e profissionalismo enquanto permanece clara e eficaz",
+      "point3": "O equilíbrio certo entre educação e franqueza varia de acordo com a cultura, contexto e relacionamento"
+    },
+    "whyConclusion": "ajuda você a encontrar esse equilíbrio, garantindo que sua mensagem seja ouvida sem causar atritos desnecessários.",
+    "ctaTitle": "Comece a Escrever Mensagens Mais Educadas",
+    "ctaDescription": "Transforme sua comunicação com nosso conjunto completo de ferramentas de ajuste de tom",
+    "ctaButton": "Experimente Sentenly Grátis",
+    "seoDescription": "Torne suas mensagens mais educadas com a ferramenta profissional de ajuste de tom da Sentenly. Seja suavizando uma rejeição, dando feedback crítico diplomaticamente ou fazendo um pedido urgente sem parecer exigente, nosso reescritor de mensagens alimentado por IA ajuda você a encontrar o equilíbrio perfeito entre clareza e cortesia. Ajuste formalidade, franqueza e calor para corresponder ao seu contexto cultural e dinâmica de relacionamento. Perfeito para e-mails corporativos, comunicações com clientes, feedback de equipe e qualquer situação onde a educação profissional importa.",
+    "footer": {
+      "privacy": "Privacidade",
+      "terms": "Termos",
+      "contact": "Contato",
+      "copyright": "© 2026 Sentenly. Todos os direitos reservados."
     }
   }
 }
