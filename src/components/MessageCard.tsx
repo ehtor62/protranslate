@@ -43,14 +43,20 @@ export function MessageCard({ message, isSelected, onClick }: MessageCardProps) 
       <div className="flex items-start gap-3">
         <div className={cn(
           "p-2 rounded-lg transition-colors",
-          isSelected ? "bg-primary/20 text-primary" : "bg-muted text-muted-foreground group-hover:text-foreground"
+          message.id === 'custom-input'
+            ? "bg-orange-500/20 text-orange-500"
+            : isSelected ? "bg-primary/20 text-primary" : "bg-muted text-muted-foreground group-hover:text-foreground"
         )}>
           <Icon className="w-5 h-5" />
         </div>
         <div className="flex-1 min-w-0">
           <h3 className={cn(
             "font-medium text-sm transition-colors",
-            isSelected ? "text-foreground" : "text-secondary-foreground"
+            message.id === 'custom-input' 
+              ? "text-orange-500" 
+              : isSelected 
+                ? "text-foreground" 
+                : "text-secondary-foreground"
           )}>
             {t(`${messageKey}.title`)}
           </h3>

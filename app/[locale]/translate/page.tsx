@@ -17,6 +17,7 @@ import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { sendEmailVerification } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
+import { cn } from '@/lib/utils';
 import {
   Dialog,
   DialogContent,
@@ -823,7 +824,10 @@ export default function Translate() {
                   onClick={() => setIsDialogOpen(true)}
                   variant="outline"
                   size="sm"
-                  className="ml-auto"
+                  className={cn(
+                    "ml-auto",
+                    selectedMessageId === 'custom-input' && "border-orange-500 text-orange-500 hover:bg-orange-500/10"
+                  )}
                 >
                   <Settings className="w-4 h-4 mr-2" />
                   {t('translatePage.step2')}
