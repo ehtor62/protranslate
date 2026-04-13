@@ -75,8 +75,7 @@
     "livePreview": "Live-Vorschau"
   },
   "demo": {
-    "inputLabel": "Schreibe deine Absicht oder was dir in den Sinn kommt",
-    "inputPlaceholder": "Gib hier deinen Text ein",
+    "inputPlaceholder": "Beispieleingabe",
     "inputExample": "Vertrag zum Unterschreiben asap schicken sonst bekomme ich finanzielle Schwierigkeiten.",
     "shortcutLabel": "Klicke auf eine Vorgabe oder adjustiere mit den Reglern in der <a href='https://sentenly.com' target='_blank' rel='noopener noreferrer' style='color: #10b981; text-decoration: underline;'>Live-Version</a>",
     "shortcutLabelNoLink": "Klicke auf eine Vorgabe oder adjustiere mit den Reglern in der Live-Version",

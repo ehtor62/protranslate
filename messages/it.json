@@ -78,8 +78,7 @@
     "livePreview": "Anteprima dal vivo"
   },
   "demo": {
-    "inputLabel": "Scrivi la tua intenzione o ciò che ti viene in mente",
-    "inputPlaceholder": "Inserisci il tuo testo qui",
+    "inputPlaceholder": "Esempio di input",
     "inputExample": "inviare contratto per firma al più presto altrimenti avrò difficoltà finanziarie.",
     "shortcutLabel": "Clicca su una scorciatoia o imposta con i controlli nella <a href='https://sentenly.com' target='_blank' rel='noopener noreferrer' style='color: #10b981; text-decoration: underline;'>versione live</a>",
     "shortcutLabelNoLink": "Clicca su una scorciatoia o imposta con i controlli nella versione live",

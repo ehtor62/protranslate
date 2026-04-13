@@ -81,8 +81,7 @@
     "livePreview": "Live Preview"
   },
   "demo": {
-    "inputLabel": "Write your intent or what comes to your mind",
-    "inputPlaceholder": "Enter your text here",
+    "inputPlaceholder": "Example input",
     "inputExample": "send contract for signing asap otherwise I run into financial difficulties.",
     "shortcutLabel": "Click a shortcut below or fine-tune with controls in <a href='https://sentenly.com' target='_blank' rel='noopener noreferrer' style='color: #10b981; text-decoration: underline;'>live version</a>",
     "shortcutLabelNoLink": "Click a shortcut below or fine-tune with controls in live version",

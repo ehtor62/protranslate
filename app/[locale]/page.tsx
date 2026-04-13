@@ -36,10 +36,15 @@ export default function Home() {
   const [culture, setCulture] = useState('us');
   const [medium, setMedium] = useState('email');
   const [targetLanguage, setTargetLanguage] = useState('en');
-  const [showPlaceholder, setShowPlaceholder] = useState(false);
+  const [showPlaceholder, setShowPlaceholder] = useState(true);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [buttonPulse, setButtonPulse] = useState(false);
   const [selectedFaqQuestion, setSelectedFaqQuestion] = useState<number | null>(null);
   const [isFaqModalOpen, setIsFaqModalOpen] = useState(false);
+  const [arrowPillIndex, setArrowPillIndex] = useState(-1);
+
+  const pillOptions = ['blunt', 'direct', 'diplomatic', 'personal', 'respectful', 'escalation', 'friendly', 'formal-notice'];
 
   // Alternate between placeholder and example text: 7s for example, 2s for placeholder
   useEffect(() => {
@@ -49,7 +54,7 @@ export default function Home() {
     let timeout2: NodeJS.Timeout;
 
     const runCycle = () => {
-      // Show example text for 7 seconds
+      // Show example text (typing takes ~2.3s, display for ~5s more)
       setShowPlaceholder(false);
       
       timeout1 = setTimeout(() => {
@@ -60,7 +65,7 @@ export default function Home() {
           // Repeat the cycle
           runCycle();
         }, 2000);
-      }, 7000);
+      }, 7500); // Increased to 7.5s to account for typing animation
     };
 
     runCycle();
@@ -70,6 +75,70 @@ export default function Home() {
       clearTimeout(timeout2);
     };
   }, [selectedPill]);
+
+  // Typewriter effect for demo text
+  useEffect(() => {
+    if (selectedPill) return; // Don't animate when a pill is selected
+    
+    if (showPlaceholder) {
+      setDisplayedText('');
+      setIsTypingComplete(false);
+      return;
+    }
+
+    const fullText = t('demo.inputExample');
+    let currentIndex = 0;
+    setDisplayedText('');
+    setIsTypingComplete(false);
+
+    const typingInterval = setInterval(() => {
+      if (currentIndex < fullText.length) {
+        setDisplayedText(fullText.substring(0, currentIndex + 1));
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+        setIsTypingComplete(true);
+      }
+    }, 30); // 30ms per character for smooth typing
+
+    return () => {
+      clearInterval(typingInterval);
+    };
+  }, [showPlaceholder, selectedPill, t]);
+
+  // Show full text immediately when a pill is selected
+  useEffect(() => {
+    if (selectedPill) {
+      setDisplayedText(t('demo.inputExample'));
+      setIsTypingComplete(true);
+      setArrowPillIndex(-1); // Hide arrow when pill is selected
+    }
+  }, [selectedPill, t]);
+
+  // Animate arrow through pills
+  useEffect(() => {
+    if (selectedPill) return; // Stop arrow animation when a pill is selected
+    
+    // Only show arrow after typing is complete and while not showing placeholder
+    if (!isTypingComplete || showPlaceholder) {
+      setArrowPillIndex(-1); // Hide arrow
+      return;
+    }
+
+    // Start arrow animation from first pill
+    setArrowPillIndex(0);
+    
+    const arrowInterval = setInterval(() => {
+      setArrowPillIndex((prevIndex) => {
+        const nextIndex = prevIndex + 1;
+        return nextIndex >= pillOptions.length ? 0 : nextIndex;
+      });
+    }, 650); // Move every 650ms to cycle through all 8 pills in ~5.2s
+
+    return () => {
+      clearInterval(arrowInterval);
+    };
+  }, [selectedPill, isTypingComplete, showPlaceholder, pillOptions.length]);
 
   // Reset to default after 20 seconds when a pill is clicked
   useEffect(() => {
@@ -88,6 +157,9 @@ export default function Home() {
       setMedium('email');
       setTargetLanguage('en');
       setShowPlaceholder(false);
+      setDisplayedText('');
+      setIsTypingComplete(false);
+      setArrowPillIndex(-1);
     }, 20000);
 
     return () => {
@@ -285,14 +357,12 @@ export default function Home() {
             </div>
             
             {/* Right column - Input box and Settings */}
-            <div className="w-full md:w-[450px] lg:w-[500px] flex-shrink-0 space-y-6">
+            <div className="w-full md:w-[450px] lg:w-[500px] flex-shrink-0 space-y-6 pt-4">
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">{t('demo.inputLabel')}</label>
-                
                 <div className="relative">
                   <textarea
                     className="w-full h-20 p-4 rounded-xl bg-slate-700 backdrop-blur border border-slate-600 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none transition-all text-sm"
-                    value={showPlaceholder ? '' : t('demo.inputExample')}
+                    value={displayedText}
                     placeholder={showPlaceholder ? t('demo.inputPlaceholder') : ""}
                     readOnly
                   />
@@ -303,7 +373,22 @@ export default function Home() {
                   {/* Tone pills section */}
                   <div className="flex-1">
                     <label className="block text-sm font-medium text-foreground mb-2 leading-snug" dangerouslySetInnerHTML={{ __html: t('demo.shortcutLabelNoLink') }} />
-                    <div className="flex flex-col items-start justify-between" style={{ gap: '0.625rem' }}>
+                    <div className="flex gap-2 items-start">
+                      {/* Animated arrow indicator */}
+                      <div className="flex flex-col pt-1" style={{ gap: '0.625rem' }}>
+                        {pillOptions.map((_, index) => (
+                          <div 
+                            key={index} 
+                            className="h-6 flex items-center"
+                            style={{ width: '20px' }}
+                          >
+                            {!selectedPill && arrowPillIndex === index && arrowPillIndex !== -1 && (
+                              <ArrowRight className="w-4 h-4 text-white animate-pulse" />
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex flex-col items-start justify-between" style={{ gap: '0.625rem' }}>
                     <button
                       onClick={() => handlePillClick('blunt')}
                       className={`text-[11px] px-2.5 py-1 rounded-full font-medium transition-all cursor-pointer flex-shrink-0 ${
@@ -384,9 +469,9 @@ export default function Home() {
                     >
                       {t('demo.scenarioFormalNotice')}
                     </button>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                
                 {/* Mini Settings Display */}
                 <div className="w-[240px] flex-shrink-0">
                   <div className="bg-slate-800/50 backdrop-blur border border-slate-600 rounded-xl p-3 space-y-2.5">
