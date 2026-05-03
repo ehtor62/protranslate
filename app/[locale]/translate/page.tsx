@@ -1301,6 +1301,9 @@ export default function Translate() {
                       {targetLanguage === 'nl' && t('translatePage.languageDutch')}
                       {targetLanguage === 'ja' && t('translatePage.languageJapanese')}
                       {targetLanguage === 'zh' && t('translatePage.languageChinese')}
+                      {targetLanguage === 'hr' && t('translatePage.languageCroatian')}
+                      {targetLanguage === 'pl' && t('translatePage.languagePolish')}
+                      {targetLanguage === 'el' && t('translatePage.languageGreek')}
                       {!targetLanguage && 'Language'}
                     </button>
                   </div>
@@ -1540,6 +1543,36 @@ export default function Translate() {
                 className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 {t('translatePage.languageChinese')}
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setTargetLanguage('hr');
+                  setIsLanguageModalOpen(false);
+                }}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('translatePage.languageCroatian')}
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setTargetLanguage('pl');
+                  setIsLanguageModalOpen(false);
+                }}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('translatePage.languagePolish')}
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setTargetLanguage('el');
+                  setIsLanguageModalOpen(false);
+                }}
+                className="px-4 py-6 text-sm font-medium rounded-lg border border-border bg-secondary hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                {t('translatePage.languageGreek')}
               </button>
             </div>
           </DialogContent>
